@@ -6,7 +6,7 @@ package com.sulake.habbo.catalog.club
    import com.sulake.habbo.localization.IHabboLocalizationManager;
    import com.sulake.habbo.window.IHabboWindowManager;
    import com.sulake.habbo.communication.messages.parser.catalog.class_1307;
-   import com.sulake.habbo.communication.messages.outgoing.tracking.class_955;
+   import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.catalog.class_1646;
    import com.sulake.habbo.communication.messages.incoming.catalog.class_786;
    
@@ -53,11 +53,11 @@ package com.sulake.habbo.catalog.club
          {
             if(_offer.vip)
             {
-               _catalog.connection.send(new class_955("Catalog","dialog_show","vip.membership.extension.purchase"));
+               _catalog.connection.send(new EventLogMessageComposer("Catalog","dialog_show","vip.membership.extension.purchase"));
             }
             else
             {
-               _catalog.connection.send(new class_955("Catalog","dialog_show","basic.membership.extension.purchase"));
+               _catalog.connection.send(new EventLogMessageComposer("Catalog","dialog_show","basic.membership.extension.purchase"));
             }
          }
       }

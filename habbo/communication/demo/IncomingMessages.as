@@ -27,7 +27,7 @@ package com.sulake.habbo.communication.demo {
     import com.sulake.habbo.communication.messages.outgoing.handshake.ClientHelloMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.handshake.class_622
     import com.sulake.habbo.communication.messages.outgoing.handshake.class_840
-    import com.sulake.habbo.communication.messages.outgoing.tracking.class_955
+    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer
     import com.sulake.habbo.communication.messages.parser.availability.class_1211
     import com.sulake.habbo.communication.messages.parser.availability.class_1528
     import com.sulake.habbo.communication.messages.parser.error.class_1334
@@ -190,7 +190,7 @@ package com.sulake.habbo.communication.demo {
             var_1660.dispatchLoginStepEvent("HABBO_CONNECTION_EVENT_AUTHENTICATED");
             var _loc2_: class_840 = new class_840();
             _loc4_.send(_loc2_);
-            var _loc3_: class_955 = new class_955("Login", "socket", "client.auth_ok");
+            var _loc3_: EventLogMessageComposer = new EventLogMessageComposer("Login", "socket", "client.auth_ok");
             _loc4_.send(_loc3_);
             _communication.suggestedLoginActions = param1.suggestedLoginActions;
             var_1660.loginOk();

@@ -42,7 +42,7 @@ package com.sulake.habbo.session
    import com.sulake.habbo.communication.messages.outgoing.room.avatar.ChangePostureMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.nux.class_805;
    import com.sulake.habbo.communication.messages.outgoing.game.arena.Game2GameChatMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.tracking.class_955;
+   import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.action.class_1041;
    import com.sulake.habbo.communication.messages.outgoing.room.action.class_234;
    import com.sulake.habbo.communication.messages.outgoing.room.action.LetUserInMessageComposer;
@@ -405,7 +405,7 @@ package com.sulake.habbo.session
       
       public function sendConversionPoint(param1:String, param2:String, param3:String, param4:String = null, param5:int = 0) : void
       {
-         var_26.send(new class_955(param1,param2,param3,param4,param5));
+         var_26.send(new EventLogMessageComposer(param1,param2,param3,param4,param5));
       }
       
       public function sendPollStartMessage(param1:int) : void

@@ -11,7 +11,7 @@ package com.sulake.habbo.messenger {
     import com.sulake.habbo.communication.messages.outgoing.friendlist.class_317
     import com.sulake.habbo.communication.messages.outgoing.friendlist.class_450
     import com.sulake.habbo.communication.messages.outgoing.friendlist.class_625
-    import com.sulake.habbo.communication.messages.outgoing.tracking.class_955
+    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.users.class_201
     import com.sulake.habbo.communication.messages.outgoing.users.class_322
     import com.sulake.habbo.friendlist.IFriend
@@ -817,7 +817,7 @@ package com.sulake.habbo.messenger {
                         case "follow_button":
                             if (_currentConversationId > 0) {
                                 _messenger.send(new class_450(_currentConversationId));
-                                _messenger.send(new class_955("Navigation", "IM", "go.im"));
+                                _messenger.send(new EventLogMessageComposer("Navigation", "IM", "go.im"));
                             } else {
                                 _messenger.followingToGroupRoom = true;
                                 _messenger.send(new class_201(Math.abs(_currentConversationId), false));

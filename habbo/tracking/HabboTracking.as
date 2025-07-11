@@ -17,7 +17,7 @@ package com.sulake.habbo.tracking {
     import com.sulake.habbo.communication.messages.incoming.notifications.class_205
     import com.sulake.habbo.communication.messages.incoming.room.engine.class_510
     import com.sulake.habbo.communication.messages.incoming.tracking.LatencyPingResponseMessageEvent
-    import com.sulake.habbo.communication.messages.outgoing.tracking.class_955
+    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer
     import com.sulake.habbo.communication.messages.parser.notifications.class_1271
     import com.sulake.habbo.communication.messages.parser.room.engine.class_1339
     import com.sulake.habbo.localization.IHabboLocalizationManager
@@ -697,7 +697,7 @@ package com.sulake.habbo.tracking {
 
         public function trackEventLog(param1: String, param2: String, param3: String, param4: String = "", param5: int = 0): void {
             if (_communication != null && _communication.connection != null && Boolean(_communication.connection.connected)) {
-                _communication.connection.send(new class_955(param1, param2, param3, param4, param5));
+                _communication.connection.send(new EventLogMessageComposer(param1, param2, param3, param4, param5));
             }
         }
 

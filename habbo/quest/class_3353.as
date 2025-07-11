@@ -34,7 +34,7 @@ package com.sulake.habbo.quest
    import com.sulake.habbo.communication.messages.incoming.notifications.class_205;
    import com.sulake.habbo.communication.messages.incoming.notifications.class_289;
    import com.sulake.habbo.communication.messages.incoming.notifications.class_469;
-   import com.sulake.habbo.communication.messages.outgoing.tracking.class_955;
+   import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.users.class_1057;
    import com.sulake.habbo.communication.messages.incoming.game.lobby.class_1012;
    import com.sulake.habbo.communication.messages.incoming.game.lobby.class_494;
@@ -218,7 +218,7 @@ package com.sulake.habbo.quest
          var _loc2_:class_205 = param1 as class_205;
          var _loc3_:class_1271 = _loc2_.getParser();
          var _loc4_:String = String(_questEngine.localization.getBadgeBaseName(_loc3_.data.badgeCode));
-         _questEngine.send(new class_955("Achievements",_loc4_,"Leveled","",_loc3_.data.level));
+         _questEngine.send(new EventLogMessageComposer("Achievements",_loc4_,"Leveled","",_loc3_.data.level));
          _questEngine.achievementsResolutionController.onLevelUp(_loc3_.data);
       }
       

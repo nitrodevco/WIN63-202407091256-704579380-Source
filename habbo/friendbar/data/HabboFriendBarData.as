@@ -42,7 +42,7 @@ package com.sulake.habbo.friendbar.data
    import com.sulake.habbo.communication.messages.incoming.friendlist.FriendRequestsEvent;
    import com.sulake.habbo.communication.messages.outgoing.friendlist.class_411;
    import com.sulake.habbo.communication.messages.outgoing.friendlist.class_450;
-   import com.sulake.habbo.communication.messages.outgoing.tracking.class_955;
+   import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileByNameMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.users.class_201;
    import com.sulake.habbo.communication.messages.outgoing.users.class_322;
@@ -317,7 +317,7 @@ package com.sulake.habbo.friendbar.data
          if(_habboCommunicationManager)
          {
             _habboCommunicationManager.connection.send(new class_450(param1));
-            _habboCommunicationManager.connection.send(new class_955("Navigation","Friend Bar","go.friendbar"));
+            _habboCommunicationManager.connection.send(new EventLogMessageComposer("Navigation","Friend Bar","go.friendbar"));
          }
       }
       
@@ -329,7 +329,7 @@ package com.sulake.habbo.friendbar.data
             events.dispatchEvent(new NewMessageEvent(false,param1));
             if(_habboCommunicationManager)
             {
-               _habboCommunicationManager.connection.send(new class_955("Navigation","Friend Bar","chat_btn_click"));
+               _habboCommunicationManager.connection.send(new EventLogMessageComposer("Navigation","Friend Bar","chat_btn_click"));
             }
          }
       }
@@ -339,7 +339,7 @@ package com.sulake.habbo.friendbar.data
          if(_habboCommunicationManager)
          {
             _habboCommunicationManager.connection.send(new class_411());
-            _habboCommunicationManager.connection.send(new class_955("Navigation","Friend Bar","find_friends_btn_click"));
+            _habboCommunicationManager.connection.send(new EventLogMessageComposer("Navigation","Friend Bar","find_friends_btn_click"));
          }
       }
       
@@ -369,7 +369,7 @@ package com.sulake.habbo.friendbar.data
       {
          if(_habboCommunicationManager)
          {
-            _habboCommunicationManager.connection.send(new class_955("Navigation","Friend Bar",param1,param2,numFriends));
+            _habboCommunicationManager.connection.send(new EventLogMessageComposer("Navigation","Friend Bar",param1,param2,numFriends));
          }
       }
       
@@ -403,7 +403,7 @@ package com.sulake.habbo.friendbar.data
                }
                if(_habboCommunicationManager)
                {
-                  _habboCommunicationManager.connection.send(new class_955("Toolbar","FRIENDLIST",_habboFriendListComponent.isOpen() ? "open" : "close"));
+                  _habboCommunicationManager.connection.send(new EventLogMessageComposer("Toolbar","FRIENDLIST",_habboFriendListComponent.isOpen() ? "open" : "close"));
                }
             }
          }
@@ -418,7 +418,7 @@ package com.sulake.habbo.friendbar.data
                _habboMessengerComponent.toggleMessenger();
                if(_habboCommunicationManager)
                {
-                  _habboCommunicationManager.connection.send(new class_955("Toolbar","MESSENGER",_habboMessengerComponent.isOpen() ? "open" : "close"));
+                  _habboCommunicationManager.connection.send(new EventLogMessageComposer("Toolbar","MESSENGER",_habboMessengerComponent.isOpen() ? "open" : "close"));
                }
             }
          }

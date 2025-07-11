@@ -13,7 +13,7 @@ package com.sulake.habbo.groups
    import com.sulake.habbo.utils.FriendlyTime;
    import com.sulake.habbo.window.widgets.IAvatarImageWidget;
    import com.sulake.habbo.window.widgets.IBadgeImageWidget;
-   import com.sulake.habbo.communication.messages.outgoing.tracking.class_955;
+   import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.users.class_1199;
    import com.sulake.habbo.communication.messages.incoming.users.class_1581;
    import com.sulake.habbo.communication.messages.incoming.users.class_1745;
@@ -412,7 +412,7 @@ package com.sulake.habbo.groups
          }
          var_1895 = param2.id;
          var_480.send(new class_201(var_1895,false));
-         var_480.send(new class_955("HabboGroups","" + param2.id,"select"));
+         var_480.send(new EventLogMessageComposer("HabboGroups","" + param2.id,"select"));
          this.refreshGroupListSelection();
       }
       
@@ -423,7 +423,7 @@ package com.sulake.habbo.groups
             return;
          }
          var_480.send(new class_197(param2.id));
-         var_480.send(new class_955("HabboGroups","" + param2.parent.id,"make favourite"));
+         var_480.send(new EventLogMessageComposer("HabboGroups","" + param2.parent.id,"make favourite"));
          var_1895 = param2.id;
       }
       
@@ -434,7 +434,7 @@ package com.sulake.habbo.groups
             return;
          }
          var_480.send(new class_806(param2.id));
-         var_480.send(new class_955("HabboGroups","" + param2.parent.id,"clear favourite"));
+         var_480.send(new EventLogMessageComposer("HabboGroups","" + param2.parent.id,"clear favourite"));
          var_1895 = param2.id;
       }
       

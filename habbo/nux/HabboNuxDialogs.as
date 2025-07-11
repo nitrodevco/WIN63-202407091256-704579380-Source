@@ -32,7 +32,7 @@ package com.sulake.habbo.nux
    import com.sulake.habbo.communication.messages.outgoing.nux.class_1232;
    import com.sulake.habbo.communication.messages.outgoing.nux.NewUserExperienceGetGiftsMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.gifts.class_457;
-   import com.sulake.habbo.communication.messages.outgoing.tracking.class_955;
+   import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.nux.class_1714;
    import com.sulake.habbo.communication.messages.incoming.nux.class_295;
    import com.sulake.habbo.communication.messages.incoming.nux.class_694;
@@ -277,7 +277,7 @@ package com.sulake.habbo.nux
          }
          destroyNoobRoomOfferView();
          var_3393 = new NuxNoobRoomOfferView(this);
-         var_26.send(new class_955("NewNavigator","nux.offer.lobby","nux.offer.lobby"));
+         var_26.send(new EventLogMessageComposer("NewNavigator","nux.offer.lobby","nux.offer.lobby"));
       }
       
       public function destroyNoobRoomOfferView() : void

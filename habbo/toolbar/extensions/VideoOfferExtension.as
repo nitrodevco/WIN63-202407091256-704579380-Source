@@ -15,7 +15,7 @@ package com.sulake.habbo.toolbar.extensions
    import com.sulake.habbo.toolbar.HabboToolbar;
    import flash.display.BitmapData;
    import flash.geom.Point;
-   import com.sulake.habbo.communication.messages.outgoing.tracking.class_955;
+   import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    
    public class VideoOfferExtension implements IVideoOfferLauncher
    {
@@ -185,7 +185,7 @@ package com.sulake.habbo.toolbar.extensions
       {
          var_4147 = true;
          destroyWindow();
-         _toolbar.connection.send(new class_955("SuperSaverAds","client_action","supersaverads.video.promo.close_clicked"));
+         _toolbar.connection.send(new EventLogMessageComposer("SuperSaverAds","client_action","supersaverads.video.promo.close_clicked"));
       }
       
       private function onCloseMouseOver(param1:WindowMouseEvent) : void

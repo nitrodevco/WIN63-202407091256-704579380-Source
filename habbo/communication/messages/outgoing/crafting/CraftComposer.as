@@ -3,12 +3,13 @@ package com.sulake.habbo.communication.messages.outgoing.crafting {
    import com.sulake.core.runtime.IDisposable
 
    [SecureSWF(rename="true")]
-    public class class_416 implements IMessageComposer, IDisposable {
+    public class CraftComposer implements IMessageComposer, IDisposable {
 
-        public function class_416(param1: int) {
+        public function CraftComposer(param1: int, param2: String) {
             var_20 = [];
             super();
             var_20.push(param1);
+            var_20.push(param2);
         }
         private var var_20: Array;
 

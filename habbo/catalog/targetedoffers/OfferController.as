@@ -13,7 +13,7 @@ package com.sulake.habbo.catalog.targetedoffers
    import com.sulake.habbo.communication.messages.outgoing.catalog.SetTargetedOfferStateComposer;
    import com.sulake.habbo.communication.messages.outgoing.catalog.class_902;
    import com.sulake.habbo.communication.messages.outgoing.catalog.class_909;
-   import com.sulake.habbo.communication.messages.outgoing.tracking.class_955;
+   import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.catalog.TargetedOfferEvent;
    import com.sulake.habbo.communication.messages.incoming.catalog.class_769;
    
@@ -190,7 +190,7 @@ package com.sulake.habbo.catalog.targetedoffers
          {
             return;
          }
-         _catalog.connection.send(new class_955("TargetedOffers","FLASH.UNKNOWN",param1,param2));
+         _catalog.connection.send(new EventLogMessageComposer("TargetedOffers","FLASH.UNKNOWN",param1,param2));
       }
       
       public function purchaseCredits(param1:TargetedOffer) : void

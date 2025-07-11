@@ -86,7 +86,7 @@ package com.sulake.habbo.inventory
    import com.sulake.habbo.communication.messages.incoming.room.engine.class_510;
    import com.sulake.habbo.communication.messages.incoming.notifications.class_205;
    import com.sulake.habbo.communication.messages.incoming.inventory.furni.class_1707;
-   import com.sulake.habbo.communication.messages.incoming.inventory.furni.class_221;
+   import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListEvent;
    import com.sulake.habbo.communication.messages.incoming.inventory.furni.class_274;
    import com.sulake.habbo.communication.messages.incoming.inventory.furni.class_340;
    import com.sulake.habbo.communication.messages.incoming.inventory.furni.class_379;
@@ -142,7 +142,7 @@ package com.sulake.habbo.inventory
          _com.addHabboConnectionMessageEvent(new class_1072(onAvatarEffects));
          _com.addHabboConnectionMessageEvent(new class_205(onAchievementReceived));
          _com.addHabboConnectionMessageEvent(new class_446(onFurniListRemove));
-         _com.addHabboConnectionMessageEvent(new class_221(onFurniList));
+         _com.addHabboConnectionMessageEvent(new FurniListEvent(onFurniList));
          _com.addHabboConnectionMessageEvent(new class_327(onAvatarEffectExpired));
          _com.addHabboConnectionMessageEvent(new class_535(onTradingCompleted,class_1125));
          _com.addHabboConnectionMessageEvent(new class_1109(onAchievementsScore));
@@ -189,7 +189,7 @@ package com.sulake.habbo.inventory
          _com = null;
       }
       
-      public function onFurniList(param1:class_221) : void
+      public function onFurniList(param1:FurniListEvent) : void
       {
          var _loc4_:class_1546;
          if((_loc4_ = param1.getParser()) == null)

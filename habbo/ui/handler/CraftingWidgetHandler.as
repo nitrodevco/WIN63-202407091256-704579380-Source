@@ -19,9 +19,9 @@ package com.sulake.habbo.ui.handler
    import com.sulake.habbo.communication.messages.incoming.crafting.class_774;
    import com.sulake.habbo.communication.messages.parser.crafting.class_1649;
    import com.sulake.habbo.communication.messages.incoming.inventory.furni.class_340;
-   import com.sulake.habbo.communication.messages.outgoing.inventory.furni.class_271;
-   import com.sulake.habbo.communication.messages.outgoing.crafting.class_336;
-   import com.sulake.habbo.communication.messages.outgoing.crafting.class_416;
+   import com.sulake.habbo.communication.messages.outgoing.inventory.furni.RequestFurniInventoryComposer;
+   import com.sulake.habbo.communication.messages.outgoing.crafting.CraftComposer;
+   import com.sulake.habbo.communication.messages.outgoing.crafting.GetCraftableProductsComposer;
    import com.sulake.habbo.communication.messages.outgoing.crafting.class_890;
    import com.sulake.habbo.communication.messages.outgoing.crafting.class_891;
    import com.sulake.habbo.communication.messages.outgoing.crafting.class_972;
@@ -130,7 +130,7 @@ package com.sulake.habbo.ui.handler
       
       private function getCraftableProducts() : void
       {
-         _container.connection.send(new class_416(var_2516));
+         _container.connection.send(new GetCraftableProductsComposer(var_2516));
       }
       
       private function onCraftableProductsMessage(param1:class_1021) : void
@@ -180,7 +180,7 @@ package com.sulake.habbo.ui.handler
          }
          var_1629.infoCtrl.setState(1000);
          registerForFurniListInvalidate();
-         _container.connection.send(new class_336(var_2516,var_3413));
+         _container.connection.send(new CraftComposer(var_2516,var_3413));
       }
       
       public function doCraftingWithMixer() : void
@@ -228,8 +228,8 @@ package com.sulake.habbo.ui.handler
       
       private function onFurniListInvalidate(param1:class_340) : void
       {
-         _container.connection.send(new class_271());
-         _container.connection.send(new class_416(var_2516));
+         _container.connection.send(new RequestFurniInventoryComposer());
+         _container.connection.send(new GetCraftableProductsComposer(var_2516));
          removeInventoryUpdateEvent();
       }
       

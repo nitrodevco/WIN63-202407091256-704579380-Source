@@ -47,7 +47,7 @@ package com.sulake.habbo.groups
    import com.sulake.habbo.communication.messages.parser.handshake.class_1267;
    import com.sulake.habbo.communication.messages.parser.room.engine.class_1339;
    import com.sulake.habbo.communication.messages.incoming.room.engine.class_510;
-   import com.sulake.habbo.communication.messages.outgoing.tracking.class_955;
+   import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.users.class_1057;
    import com.sulake.habbo.communication.messages.incoming.users.class_1184;
    import com.sulake.habbo.communication.messages.incoming.users.class_1197;
@@ -289,7 +289,7 @@ package com.sulake.habbo.groups
       public function showGroupBadgeInfo(param1:Boolean, param2:int) : void
       {
          openGroupInfo(param2);
-         send(new class_955("HabboGroups","" + param2,"badge clicked"));
+         send(new EventLogMessageComposer("HabboGroups","" + param2,"badge clicked"));
       }
       
       public function openGroupInfo(param1:int) : void

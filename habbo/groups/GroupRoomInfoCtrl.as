@@ -8,7 +8,7 @@ package com.sulake.habbo.groups
    import com.sulake.habbo.toolbar.events.HabboToolbarEvent;
    import com.sulake.habbo.window.widgets.IBadgeImageWidget;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_1675;
-   import com.sulake.habbo.communication.messages.outgoing.tracking.class_955;
+   import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.users.class_1199;
    import com.sulake.habbo.communication.messages.outgoing.users.class_131;
    import com.sulake.habbo.communication.messages.outgoing.users.class_201;
@@ -195,7 +195,7 @@ package com.sulake.habbo.groups
             var_480.trackGoogle("groupRoomInfo","joinGroup");
             _window.findChildByName("join_button").disable();
             var_480.send(new class_320(_group.groupId));
-            var_480.send(new class_955("HabboGroups","" + _group.groupId,"join"));
+            var_480.send(new EventLogMessageComposer("HabboGroups","" + _group.groupId,"join"));
             var_480.toolbar.events.dispatchEvent(new HabboToolbarEvent("HTE_GROUP_ROOM_INFO_CLICK"));
          }
       }

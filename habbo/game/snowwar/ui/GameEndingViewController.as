@@ -32,7 +32,7 @@ package com.sulake.habbo.game.snowwar.ui
    import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2GetAccountGameStatusMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.game.directory.class_647;
    import com.sulake.habbo.communication.messages.outgoing.game.arena.Game2ExitGameMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.tracking.class_955;
+   import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    
    public class GameEndingViewController implements IDisposable, IAvatarImageListener
    {
@@ -326,7 +326,7 @@ package com.sulake.habbo.game.snowwar.ui
          if(_loc3_)
          {
             var_1655.friendList.askForAFriend(_loc2_,_loc3_.userName);
-            var_1655.communication.connection.send(new class_955("GameFramework","SnowStorm","gameFramework.sendFriendRequest.rematchView"));
+            var_1655.communication.connection.send(new EventLogMessageComposer("GameFramework","SnowStorm","gameFramework.sendFriendRequest.rematchView"));
             var_1655.addChatMessage(_loc2_,"${snowwar.friend_request.sent}",true);
          }
          param1.window.visible = false;

@@ -3,7 +3,7 @@ package com.sulake.habbo.catalog
    import com.sulake.core.runtime.IDisposable;
    import com.sulake.habbo.catalog.enum.VideoOfferTypeEnum;
    import flash.external.ExternalInterface;
-   import com.sulake.habbo.communication.messages.outgoing.tracking.class_955;
+   import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.handshake.class_143;
    
    public class VideoOfferManager implements IVideoOfferManager, IDisposable
@@ -135,7 +135,7 @@ package com.sulake.habbo.catalog
             turnVolumeDown();
             if(_catalog.connection)
             {
-               _catalog.connection.send(new class_955("SuperSaverAds","client_action","supersaverads.video.promo.launched"));
+               _catalog.connection.send(new EventLogMessageComposer("SuperSaverAds","client_action","supersaverads.video.promo.launched"));
             }
             return _offersAvailable > _offersViewed;
          }
@@ -165,7 +165,7 @@ package com.sulake.habbo.catalog
          turnVolumeUp();
          if(_catalog.connection)
          {
-            _catalog.connection.send(new class_955("SuperSaverAds","client_action","supersaverads.video.promo.close"));
+            _catalog.connection.send(new EventLogMessageComposer("SuperSaverAds","client_action","supersaverads.video.promo.close"));
          }
       }
       
@@ -174,7 +174,7 @@ package com.sulake.habbo.catalog
          turnVolumeUp();
          if(_catalog.connection)
          {
-            _catalog.connection.send(new class_955("SuperSaverAds","client_action","supersaverads.video.promo.complete"));
+            _catalog.connection.send(new EventLogMessageComposer("SuperSaverAds","client_action","supersaverads.video.promo.complete"));
          }
       }
       

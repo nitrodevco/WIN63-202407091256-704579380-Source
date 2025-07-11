@@ -19,7 +19,7 @@ package com.sulake.habbo.quest
    import flash.utils.Timer;
    import com.sulake.habbo.communication.messages.incoming.inventory.achievements.class_1724;
    import com.sulake.habbo.communication.messages.outgoing.inventory.achievements.class_1095;
-   import com.sulake.habbo.communication.messages.outgoing.tracking.class_955;
+   import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    
    public class AchievementController implements IDisposable, IUpdateReceiver
    {
@@ -595,7 +595,7 @@ package com.sulake.habbo.quest
          var_419 = var_638.achievements[0];
          class_14.log("Category: " + var_638.code);
          this.refresh();
-         _questEngine.send(new class_955("Achievements",var_638.code,"Category selected"));
+         _questEngine.send(new EventLogMessageComposer("Achievements",var_638.code,"Category selected"));
       }
       
       public function selectCategoryInternalLink(param1:String) : void
@@ -639,7 +639,7 @@ package com.sulake.habbo.quest
          var _loc3_:int = param2.id;
          var_419 = var_638.achievements[_loc3_];
          this.refresh();
-         _questEngine.send(new class_955("Achievements",var_419.achievementId.toString(),"Achievement selected"));
+         _questEngine.send(new EventLogMessageComposer("Achievements",var_419.achievementId.toString(),"Achievement selected"));
       }
       
       private function onBack(param1:WindowEvent, param2:IWindow) : void

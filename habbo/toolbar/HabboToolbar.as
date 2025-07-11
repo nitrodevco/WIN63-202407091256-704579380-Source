@@ -77,7 +77,7 @@ package com.sulake.habbo.toolbar
    import flash.events.TimerEvent;
    import flash.geom.Rectangle;
    import flash.utils.Timer;
-   import com.sulake.habbo.communication.messages.outgoing.tracking.class_955;
+   import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.handshake.class_143;
    
    public class HabboToolbar extends Component implements IHabboToolbar
@@ -602,7 +602,7 @@ package com.sulake.habbo.toolbar
             _loc5_.iconName = param1;
             events.dispatchEvent(_loc5_);
          }
-         var _loc3_:class_955 = new class_955("Toolbar",param1,"client.toolbar.clicked");
+         var _loc3_:EventLogMessageComposer = new EventLogMessageComposer("Toolbar",param1,"client.toolbar.clicked");
          if(var_26)
          {
             var_26.send(_loc3_);

@@ -21,7 +21,7 @@ package com.sulake.habbo.friendlist
    import flash.utils.Dictionary;
    import flash.utils.getTimer;
    import com.sulake.habbo.communication.messages.outgoing.friendlist.class_450;
-   import com.sulake.habbo.communication.messages.outgoing.tracking.class_955;
+   import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.users.class_322;
    
    public class FriendsView implements ITabView, IFriendsView
@@ -450,7 +450,7 @@ package com.sulake.habbo.friendlist
             return;
          }
          _friendList.send(new class_450(param2.id));
-         _friendList.send(new class_955("Navigation","Friend List","go.friendlist"));
+         _friendList.send(new EventLogMessageComposer("Navigation","Friend List","go.friendlist"));
       }
       
       private function onRelationshipStatusRegion(param1:WindowEvent, param2:IWindow) : void

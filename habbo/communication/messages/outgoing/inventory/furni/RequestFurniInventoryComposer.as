@@ -2,9 +2,9 @@ package com.sulake.habbo.communication.messages.outgoing.inventory.furni {
    import com.sulake.core.communication.messages.IMessageComposer
 
    [SecureSWF(rename="true")]
-    public class class_271 implements IMessageComposer {
+    public class RequestFurniInventoryComposer implements IMessageComposer {
 
-        public function class_271() {
+        public function RequestFurniInventoryComposer() {
             super();
         }
 

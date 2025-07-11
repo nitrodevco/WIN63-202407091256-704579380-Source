@@ -2,9 +2,9 @@ package com.sulake.habbo.communication.messages.outgoing.tracking {
    import com.sulake.core.communication.messages.IMessageComposer
 
    [SecureSWF(rename="true")]
-    public class class_955 implements IMessageComposer {
+    public class EventLogMessageComposer implements IMessageComposer {
 
-        public function class_955(param1: String, param2: String, param3: String, param4: String = "", param5: int = 0) {
+        public function EventLogMessageComposer(param1: String, param2: String, param3: String, param4: String = "", param5: int = 0) {
             super();
             var_638 = !!param1 ? param1 : "";
             var_329 = !!param2 ? param2 : "";

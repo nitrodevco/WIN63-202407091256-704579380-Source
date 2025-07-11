@@ -10,7 +10,7 @@ package com.sulake.habbo.groups
    import com.sulake.core.window.utils.class_3441;
    import com.sulake.habbo.utils.HabboWebTools;
    import com.sulake.habbo.window.widgets.IBadgeImageWidget;
-   import com.sulake.habbo.communication.messages.outgoing.tracking.class_955;
+   import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.users.class_1199;
    import com.sulake.habbo.communication.messages.outgoing.users.class_1037;
    import com.sulake.habbo.communication.messages.outgoing.users.class_131;
@@ -175,7 +175,7 @@ package com.sulake.habbo.groups
          var_480.trackGoogle("groupDetails","joinGroup");
          _window.findChildByName("join_button").disable();
          var_480.send(new class_320(_selectedGroup.groupId));
-         var_480.send(new class_955("HabboGroups","" + _selectedGroup.groupId,"join"));
+         var_480.send(new EventLogMessageComposer("HabboGroups","" + _selectedGroup.groupId,"join"));
       }
       
       private function onRoomLink(param1:WindowEvent, param2:IWindow) : void
@@ -186,7 +186,7 @@ package com.sulake.habbo.groups
          }
          var_480.trackGoogle("groupDetails","groupBaseRoom");
          var_480.navigator.goToPrivateRoom(_selectedGroup.roomId);
-         var_480.send(new class_955("HabboGroups","" + _selectedGroup.groupId,"base"));
+         var_480.send(new EventLogMessageComposer("HabboGroups","" + _selectedGroup.groupId,"base"));
       }
       
       private function onForumLink(param1:WindowEvent, param2:IWindow) : void

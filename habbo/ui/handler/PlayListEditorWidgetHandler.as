@@ -18,7 +18,7 @@ package com.sulake.habbo.ui.handler
    import com.sulake.habbo.communication.messages.outgoing.room.engine.UseFurnitureMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.sound.AddJukeboxDiskComposer;
    import com.sulake.habbo.communication.messages.outgoing.sound.class_934;
-   import com.sulake.habbo.communication.messages.incoming.inventory.furni.class_221;
+   import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListEvent;
    import com.sulake.habbo.communication.messages.incoming.inventory.furni.class_379;
    import com.sulake.habbo.communication.messages.incoming.inventory.furni.class_446;
    
@@ -69,7 +69,7 @@ package com.sulake.habbo.ui.handler
       
       public function set connection(param1:IConnection) : void
       {
-         var_3587 = new class_221(onFurniListUpdated);
+         var_3587 = new FurniListEvent(onFurniListUpdated);
          var_4078 = new class_446(onFurniListUpdated);
          var_2663 = new class_379(onFurniListUpdated);
          var_26 = param1;
@@ -200,7 +200,7 @@ package com.sulake.habbo.ui.handler
       
       private function onFurniListUpdated(param1:IMessageEvent) : void
       {
-         var _loc2_:class_221 = param1 as class_221;
+         var _loc2_:FurniListEvent = param1 as FurniListEvent;
          if(_loc2_ && _loc2_.getParser().fragmentNo == 0)
          {
             if(_container != null)

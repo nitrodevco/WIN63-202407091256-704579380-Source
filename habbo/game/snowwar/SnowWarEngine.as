@@ -72,7 +72,7 @@ package com.sulake.habbo.game.snowwar
    import flash.events.Event;
    import package_32.*;
    import package_50.*;
-   import com.sulake.habbo.communication.messages.outgoing.tracking.class_955;
+   import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import package_74.*;
    
    public class SnowWarEngine extends Component implements IUpdateReceiver
@@ -1344,7 +1344,7 @@ package com.sulake.habbo.game.snowwar
       
       public function logGameEvent(param1:String) : void
       {
-         send(new class_955("GameFramework","SnowStorm",param1,"",freeGamesLeft));
+         send(new EventLogMessageComposer("GameFramework","SnowStorm",param1,"",freeGamesLeft));
       }
       
       public function registerHit(param1:HumanGameObject, param2:HumanGameObject) : void

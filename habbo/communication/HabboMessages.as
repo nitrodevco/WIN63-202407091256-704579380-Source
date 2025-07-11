@@ -221,7 +221,7 @@ package com.sulake.habbo.communication {
     import com.sulake.habbo.communication.messages.incoming.inventory.clothing.class_1073
     import com.sulake.habbo.communication.messages.incoming.inventory.clothing.class_401
     import com.sulake.habbo.communication.messages.incoming.inventory.clothing.class_456
-    import com.sulake.habbo.communication.messages.incoming.inventory.furni.class_221
+    import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListEvent
     import com.sulake.habbo.communication.messages.incoming.inventory.furni.class_274
     import com.sulake.habbo.communication.messages.incoming.inventory.furni.class_340
     import com.sulake.habbo.communication.messages.incoming.inventory.furni.class_379
@@ -567,8 +567,8 @@ package com.sulake.habbo.communication {
     import com.sulake.habbo.communication.messages.outgoing.catalog.class_939
     import com.sulake.habbo.communication.messages.outgoing.catalog.class_951
     import com.sulake.habbo.communication.messages.outgoing.catalog.class_976
-    import com.sulake.habbo.communication.messages.outgoing.crafting.class_336
-    import com.sulake.habbo.communication.messages.outgoing.crafting.class_416
+    import com.sulake.habbo.communication.messages.outgoing.crafting.CraftComposer
+    import com.sulake.habbo.communication.messages.outgoing.crafting.GetCraftableProductsComposer
     import com.sulake.habbo.communication.messages.outgoing.crafting.class_890
     import com.sulake.habbo.communication.messages.outgoing.crafting.class_891
     import com.sulake.habbo.communication.messages.outgoing.crafting.class_972
@@ -636,7 +636,7 @@ package com.sulake.habbo.communication {
     import com.sulake.habbo.communication.messages.outgoing.inventory.badges.class_1062
     import com.sulake.habbo.communication.messages.outgoing.inventory.badges.SetActivatedBadgesComposer
     import com.sulake.habbo.communication.messages.outgoing.inventory.badges.class_441
-    import com.sulake.habbo.communication.messages.outgoing.inventory.furni.class_271
+    import com.sulake.habbo.communication.messages.outgoing.inventory.furni.RequestFurniInventoryComposer
     import com.sulake.habbo.communication.messages.outgoing.inventory.furni.RequestFurniInventoryWhenNotInRoomComposer
     import com.sulake.habbo.communication.messages.outgoing.inventory.furni.class_984
     import com.sulake.habbo.communication.messages.outgoing.inventory.purse.class_1045
@@ -1017,7 +1017,7 @@ package com.sulake.habbo.communication {
     import com.sulake.habbo.communication.messages.outgoing.tracking.class_253
     import com.sulake.habbo.communication.messages.outgoing.tracking.class_448
     import com.sulake.habbo.communication.messages.outgoing.tracking.LatencyPingReportMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.tracking.class_955
+    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer
 
     import com.sulake.habbo.communication.messages.outgoing.quest.GetConcurrentUsersGoalProgressMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.quest.class_1052
@@ -1266,7 +1266,7 @@ package com.sulake.habbo.communication {
             _composers[195] = class_1037;
             _composers[1951] = class_814;
             _composers[1952] = class_188;
-            _composers[1956] = class_416;
+            _composers[1956] = GetCraftableProductsComposer;
             _composers[1959] = Game2GetFriendsLeaderboardComposer;
             _composers[1967] = class_964;
             _composers[1976] = class_1036;
@@ -1314,7 +1314,7 @@ package com.sulake.habbo.communication {
             _composers[2270] = class_740;
             _composers[2290] = class_367;
             _composers[2293] = class_513;
-            _composers[2297] = class_955;
+            _composers[2297] = EventLogMessageComposer;
             _composers[2302] = class_146;
             _composers[2304] = class_253;
             _composers[2305] = class_802;
@@ -1373,7 +1373,7 @@ package com.sulake.habbo.communication {
             _composers[2673] = class_458;
             _composers[2678] = class_993;
             _composers[268] = class_282;
-            _composers[2681] = class_336;
+            _composers[2681] = CraftComposer;
             _composers[2703] = class_365;
             _composers[2708] = class_471;
             _composers[271] = class_977;
@@ -1433,7 +1433,7 @@ package com.sulake.habbo.communication {
             _composers[3173] = class_155;
             _composers[3175] = class_390;
             _composers[3177] = class_397;
-            _composers[3181] = class_271;
+            _composers[3181] = RequestFurniInventoryComposer;
             _composers[3186] = class_565;
             _composers[3188] = class_1045;
             _composers[320] = GetNftCreditsMessageComposer;
@@ -2000,7 +2000,7 @@ package com.sulake.habbo.communication {
             _events[3525] = class_959;
             _events[3536] = class_808;
             _events[3538] = class_438;
-            _events[3550] = class_221;
+            _events[3550] = FurniListEvent;
             _events[3551] = class_444;
             _events[3554] = class_468;
             _events[3555] = class_883;
