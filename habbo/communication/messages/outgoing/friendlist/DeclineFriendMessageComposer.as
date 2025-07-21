@@ -3,9 +3,9 @@ package com.sulake.habbo.communication.messages.outgoing.friendlist {
    import com.sulake.core.runtime.IDisposable
 
    [SecureSWF(rename="true")]
-    public class class_170 implements IMessageComposer, IDisposable {
+    public class DeclineFriendMessageComposer implements IMessageComposer, IDisposable {
 
-        public function class_170() {
+        public function DeclineFriendMessageComposer() {
             var_186 = [];
             super();
         }

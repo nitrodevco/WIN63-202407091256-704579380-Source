@@ -19,7 +19,7 @@ package com.sulake.habbo.communication.messages.parser.friendlist {
         }
 
         public function parse(param1: IMessageDataWrapper): Boolean {
-            var_258 = param1.readBoolean();
+            _success = param1.readBoolean();
             return true;
         }
     }

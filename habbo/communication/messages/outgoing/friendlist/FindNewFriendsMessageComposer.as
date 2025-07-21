@@ -2,9 +2,9 @@ package com.sulake.habbo.communication.messages.outgoing.friendlist {
    import com.sulake.core.communication.messages.IMessageComposer
 
    [SecureSWF(rename="true")]
-    public class class_411 implements IMessageComposer {
+    public class FindNewFriendsMessageComposer implements IMessageComposer {
 
-        public function class_411() {
+        public function FindNewFriendsMessageComposer() {
             super();
         }
 

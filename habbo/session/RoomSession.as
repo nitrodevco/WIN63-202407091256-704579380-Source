@@ -34,7 +34,7 @@ package com.sulake.habbo.session
    import com.sulake.habbo.communication.messages.outgoing.poll.class_163;
    import com.sulake.habbo.communication.messages.outgoing.poll.PollStartComposer;
    import com.sulake.habbo.communication.messages.outgoing.poll.class_753;
-   import com.sulake.habbo.communication.messages.outgoing.friendlist.class_893;
+   import com.sulake.habbo.communication.messages.outgoing.friendlist.VisitUserMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.avatar.class_1053;
    import com.sulake.habbo.communication.messages.outgoing.room.avatar.class_582;
    import com.sulake.habbo.communication.messages.outgoing.room.avatar.class_724;
@@ -440,7 +440,7 @@ package com.sulake.habbo.session
       
       public function sendVisitUserMessage(param1:String) : void
       {
-         var_26.send(new class_893(param1));
+         var_26.send(new VisitUserMessageComposer(param1));
       }
       
       public function ambassadorAlert(param1:int) : void

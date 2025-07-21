@@ -8,7 +8,7 @@ package com.sulake.habbo.messenger {
     import com.sulake.core.window.components.IStaticBitmapWrapperWindow
     import com.sulake.core.window.components.IWidgetWindow
     import com.sulake.core.window.events.WindowEvent
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.class_317
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.SendMsgMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.FollowFriendMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.GetMessengerHistoryComposer
     import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer
@@ -847,7 +847,7 @@ package com.sulake.habbo.messenger {
             }
             var _loc5_: int = _messageCounter;
             _messageCounter += 1;
-            _messenger.send(new class_317(_currentConversationId, param2, _loc5_));
+            _messenger.send(new SendMsgMessageComposer(_currentConversationId, param2, _loc5_));
             IIlluminaInputWidget(param1.widget).message = "";
             var _loc3_: Array = _conversationHistory[_currentConversationId];
             if (_loc3_.length == 0 || _loc3_.length == 1 && ChatEntry(_loc3_[0]).type == 3) {

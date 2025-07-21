@@ -37,10 +37,10 @@ package com.sulake.habbo.friendbar.data
    import com.sulake.habbo.communication.messages.incoming.friendlist.FriendListFragmentMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.friendlist.FriendListUpdateEvent;
    import com.sulake.habbo.communication.messages.incoming.friendlist.NewConsoleMessageEvent;
-   import com.sulake.habbo.communication.messages.incoming.friendlist.class_610;
+   import com.sulake.habbo.communication.messages.incoming.friendlist.FindFriendsProcessResultEvent;
    import com.sulake.habbo.communication.messages.incoming.friendlist.MessengerInitEvent;
    import com.sulake.habbo.communication.messages.incoming.friendlist.FriendRequestsEvent;
-   import com.sulake.habbo.communication.messages.outgoing.friendlist.class_411;
+   import com.sulake.habbo.communication.messages.outgoing.friendlist.FindNewFriendsMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.friendlist.FollowFriendMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileByNameMessageComposer;
@@ -128,7 +128,7 @@ package com.sulake.habbo.friendbar.data
          _habboCommunicationManager.addHabboConnectionMessageEvent(new NewFriendRequestEvent(onNewFriendRequest));
          _habboCommunicationManager.addHabboConnectionMessageEvent(new FriendListUpdateEvent(onFriendListUpdate));
          _habboCommunicationManager.addHabboConnectionMessageEvent(new NewConsoleMessageEvent(onNewConsoleMessage));
-         _habboCommunicationManager.addHabboConnectionMessageEvent(new class_610(onFindFriendProcessResult));
+         _habboCommunicationManager.addHabboConnectionMessageEvent(new FindFriendsProcessResultEvent(onFindFriendProcessResult));
          _habboCommunicationManager.addHabboConnectionMessageEvent(new FriendListFragmentMessageEvent(onFriendsListFragment));
          _habboCommunicationManager.addHabboConnectionMessageEvent(new FriendNotificationEvent(onFriendNotification));
          _habboFriendListComponent.events.addEventListener("FRE_ACCEPTED",onFriendRequestEvent);
@@ -338,7 +338,7 @@ package com.sulake.habbo.friendbar.data
       {
          if(_habboCommunicationManager)
          {
-            _habboCommunicationManager.connection.send(new class_411());
+            _habboCommunicationManager.connection.send(new FindNewFriendsMessageComposer());
             _habboCommunicationManager.connection.send(new EventLogMessageComposer("Navigation","Friend Bar","find_friends_btn_click"));
          }
       }
@@ -505,7 +505,7 @@ package com.sulake.habbo.friendbar.data
          events.dispatchEvent(new FriendBarUpdateEvent());
       }
       
-      private function onFindFriendProcessResult(param1:class_610) : void
+      private function onFindFriendProcessResult(param1:FindFriendsProcessResultEvent) : void
       {
          events.dispatchEvent(new FindFriendsNotificationEvent(param1.success));
       }

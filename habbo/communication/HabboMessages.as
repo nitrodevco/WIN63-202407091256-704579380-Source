@@ -97,7 +97,7 @@ package com.sulake.habbo.communication {
     import com.sulake.habbo.communication.messages.incoming.friendlist.ConsoleMessageHistoryEvent
     import com.sulake.habbo.communication.messages.incoming.friendlist.MessengerErrorEvent
     import com.sulake.habbo.communication.messages.incoming.friendlist.NewConsoleMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.friendlist.class_610
+    import com.sulake.habbo.communication.messages.incoming.friendlist.FindFriendsProcessResultEvent
     import com.sulake.habbo.communication.messages.incoming.friendlist.class_756
     import com.sulake.habbo.communication.messages.incoming.friendlist.MessengerInitEvent
     import com.sulake.habbo.communication.messages.incoming.friendlist.FriendRequestsEvent
@@ -574,17 +574,17 @@ package com.sulake.habbo.communication {
     import com.sulake.habbo.communication.messages.outgoing.crafting.class_972
     import com.sulake.habbo.communication.messages.outgoing.friendlist.SetRelationshipStatusMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.SendRoomInviteMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.class_170
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.DeclineFriendMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.RemoveFriendMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.FriendListUpdateMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.class_317
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.SendMsgMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.GetFriendRequestsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.class_411
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.FindNewFriendsMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.FollowFriendMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.GetMessengerHistoryComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.MessengerInitMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.HabboSearchMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.class_893
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.VisitUserMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.RequestFriendMessageEvent
     import com.sulake.habbo.communication.messages.outgoing.friendlist.AcceptFriendMessageEvent
     import com.sulake.habbo.communication.messages.outgoing.handshake.DisconnectMessageComposer
@@ -1353,7 +1353,7 @@ package com.sulake.habbo.communication {
             _composers[2549] = class_368;
             _composers[255] = class_1035;
             _composers[2558] = class_1095;
-            _composers[2578] = class_893;
+            _composers[2578] = VisitUserMessageComposer;
             _composers[2582] = class_561;
             _composers[2593] = class_775;
             _composers[2595] = class_904;
@@ -1387,7 +1387,7 @@ package com.sulake.habbo.communication {
             _composers[2775] = class_503;
             _composers[2781] = GetUserGameAchievementsMessageComposer;
             _composers[2798] = class_171;
-            _composers[2800] = class_317;
+            _composers[2800] = SendMsgMessageComposer;
             _composers[2806] = class_305;
             _composers[2809] = class_967;
             _composers[283] = class_244;
@@ -1450,7 +1450,7 @@ package com.sulake.habbo.communication {
             _composers[3280] = class_375;
             _composers[3282] = class_1033;
             _composers[3288] = class_488;
-            _composers[3308] = class_170;
+            _composers[3308] = DeclineFriendMessageComposer;
             _composers[3312] = Game2GetWeeklyGroupLeaderboardComposer;
             _composers[3335] = class_1089;
             _composers[3340] = class_911;
@@ -1466,7 +1466,7 @@ package com.sulake.habbo.communication {
             _composers[346] = class_165;
             _composers[3468] = RequestFurniInventoryWhenNotInRoomComposer;
             _composers[3472] = class_822;
-            _composers[3473] = class_411;
+            _composers[3473] = FindNewFriendsMessageComposer; //FindNewFriendsMessageComposer
             _composers[3477] = class_736;
             _composers[3478] = class_224;
             _composers[3484] = class_934;
@@ -1651,7 +1651,7 @@ package com.sulake.habbo.communication {
             _events[1110] = class_265;
             _events[1118] = class_394;
             _events[1119] = class_1072;
-            _events[1122] = class_610;
+            _events[1122] = FindFriendsProcessResultEvent;
             _events[1124] = class_232;
             _events[1128] = class_751;
             _events[1134] = class_713;
@@ -1861,7 +1861,7 @@ package com.sulake.habbo.communication {
             _events[2709] = class_324;
             _events[2741] = class_415;
             _events[2771] = class_311;
-            _events[279] = class_756;
+            _events[279] = class_756; //MiniMailNewMessageEvent
             _events[2791] = class_510;
             _events[2798] = class_611;
             _events[2799] = class_566;
@@ -2054,7 +2054,7 @@ package com.sulake.habbo.communication {
             _events[3825] = class_719;
             _events[3844] = class_730;
             _events[3855] = class_866;
-            _events[3856] = class_307;
+            _events[3856] = class_307; //MiniMailUnreadCountEvent
             _events[3859] = class_662;
             _events[3874] = class_267;
             _events[3884] = WeeklyGameRewardWinnersEvent;

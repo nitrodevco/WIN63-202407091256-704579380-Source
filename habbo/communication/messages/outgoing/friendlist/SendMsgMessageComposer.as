@@ -3,9 +3,9 @@ package com.sulake.habbo.communication.messages.outgoing.friendlist {
    import com.sulake.core.runtime.IDisposable
 
    [SecureSWF(rename="true")]
-    public class class_317 implements IMessageComposer, IDisposable {
+    public class SendMsgMessageComposer implements IMessageComposer, IDisposable {
 
-        public function class_317(param1: int, param2: String, param3: int) {
+        public function SendMsgMessageComposer(param1: int, param2: String, param3: int) {
             var_20 = [];
             super();
             this.var_20.push(param1);
