@@ -61,7 +61,7 @@ package com.sulake.habbo.inventory
       
       private var _soundManager:class_2240;
       
-      private var var_1631:InventoryMainView;
+      private var _inventoryMainView:InventoryMainView;
       
       private var var_1702:Map;
       
@@ -103,12 +103,12 @@ package com.sulake.habbo.inventory
       
       public function get isVisible() : Boolean
       {
-         return var_1631.isVisible;
+         return _inventoryMainView.isVisible;
       }
       
       public function get isMainViewActive() : Boolean
       {
-         return var_1631.isActive;
+         return _inventoryMainView.isActive;
       }
       
       public function get isInitialized() : Boolean
@@ -123,7 +123,7 @@ package com.sulake.habbo.inventory
       
       public function get view() : InventoryMainView
       {
-         return var_1631;
+         return _inventoryMainView;
       }
       
       override protected function get dependencies() : Vector.<ComponentDependency>
@@ -172,9 +172,9 @@ package com.sulake.habbo.inventory
       
       private function habboToolbarEventHandler(param1:HabboToolbarEvent) : void
       {
-         if(var_1631 != null)
+         if(_inventoryMainView != null)
          {
-            var_1631.onHabboToolbarEvent(param1);
+            _inventoryMainView.onHabboToolbarEvent(param1);
          }
       }
       
@@ -187,7 +187,7 @@ package com.sulake.habbo.inventory
          var_2938 = new class_3353(this);
          context.addLinkEventTracker(this);
          var_2193 = new UnseenItemTracker(_communication,events,this);
-         var_1631 = new InventoryMainView(this,_windowManager,assets);
+         _inventoryMainView = new InventoryMainView(this,_windowManager,assets);
          _communication.connection.send(new class_1045());
          _communication.connection.send(new GetNftCreditsMessageComposer());
          _communication.connection.send(new GetSilverMessageComposer());
@@ -228,10 +228,10 @@ package com.sulake.habbo.inventory
             var_1702.dispose();
             var_1702 = null;
          }
-         if(var_1631 != null)
+         if(_inventoryMainView != null)
          {
-            var_1631.dispose();
-            var_1631 = null;
+            _inventoryMainView.dispose();
+            _inventoryMainView = null;
          }
          var_2300 = null;
          if(var_2193 != null)
@@ -366,7 +366,7 @@ package com.sulake.habbo.inventory
       
       public function getSubCategoryViewId() : String
       {
-         return var_1631.getSubCategoryViewId();
+         return _inventoryMainView.getSubCategoryViewId();
       }
       
       public function setClubStatus(param1:int, param2:int, param3:Boolean, param4:Boolean, param5:Boolean, param6:Boolean, param7:int, param8:int) : void
@@ -465,9 +465,9 @@ package com.sulake.habbo.inventory
          var_1618 = true;
       }
       
-      public function getCategoryWindowContainer(param1:String) : IWindowContainer
+      public function getCategoryWindowContainer(inventoryType:String) : IWindowContainer
       {
-         var _loc2_:IInventoryModel = IInventoryModel(var_1702.getValue(param1));
+         var _loc2_:IInventoryModel = IInventoryModel(var_1702.getValue(inventoryType));
          if(_loc2_ == null)
          {
             return null;
@@ -541,31 +541,31 @@ package com.sulake.habbo.inventory
       
       public function closeView() : void
       {
-         if(var_1631 && var_1631.isVisible)
+         if(_inventoryMainView && _inventoryMainView.isVisible)
          {
-            var_1631.hideInventory();
+            _inventoryMainView.hideInventory();
          }
       }
       
       public function showView() : void
       {
-         if(var_1631)
+         if(_inventoryMainView)
          {
-            var_1631.showInventory();
+            _inventoryMainView.showInventory();
          }
       }
       
       public function get isMainViewInitialized() : Boolean
       {
-         return var_1631.mainContainer != null;
+         return _inventoryMainView.mainContainer != null;
       }
       
       public function initializeFurniturePage() : void
       {
-         if(var_1631)
+         if(_inventoryMainView)
          {
             toggleInventoryPage("furni");
-            var_1631.hideInventory();
+            _inventoryMainView.hideInventory();
          }
       }
       
@@ -573,7 +573,7 @@ package com.sulake.habbo.inventory
       {
          var_1713 = param1;
          var _loc4_:Boolean;
-         if(_loc4_ = var_1631.toggleCategoryView(param1,false,param3))
+         if(_loc4_ = _inventoryMainView.toggleCategoryView(param1,false,param3))
          {
             inventoryViewOpened(param1);
             if(param2 != null)
@@ -591,7 +591,7 @@ package com.sulake.habbo.inventory
       {
          var _loc2_:int = 0;
          var _loc3_:IInventoryModel = null;
-         var_1631.toggleSubCategoryView(param1,false);
+         _inventoryMainView.toggleSubCategoryView(param1,false);
          _loc2_ = 0;
          while(_loc2_ < var_1702.length)
          {
@@ -602,13 +602,13 @@ package com.sulake.habbo.inventory
          var _loc4_:* = param1;
          if("trading" === _loc4_)
          {
-            var_1631.toggleCategoryView("furni",false);
+            _inventoryMainView.toggleCategoryView("furni",false);
          }
       }
       
       public function updateSubView() : void
       {
-         var_1631.updateSubCategoryView();
+         _inventoryMainView.updateSubCategoryView();
       }
       
       public function closingInventoryView() : void
@@ -692,7 +692,7 @@ package com.sulake.habbo.inventory
             {
                var_3275.splice(_loc3_,1);
             }
-            if(var_1631 != null && var_1631.isVisible)
+            if(_inventoryMainView != null && _inventoryMainView.isVisible)
             {
                if(param1 != "rentables")
                {
@@ -703,27 +703,27 @@ package com.sulake.habbo.inventory
          return false;
       }
       
-      public function isInventoryCategoryInit(param1:String) : Boolean
+      public function isInventoryCategoryInit(inventoryType:String) : Boolean
       {
-         return var_3275.indexOf(param1) >= 0;
+         return var_3275.indexOf(inventoryType) >= 0;
       }
       
-      public function checkCategoryInitilization(param1:String) : Boolean
+      public function checkCategoryInitilization(inventoryType:String) : Boolean
       {
-         if(isInventoryCategoryInit(param1))
+         if(isInventoryCategoryInit(inventoryType))
          {
             return true;
          }
-         requestInventoryCategoryInit(param1);
+         requestInventoryCategoryInit(inventoryType);
          return false;
       }
       
-      public function requestInventoryCategoryInit(param1:String) : void
+      public function requestInventoryCategoryInit(inventoryType:String) : void
       {
-         var _loc2_:IInventoryModel = var_1702.getValue(param1) as IInventoryModel;
-         if(_loc2_ != null)
+         var _inventoryModel : IInventoryModel = var_1702.getValue(inventoryType) as IInventoryModel;
+         if(_inventoryModel != null)
          {
-            _loc2_.requestInitialization();
+            _inventoryModel.requestInitialization();
          }
       }
       
@@ -812,15 +812,15 @@ package com.sulake.habbo.inventory
       {
          var _loc4_:int = 0;
          _loc4_ = var_2193.getCount(1);
-         var_1631.updateUnseenFurniCount(_loc4_);
+         _inventoryMainView.updateUnseenFurniCount(_loc4_);
          _loc4_ = var_2193.getCount(2);
-         var_1631.updateUnseenRentedFurniCount(_loc4_);
+         _inventoryMainView.updateUnseenRentedFurniCount(_loc4_);
          var _loc1_:int = var_2193.getCount(3);
-         var_1631.updateUnseenPetsCount(_loc1_);
+         _inventoryMainView.updateUnseenPetsCount(_loc1_);
          var _loc3_:int = var_2193.getCount(4);
-         var_1631.updateUnseenBadgeCount(_loc3_);
+         _inventoryMainView.updateUnseenBadgeCount(_loc3_);
          var _loc2_:int = var_2193.getCount(5);
-         var_1631.updateUnseenBotCount(_loc2_);
+         _inventoryMainView.updateUnseenBotCount(_loc2_);
       }
       
       public function removeUnseenFurniCounter(param1:int) : Boolean

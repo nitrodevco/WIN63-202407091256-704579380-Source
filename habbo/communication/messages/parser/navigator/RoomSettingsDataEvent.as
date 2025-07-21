@@ -7,9 +7,9 @@ package com.sulake.habbo.communication.messages.parser.navigator {
     import com.sulake.habbo.communication.messages.incoming.roomsettings.class_1732
 
     [SecureSWF(rename="true")]
-    public class class_1154 implements IMessageParser, IDisposable {
+    public class RoomSettingsDataEvent implements IMessageParser, IDisposable {
 
-        public function class_1154() {
+        public function RoomSettingsDataEvent() {
             super();
         }
         private var var_1525: Boolean;

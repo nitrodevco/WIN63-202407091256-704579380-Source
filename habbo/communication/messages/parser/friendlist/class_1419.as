@@ -8,20 +8,20 @@ package com.sulake.habbo.communication.messages.parser.friendlist {
         public function class_1419() {
             super();
         }
-        private var var_553: int = -1;
-        private var var_894: String;
-        private var var_368: String;
+        private var _typeCode: int = -1;
+        private var _avatarId: String;
+        private var _message: String;
 
         public function get typeCode(): int {
-            return var_553;
+            return _typeCode;
         }
 
         public function get avatarId(): String {
-            return var_894;
+            return _avatarId;
         }
 
         public function get message(): String {
-            return var_368;
+            return _message;
         }
 
         public function flush(): Boolean {
@@ -29,9 +29,9 @@ package com.sulake.habbo.communication.messages.parser.friendlist {
         }
 
         public function parse(param1: IMessageDataWrapper): Boolean {
-            var_894 = param1.readString();
-            var_553 = param1.readInteger();
-            var_368 = param1.readString();
+            _avatarId = param1.readString();
+            _typeCode = param1.readInteger();
+            _message = param1.readString();
             return true;
         }
     }

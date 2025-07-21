@@ -3,7 +3,7 @@ package com.sulake.habbo.util
    import com.sulake.core.window.IWindow;
    import com.sulake.core.window.events.WindowEvent;
    import com.sulake.habbo.moderation.ModerationManager;
-   import com.sulake.habbo.communication.messages.outgoing.friendlist.class_450;
+   import com.sulake.habbo.communication.messages.outgoing.friendlist.FollowFriendMessageComposer;
    
    public class VisitUserUtil
    {
@@ -27,7 +27,7 @@ package com.sulake.habbo.util
          {
             return;
          }
-         _main.connection.send(new class_450(var_418));
+         _main.connection.send(new FollowFriendMessageComposer(var_418));
       }
    }
 }

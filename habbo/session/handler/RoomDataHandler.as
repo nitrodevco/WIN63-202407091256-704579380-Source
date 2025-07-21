@@ -8,7 +8,7 @@ package com.sulake.habbo.session.handler
    import com.sulake.habbo.session.events.RoomSessionPropertyUpdateEvent;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_1675;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_898;
-   import com.sulake.habbo.communication.messages.parser.navigator.class_1154;
+   import com.sulake.habbo.communication.messages.parser.navigator.RoomSettingsDataEvent;
    
    public class RoomDataHandler extends BaseHandler
    {
@@ -31,7 +31,7 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         var _loc2_:class_1154 = _loc5_.getParser();
+         var _loc2_:RoomSettingsDataEvent = _loc5_.getParser();
          if(_loc2_.roomForward)
          {
             return;

@@ -13,7 +13,7 @@ package com.sulake.habbo.ui.handler
    import flash.events.Event;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_1675;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_898;
-   import com.sulake.habbo.communication.messages.parser.navigator.class_1154;
+   import com.sulake.habbo.communication.messages.parser.navigator.RoomSettingsDataEvent;
    import com.sulake.habbo.communication.messages.outgoing.navigator.class_130;
    
    public class RoomToolsWidgetHandler implements IRoomWidgetHandler
@@ -46,7 +46,7 @@ package com.sulake.habbo.ui.handler
       private function onRoomInfo(param1:IMessageEvent) : void
       {
          var _loc3_:String = null;
-         var _loc2_:class_1154 = class_898(param1).getParser();
+         var _loc2_:RoomSettingsDataEvent = class_898(param1).getParser();
          var _loc4_:class_1675;
          if(_loc4_ = _loc2_.data)
          {

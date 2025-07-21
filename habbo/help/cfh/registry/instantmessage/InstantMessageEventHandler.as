@@ -4,8 +4,8 @@ package com.sulake.habbo.help.cfh.registry.instantmessage
    import com.sulake.habbo.help.HabboHelp;
    import com.sulake.habbo.communication.messages.parser.friendlist.class_1187;
    import com.sulake.habbo.communication.messages.parser.friendlist.class_1500;
-   import com.sulake.habbo.communication.messages.incoming.friendlist.class_193;
-   import com.sulake.habbo.communication.messages.incoming.friendlist.class_609;
+   import com.sulake.habbo.communication.messages.incoming.friendlist.RoomInviteEvent;
+   import com.sulake.habbo.communication.messages.incoming.friendlist.NewConsoleMessageEvent;
    
    public class InstantMessageEventHandler implements IDisposable
    {
@@ -17,11 +17,11 @@ package com.sulake.habbo.help.cfh.registry.instantmessage
       {
          super();
          var_1660 = param1;
-         var_1660.addMessageEvent(new class_609(onInstantMessage));
-         var_1660.addMessageEvent(new class_193(onRoomInvite));
+         var_1660.addMessageEvent(new NewConsoleMessageEvent(onInstantMessage));
+         var_1660.addMessageEvent(new RoomInviteEvent(onRoomInvite));
       }
       
-      public function onInstantMessage(param1:class_609) : void
+      public function onInstantMessage(param1:NewConsoleMessageEvent) : void
       {
          var _loc2_:class_1500 = param1.getParser();
          if(_loc2_.chatId < 0)
@@ -34,7 +34,7 @@ package com.sulake.habbo.help.cfh.registry.instantmessage
          }
       }
       
-      public function onRoomInvite(param1:class_193) : void
+      public function onRoomInvite(param1:RoomInviteEvent) : void
       {
          var _loc2_:class_1187 = param1.getParser();
          var_1660.instantMessageRegistry.addItem(_loc2_.senderId,"",_loc2_.messageText);

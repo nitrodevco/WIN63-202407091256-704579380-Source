@@ -9,8 +9,8 @@ package com.sulake.habbo.messenger {
     import com.sulake.core.window.components.IWidgetWindow
     import com.sulake.core.window.events.WindowEvent
     import com.sulake.habbo.communication.messages.outgoing.friendlist.class_317
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.class_450
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.class_625
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.FollowFriendMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.GetMessengerHistoryComposer
     import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.users.class_201
     import com.sulake.habbo.communication.messages.outgoing.users.class_322
@@ -629,7 +629,7 @@ package com.sulake.habbo.messenger {
                 "messageId":_loc5_,
                 "time":_loc3_
             };
-            _messenger.send(new class_625(param1, _loc5_));
+            _messenger.send(new GetMessengerHistoryComposer(param1, _loc5_));
         }
 
         private function refreshConversationList(): void {
@@ -816,7 +816,7 @@ package com.sulake.habbo.messenger {
                             break;
                         case "follow_button":
                             if (_currentConversationId > 0) {
-                                _messenger.send(new class_450(_currentConversationId));
+                                _messenger.send(new FollowFriendMessageComposer(_currentConversationId));
                                 _messenger.send(new EventLogMessageComposer("Navigation", "IM", "go.im"));
                             } else {
                                 _messenger.followingToGroupRoom = true;

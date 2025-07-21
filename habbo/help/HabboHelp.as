@@ -47,7 +47,7 @@ package com.sulake.habbo.help
    import com.sulake.habbo.communication.messages.incoming.room.session.class_899;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_898;
    import com.sulake.habbo.communication.messages.parser.game.snowwar.arena.class_1407;
-   import com.sulake.habbo.communication.messages.parser.navigator.class_1154;
+   import com.sulake.habbo.communication.messages.parser.navigator.RoomSettingsDataEvent;
    import com.sulake.habbo.communication.messages.parser.room.session.class_1207;
    import com.sulake.habbo.communication.messages.parser.room.engine.class_1333;
    import com.sulake.habbo.communication.messages.parser.room.engine.class_1339;
@@ -56,7 +56,7 @@ package com.sulake.habbo.help
    import com.sulake.habbo.communication.messages.incoming.room.engine.class_510;
    import com.sulake.habbo.communication.messages.incoming.room.engine.class_558;
    import com.sulake.habbo.communication.messages.parser.game.snowwar.data.object.HumanGameObjectData;
-   import com.sulake.habbo.communication.messages.outgoing.friendlist.class_239;
+   import com.sulake.habbo.communication.messages.outgoing.friendlist.RemoveFriendMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.callforhelp.class_1746;
    import com.sulake.habbo.communication.messages.incoming.callforhelp.class_177;
    import com.sulake.habbo.communication.messages.incoming.callforhelp.class_642;
@@ -737,13 +737,13 @@ package com.sulake.habbo.help
       
       public function ignoreAndUnfriendReportedUser() : void
       {
-         var _loc1_:class_239 = null;
+         var _loc1_:RemoveFriendMessageComposer = null;
          if(var_1649.reportedUserId > 0)
          {
             sendMessage(new class_352(var_1649.reportedUserId));
             if(_friendList.getFriend(var_1649.reportedUserId) != null)
             {
-               _loc1_ = new class_239();
+               _loc1_ = new RemoveFriendMessageComposer();
                _loc1_.addRemovedFriend(var_1649.reportedUserId);
                sendMessage(_loc1_);
             }
@@ -792,7 +792,7 @@ package com.sulake.habbo.help
       
       private function onGuestRoomResult(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1154 = class_898(param1).getParser();
+         var _loc2_:RoomSettingsDataEvent = class_898(param1).getParser();
          _userRegistry.registerRoom(_loc2_.data.flatId,_loc2_.data.roomName);
       }
       

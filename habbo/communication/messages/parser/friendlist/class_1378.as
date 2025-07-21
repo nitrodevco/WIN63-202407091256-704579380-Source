@@ -9,15 +9,15 @@ package com.sulake.habbo.communication.messages.parser.friendlist {
         public function class_1378() {
             super();
         }
-        private var var_1517: int;
-        private var var_758: Array;
+        private var _chatId: int;
+        private var _historyFragment: Array;
 
         public function get chatId(): int {
-            return var_1517;
+            return _chatId;
         }
 
         public function get historyFragment(): Array {
-            return var_758;
+            return _historyFragment;
         }
 
         public function flush(): Boolean {
@@ -26,12 +26,12 @@ package com.sulake.habbo.communication.messages.parser.friendlist {
 
         public function parse(param1: IMessageDataWrapper): Boolean {
             var _loc3_: int = 0;
-            this.var_1517 = param1.readInteger();
-            var_758 = [];
+            this._chatId = param1.readInteger();
+            _historyFragment = [];
             var _loc2_: int = param1.readInteger();
             _loc3_ = 0;
             while (_loc3_ < _loc2_) {
-                this.var_758.push(new class_1741(param1));
+                this._historyFragment.push(new class_1741(param1));
                 _loc3_++;
             }
             return true;

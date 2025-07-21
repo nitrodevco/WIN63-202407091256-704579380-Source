@@ -38,9 +38,9 @@ package com.sulake.habbo.friendlist {
     import com.sulake.habbo.communication.messages.outgoing.friendlist.FriendListUpdateMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.MessengerInitMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.SetRelationshipStatusMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.class_355
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.class_950
-    import com.sulake.habbo.communication.messages.outgoing.quest.class_681
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.GetFriendRequestsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.RequestFriendMessageEvent
+    import com.sulake.habbo.communication.messages.outgoing.quest.FriendRequestQuestCompleteMessageEvent
     import com.sulake.habbo.communication.messages.parser.friendlist.AcceptFriendResultMessageParser
     import com.sulake.habbo.communication.messages.parser.friendlist.FollowFriendFailedMessageParser
     import com.sulake.habbo.communication.messages.parser.friendlist.FriendRequestsMessageParser
@@ -238,9 +238,9 @@ package com.sulake.habbo.friendlist {
             if (!canBeAskedForAFriend(param1)) {
                 return false;
             }
-            send(new class_950(param2));
+            send(new RequestFriendMessageEvent(param2));
             searchResults.setFriendRequestSent(param1);
-            send(new class_681());
+            send(new FriendRequestQuestCompleteMessageEvent());
             return true;
         }
 
@@ -432,7 +432,7 @@ package com.sulake.habbo.friendlist {
 
         private function getFriendRequests(): void {
             class_14.log("Sending friend requests request");
-            send(new class_355());
+            send(new GetFriendRequestsMessageComposer());
         }
 
         protected function sendFriendListUpdate(param1: Event): void {

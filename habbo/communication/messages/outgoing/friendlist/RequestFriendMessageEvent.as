@@ -1,13 +1,14 @@
-package com.sulake.habbo.communication.messages.outgoing.quest {
+package com.sulake.habbo.communication.messages.outgoing.friendlist {
    import com.sulake.core.communication.messages.IMessageComposer
    import com.sulake.core.runtime.IDisposable
 
    [SecureSWF(rename="true")]
-    public class class_681 implements IMessageComposer, IDisposable {
+    public class RequestFriendMessageEvent implements IMessageComposer, IDisposable {
 
-        public function class_681() {
+        public function RequestFriendMessageEvent(param1: String) {
             var_20 = [];
             super();
+            this.var_20.push(param1);
         }
         private var var_20: Array;
 

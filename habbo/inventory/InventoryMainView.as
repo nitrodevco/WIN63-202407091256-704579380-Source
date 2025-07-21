@@ -31,7 +31,7 @@ package com.sulake.habbo.inventory
       
       private var var_1641:class_3514;
       
-      private var var_2006:String;
+      private var _currentTypeOpened:String;
       
       private var var_3607:IWindowContainer;
       
@@ -39,7 +39,7 @@ package com.sulake.habbo.inventory
       
       private var var_4008:IWindowContainer;
       
-      private var var_319:HabboInventory;
+      private var _habboInventory:HabboInventory;
       
       private var _toolbar:IHabboToolbar;
       
@@ -55,10 +55,10 @@ package com.sulake.habbo.inventory
       
       private var var_4018:Dictionary;
       
-      public function InventoryMainView(param1:HabboInventory, param2:IHabboWindowManager, param3:IAssetLibrary)
+      public function InventoryMainView(habboInventory:HabboInventory, param2:IHabboWindowManager, param3:IAssetLibrary)
       {
          super();
-         var_319 = param1;
+         _habboInventory = habboInventory;
          var_2286 = param3;
          _windowManager = param2;
       }
@@ -107,7 +107,7 @@ package com.sulake.habbo.inventory
          var_3054 = null;
          var_3183 = null;
          var_3043 = null;
-         var_319 = null;
+         _habboInventory = null;
          var_3607 = null;
          var_4008 = null;
          if(var_1641)
@@ -145,7 +145,7 @@ package com.sulake.habbo.inventory
                var_1641.position = DEFAULT_VIEW_LOCATION;
                var_1641.visible = false;
                var_1641.procedure = windowEventProc;
-               var_1641.setParamFlag(65536,var_319.getBoolean("inventory.allow.scaling"));
+               var_1641.setParamFlag(65536,_habboInventory.getBoolean("inventory.allow.scaling"));
                extractWindow("furni");
                extractWindow("pets");
                extractWindow("bots");
@@ -163,13 +163,13 @@ package com.sulake.habbo.inventory
                   switch(_loc5_.name)
                   {
                      case "bots":
-                        if(var_319.getBoolean("inventory.bots.enabled"))
+                        if(_habboInventory.getBoolean("inventory.bots.enabled"))
                         {
                            _loc2_.addTabItem(_loc5_);
                         }
                         break;
                      case "rentables":
-                        if(var_319.getBoolean("duckets.enabled"))
+                        if(_habboInventory.getBoolean("duckets.enabled"))
                         {
                            _loc2_.addTabItem(_loc5_);
                         }
@@ -179,9 +179,9 @@ package com.sulake.habbo.inventory
                         break;
                   }
                }
-               var_319.preparingInventoryView();
+               _habboInventory.preparingInventoryView();
             }
-            var_319.updateUnseenItemCounts();
+            _habboInventory.updateUnseenItemCounts();
          }
          if(var_1641.y < 0)
          {
@@ -196,7 +196,7 @@ package com.sulake.habbo.inventory
       
       public function getCategoryViewId() : String
       {
-         return var_2006;
+         return _currentTypeOpened;
       }
       
       public function getSubCategoryViewId() : String
@@ -206,7 +206,7 @@ package com.sulake.habbo.inventory
       
       public function hideInventory() : void
       {
-         var_319.closingInventoryView();
+         _habboInventory.closingInventoryView();
          var _loc1_:IWindow = getWindow();
          if(_loc1_ == null)
          {
@@ -223,10 +223,10 @@ package com.sulake.habbo.inventory
             return;
          }
          _loc1_.visible = true;
-         var_319.inventoryViewOpened(var_2463 && var_2463.length > 0 ? var_2463 : var_2006);
+         _habboInventory.inventoryViewOpened(var_2463 && var_2463.length > 0 ? var_2463 : _currentTypeOpened);
       }
       
-      public function toggleCategoryView(param1:String, param2:Boolean = true, param3:Boolean = false) : Boolean
+      public function toggleCategoryView(inventoryType:String, param2:Boolean = true, param3:Boolean = false) : Boolean
       {
          var _loc4_:IWindow;
          if((_loc4_ = getWindow()) == null)
@@ -235,7 +235,7 @@ package com.sulake.habbo.inventory
          }
          if(_loc4_.visible)
          {
-            if(var_2006 == param1)
+            if(_currentTypeOpened == inventoryType)
             {
                if(param2)
                {
@@ -249,22 +249,22 @@ package com.sulake.habbo.inventory
             }
             else
             {
-               setViewToCategory(param1);
+               setViewToCategory(inventoryType);
             }
          }
          else
          {
-            if(param3 && var_2006 != null && var_2006 != param1)
+            if(param3 && _currentTypeOpened != null && _currentTypeOpened != inventoryType)
             {
-               setViewToCategory(param1);
+               setViewToCategory(inventoryType);
             }
             _loc4_.visible = true;
             _loc4_.activate();
-            if(param1 != var_2006 || !var_319.isInventoryCategoryInit(param1))
+            if(inventoryType != _currentTypeOpened || !_habboInventory.isInventoryCategoryInit(inventoryType))
             {
-               setViewToCategory(param1);
+               setViewToCategory(inventoryType);
             }
-            var_319.inventoryViewOpened(param1);
+            _habboInventory.inventoryViewOpened(inventoryType);
          }
          return true;
       }
@@ -321,10 +321,10 @@ package com.sulake.habbo.inventory
          if(param1.type == "WE_SELECTED")
          {
             _loc3_ = String(ITabContextWindow(param2).selector.getSelected().name);
-            if(_loc3_ != var_2006)
+            if(_loc3_ != _currentTypeOpened)
             {
-               resetUnseenCounters(var_2006);
-               var_319.toggleInventoryPage(_loc3_);
+               resetUnseenCounters(_currentTypeOpened);
+               _habboInventory.toggleInventoryPage(_loc3_);
             }
          }
          else if(param1.type == "WME_CLICK")
@@ -335,7 +335,7 @@ package com.sulake.habbo.inventory
             }
             if(param2.name == "open_catalog_btn")
             {
-               var_319.catalog.openCatalog();
+               _habboInventory.catalog.openCatalog();
             }
          }
          else if(param1.type == "WME_DOUBLE_CLICK")
@@ -358,7 +358,7 @@ package com.sulake.habbo.inventory
             var_3033 = createCounter("furni");
          }
          updateCounter(var_3033,param1);
-         var_319.furniModel.updateView();
+         _habboInventory.furniModel.updateView();
       }
       
       public function updateUnseenRentedFurniCount(param1:int) : void
@@ -372,7 +372,7 @@ package com.sulake.habbo.inventory
             var_3071 = createCounter("rentables");
          }
          updateCounter(var_3071,param1);
-         var_319.furniModel.updateView();
+         _habboInventory.furniModel.updateView();
       }
       
       public function updateUnseenPetsCount(param1:int) : void
@@ -386,7 +386,7 @@ package com.sulake.habbo.inventory
             var_3183 = createCounter("pets");
          }
          updateCounter(var_3183,param1);
-         var_319.petsModel.updateView();
+         _habboInventory.petsModel.updateView();
       }
       
       public function updateUnseenBadgeCount(param1:int) : void
@@ -400,7 +400,7 @@ package com.sulake.habbo.inventory
             var_3043 = createCounter("badges");
          }
          updateCounter(var_3043,param1);
-         var_319.badgesModel.updateView();
+         _habboInventory.badgesModel.updateView();
       }
       
       public function updateUnseenBotCount(param1:int) : void
@@ -414,7 +414,7 @@ package com.sulake.habbo.inventory
             var_3054 = createCounter("bots");
          }
          updateCounter(var_3054,param1);
-         var_319.botsModel.updateView();
+         _habboInventory.botsModel.updateView();
       }
       
       public function getView(param1:String) : IWindowContainer
@@ -436,29 +436,29 @@ package com.sulake.habbo.inventory
          switch(param1)
          {
             case "furni":
-               var_319.furniModel.resetUnseenItems();
+               _habboInventory.furniModel.resetUnseenItems();
                break;
             case "rentables":
-               var_319.furniModel.resetUnseenItems();
+               _habboInventory.furniModel.resetUnseenItems();
                break;
             case "pets":
-               var_319.petsModel.resetUnseenItems();
+               _habboInventory.petsModel.resetUnseenItems();
                break;
             case "badges":
-               var_319.badgesModel.resetUnseenItems();
+               _habboInventory.badgesModel.resetUnseenItems();
                break;
             case "bots":
-               var_319.botsModel.resetUnseenItems();
+               _habboInventory.botsModel.resetUnseenItems();
          }
       }
       
-      private function setViewToCategory(param1:String) : void
+      private function setViewToCategory(inventoryType:String) : void
       {
-         if(param1 == null)
+         if(inventoryType == null)
          {
             return;
          }
-         if(param1 == "")
+         if(inventoryType == "")
          {
             return;
          }
@@ -470,14 +470,14 @@ package com.sulake.habbo.inventory
          {
             loadingContainer.visible = false;
          }
-         var_319.checkCategoryInitilization(param1);
+         _habboInventory.checkCategoryInitilization(inventoryType);
          if(mainContainer == null)
          {
             return;
          }
          mainContainer.removeChild(var_3607);
          mainContainer.invalidate();
-         var _loc2_:IWindowContainer = var_319.getCategoryWindowContainer(param1);
+         var _loc2_:IWindowContainer = _habboInventory.getCategoryWindowContainer(inventoryType);
          if(_loc2_ == null)
          {
             return;
@@ -485,15 +485,15 @@ package com.sulake.habbo.inventory
          _loc2_.visible = true;
          mainContainer.addChild(_loc2_);
          _loc2_.height = mainContainer.height;
-         var_319.updateView(param1);
+         _habboInventory.updateView(inventoryType);
          var_3607 = _loc2_;
-         var_2006 = param1;
+         _currentTypeOpened = inventoryType;
          var _loc3_:ITabContextWindow = var_1641.findChildByName("tabs") as ITabContextWindow;
          if(_loc3_ == null)
          {
             return;
          }
-         _loc3_.selector.setSelected(_loc3_.selector.getSelectableByName(param1));
+         _loc3_.selector.setSelected(_loc3_.selector.getSelectableByName(inventoryType));
       }
       
       private function enableScaling() : void
@@ -516,13 +516,13 @@ package com.sulake.habbo.inventory
          {
             return;
          }
-         var_319.checkCategoryInitilization(param1);
+         _habboInventory.checkCategoryInitilization(param1);
          var _loc2_:IWindowContainer = var_1641.findChildByName("subContentArea") as IWindowContainer;
          while(_loc2_.numChildren > 0)
          {
             _loc2_.removeChildAt(0);
          }
-         var _loc3_:IWindowContainer = var_319.getCategorySubWindowContainer(param1);
+         var _loc3_:IWindowContainer = _habboInventory.getCategorySubWindowContainer(param1);
          if(_loc3_ != null)
          {
             disableScaling();
@@ -633,29 +633,29 @@ package com.sulake.habbo.inventory
          }
          if(param1.type == "HTE_TOOLBAR_CLICK")
          {
-            if(var_2006 == "pets")
+            if(_currentTypeOpened == "pets")
             {
                toggleCategoryView("pets");
             }
-            else if(var_2006 == "furni")
+            else if(_currentTypeOpened == "furni")
             {
                toggleCategoryView("furni");
             }
-            else if(var_2006 == "rentables")
+            else if(_currentTypeOpened == "rentables")
             {
                toggleCategoryView("rentables");
             }
-            else if(var_2006 == "badges")
+            else if(_currentTypeOpened == "badges")
             {
                toggleCategoryView("badges");
             }
-            else if(var_2006 == "bots")
+            else if(_currentTypeOpened == "bots")
             {
                toggleCategoryView("bots");
             }
-            else if(var_319 != null)
+            else if(_habboInventory != null)
             {
-               var_319.toggleInventoryPage("furni");
+               _habboInventory.toggleInventoryPage("furni");
             }
          }
       }

@@ -6,28 +6,28 @@ package com.sulake.habbo.communication.messages.incoming.friendlist {
 
         public function class_1712(param1: IMessageDataWrapper) {
             super();
-            this.var_894 = param1.readInteger();
+            this._id = param1.readInteger();
             this._avatarName = param1.readString();
-            this.var_1574 = param1.readString();
-            this.var_1521 = param1.readBoolean();
-            this.var_1581 = param1.readBoolean();
+            this._motto = param1.readString();
+            this._isOnline = param1.readBoolean();
+            this._canFollow = param1.readBoolean();
             param1.readString();
-            this.var_1543 = param1.readInteger();
-            this.var_1536 = param1.readString();
+            this._gender = param1.readInteger();
+            this._figure = param1.readString();
             this._realName = param1.readString();
         }
-        private var var_894: int;
-        private var var_1574: String;
+        private var _id: int;
+        private var _motto: String;
 
-        private var var_1521: Boolean;
+        private var _isOnline: Boolean;
 
-        private var var_1581: Boolean;
+        private var _canFollow: Boolean;
 
-        private var var_1543: int;
+        private var _gender: int;
 
-        private var var_1536: String;
+        private var _figure: String;
 
-        private var var_1582: String;
+        private var _lastOnline: String;
 
         private var _avatarName: String;
 
@@ -42,31 +42,31 @@ package com.sulake.habbo.communication.messages.incoming.friendlist {
         }
 
         public function get avatarId(): int {
-            return this.var_894;
+            return this._id;
         }
 
         public function get avatarMotto(): String {
-            return this.var_1574;
+            return this._motto;
         }
 
         public function get isAvatarOnline(): Boolean {
-            return this.var_1521;
+            return this._isOnline;
         }
 
         public function get canFollow(): Boolean {
-            return this.var_1581;
+            return this._canFollow;
         }
 
         public function get avatarGender(): int {
-            return this.var_1543;
+            return this._gender;
         }
 
         public function get avatarFigure(): String {
-            return this.var_1536;
+            return this._figure;
         }
 
         public function get lastOnlineDate(): String {
-            return this.var_1582;
+            return this._lastOnline;
         }
     }
 }

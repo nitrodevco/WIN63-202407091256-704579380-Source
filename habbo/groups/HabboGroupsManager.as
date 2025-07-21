@@ -42,7 +42,7 @@ package com.sulake.habbo.groups
    import com.sulake.habbo.communication.messages.incoming.navigator.class_795;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_898;
    import com.sulake.habbo.communication.messages.parser.users.class_1359;
-   import com.sulake.habbo.communication.messages.parser.navigator.class_1154;
+   import com.sulake.habbo.communication.messages.parser.navigator.RoomSettingsDataEvent;
    import com.sulake.habbo.communication.messages.parser.navigator.class_1616;
    import com.sulake.habbo.communication.messages.parser.handshake.class_1267;
    import com.sulake.habbo.communication.messages.parser.room.engine.class_1339;
@@ -531,7 +531,7 @@ package com.sulake.habbo.groups
       
       private function onRoomInfo(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1154 = class_898(param1).getParser();
+         var _loc2_:RoomSettingsDataEvent = class_898(param1).getParser();
          if(_loc2_.enterRoom)
          {
             var_2050.onRoomInfo(_loc2_.data);

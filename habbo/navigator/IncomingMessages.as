@@ -58,14 +58,14 @@ package com.sulake.habbo.navigator {
     import com.sulake.habbo.communication.messages.incoming.roomsettings.class_963
     import com.sulake.habbo.communication.messages.incoming.roomsettings.class_987
     import com.sulake.habbo.communication.messages.incoming.users.class_1057
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.class_450
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.FollowFriendMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.navigator.class_553
     import com.sulake.habbo.communication.messages.outgoing.navigator.class_831
     import com.sulake.habbo.communication.messages.outgoing.navigator.class_998
     import com.sulake.habbo.communication.messages.outgoing.room.session.class_325
     import com.sulake.habbo.communication.messages.parser.handshake.class_1267
     import com.sulake.habbo.communication.messages.parser.navigator.class_1129
-    import com.sulake.habbo.communication.messages.parser.navigator.class_1154
+    import com.sulake.habbo.communication.messages.parser.navigator.RoomSettingsDataEvent
     import com.sulake.habbo.communication.messages.parser.navigator.class_1157
     import com.sulake.habbo.communication.messages.parser.navigator.class_1180
     import com.sulake.habbo.communication.messages.parser.navigator.class_1266
@@ -267,7 +267,7 @@ package com.sulake.habbo.navigator {
         private function onRoomInfo(param1: IMessageEvent): void {
             var _loc3_: * = false;
             var _loc4_: RoomSessionTags = null;
-            var _loc2_: class_1154 = class_898(param1).getParser();
+            var _loc2_: RoomSettingsDataEvent = class_898(param1).getParser();
             class_14.log("Got room info: " + _loc2_.enterRoom + ", " + _loc2_.roomForward);
             if (_loc2_.enterRoom) {
                 data.enteredRoom = _loc2_.data;
@@ -362,7 +362,7 @@ package com.sulake.habbo.navigator {
                 _loc4_ = false;
                 if (_navigator.propertyExists("friend.id")) {
                     _loc8_ = 0;
-                    _navigator.send(new class_450(int(_navigator.getProperty("friend.id"))));
+                    _navigator.send(new FollowFriendMessageComposer(int(_navigator.getProperty("friend.id"))));
                 }
                 if (_navigator.propertyExists("forward.type") && _navigator.propertyExists("forward.id")) {
                     _loc8_ = int(_navigator.getProperty("forward.type"));

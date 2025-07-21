@@ -20,7 +20,7 @@ package com.sulake.habbo.friendlist
    import flash.geom.Point;
    import flash.utils.Dictionary;
    import flash.utils.getTimer;
-   import com.sulake.habbo.communication.messages.outgoing.friendlist.class_450;
+   import com.sulake.habbo.communication.messages.outgoing.friendlist.FollowFriendMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.users.class_322;
    
@@ -449,7 +449,7 @@ package com.sulake.habbo.friendlist
          {
             return;
          }
-         _friendList.send(new class_450(param2.id));
+         _friendList.send(new FollowFriendMessageComposer(param2.id));
          _friendList.send(new EventLogMessageComposer("Navigation","Friend List","go.friendlist"));
       }
       

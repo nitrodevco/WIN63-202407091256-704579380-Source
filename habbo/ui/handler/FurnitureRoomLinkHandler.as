@@ -16,7 +16,7 @@ package com.sulake.habbo.ui.handler
    import flash.events.Event;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_1675;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_898;
-   import com.sulake.habbo.communication.messages.parser.navigator.class_1154;
+   import com.sulake.habbo.communication.messages.parser.navigator.RoomSettingsDataEvent;
    import com.sulake.habbo.communication.messages.outgoing.navigator.class_553;
    
    public class FurnitureRoomLinkHandler implements IRoomWidgetHandler
@@ -65,7 +65,7 @@ package com.sulake.habbo.ui.handler
          var roomName:String;
          var ownerName:String;
          var event:IMessageEvent = param1;
-         var p:class_1154 = class_898(event).getParser();
+         var p:RoomSettingsDataEvent = class_898(event).getParser();
          var roomData:class_1675 = p.data;
          if(roomData && roomData.flatId == var_1199)
          {

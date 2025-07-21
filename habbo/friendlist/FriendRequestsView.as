@@ -10,7 +10,7 @@ package com.sulake.habbo.friendlist {
     import com.sulake.habbo.friendlist.events.FriendRequestEvent;
     import com.sulake.habbo.utils.class_3527;
     import com.sulake.habbo.communication.messages.outgoing.friendlist.class_170;
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.class_952;
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.AcceptFriendMessageEvent;
     import com.sulake.habbo.communication.messages.outgoing.users.class_322;
 
     public class FriendRequestsView implements ITabView, IFriendRequestsView {
@@ -147,7 +147,7 @@ package com.sulake.habbo.friendlist {
                 _friendList.showLimitReachedAlert();
                 return;
             }
-            var _loc2_: class_952 = new class_952();
+            var _loc2_: AcceptFriendMessageEvent = new AcceptFriendMessageEvent();
             _loc2_.addAcceptedRequest(_loc3_.requestId);
             _friendList.send(_loc2_);
             refreshRequestEntry(_loc3_);
@@ -162,7 +162,7 @@ package com.sulake.habbo.friendlist {
                 _friendList.showLimitReachedAlert();
                 return;
             }
-            var _loc1_: class_952 = new class_952();
+            var _loc1_: AcceptFriendMessageEvent = new AcceptFriendMessageEvent();
             for each(var _loc2_ in _friendList.friendRequests.requests) {
                 if (_loc2_.state != 2 && _loc2_.state != 3) {
                     _loc1_.addAcceptedRequest(_loc2_.requestId);

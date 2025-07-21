@@ -8,13 +8,13 @@ package com.sulake.habbo.communication.messages.parser.friendlist {
         public function class_1500() {
             super();
         }
-        private var var_1517: int;
-        private var var_639: String;
-        private var var_1468: int;
-        private var var_494: String;
-        private var var_1564: int;
-        private var var_779: int;
-        private var var_1283: String;
+        private var _chatId: int;
+        private var _messageText: String;
+        private var _secondsSinceSent: int;
+        private var _messageId: String;
+        private var _confirmationId: int;
+        private var _senderId: int;
+        private var _senderFigure: String;
 
         private var _senderName: String;
 
@@ -23,31 +23,31 @@ package com.sulake.habbo.communication.messages.parser.friendlist {
         }
 
         public function get chatId(): int {
-            return this.var_1517;
+            return this._chatId;
         }
 
         public function get messageText(): String {
-            return this.var_639;
+            return this._messageText;
         }
 
         public function get secondsSinceSent(): int {
-            return var_1468;
+            return _secondsSinceSent;
         }
 
         public function get messageId(): String {
-            return var_494;
+            return _messageId;
         }
 
         public function get confirmationId(): int {
-            return var_1564;
+            return _confirmationId;
         }
 
         public function get senderId(): int {
-            return var_779;
+            return _senderId;
         }
 
         public function get senderFigure(): String {
-            return var_1283;
+            return _senderFigure;
         }
 
         public function flush(): Boolean {
@@ -55,14 +55,14 @@ package com.sulake.habbo.communication.messages.parser.friendlist {
         }
 
         public function parse(param1: IMessageDataWrapper): Boolean {
-            this.var_1517 = param1.readInteger();
-            this.var_639 = param1.readString();
-            this.var_1468 = param1.readInteger();
-            this.var_494 = param1.readString();
-            this.var_1564 = param1.readInteger();
-            this.var_779 = param1.readInteger();
+            this._chatId = param1.readInteger();
+            this._messageText = param1.readString();
+            this._secondsSinceSent = param1.readInteger();
+            this._messageId = param1.readString();
+            this._confirmationId = param1.readInteger();
+            this._senderId = param1.readInteger();
             this._senderName = param1.readString();
-            this.var_1283 = param1.readString();
+            this._senderFigure = param1.readString();
             return true;
         }
     }

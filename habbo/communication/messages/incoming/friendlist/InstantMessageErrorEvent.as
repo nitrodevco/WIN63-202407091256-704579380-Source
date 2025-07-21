@@ -4,9 +4,9 @@ package com.sulake.habbo.communication.messages.incoming.friendlist {
     import com.sulake.habbo.communication.messages.parser.friendlist.class_1375
 
     [SecureSWF(rename="true")]
-    public class class_451 extends MessageEvent implements IMessageEvent {
+    public class InstantMessageErrorEvent extends MessageEvent implements IMessageEvent {
 
-        public function class_451(param1: Function) {
+        public function InstantMessageErrorEvent(param1: Function) {
             super(param1, class_1375);
         }
 

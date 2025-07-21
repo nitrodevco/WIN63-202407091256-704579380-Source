@@ -8,10 +8,10 @@ package com.sulake.habbo.communication.messages.parser.friendlist {
         public function FollowFriendFailedMessageParser() {
             super();
         }
-        private var var_412: int;
+        private var _errorCode: int;
 
         public function get errorCode(): int {
-            return this.var_412;
+            return this._errorCode;
         }
 
         public function flush(): Boolean {
@@ -19,7 +19,7 @@ package com.sulake.habbo.communication.messages.parser.friendlist {
         }
 
         public function parse(param1: IMessageDataWrapper): Boolean {
-            this.var_412 = param1.readInteger();
+            this._errorCode = param1.readInteger();
             return true;
         }
     }

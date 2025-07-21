@@ -6,12 +6,12 @@ package com.sulake.habbo.communication.messages.incoming.friendlist {
 
         public function class_1741(param1: IMessageDataWrapper) {
             super();
-            var_779 = param1.readInteger();
+            _senderId = param1.readInteger();
             _senderName = param1.readString();
-            var_1283 = param1.readString();
-            var_368 = param1.readString();
-            var_1468 = param1.readInteger();
-            var_494 = param1.readString();
+            _senderFigure = param1.readString();
+            _message = param1.readString();
+            _secondsSinceSent = param1.readInteger();
+            _messageId = param1.readString();
         }
         private var var_779: int;
         private var var_1283: String;

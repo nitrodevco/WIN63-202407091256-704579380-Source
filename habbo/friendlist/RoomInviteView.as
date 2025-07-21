@@ -8,7 +8,7 @@ package com.sulake.habbo.friendlist
    import com.sulake.core.window.events.WindowKeyboardEvent;
    import com.sulake.core.window.events.WindowEvent;
    import com.sulake.habbo.friendlist.domain.Friend;
-   import com.sulake.habbo.communication.messages.outgoing.friendlist.class_1085;
+   import com.sulake.habbo.communication.messages.outgoing.friendlist.SendRoomInviteMessageComposer;
    
    public class RoomInviteView extends AlertView
    {
@@ -81,7 +81,7 @@ package com.sulake.habbo.friendlist
             friendList.simpleAlert("${friendlist.invite.emptyalert.title}","${friendlist.invite.emptyalert.text}");
             return;
          }
-         var _loc1_:class_1085 = new class_1085(_loc3_);
+         var _loc1_:SendRoomInviteMessageComposer = new SendRoomInviteMessageComposer(_loc3_);
          for each(var _loc2_ in _selected)
          {
             _loc1_.addInvitedFriend(_loc2_.id);
