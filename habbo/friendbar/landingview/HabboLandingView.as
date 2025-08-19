@@ -51,7 +51,7 @@ package com.sulake.habbo.friendbar.landingview
    import com.sulake.habbo.communication.messages.outgoing.landingview.votes.CommunityGoalVoteMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_491;
    import com.sulake.habbo.communication.messages.outgoing.room.session.class_325;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_506;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.ForwardToARandomPromotedRoomMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.inventory.badges.class_1062;
    
    public class HabboLandingView extends AbstractView implements IHabboLandingView
@@ -428,7 +428,7 @@ package com.sulake.habbo.friendbar.landingview
          }
          if(param1 != null)
          {
-            send(new class_506(param1));
+            send(new ForwardToARandomPromotedRoomMessageComposer(param1));
          }
       }
       

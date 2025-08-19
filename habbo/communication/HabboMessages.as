@@ -689,7 +689,7 @@ package com.sulake.habbo.communication {
     import com.sulake.habbo.communication.messages.outgoing.navigator.class_387
     import com.sulake.habbo.communication.messages.outgoing.navigator.class_413
     import com.sulake.habbo.communication.messages.outgoing.navigator.class_458
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_506
+    import com.sulake.habbo.communication.messages.outgoing.navigator.ForwardToARandomPromotedRoomMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.navigator.class_517
     import com.sulake.habbo.communication.messages.outgoing.navigator.RemoveOwnRoomRightsRoomMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.navigator.class_546
@@ -1196,7 +1196,7 @@ package com.sulake.habbo.communication {
             _composers[1487] = NftCollectiblesClaimRewardItemMessageComposer;
             _composers[1503] = class_914;
             _composers[1511] = class_490;
-            _composers[1521] = class_506;
+            _composers[1521] = ForwardToARandomPromotedRoomMessageComposer;
             _composers[1526] = class_413;
             _composers[1538] = class_976;
             _composers[1539] = class_275;

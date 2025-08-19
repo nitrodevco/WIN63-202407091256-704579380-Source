@@ -3,9 +3,9 @@ package com.sulake.habbo.communication.messages.outgoing.navigator {
    import com.sulake.core.runtime.IDisposable
 
    [SecureSWF(rename="true")]
-    public class class_506 implements IMessageComposer, IDisposable {
+    public class ForwardToARandomPromotedRoomMessageComposer implements IMessageComposer, IDisposable {
 
-        public function class_506(param1: String) {
+        public function ForwardToARandomPromotedRoomMessageComposer(param1: String) {
             var_20 = [];
             super();
             this.var_20.push(param1);
