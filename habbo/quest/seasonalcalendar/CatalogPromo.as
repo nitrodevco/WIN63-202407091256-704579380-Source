@@ -23,8 +23,8 @@ package com.sulake.habbo.quest.seasonalcalendar
    import flash.geom.Rectangle;
    import com.sulake.habbo.communication.messages.outgoing.catalog.class_282;
    import com.sulake.habbo.communication.messages.incoming.catalog.class_1718;
-   import com.sulake.habbo.communication.messages.incoming.catalog.class_714;
-   import com.sulake.habbo.communication.messages.incoming.catalog.class_790;
+   import com.sulake.habbo.communication.messages.incoming.catalog.SeasonalCalendarDailyOfferMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.catalog.CatalogPublishedMessageEvent;
    
    public class CatalogPromo implements IDisposable, IGetImageListener, class_1812
    {
@@ -44,7 +44,7 @@ package com.sulake.habbo.quest.seasonalcalendar
       
       private var var_562:int = -1;
       
-      private var var_4011:class_714 = null;
+      private var var_4011:SeasonalCalendarDailyOfferMessageEvent = null;
       
       private var var_3251:IMessageEvent = null;
       
@@ -107,8 +107,8 @@ package com.sulake.habbo.quest.seasonalcalendar
          var_26 = _questEngine.communication.connection;
          if(var_26 != null)
          {
-            var_3251 = new class_714(onDailyOfferMessage);
-            var_3151 = new class_790(onCatalogPublished);
+            var_3251 = new SeasonalCalendarDailyOfferMessageEvent(onDailyOfferMessage);
+            var_3151 = new CatalogPublishedMessageEvent(onCatalogPublished);
             var_26.addMessageEvent(var_3251);
             var_26.addMessageEvent(var_3151);
             var_26.send(new class_282());
@@ -168,7 +168,7 @@ package com.sulake.habbo.quest.seasonalcalendar
          }
       }
       
-      private function onDailyOfferMessage(param1:class_714) : void
+      private function onDailyOfferMessage(param1:SeasonalCalendarDailyOfferMessageEvent) : void
       {
          _window.findChildByName("buy_button").enable();
          var _loc2_:class_3423 = _questEngine.sessionDataManager.getProductData(param1.offer.localizationId);

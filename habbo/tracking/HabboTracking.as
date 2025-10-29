@@ -13,9 +13,9 @@ package com.sulake.habbo.tracking {
     import com.sulake.habbo.advertisement.events.AdEvent
     import com.sulake.habbo.catalog.navigation.events.CatalogPageOpenedEvent
     import com.sulake.habbo.communication.IHabboCommunicationManager
-    import com.sulake.habbo.communication.messages.incoming.handshake.class_483
-    import com.sulake.habbo.communication.messages.incoming.notifications.class_205
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_510
+    import com.sulake.habbo.communication.messages.incoming.handshake.AuthenticationOKMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.notifications.HabboAchievementNotificationMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.RoomEntryInfoMessageEvent
     import com.sulake.habbo.communication.messages.incoming.tracking.LatencyPingResponseMessageEvent
     import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer
     import com.sulake.habbo.communication.messages.parser.notifications.class_1271
@@ -298,9 +298,9 @@ package com.sulake.habbo.tracking {
             var_3825 = new LagWarningLogger(this);
             var_2749 = new ToolbarClickTracker(this);
             _messageEvents = new Vector.<IMessageEvent>(0);
-            addMessageEvent(new class_483(onAuthOK));
-            addMessageEvent(new class_510(onRoomEnter));
-            addMessageEvent(new class_205(onAchievementNotification));
+            addMessageEvent(new AuthenticationOKMessageEvent(onAuthOK));
+            addMessageEvent(new RoomEntryInfoMessageEvent(onRoomEnter));
+            addMessageEvent(new HabboAchievementNotificationMessageEvent(onAchievementNotification));
             addMessageEvent(new LatencyPingResponseMessageEvent(onPingResponse));
             var _loc1_: IEventDispatcher = Component(context).events;
             _loc1_.addEventListener("HABBO_CONNECTION_EVENT_INIT", onConnectionEvent);
@@ -522,7 +522,7 @@ package com.sulake.habbo.tracking {
             }
         }
 
-        private function onAchievementNotification(param1: class_205): void {
+        private function onAchievementNotification(param1: HabboAchievementNotificationMessageEvent): void {
             var _loc2_: class_1271 = param1.getParser();
             legacyTrackGoogle("achievement", "achievement", [_loc2_.data.badgeCode]);
         }
@@ -585,7 +585,7 @@ package com.sulake.habbo.tracking {
                 trackLoginStep("client.init.room.enter");
                 var_4465 = true;
             }
-            var _loc2_: class_1339 = class_510(param1).getParser();
+            var _loc2_: class_1339 = RoomEntryInfoMessageEvent(param1).getParser();
             ErrorReportStorage.setParameter("last_room", String(_loc2_.guestRoomId));
             ErrorReportStorage.setParameter("in_room", "true");
             legacyTrackGoogle("navigator", "private", [_loc2_.guestRoomId]);

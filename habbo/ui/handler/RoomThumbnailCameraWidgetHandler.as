@@ -9,7 +9,7 @@ package com.sulake.habbo.ui.handler
    import com.sulake.habbo.ui.widget.events.RoomWidgetUpdateEvent;
    import com.sulake.habbo.ui.widget.messages.RoomWidgetMessage;
    import flash.events.Event;
-   import com.sulake.habbo.communication.messages.incoming.camera.class_741;
+   import com.sulake.habbo.communication.messages.incoming.camera.ThumbnailStatusMessageEvent;
    
    public class RoomThumbnailCameraWidgetHandler implements IRoomWidgetHandler, IDisposable
    {
@@ -21,7 +21,7 @@ package com.sulake.habbo.ui.handler
       
       private var var_1629:RoomThumbnailCameraWidget;
       
-      private var var_3689:class_741;
+      private var var_3689:ThumbnailStatusMessageEvent;
       
       public function RoomThumbnailCameraWidgetHandler(param1:RoomDesktop)
       {
@@ -57,7 +57,7 @@ package com.sulake.habbo.ui.handler
       public function set container(param1:IRoomWidgetHandlerContainer) : void
       {
          _container = param1;
-         var_3689 = new class_741(onThumbnailStatus);
+         var_3689 = new ThumbnailStatusMessageEvent(onThumbnailStatus);
          _container.connection.addMessageEvent(var_3689);
       }
       
@@ -102,7 +102,7 @@ package com.sulake.habbo.ui.handler
          _container.connection.send(param1);
       }
       
-      private function onThumbnailStatus(param1:class_741) : void
+      private function onThumbnailStatus(param1:ThumbnailStatusMessageEvent) : void
       {
          var_1629.destroy();
          if(param1.getParser().isOk())

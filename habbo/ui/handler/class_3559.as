@@ -13,9 +13,9 @@ package com.sulake.habbo.ui.handler
    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_213;
    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_273;
    import com.sulake.habbo.communication.messages.outgoing.room.furniture.RentableSpaceStatusMessageComposer;
-   import com.sulake.habbo.communication.messages.incoming.room.furniture.class_597;
-   import com.sulake.habbo.communication.messages.incoming.room.furniture.class_620;
-   import com.sulake.habbo.communication.messages.incoming.room.furniture.class_810;
+   import com.sulake.habbo.communication.messages.incoming.room.furniture.RentableSpaceRentOkMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.room.furniture.RentableSpaceRentFailedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.room.furniture.RentableSpaceStatusMessageEvent;
    
    public class class_3559 implements IRoomWidgetHandler
    {
@@ -25,11 +25,11 @@ package com.sulake.habbo.ui.handler
       
       private var var_1629:RentableSpaceDisplayWidget;
       
-      private var var_3065:class_810;
+      private var var_3065:RentableSpaceStatusMessageEvent;
       
-      private var var_3201:class_597;
+      private var var_3201:RentableSpaceRentOkMessageEvent;
       
-      private var var_3062:class_620;
+      private var var_3062:RentableSpaceRentFailedMessageEvent;
       
       public function class_3559()
       {
@@ -49,11 +49,11 @@ package com.sulake.habbo.ui.handler
       public function set container(param1:IRoomWidgetHandlerContainer) : void
       {
          _container = param1;
-         var_3065 = new class_810(onRentableSpaceStatusMessage);
+         var_3065 = new RentableSpaceStatusMessageEvent(onRentableSpaceStatusMessage);
          _container.connection.addMessageEvent(var_3065);
-         var_3201 = new class_597(onRentableSpaceRentOkMessage);
+         var_3201 = new RentableSpaceRentOkMessageEvent(onRentableSpaceRentOkMessage);
          _container.connection.addMessageEvent(var_3201);
-         var_3062 = new class_620(onRentableSpaceRentFailedMessage);
+         var_3062 = new RentableSpaceRentFailedMessageEvent(onRentableSpaceRentFailedMessage);
          _container.connection.addMessageEvent(var_3062);
       }
       
@@ -130,18 +130,18 @@ package com.sulake.habbo.ui.handler
          return _container == null;
       }
       
-      public function onRentableSpaceRentOkMessage(param1:class_597) : void
+      public function onRentableSpaceRentOkMessage(param1:RentableSpaceRentOkMessageEvent) : void
       {
          var_1629.updateWidgetState();
       }
       
-      public function onRentableSpaceRentFailedMessage(param1:class_620) : void
+      public function onRentableSpaceRentFailedMessage(param1:RentableSpaceRentFailedMessageEvent) : void
       {
          var _loc2_:class_1449 = param1.getParser();
          var_1629.showErrorView(_loc2_.reason);
       }
       
-      public function onRentableSpaceStatusMessage(param1:class_810) : void
+      public function onRentableSpaceStatusMessage(param1:RentableSpaceStatusMessageEvent) : void
       {
          var _loc2_:class_1396 = param1.getParser();
          var_1629.populateRentInfo(_loc2_.rented,_loc2_.canRent,_loc2_.canRentErrorCode,_loc2_.renterId,_loc2_.renterName,_loc2_.timeRemaining,_loc2_.price);

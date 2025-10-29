@@ -13,9 +13,9 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_monitor
    import com.sulake.habbo.roomevents.wired_menu.views.tables.TableView;
    import flash.utils.getTimer;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredRoomStatsData;
-   import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.class_1100;
+   import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredRoomStatsEvent;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.class_1708;
-   import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.class_905;
+   import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredErrorLogsEvent;
    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_286;
    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_437;
    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_777;
@@ -62,8 +62,8 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_monitor
       {
          super(param1,param2);
          createLogTable();
-         addMessageEvent(new class_1100(onRoomStatsEvent));
-         addMessageEvent(new class_905(onErrorLogsEvent));
+         addMessageEvent(new WiredRoomStatsEvent(onRoomStatsEvent));
+         addMessageEvent(new WiredErrorLogsEvent(onErrorLogsEvent));
          clearButton.addEventListener("WME_CLICK",onClearButtonClicked);
       }
       
@@ -114,7 +114,7 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_monitor
          controller.send(new class_286());
       }
       
-      private function onRoomStatsEvent(param1:class_1100) : void
+      private function onRoomStatsEvent(param1:WiredRoomStatsEvent) : void
       {
          var_648 = param1.getParser().roomStats;
          if(isLoading)
@@ -128,7 +128,7 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_monitor
          }
       }
       
-      private function onErrorLogsEvent(param1:class_905) : void
+      private function onErrorLogsEvent(param1:WiredErrorLogsEvent) : void
       {
          var_399 = param1.getParser().errors;
          if(isLoading)

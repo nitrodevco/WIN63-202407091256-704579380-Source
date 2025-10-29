@@ -34,8 +34,8 @@ package com.sulake.habbo.nux
    import com.sulake.habbo.communication.messages.outgoing.gifts.class_457;
    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.nux.class_1714;
-   import com.sulake.habbo.communication.messages.incoming.nux.class_295;
-   import com.sulake.habbo.communication.messages.incoming.nux.class_694;
+   import com.sulake.habbo.communication.messages.incoming.nux.NewUserExperienceNotCompleteEvent;
+   import com.sulake.habbo.communication.messages.incoming.nux.NewUserExperienceGiftOfferEvent;
    
    public class HabboNuxDialogs extends Component implements ILinkEventTracker
    {
@@ -120,8 +120,8 @@ package com.sulake.habbo.nux
          var_26 = _communicationManager.connection;
          if(var_26)
          {
-            var_26.addMessageEvent(new class_295(onNewUserExperienceNotCompleteMessage));
-            var_26.addMessageEvent(new class_694(onNewUserExperienceGiftOfferMessage));
+            var_26.addMessageEvent(new NewUserExperienceNotCompleteEvent(onNewUserExperienceNotCompleteMessage));
+            var_26.addMessageEvent(new NewUserExperienceGiftOfferEvent(onNewUserExperienceGiftOfferMessage));
          }
          context.addLinkEventTracker(this);
       }
@@ -179,12 +179,12 @@ package com.sulake.habbo.nux
          var_26.send(new NewUserExperienceGetGiftsMessageComposer(param1));
       }
       
-      private function onNewUserExperienceNotCompleteMessage(param1:class_295) : void
+      private function onNewUserExperienceNotCompleteMessage(param1:NewUserExperienceNotCompleteEvent) : void
       {
          createNuxOfferView();
       }
       
-      private function onNewUserExperienceGiftOfferMessage(param1:class_694) : void
+      private function onNewUserExperienceGiftOfferMessage(param1:NewUserExperienceGiftOfferEvent) : void
       {
          var _loc2_:class_1215 = param1.getParser();
          createGiftSelectionView(_loc2_.giftOptions);

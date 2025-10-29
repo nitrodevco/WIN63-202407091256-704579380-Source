@@ -7,8 +7,8 @@ package com.sulake.habbo.roomevents
    import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.wiredmenu.class_1286;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredcontext.variables.WiredVariable;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredcontext.variables.class_3556;
-   import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.class_353;
-   import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.class_657;
+   import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredAllVariablesHashEvent;
+   import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredAllVariablesDiffsEvent;
    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetAllVariablesHashMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetAllVariablesDiffsMessageComposer;
    
@@ -51,8 +51,8 @@ package com.sulake.habbo.roomevents
          super();
          this.name_1 = param1;
          _messageEvents = [];
-         _messageEvents.push(new class_353(onAllVariablesHashEvent));
-         _messageEvents.push(new class_657(onAllVariablesDiffEvent));
+         _messageEvents.push(new WiredAllVariablesHashEvent(onAllVariablesHashEvent));
+         _messageEvents.push(new WiredAllVariablesDiffsEvent(onAllVariablesDiffEvent));
          for each(var _loc2_ in _messageEvents)
          {
             name_1.communication.addHabboConnectionMessageEvent(_loc2_);
@@ -122,7 +122,7 @@ package com.sulake.habbo.roomevents
          return false;
       }
       
-      private function onAllVariablesHashEvent(param1:class_353) : void
+      private function onAllVariablesHashEvent(param1:WiredAllVariablesHashEvent) : void
       {
          onAllVariablesHash(param1.getParser().allVariablesHash);
       }
@@ -147,7 +147,7 @@ package com.sulake.habbo.roomevents
          }
       }
       
-      private function onAllVariablesDiffEvent(param1:class_657) : void
+      private function onAllVariablesDiffEvent(param1:WiredAllVariablesDiffsEvent) : void
       {
          if(_status != STATUS_AWAIT_DIFFS)
          {

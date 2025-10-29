@@ -18,9 +18,9 @@ package com.sulake.habbo.phonenumber
    import com.sulake.iid.IIDHabboWindowManager;
    import com.sulake.iid.IIDSessionDataManager;
    import flash.utils.getTimer;
-   import com.sulake.habbo.communication.messages.incoming.gifts.class_484;
-   import com.sulake.habbo.communication.messages.incoming.gifts.class_766;
-   import com.sulake.habbo.communication.messages.incoming.gifts.class_785;
+   import com.sulake.habbo.communication.messages.incoming.gifts.TryVerificationCodeResultMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.gifts.TryPhoneNumberResultMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.gifts.PhoneCollectionStateMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.gifts.class_457;
    import com.sulake.habbo.communication.messages.outgoing.gifts.class_478;
    import com.sulake.habbo.communication.messages.outgoing.gifts.class_706;
@@ -82,9 +82,9 @@ package com.sulake.habbo.phonenumber
          if(getBoolean("sms.identity.verification.enabled"))
          {
             var_26 = _communicationManager.connection;
-            var_26.addMessageEvent(new class_785(onStateMessage));
-            var_26.addMessageEvent(new class_766(onPhoneNumberResultMessage));
-            var_26.addMessageEvent(new class_484(onVerificationCodeResultMessage));
+            var_26.addMessageEvent(new PhoneCollectionStateMessageEvent(onStateMessage));
+            var_26.addMessageEvent(new TryPhoneNumberResultMessageEvent(onPhoneNumberResultMessage));
+            var_26.addMessageEvent(new TryVerificationCodeResultMessageEvent(onVerificationCodeResultMessage));
          }
       }
       
@@ -143,7 +143,7 @@ package com.sulake.habbo.phonenumber
          var_26.send(new class_706());
       }
       
-      private function onPhoneNumberResultMessage(param1:class_766) : void
+      private function onPhoneNumberResultMessage(param1:TryPhoneNumberResultMessageEvent) : void
       {
          switch(param1.getParser().resultCode - 1)
          {
@@ -174,7 +174,7 @@ package com.sulake.habbo.phonenumber
          }
       }
       
-      private function onVerificationCodeResultMessage(param1:class_484) : void
+      private function onVerificationCodeResultMessage(param1:TryVerificationCodeResultMessageEvent) : void
       {
          switch(param1.getParser().resultCode - 2)
          {
@@ -196,7 +196,7 @@ package com.sulake.habbo.phonenumber
          }
       }
       
-      private function onStateMessage(param1:class_785) : void
+      private function onStateMessage(param1:PhoneCollectionStateMessageEvent) : void
       {
          var _loc2_:int = param1.getParser().collectionStatusCode;
          var _loc3_:int = param1.getParser().phoneStatusCode;

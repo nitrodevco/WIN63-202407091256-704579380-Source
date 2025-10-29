@@ -13,8 +13,8 @@ package com.sulake.habbo.window.widgets
    import com.sulake.habbo.window.enum.class_3550;
    import flash.display.BitmapData;
    import flash.geom.Point;
-   import com.sulake.habbo.communication.messages.incoming.users.class_150;
-   import com.sulake.habbo.communication.messages.incoming.users.class_611;
+   import com.sulake.habbo.communication.messages.incoming.users.GroupDetailsChangedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.HabboGroupBadgesMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.users.class_201;
    
    public class BadgeImageWidget implements IBadgeImageWidget
@@ -51,9 +51,9 @@ package com.sulake.habbo.window.widgets
       
       private var _groupId:int;
       
-      private var var_3396:class_150;
+      private var var_3396:GroupDetailsChangedMessageEvent;
       
-      private var var_2920:class_611;
+      private var var_2920:HabboGroupBadgesMessageEvent;
       
       public function BadgeImageWidget(param1:IWidgetWindow, param2:HabboWindowManagerComponent)
       {
@@ -193,8 +193,8 @@ package com.sulake.habbo.window.widgets
             }
             else if(_loc2_ && var_2920 == null)
             {
-               var_3396 = new class_150(onGroupDetailsChanged);
-               var_2920 = new class_611(onHabboGroupBadges);
+               var_3396 = new GroupDetailsChangedMessageEvent(onGroupDetailsChanged);
+               var_2920 = new HabboGroupBadgesMessageEvent(onHabboGroupBadges);
                _windowManager.communication.addHabboConnectionMessageEvent(var_3396);
                _windowManager.communication.addHabboConnectionMessageEvent(var_2920);
             }
@@ -343,12 +343,12 @@ package com.sulake.habbo.window.widgets
          refresh();
       }
       
-      private function onGroupDetailsChanged(param1:class_150) : void
+      private function onGroupDetailsChanged(param1:GroupDetailsChangedMessageEvent) : void
       {
          forceRefresh(param1.groupId,var_372);
       }
       
-      private function onHabboGroupBadges(param1:class_611) : void
+      private function onHabboGroupBadges(param1:HabboGroupBadgesMessageEvent) : void
       {
          if(param1.badges.hasKey(_groupId))
          {

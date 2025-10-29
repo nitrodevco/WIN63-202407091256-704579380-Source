@@ -8,7 +8,7 @@ package com.sulake.habbo.roomevents.wired_setup.selectors
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.class_1659;
    import com.sulake.habbo.roomevents.HabboUserDefinedRoomEvents;
    import com.sulake.habbo.communication.messages.incoming.users.class_1745;
-   import com.sulake.habbo.communication.messages.incoming.users.class_596;
+   import com.sulake.habbo.communication.messages.incoming.users.GuildMembershipsMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.users.class_779;
    
    public class UsersInGroup extends DefaultSelectorType
@@ -115,7 +115,7 @@ package com.sulake.habbo.roomevents.wired_setup.selectors
          }
       }
       
-      override public function onGuildMemberships(param1:class_596) : void
+      override public function onGuildMemberships(param1:GuildMembershipsMessageEvent) : void
       {
          initGuilds(param1.guilds);
       }

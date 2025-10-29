@@ -8,9 +8,9 @@ package com.sulake.habbo.ui.handler
    import com.sulake.habbo.ui.widget.furniture.friendfurni.FriendFurniConfirmWidget;
    import com.sulake.habbo.ui.widget.messages.RoomWidgetMessage;
    import flash.events.Event;
-   import com.sulake.habbo.communication.messages.incoming.friendfurni.class_1005;
-   import com.sulake.habbo.communication.messages.incoming.friendfurni.class_464;
-   import com.sulake.habbo.communication.messages.incoming.friendfurni.class_541;
+   import com.sulake.habbo.communication.messages.incoming.friendfurni.FriendFurniOtherLockConfirmedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.friendfurni.FriendFurniStartConfirmationMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.friendfurni.FriendFurniCancelLockMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.friendfurni.class_395;
    
    public class class_3642 implements IRoomWidgetHandler
@@ -73,9 +73,9 @@ package com.sulake.habbo.ui.handler
          var_26 = param1;
          if(!var_3310)
          {
-            var_3310 = new class_464(onStartConfirmation);
-            var_4064 = new class_1005(onOtherLockConfirmed);
-            var_4108 = new class_541(onCancelLock);
+            var_3310 = new FriendFurniStartConfirmationMessageEvent(onStartConfirmation);
+            var_4064 = new FriendFurniOtherLockConfirmedMessageEvent(onOtherLockConfirmed);
+            var_4108 = new FriendFurniCancelLockMessageEvent(onCancelLock);
             var_26.addMessageEvent(var_3310);
             var_26.addMessageEvent(var_4064);
             var_26.addMessageEvent(var_4108);
@@ -87,17 +87,17 @@ package com.sulake.habbo.ui.handler
          var_26.send(new class_395(param1,param2));
       }
       
-      private function onStartConfirmation(param1:class_464) : void
+      private function onStartConfirmation(param1:FriendFurniStartConfirmationMessageEvent) : void
       {
          var_1629.open(param1.getParser().stuffId,param1.getParser().isOwner);
       }
       
-      private function onOtherLockConfirmed(param1:class_1005) : void
+      private function onOtherLockConfirmed(param1:FriendFurniOtherLockConfirmedMessageEvent) : void
       {
          var_1629.otherConfirmed(param1.getParser().stuffId);
       }
       
-      private function onCancelLock(param1:class_541) : void
+      private function onCancelLock(param1:FriendFurniCancelLockMessageEvent) : void
       {
          var_1629.close(param1.getParser().stuffId);
       }

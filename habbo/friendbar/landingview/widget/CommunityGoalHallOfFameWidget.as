@@ -5,11 +5,11 @@ package com.sulake.habbo.friendbar.landingview.widget
    import com.sulake.habbo.communication.messages.outgoing.competition.class_1011;
    import com.sulake.habbo.communication.messages.outgoing.competition.ForwardToACompetitionRoomMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.quest.class_391;
-   import com.sulake.habbo.communication.messages.incoming.competition.class_581;
+   import com.sulake.habbo.communication.messages.incoming.competition.CurrentTimingCodeMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.quest.class_1673;
    import com.sulake.habbo.communication.messages.incoming.quest.class_1772;
    import com.sulake.habbo.communication.messages.incoming.quest.class_1773;
-   import com.sulake.habbo.communication.messages.incoming.quest.class_946;
+   import com.sulake.habbo.communication.messages.incoming.quest.CommunityGoalHallOfFameMessageEvent;
    
    public class CommunityGoalHallOfFameWidget extends UserListWidget
    {
@@ -32,8 +32,8 @@ package com.sulake.habbo.friendbar.landingview.widget
       
       override protected function registerMessageListeners() : void
       {
-         landingView.communicationManager.addHabboConnectionMessageEvent(new class_946(onCommunityGoalHallOfFame));
-         landingView.communicationManager.addHabboConnectionMessageEvent(new class_581(onTimingCode));
+         landingView.communicationManager.addHabboConnectionMessageEvent(new CommunityGoalHallOfFameMessageEvent(onCommunityGoalHallOfFame));
+         landingView.communicationManager.addHabboConnectionMessageEvent(new CurrentTimingCodeMessageEvent(onTimingCode));
       }
       
       override public function refresh() : void
@@ -61,7 +61,7 @@ package com.sulake.habbo.friendbar.landingview.widget
          return "competition_user_popup";
       }
       
-      private function onCommunityGoalHallOfFame(param1:class_946) : void
+      private function onCommunityGoalHallOfFame(param1:CommunityGoalHallOfFameMessageEvent) : void
       {
          var_47 = param1.getParser().data;
          refreshContent();
@@ -77,7 +77,7 @@ package com.sulake.habbo.friendbar.landingview.widget
          landingView.send(new ForwardToACompetitionRoomMessageComposer(var_47.goalCode,param1.userId));
       }
       
-      private function onTimingCode(param1:class_581) : void
+      private function onTimingCode(param1:CurrentTimingCodeMessageEvent) : void
       {
          var _loc2_:String = param1.getParser().code;
          if(param1.getParser().schedulingStr == var_1372 && _loc2_ != "" && !disposed)

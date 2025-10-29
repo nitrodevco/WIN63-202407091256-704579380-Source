@@ -42,22 +42,22 @@ package com.sulake.habbo.help.guidehelp
    import flash.utils.getTimer;
    import mx.utils.StringUtil;
    import com.sulake.habbo.communication.messages.parser.perk.class_1448;
-   import com.sulake.habbo.communication.messages.incoming.help.class_145;
-   import com.sulake.habbo.communication.messages.incoming.help.class_174;
-   import com.sulake.habbo.communication.messages.incoming.help.class_302;
-   import com.sulake.habbo.communication.messages.incoming.help.class_306;
-   import com.sulake.habbo.communication.messages.incoming.help.class_410;
-   import com.sulake.habbo.communication.messages.incoming.help.class_440;
-   import com.sulake.habbo.communication.messages.incoming.help.class_465;
-   import com.sulake.habbo.communication.messages.incoming.help.class_572;
-   import com.sulake.habbo.communication.messages.incoming.help.class_603;
-   import com.sulake.habbo.communication.messages.incoming.help.class_638;
-   import com.sulake.habbo.communication.messages.incoming.help.class_644;
-   import com.sulake.habbo.communication.messages.incoming.help.class_697;
-   import com.sulake.habbo.communication.messages.incoming.help.class_867;
-   import com.sulake.habbo.communication.messages.incoming.help.class_880;
-   import com.sulake.habbo.communication.messages.incoming.help.class_965;
-   import com.sulake.habbo.communication.messages.incoming.perk.class_828;
+   import com.sulake.habbo.communication.messages.incoming.help.GuideSessionErrorMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.help.GuideSessionStartedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.help.GuideSessionMessageMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.help.GuideOnDutyStatusMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.help.ChatReviewSessionStartedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.help.ChatReviewSessionOfferedToGuideMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.help.GuideSessionRequesterRoomMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.help.GuideSessionPartnerIsTypingMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.help.GuideSessionInvitedToGuideRoomMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.help.ChatReviewSessionVotingStatusMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.help.ChatReviewSessionResultsMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.help.GuideSessionEndedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.help.GuideSessionDetachedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.help.GuideSessionAttachedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.help.ChatReviewSessionDetachedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.perk.PerkAllowancesMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.help.class_1015;
    import com.sulake.habbo.communication.messages.outgoing.help.class_1091;
    import com.sulake.habbo.communication.messages.outgoing.help.class_291;
@@ -178,22 +178,22 @@ package com.sulake.habbo.help.guidehelp
          var_2666 = new Timer(5000);
          var_2666.addEventListener("timer",onIdleCheckTimer);
          var_2666.start();
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_603(onGuideSessionInvitedToGuideRoom));
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_174(onGuideSessionStarted));
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_302(onGuideSessionMessage));
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_572(onGuideSessionPartnerIsTyping));
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_440(onChatReviewSessionOfferedToGuide));
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_880(onGuideSessionAttached));
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_965(onChatReviewSessionDetached));
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_638(onChatReviewSessionVotingStatus));
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_697(onGuideSessionEnded));
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_465(onGuideSessionRequesterRoom));
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_145(onGuideSessionError));
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_828(onPerkAllowances));
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_306(onGuideOnDutyStatus));
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_410(onChatReviewSessionStarted));
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_644(onChatReviewSessionResults));
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_867(onGuideSessionDetached));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new GuideSessionInvitedToGuideRoomMessageEvent(onGuideSessionInvitedToGuideRoom));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new GuideSessionStartedMessageEvent(onGuideSessionStarted));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new GuideSessionMessageMessageEvent(onGuideSessionMessage));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new GuideSessionPartnerIsTypingMessageEvent(onGuideSessionPartnerIsTyping));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new ChatReviewSessionOfferedToGuideMessageEvent(onChatReviewSessionOfferedToGuide));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new GuideSessionAttachedMessageEvent(onGuideSessionAttached));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new ChatReviewSessionDetachedMessageEvent(onChatReviewSessionDetached));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new ChatReviewSessionVotingStatusMessageEvent(onChatReviewSessionVotingStatus));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new GuideSessionEndedMessageEvent(onGuideSessionEnded));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new GuideSessionRequesterRoomMessageEvent(onGuideSessionRequesterRoom));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new GuideSessionErrorMessageEvent(onGuideSessionError));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new PerkAllowancesMessageEvent(onPerkAllowances));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new GuideOnDutyStatusMessageEvent(onGuideOnDutyStatus));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new ChatReviewSessionStartedMessageEvent(onChatReviewSessionStarted));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new ChatReviewSessionResultsMessageEvent(onChatReviewSessionResults));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new GuideSessionDetachedMessageEvent(onGuideSessionDetached));
       }
       
       private static function statusFromVote(param1:int) : int
@@ -287,7 +287,7 @@ package com.sulake.habbo.help.guidehelp
          _habboHelp.sendMessage(new class_328(_onDuty,var_2559,var_2596,var_2713));
       }
       
-      private function onGuideOnDutyStatus(param1:class_306) : void
+      private function onGuideOnDutyStatus(param1:GuideOnDutyStatusMessageEvent) : void
       {
          var _loc2_:class_1259 = param1.getParser();
          _onDuty = _loc2_.onDuty;
@@ -399,7 +399,7 @@ package com.sulake.habbo.help.guidehelp
          }
       }
       
-      private function onGuideSessionError(param1:class_145) : void
+      private function onGuideSessionError(param1:GuideSessionErrorMessageEvent) : void
       {
          class_14.log("onGuideSessionError");
          if(_disposed)
@@ -500,11 +500,11 @@ package com.sulake.habbo.help.guidehelp
       private function onGuideSessionPartnerIsTyping(param1:IMessageEvent) : void
       {
          class_14.log("onGuideSessionPartnerIsTyping");
-         var _loc2_:class_1190 = class_572(param1).getParser();
+         var _loc2_:class_1190 = GuideSessionPartnerIsTypingMessageEvent(param1).getParser();
          displayPartnerIsTypingMessage(_loc2_.isTyping);
       }
       
-      private function onPerkAllowances(param1:class_828) : void
+      private function onPerkAllowances(param1:PerkAllowancesMessageEvent) : void
       {
          var _loc2_:class_1448 = null;
          if(_sessionData.activeWindow == "guide_tool")
@@ -522,18 +522,18 @@ package com.sulake.habbo.help.guidehelp
          }
       }
       
-      private function onChatReviewSessionOfferedToGuide(param1:class_440) : void
+      private function onChatReviewSessionOfferedToGuide(param1:ChatReviewSessionOfferedToGuideMessageEvent) : void
       {
          setStateGuardianChatReviewAccept(param1.getParser().acceptanceTimeout);
       }
       
-      private function onChatReviewSessionStarted(param1:class_410) : void
+      private function onChatReviewSessionStarted(param1:ChatReviewSessionStartedMessageEvent) : void
       {
          var _loc2_:class_1453 = param1.getParser();
          setStateGuardianChatReviewVote(_loc2_.votingTimeout,_loc2_.chatRecord);
       }
       
-      private function onChatReviewSessionVotingStatus(param1:class_638) : void
+      private function onChatReviewSessionVotingStatus(param1:ChatReviewSessionVotingStatusMessageEvent) : void
       {
          if(_sessionData.activeWindow != "guardian_chat_review_wait_for_results")
          {
@@ -542,7 +542,7 @@ package com.sulake.habbo.help.guidehelp
          showStatus(_window.findChildByName("results") as IItemListWindow,param1.getParser().status);
       }
       
-      private function onChatReviewSessionResults(param1:class_644) : void
+      private function onChatReviewSessionResults(param1:ChatReviewSessionResultsMessageEvent) : void
       {
          var _loc2_:class_1584 = param1.getParser();
          setStateGuardianChatReviewResults(_loc2_.winningVoteCode,_loc2_.ownVoteCode,_loc2_.finalStatus);

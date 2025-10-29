@@ -14,11 +14,11 @@ package com.sulake.habbo.ui.handler
    import com.sulake.habbo.ui.widget.events.RoomWidgetUpdateEvent;
    import com.sulake.habbo.ui.widget.messages.RoomWidgetMessage;
    import flash.events.Event;
-   import com.sulake.habbo.communication.messages.incoming.camera.class_1102;
-   import com.sulake.habbo.communication.messages.incoming.camera.class_343;
-   import com.sulake.habbo.communication.messages.incoming.camera.class_473;
-   import com.sulake.habbo.communication.messages.incoming.camera.class_532;
-   import com.sulake.habbo.communication.messages.incoming.camera.class_618;
+   import com.sulake.habbo.communication.messages.incoming.camera.CameraPurchaseOKMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.camera.CameraStorageUrlMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.camera.CameraPublishStatusMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.camera.CompetitionStatusMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.camera.InitCameraMessageEvent;
    
    public class CameraWidgetHandler implements IRoomWidgetHandler, IDisposable
    {
@@ -30,15 +30,15 @@ package com.sulake.habbo.ui.handler
       
       private var var_1629:CameraWidget;
       
-      private var var_4025:class_343;
+      private var var_4025:CameraStorageUrlMessageEvent;
       
-      private var var_3991:class_1102;
+      private var var_3991:CameraPurchaseOKMessageEvent;
       
-      private var var_4129:class_473;
+      private var var_4129:CameraPublishStatusMessageEvent;
       
-      private var var_4024:class_532;
+      private var var_4024:CompetitionStatusMessageEvent;
       
-      private var var_4254:class_618;
+      private var var_4254:InitCameraMessageEvent;
       
       private var var_2687:RoomDesktop;
       
@@ -90,11 +90,11 @@ package com.sulake.habbo.ui.handler
          {
             _container.toolbar.events.addEventListener("HTE_ICON_CAMERA",onCameraRequested);
          }
-         var_4025 = new class_343(onCameraStorageUrlEvent);
-         var_3991 = new class_1102(onPurchaseOK);
-         var_4129 = new class_473(onPublishStatus);
-         var_4024 = new class_532(onCompetitionStatus);
-         var_4254 = new class_618(onInitCameraEvent);
+         var_4025 = new CameraStorageUrlMessageEvent(onCameraStorageUrlEvent);
+         var_3991 = new CameraPurchaseOKMessageEvent(onPurchaseOK);
+         var_4129 = new CameraPublishStatusMessageEvent(onPublishStatus);
+         var_4024 = new CompetitionStatusMessageEvent(onCompetitionStatus);
+         var_4254 = new InitCameraMessageEvent(onInitCameraEvent);
          _container.connection.addMessageEvent(var_4025);
          _container.connection.addMessageEvent(var_3991);
          _container.connection.addMessageEvent(var_4129);
@@ -110,14 +110,14 @@ package com.sulake.habbo.ui.handler
          }
       }
       
-      private function onInitCameraEvent(param1:class_618) : void
+      private function onInitCameraEvent(param1:InitCameraMessageEvent) : void
       {
          var_625 = param1.getParser().getCreditPrice();
          var_530 = param1.getParser().getDucketPrice();
          var_637 = param1.getParser().getPublishDucketPrice();
       }
       
-      private function onPurchaseOK(param1:class_1102) : void
+      private function onPurchaseOK(param1:CameraPurchaseOKMessageEvent) : void
       {
          if(var_1629)
          {
@@ -125,7 +125,7 @@ package com.sulake.habbo.ui.handler
          }
       }
       
-      private function onPublishStatus(param1:class_473) : void
+      private function onPublishStatus(param1:CameraPublishStatusMessageEvent) : void
       {
          if(var_1629)
          {
@@ -133,7 +133,7 @@ package com.sulake.habbo.ui.handler
          }
       }
       
-      private function onCompetitionStatus(param1:class_532) : void
+      private function onCompetitionStatus(param1:CompetitionStatusMessageEvent) : void
       {
          if(var_1629)
          {
@@ -141,7 +141,7 @@ package com.sulake.habbo.ui.handler
          }
       }
       
-      private function onCameraStorageUrlEvent(param1:class_343) : void
+      private function onCameraStorageUrlEvent(param1:CameraStorageUrlMessageEvent) : void
       {
          if(!var_1629)
          {

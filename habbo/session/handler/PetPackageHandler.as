@@ -7,8 +7,8 @@ package com.sulake.habbo.session.handler
    import com.sulake.habbo.session.events.RoomSessionPetPackageEvent;
    import com.sulake.habbo.communication.messages.parser.room.furniture.class_1169;
    import com.sulake.habbo.communication.messages.parser.room.furniture.class_1613;
-   import com.sulake.habbo.communication.messages.incoming.room.furniture.class_730;
-   import com.sulake.habbo.communication.messages.incoming.room.furniture.class_818;
+   import com.sulake.habbo.communication.messages.incoming.room.furniture.OpenPetPackageRequestedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.room.furniture.OpenPetPackageResultMessageEvent;
    
    public class PetPackageHandler extends BaseHandler
    {
@@ -21,13 +21,13 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         param1.addMessageEvent(new class_730(onOpenPetPackageRequested));
-         param1.addMessageEvent(new class_818(onOpenPetPackageResult));
+         param1.addMessageEvent(new OpenPetPackageRequestedMessageEvent(onOpenPetPackageRequested));
+         param1.addMessageEvent(new OpenPetPackageResultMessageEvent(onOpenPetPackageResult));
       }
       
       private function onOpenPetPackageRequested(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1613 = (param1 as class_730).getParser();
+         var _loc2_:class_1613 = (param1 as OpenPetPackageRequestedMessageEvent).getParser();
          if(_loc2_ == null)
          {
             return;
@@ -45,7 +45,7 @@ package com.sulake.habbo.session.handler
       
       private function onOpenPetPackageResult(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1169 = (param1 as class_818).getParser();
+         var _loc2_:class_1169 = (param1 as OpenPetPackageResultMessageEvent).getParser();
          if(_loc2_ == null)
          {
             return;

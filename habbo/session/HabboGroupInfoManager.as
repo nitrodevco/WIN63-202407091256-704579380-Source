@@ -3,8 +3,8 @@ package com.sulake.habbo.session
    import com.sulake.core.communication.messages.IMessageEvent;
    import com.sulake.core.runtime.IDisposable;
    import com.sulake.core.utils.Map;
-   import com.sulake.habbo.communication.messages.incoming.room.session.class_899;
-   import com.sulake.habbo.communication.messages.incoming.users.class_611;
+   import com.sulake.habbo.communication.messages.incoming.room.session.RoomReadyMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.HabboGroupBadgesMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.users.class_575;
    
    public class HabboGroupInfoManager implements IDisposable
@@ -26,8 +26,8 @@ package com.sulake.habbo.session
          var_121 = new Map();
          if(_sessionDataManager.communication)
          {
-            var_4588 = _sessionDataManager.communication.addHabboConnectionMessageEvent(new class_899(onRoomReady));
-            var_2920 = _sessionDataManager.communication.addHabboConnectionMessageEvent(new class_611(onHabboGroupBadges));
+            var_4588 = _sessionDataManager.communication.addHabboConnectionMessageEvent(new RoomReadyMessageEvent(onRoomReady));
+            var_2920 = _sessionDataManager.communication.addHabboConnectionMessageEvent(new HabboGroupBadgesMessageEvent(onHabboGroupBadges));
          }
       }
       
@@ -56,7 +56,7 @@ package com.sulake.habbo.session
          _sessionDataManager.send(new class_575());
       }
       
-      private function onHabboGroupBadges(param1:class_611) : void
+      private function onHabboGroupBadges(param1:HabboGroupBadgesMessageEvent) : void
       {
          var _loc3_:int = 0;
          var _loc4_:int = 0;

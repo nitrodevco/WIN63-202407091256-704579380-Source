@@ -15,7 +15,7 @@ package com.sulake.habbo.ui.handler
    import com.sulake.room.object.IRoomObjectModel;
    import flash.events.Event;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_1675;
-   import com.sulake.habbo.communication.messages.incoming.navigator.class_898;
+   import com.sulake.habbo.communication.messages.incoming.navigator.GetGuestRoomResultEvent;
    import com.sulake.habbo.communication.messages.parser.navigator.RoomSettingsDataEvent;
    import com.sulake.habbo.communication.messages.outgoing.navigator.class_553;
    
@@ -56,7 +56,7 @@ package com.sulake.habbo.ui.handler
       public function set communicationManager(param1:IHabboCommunicationManager) : void
       {
          _communicationManager = param1;
-         _communicationManagerMessageEvents.push(_communicationManager.addHabboConnectionMessageEvent(new class_898(onRoomInfo)));
+         _communicationManagerMessageEvents.push(_communicationManager.addHabboConnectionMessageEvent(new GetGuestRoomResultEvent(onRoomInfo)));
       }
       
       private function onRoomInfo(param1:IMessageEvent) : void
@@ -65,7 +65,7 @@ package com.sulake.habbo.ui.handler
          var roomName:String;
          var ownerName:String;
          var event:IMessageEvent = param1;
-         var p:RoomSettingsDataEvent = class_898(event).getParser();
+         var p:RoomSettingsDataEvent = GetGuestRoomResultEvent(event).getParser();
          var roomData:class_1675 = p.data;
          if(roomData && roomData.flatId == var_1199)
          {

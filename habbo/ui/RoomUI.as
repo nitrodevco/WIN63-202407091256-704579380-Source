@@ -61,7 +61,7 @@ package com.sulake.habbo.ui
    import flash.events.TimerEvent;
    import flash.utils.Timer;
    import com.sulake.habbo.communication.messages.outgoing.advertisement.class_168;
-   import com.sulake.habbo.communication.messages.incoming.perk.class_828;
+   import com.sulake.habbo.communication.messages.incoming.perk.PerkAllowancesMessageEvent;
    
    public class RoomUI extends Component implements IRoomUI, IUpdateReceiver
    {
@@ -529,7 +529,7 @@ package com.sulake.habbo.ui
       
       override protected function initComponent() : void
       {
-         _perkAllowancesMessageEvent = _communication.addHabboConnectionMessageEvent(new class_828(onPerkAllowances));
+         _perkAllowancesMessageEvent = _communication.addHabboConnectionMessageEvent(new PerkAllowancesMessageEvent(onPerkAllowances));
       }
       
       override public function dispose() : void
@@ -793,7 +793,7 @@ package com.sulake.habbo.ui
          }
       }
       
-      private function onPerkAllowances(param1:class_828) : void
+      private function onPerkAllowances(param1:PerkAllowancesMessageEvent) : void
       {
          var _loc3_:Timer = null;
          var _loc2_:String = null;

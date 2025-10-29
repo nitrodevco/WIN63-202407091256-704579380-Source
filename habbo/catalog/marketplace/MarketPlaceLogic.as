@@ -14,11 +14,11 @@ package com.sulake.habbo.catalog.marketplace
    import com.sulake.habbo.communication.messages.parser.marketplace.class_1350;
    import com.sulake.habbo.communication.messages.parser.marketplace.class_1479;
    import com.sulake.habbo.communication.messages.parser.marketplace.class_1522;
-   import com.sulake.habbo.communication.messages.incoming.marketplace.class_1077;
+   import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceBuyOfferResultEvent;
    import com.sulake.habbo.communication.messages.incoming.marketplace.class_1699;
-   import com.sulake.habbo.communication.messages.incoming.marketplace.class_549;
-   import com.sulake.habbo.communication.messages.incoming.marketplace.class_633;
-   import com.sulake.habbo.communication.messages.incoming.marketplace.class_926;
+   import com.sulake.habbo.communication.messages.incoming.marketplace.MarketPlaceOwnOffersEvent;
+   import com.sulake.habbo.communication.messages.incoming.marketplace.MarketPlaceOffersEvent;
+   import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceCancelOfferResultEvent;
    
    public class MarketPlaceLogic implements IMarketPlace
    {
@@ -236,8 +236,8 @@ package com.sulake.habbo.catalog.marketplace
       public function onOffers(param1:IMessageEvent) : void
       {
          var _loc3_:MarketPlaceOfferData = null;
-         var _loc4_:class_633;
-         if((_loc4_ = param1 as class_633) == null)
+         var _loc4_:MarketPlaceOffersEvent;
+         if((_loc4_ = param1 as MarketPlaceOffersEvent) == null)
          {
             return;
          }
@@ -264,8 +264,8 @@ package com.sulake.habbo.catalog.marketplace
       public function onOwnOffers(param1:IMessageEvent) : void
       {
          var _loc3_:MarketPlaceOfferData = null;
-         var _loc4_:class_549;
-         if((_loc4_ = param1 as class_549) == null)
+         var _loc4_:MarketPlaceOwnOffersEvent;
+         if((_loc4_ = param1 as MarketPlaceOwnOffersEvent) == null)
          {
             return;
          }
@@ -295,7 +295,7 @@ package com.sulake.habbo.catalog.marketplace
          var item:MarketPlaceOfferData;
          var updateItem:MarketPlaceOfferData;
          var event:IMessageEvent = param1;
-         var buyEvent:class_1077 = event as class_1077;
+         var buyEvent:MarketplaceBuyOfferResultEvent = event as MarketplaceBuyOfferResultEvent;
          if(event == null)
          {
             return;
@@ -362,7 +362,7 @@ package com.sulake.habbo.catalog.marketplace
          var parser:class_1522;
          var item:MarketPlaceOfferData;
          var event:IMessageEvent = param1;
-         var cancelEvent:class_926 = event as class_926;
+         var cancelEvent:MarketplaceCancelOfferResultEvent = event as MarketplaceCancelOfferResultEvent;
          if(event == null)
          {
             return;

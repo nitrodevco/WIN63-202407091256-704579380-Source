@@ -8,7 +8,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
    import com.sulake.habbo.friendbar.landingview.interfaces.elements.IElementHandler;
    import com.sulake.habbo.friendbar.landingview.interfaces.elements.class_3863;
    import com.sulake.habbo.friendbar.landingview.widget.GenericWidget;
-   import com.sulake.habbo.communication.messages.incoming.quest.class_836;
+   import com.sulake.habbo.communication.messages.incoming.quest.ConcurrentUsersGoalProgressMessageEvent;
    
    public class class_3897 implements IElementHandler, class_3863
    {
@@ -35,7 +35,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
          var_859.x = param3.length > 2 ? int(param3[2]) : 0;
          var_859.y = param3.length > 3 ? int(param3[3]) : 0;
          class_14.log("Init Concurrent users meter: " + _loc5_);
-         param1.communicationManager.addHabboConnectionMessageEvent(new class_836(onConcurrentUsersGoalProgress));
+         param1.communicationManager.addHabboConnectionMessageEvent(new ConcurrentUsersGoalProgressMessageEvent(onConcurrentUsersGoalProgress));
       }
       
       public function refresh() : void
@@ -47,7 +47,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
          return true;
       }
       
-      private function onConcurrentUsersGoalProgress(param1:class_836) : void
+      private function onConcurrentUsersGoalProgress(param1:ConcurrentUsersGoalProgressMessageEvent) : void
       {
          var_149 = param1.getParser().state;
          var_554 = param1.getParser().userCount;

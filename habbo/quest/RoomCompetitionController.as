@@ -18,12 +18,12 @@ package com.sulake.habbo.quest
    import flash.geom.Rectangle;
    import flash.utils.Timer;
    import com.sulake.habbo.communication.messages.parser.room.engine.class_1339;
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_510;
+   import com.sulake.habbo.communication.messages.incoming.room.engine.RoomEntryInfoMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.competition.class_157;
    import com.sulake.habbo.communication.messages.outgoing.competition.class_749;
    import com.sulake.habbo.communication.messages.outgoing.competition.class_913;
-   import com.sulake.habbo.communication.messages.incoming.competition.class_394;
-   import com.sulake.habbo.communication.messages.incoming.competition.class_692;
+   import com.sulake.habbo.communication.messages.incoming.competition.CompetitionVotingInfoMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.competition.CompetitionEntrySubmitResultMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.talent.class_1018;
    
    public class RoomCompetitionController implements IDisposable, IGetImageListener
@@ -113,7 +113,7 @@ package com.sulake.habbo.quest
          }
       }
       
-      public function onCompetitionVotingInfo(param1:class_394) : void
+      public function onCompetitionVotingInfo(param1:CompetitionVotingInfoMessageEvent) : void
       {
          var_4151 = param1.getParser().votesRemaining;
          var _loc2_:Boolean = param1.getParser().isVotingAllowedForUser;
@@ -125,7 +125,7 @@ package com.sulake.habbo.quest
          getButtonInfoText().visible = _loc2_;
       }
       
-      public function onCompetitionEntrySubmitResult(param1:class_692) : void
+      public function onCompetitionEntrySubmitResult(param1:CompetitionEntrySubmitResultMessageEvent) : void
       {
          if(param1.getParser().result == 5)
          {
@@ -211,7 +211,7 @@ package com.sulake.habbo.quest
          _window.activate();
       }
       
-      private function refreshRequiredFurnis(param1:class_692) : void
+      private function refreshRequiredFurnis(param1:CompetitionEntrySubmitResultMessageEvent) : void
       {
          var _loc3_:int = 0;
          var _loc5_:String = null;
@@ -296,7 +296,7 @@ package com.sulake.habbo.quest
          close();
       }
       
-      public function onRoomEnter(param1:class_510) : void
+      public function onRoomEnter(param1:RoomEntryInfoMessageEvent) : void
       {
          close();
          var _loc3_:class_1339 = param1.getParser();

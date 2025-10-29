@@ -12,7 +12,7 @@ package com.sulake.habbo.ui.handler
    import com.sulake.habbo.ui.widget.roomtools.RoomToolsWidget;
    import flash.events.Event;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_1675;
-   import com.sulake.habbo.communication.messages.incoming.navigator.class_898;
+   import com.sulake.habbo.communication.messages.incoming.navigator.GetGuestRoomResultEvent;
    import com.sulake.habbo.communication.messages.parser.navigator.RoomSettingsDataEvent;
    import com.sulake.habbo.communication.messages.outgoing.navigator.class_130;
    
@@ -46,7 +46,7 @@ package com.sulake.habbo.ui.handler
       private function onRoomInfo(param1:IMessageEvent) : void
       {
          var _loc3_:String = null;
-         var _loc2_:RoomSettingsDataEvent = class_898(param1).getParser();
+         var _loc2_:RoomSettingsDataEvent = GetGuestRoomResultEvent(param1).getParser();
          var _loc4_:class_1675;
          if(_loc4_ = _loc2_.data)
          {
@@ -160,7 +160,7 @@ package com.sulake.habbo.ui.handler
       public function set communicationManager(param1:IHabboCommunicationManager) : void
       {
          _communicationManager = param1;
-         _communicationManagerMessageEvents.push(_communicationManager.addHabboConnectionMessageEvent(new class_898(onRoomInfo)));
+         _communicationManagerMessageEvents.push(_communicationManager.addHabboConnectionMessageEvent(new GetGuestRoomResultEvent(onRoomInfo)));
       }
       
       public function rateRoom() : void

@@ -19,8 +19,8 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_variable_inspection
    import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.wiredmenu.class_1284;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredcontext.variables.WiredVariable;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredHoldingVariablesData;
-   import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.class_442;
-   import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.class_877;
+   import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredVariablesForObjectEvent;
+   import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredMenuErrorEvent;
    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_488;
    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_759;
    
@@ -71,8 +71,8 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_variable_inspection
          createVariableValuesTable();
          updateTableUI();
          updatePreviewUI();
-         addMessageEvent(new class_442(onWiredVariablesForObject));
-         addMessageEvent(new class_877(onWiredMenuError));
+         addMessageEvent(new WiredVariablesForObjectEvent(onWiredVariablesForObject));
+         addMessageEvent(new WiredMenuErrorEvent(onWiredMenuError));
       }
       
       private function createVariableValuesTable() : void
@@ -145,7 +145,7 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_variable_inspection
          }
       }
       
-      private function onWiredVariablesForObject(param1:class_442) : void
+      private function onWiredVariablesForObject(param1:WiredVariablesForObjectEvent) : void
       {
          if(var_149 != STATE_FETCHING_HOLDING_VARIABLES && var_149 != STATE_DISPLAYING)
          {
@@ -174,7 +174,7 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_variable_inspection
          }
       }
       
-      private function onWiredMenuError(param1:class_877) : void
+      private function onWiredMenuError(param1:WiredMenuErrorEvent) : void
       {
          var _loc2_:class_1284 = param1.getParser();
          if(_loc2_.errorCode == class_1284.var_1606)

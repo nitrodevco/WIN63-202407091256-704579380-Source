@@ -16,9 +16,9 @@ package com.sulake.habbo.sound.music
    import com.sulake.habbo.communication.messages.parser.sound.class_1379;
    import com.sulake.habbo.communication.messages.parser.sound.class_1400;
    import com.sulake.habbo.communication.messages.outgoing.sound.class_667;
-   import com.sulake.habbo.communication.messages.incoming.sound.class_1066;
-   import com.sulake.habbo.communication.messages.incoming.sound.class_662;
-   import com.sulake.habbo.communication.messages.incoming.sound.class_794;
+   import com.sulake.habbo.communication.messages.incoming.sound.JukeboxSongDisksMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.sound.NowPlayingMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.sound.JukeboxPlayListFullMessageEvent;
    
    public class JukeboxPlayListController implements class_3609
    {
@@ -56,9 +56,9 @@ package com.sulake.habbo.sound.music
          name_1 = param3;
          var_26 = param4;
          _messageEvents = [];
-         _messageEvents.push(new class_662(onNowPlayingMessage));
-         _messageEvents.push(new class_1066(onJukeboxSongDisksMessage));
-         _messageEvents.push(new class_794(onJukeboxPlayListFullMessage));
+         _messageEvents.push(new NowPlayingMessageEvent(onNowPlayingMessage));
+         _messageEvents.push(new JukeboxSongDisksMessageEvent(onJukeboxSongDisksMessage));
+         _messageEvents.push(new JukeboxPlayListFullMessageEvent(onJukeboxPlayListFullMessage));
          for each(var _loc5_ in _messageEvents)
          {
             var_26.addMessageEvent(_loc5_);
@@ -163,7 +163,7 @@ package com.sulake.habbo.sound.music
       
       private function onNowPlayingMessage(param1:IMessageEvent) : void
       {
-         var _loc3_:class_662 = param1 as class_662;
+         var _loc3_:NowPlayingMessageEvent = param1 as NowPlayingMessageEvent;
          var _loc2_:class_1379 = _loc3_.getParser() as class_1379;
          class_14.log("Received Now Playing message with: " + _loc2_.currentSongId + ", " + _loc2_.nextSongId + ", " + _loc2_.syncCount);
          var_521 = _loc2_.currentSongId != -1;
@@ -190,8 +190,8 @@ package com.sulake.habbo.sound.music
          var _loc7_:int = 0;
          var _loc6_:int = 0;
          var _loc3_:SongDataEntry = null;
-         var _loc5_:class_1066;
-         var _loc2_:class_1400 = (_loc5_ = param1 as class_1066).getParser() as class_1400;
+         var _loc5_:JukeboxSongDisksMessageEvent;
+         var _loc2_:class_1400 = (_loc5_ = param1 as JukeboxSongDisksMessageEvent).getParser() as class_1400;
          class_14.log("Received Jukebox song disks (=playlist) message, length of playlist: " + _loc2_.songDisks.length);
          var_97 = [];
          _loc4_ = 0;

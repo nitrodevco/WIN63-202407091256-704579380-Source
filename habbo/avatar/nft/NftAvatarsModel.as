@@ -6,7 +6,7 @@ package com.sulake.habbo.avatar.nft
    import com.sulake.habbo.avatar.common.class_3554;
    import com.sulake.habbo.avatar.wardrobe.NftOutfit;
    import com.sulake.habbo.communication.messages.parser.nft.NftWardrobeItem;
-   import com.sulake.habbo.communication.messages.incoming.nft.class_240;
+   import com.sulake.habbo.communication.messages.incoming.nft.UserNftWardrobeMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.nft.GetUserNftWardrobeMessageComposer;
    
    public class NftAvatarsModel extends CategoryBaseModel implements class_3554
@@ -15,7 +15,7 @@ package com.sulake.habbo.avatar.nft
       
       private var _nftAvatars:Array;
       
-      private var var_3206:class_240;
+      private var var_3206:UserNftWardrobeMessageEvent;
       
       public function NftAvatarsModel(param1:HabboAvatarEditor)
       {
@@ -28,13 +28,13 @@ package com.sulake.habbo.avatar.nft
       {
          if(param1.manager.communication)
          {
-            var_3206 = new class_240(onUserNftWardrobeMessage);
+            var_3206 = new UserNftWardrobeMessageEvent(onUserNftWardrobeMessage);
             param1.manager.communication.addHabboConnectionMessageEvent(var_3206);
             param1.manager.communication.connection.send(new GetUserNftWardrobeMessageComposer());
          }
       }
       
-      private function onUserNftWardrobeMessage(param1:class_240) : void
+      private function onUserNftWardrobeMessage(param1:UserNftWardrobeMessageEvent) : void
       {
          for each(var _loc2_ in param1.getParser().nftAvatars)
          {

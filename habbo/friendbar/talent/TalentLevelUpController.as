@@ -12,7 +12,7 @@ package com.sulake.habbo.friendbar.talent
    import com.sulake.habbo.communication.messages.parser.talent.class_1700;
    import com.sulake.habbo.communication.messages.parser.talent.class_1756;
    import com.sulake.habbo.communication.messages.outgoing.talent.class_1018;
-   import com.sulake.habbo.communication.messages.incoming.talent.class_381;
+   import com.sulake.habbo.communication.messages.incoming.talent.TalentLevelUpMessageEvent;
    
    public class TalentLevelUpController implements IDisposable
    {
@@ -70,10 +70,10 @@ package com.sulake.habbo.friendbar.talent
       
       public function initialize() : void
       {
-         _habboTalent.communicationManager.addHabboConnectionMessageEvent(new class_381(onTalentLevelUp));
+         _habboTalent.communicationManager.addHabboConnectionMessageEvent(new TalentLevelUpMessageEvent(onTalentLevelUp));
       }
       
-      private function onTalentLevelUp(param1:class_381) : void
+      private function onTalentLevelUp(param1:TalentLevelUpMessageEvent) : void
       {
          var _loc2_:class_1158 = param1.getParser();
          if(_loc2_.level == 1 && _loc2_.talentTrackName == "helper" && _habboTalent.citizenshipEnabled)

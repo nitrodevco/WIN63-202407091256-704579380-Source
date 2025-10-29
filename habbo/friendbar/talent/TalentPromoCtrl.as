@@ -7,11 +7,11 @@ package com.sulake.habbo.friendbar.talent
    import com.sulake.core.window.events.WindowEvent;
    import com.sulake.habbo.communication.messages.parser.talent.class_1158;
    import com.sulake.habbo.communication.messages.parser.talent.class_1313;
-   import com.sulake.habbo.communication.messages.incoming.handshake.class_556;
+   import com.sulake.habbo.communication.messages.incoming.handshake.UserObjectEvent;
    import com.sulake.habbo.communication.messages.outgoing.talent.class_1018;
    import com.sulake.habbo.communication.messages.outgoing.talent.class_330;
-   import com.sulake.habbo.communication.messages.incoming.talent.class_1107;
-   import com.sulake.habbo.communication.messages.incoming.talent.class_381;
+   import com.sulake.habbo.communication.messages.incoming.talent.TalentTrackLevelMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.talent.TalentLevelUpMessageEvent;
    
    public class TalentPromoCtrl implements IDisposable
    {
@@ -62,17 +62,17 @@ package com.sulake.habbo.friendbar.talent
          {
             return;
          }
-         var_480.communicationManager.addHabboConnectionMessageEvent(new class_381(onTalentLevelUp));
-         var_480.communicationManager.addHabboConnectionMessageEvent(new class_556(onUserObject));
-         var_480.communicationManager.addHabboConnectionMessageEvent(new class_1107(onTalentTrackLevel));
+         var_480.communicationManager.addHabboConnectionMessageEvent(new TalentLevelUpMessageEvent(onTalentLevelUp));
+         var_480.communicationManager.addHabboConnectionMessageEvent(new UserObjectEvent(onUserObject));
+         var_480.communicationManager.addHabboConnectionMessageEvent(new TalentTrackLevelMessageEvent(onTalentTrackLevel));
       }
       
-      private function onUserObject(param1:class_556) : void
+      private function onUserObject(param1:UserObjectEvent) : void
       {
          var_480.send(new class_330(promotedTalentTrack));
       }
       
-      private function onTalentTrackLevel(param1:class_1107) : void
+      private function onTalentTrackLevel(param1:TalentTrackLevelMessageEvent) : void
       {
          var _loc2_:class_1313 = param1.getParser();
          if(_loc2_.talentTrackName == promotedTalentTrack)
@@ -83,7 +83,7 @@ package com.sulake.habbo.friendbar.talent
          }
       }
       
-      private function onTalentLevelUp(param1:class_381) : void
+      private function onTalentLevelUp(param1:TalentLevelUpMessageEvent) : void
       {
          var _loc2_:class_1158 = param1.getParser();
          if(_loc2_.talentTrackName == promotedTalentTrack)

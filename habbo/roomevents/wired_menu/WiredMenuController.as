@@ -31,10 +31,10 @@ package com.sulake.habbo.roomevents.wired_menu
    import com.sulake.iid.IIDHabboWindowManager;
    import com.sulake.iid.IIDRoomEngine;
    import com.sulake.iid.IIDSessionDataManager;
-   import com.sulake.habbo.communication.messages.incoming.room.permissions.class_809;
+   import com.sulake.habbo.communication.messages.incoming.room.permissions.YouAreControllerMessageEvent;
    import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.wiredmenu.class_1577;
-   import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.class_158;
-   import com.sulake.habbo.communication.messages.incoming.preferences.class_219;
+   import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredPermissionsEvent;
+   import com.sulake.habbo.communication.messages.incoming.preferences.AccountPreferencesEvent;
    
    public class WiredMenuController extends Component implements ILinkEventTracker, class_3352, IDisposable
    {
@@ -77,9 +77,9 @@ package com.sulake.habbo.roomevents.wired_menu
          super(param2,param3,param4);
          _roomEvents = param1;
          _messageEvents = new Vector.<IMessageEvent>();
-         _messageEvents.push(new class_158(onWiredPermissions));
-         _messageEvents.push(new class_219(onAccountPreferences));
-         _messageEvents.push(new class_809(onControllerMessageEvent));
+         _messageEvents.push(new WiredPermissionsEvent(onWiredPermissions));
+         _messageEvents.push(new AccountPreferencesEvent(onAccountPreferences));
+         _messageEvents.push(new YouAreControllerMessageEvent(onControllerMessageEvent));
          for each(var _loc5_ in _messageEvents)
          {
             addMessageEvent(_loc5_);
@@ -308,7 +308,7 @@ package com.sulake.habbo.roomevents.wired_menu
          }
       }
       
-      private function onWiredPermissions(param1:class_158) : void
+      private function onWiredPermissions(param1:WiredPermissionsEvent) : void
       {
          var _loc2_:class_1577 = param1.getParser();
          var_646 = _loc2_.canModify;
@@ -327,7 +327,7 @@ package com.sulake.habbo.roomevents.wired_menu
          }
       }
       
-      private function onAccountPreferences(param1:class_219) : void
+      private function onAccountPreferences(param1:AccountPreferencesEvent) : void
       {
          var_434 = param1.getParser().wiredMenuButton;
          var_611 = param1.getParser().wiredInspectButton;

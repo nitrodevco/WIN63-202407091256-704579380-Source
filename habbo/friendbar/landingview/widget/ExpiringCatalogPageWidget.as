@@ -14,7 +14,7 @@ package com.sulake.habbo.friendbar.landingview.widget
    import com.sulake.habbo.window.widgets.class_3570;
    import com.sulake.habbo.communication.messages.parser.catalog.class_1621;
    import com.sulake.habbo.communication.messages.outgoing.catalog.GetCatalogPageWithEarliestExpiryComposer;
-   import com.sulake.habbo.communication.messages.incoming.catalog.class_721;
+   import com.sulake.habbo.communication.messages.incoming.catalog.CatalogPageWithEarliestExpiryMessageEvent;
    
    public class ExpiringCatalogPageWidget implements ILandingViewWidget, ISettingsAwareWidget
    {
@@ -56,7 +56,7 @@ package com.sulake.habbo.friendbar.landingview.widget
          _container = IWindowContainer(_landingView.getXmlWindow("expiring_catalog_page"));
          _container.findChildByName("open_catalog_button").procedure = onOpenCatalogButton;
          _container.visible = false;
-         _landingView.communicationManager.addHabboConnectionMessageEvent(new class_721(onCatalogPage));
+         _landingView.communicationManager.addHabboConnectionMessageEvent(new CatalogPageWithEarliestExpiryMessageEvent(onCatalogPage));
          HabboLandingView.positionAfterAndStretch(_container,"page_expiry_title","hdr_line");
       }
       

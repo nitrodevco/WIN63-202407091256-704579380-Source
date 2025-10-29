@@ -6,7 +6,7 @@ package com.sulake.habbo.friendbar.landingview.widget
    import com.sulake.habbo.friendbar.landingview.HabboLandingView;
    import com.sulake.habbo.friendbar.landingview.interfaces.ILandingViewWidget;
    import com.sulake.habbo.communication.messages.outgoing.quest.GetCommunityGoalProgressMessageComposer;
-   import com.sulake.habbo.communication.messages.incoming.quest.class_538;
+   import com.sulake.habbo.communication.messages.incoming.quest.CommunityGoalProgressMessageEvent;
    
    public class HabboWayPromoWidget implements ILandingViewWidget
    {
@@ -39,7 +39,7 @@ package com.sulake.habbo.friendbar.landingview.widget
       {
          _container = IWindowContainer(_landingView.getXmlWindow("habbo_way_promo"));
          _container.findChildByName("go_button").procedure = onGoButton;
-         _landingView.communicationManager.addHabboConnectionMessageEvent(new class_538(onCommunityGoalProgress));
+         _landingView.communicationManager.addHabboConnectionMessageEvent(new CommunityGoalProgressMessageEvent(onCommunityGoalProgress));
       }
       
       public function refresh() : void
@@ -61,7 +61,7 @@ package com.sulake.habbo.friendbar.landingview.widget
          }
       }
       
-      private function onCommunityGoalProgress(param1:class_538) : void
+      private function onCommunityGoalProgress(param1:CommunityGoalProgressMessageEvent) : void
       {
          var_4801 = param1.getParser().data.communityTotalScore;
          refreshContent();

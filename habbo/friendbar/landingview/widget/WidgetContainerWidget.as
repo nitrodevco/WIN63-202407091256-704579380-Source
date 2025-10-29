@@ -11,7 +11,7 @@ package com.sulake.habbo.friendbar.landingview.widget
    import com.sulake.habbo.friendbar.landingview.layout.WidgetContainer;
    import flash.utils.Dictionary;
    import com.sulake.habbo.communication.messages.outgoing.competition.class_1011;
-   import com.sulake.habbo.communication.messages.incoming.competition.class_581;
+   import com.sulake.habbo.communication.messages.incoming.competition.CurrentTimingCodeMessageEvent;
    
    public class WidgetContainerWidget implements ILandingViewWidget, ISlotAwareWidget
    {
@@ -69,7 +69,7 @@ package com.sulake.habbo.friendbar.landingview.widget
       {
          _container = IWindowContainer(_landingView.getXmlWindow("widget_container_widget"));
          var_2696 = new CommonWidgetSettings(_landingView);
-         _landingView.communicationManager.addHabboConnectionMessageEvent(new class_581(onTimingCode));
+         _landingView.communicationManager.addHabboConnectionMessageEvent(new CurrentTimingCodeMessageEvent(onTimingCode));
          var_1372 = _landingView.getProperty("landing.view.dynamic.slot." + var_3406 + ".conf");
       }
       
@@ -116,7 +116,7 @@ package com.sulake.habbo.friendbar.landingview.widget
          return _loc4_;
       }
       
-      private function onTimingCode(param1:class_581) : void
+      private function onTimingCode(param1:CurrentTimingCodeMessageEvent) : void
       {
          if(param1.getParser().schedulingStr == var_1372 && !disposed)
          {

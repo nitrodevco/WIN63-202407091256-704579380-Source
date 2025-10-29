@@ -4,7 +4,7 @@ package com.sulake.habbo.catalog.guilds
 
     import com.sulake.habbo.catalog.HabboCatalog;
    import com.sulake.habbo.catalog.viewer.widgets.GuildSelectorCatalogWidget;
-   import com.sulake.habbo.communication.messages.incoming.users.class_596;
+   import com.sulake.habbo.communication.messages.incoming.users.GuildMembershipsMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.users.class_779;
    
    public class GuildMembershipsController
@@ -50,7 +50,7 @@ package com.sulake.habbo.catalog.guilds
          }
       }
       
-      public function onGuildMembershipsMessageEvent(param1:class_596) : void
+      public function onGuildMembershipsMessageEvent(param1:GuildMembershipsMessageEvent) : void
       {
          var _loc2_:Array = param1.guilds.slice(0,param1.guilds.length);
          if(var_2259 && !var_2259.disposed)

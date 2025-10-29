@@ -3,9 +3,9 @@ package com.sulake.habbo.game
    import com.sulake.core.communication.messages.IMessageEvent;
    import com.sulake.core.runtime.IDisposable;
    import com.sulake.habbo.communication.IHabboCommunicationManager;
-   import com.sulake.habbo.communication.messages.incoming.availability.class_1090;
-   import com.sulake.habbo.communication.messages.incoming.availability.class_686;
-   import com.sulake.habbo.communication.messages.incoming.availability.class_960;
+   import com.sulake.habbo.communication.messages.incoming.availability.MaintenanceStatusMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.availability.InfoHotelClosingMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.availability.InfoHotelClosedMessageEvent;
    
    public class IncomingMessages implements IDisposable
    {
@@ -20,9 +20,9 @@ package com.sulake.habbo.game
          super();
          _gameManager = param1;
          var _loc2_:IHabboCommunicationManager = _gameManager.communication;
-         _loc2_.addHabboConnectionMessageEvent(new class_1090(onHotelClosed));
-         _loc2_.addHabboConnectionMessageEvent(new class_960(onHotelClosed));
-         _loc2_.addHabboConnectionMessageEvent(new class_686(onHotelClosed));
+         _loc2_.addHabboConnectionMessageEvent(new MaintenanceStatusMessageEvent(onHotelClosed));
+         _loc2_.addHabboConnectionMessageEvent(new InfoHotelClosedMessageEvent(onHotelClosed));
+         _loc2_.addHabboConnectionMessageEvent(new InfoHotelClosingMessageEvent(onHotelClosed));
       }
       
       public function dispose() : void

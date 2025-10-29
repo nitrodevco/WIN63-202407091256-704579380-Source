@@ -14,7 +14,7 @@ package com.sulake.habbo.friendbar.landingview.widget
    import flash.events.TimerEvent;
    import flash.utils.Timer;
    import com.sulake.habbo.communication.messages.outgoing.catalog.class_421;
-   import com.sulake.habbo.communication.messages.incoming.catalog.class_733;
+   import com.sulake.habbo.communication.messages.incoming.catalog.LimitedOfferAppearingNextMessageEvent;
    
    public class NextLimitedRareCountdownWidget implements ILandingViewWidget, class_1812, ISettingsAwareWidget
    {
@@ -69,7 +69,7 @@ package com.sulake.habbo.friendbar.landingview.widget
          _container.findChildByName("get").procedure = onOpenCatalogButton;
          _container.findChildByName("catalogue_button").procedure = onOpenCatalogButton;
          _container.visible = false;
-         _landingView.communicationManager.addHabboConnectionMessageEvent(new class_733(onLimitedOfferAppearingNextMessage));
+         _landingView.communicationManager.addHabboConnectionMessageEvent(new LimitedOfferAppearingNextMessageEvent(onLimitedOfferAppearingNextMessage));
          requestLimitedOfferAppearingNextMessage(null);
       }
       
@@ -153,7 +153,7 @@ package com.sulake.habbo.friendbar.landingview.widget
          var_2210.start();
       }
       
-      private function onLimitedOfferAppearingNextMessage(param1:class_733) : void
+      private function onLimitedOfferAppearingNextMessage(param1:LimitedOfferAppearingNextMessageEvent) : void
       {
          var_422 = param1.getParser().appearsInSeconds;
          var_562 = param1.getParser().pageId;

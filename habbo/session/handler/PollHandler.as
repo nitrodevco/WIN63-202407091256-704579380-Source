@@ -7,9 +7,9 @@ package com.sulake.habbo.session.handler
    import com.sulake.habbo.communication.messages.parser.poll.class_1200;
    import com.sulake.habbo.communication.messages.parser.poll.class_1274;
    import com.sulake.habbo.communication.messages.parser.poll.class_1507;
-   import com.sulake.habbo.communication.messages.incoming.poll.class_222;
-   import com.sulake.habbo.communication.messages.incoming.poll.class_466;
-   import com.sulake.habbo.communication.messages.incoming.poll.class_922;
+   import com.sulake.habbo.communication.messages.incoming.poll.PollContentsEvent;
+   import com.sulake.habbo.communication.messages.incoming.poll.PollErrorEvent;
+   import com.sulake.habbo.communication.messages.incoming.poll.PollOfferEvent;
    
    public class PollHandler extends BaseHandler
    {
@@ -22,12 +22,12 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         param1.addMessageEvent(new class_222(onPollContentsEvent));
-         param1.addMessageEvent(new class_922(onPollOfferEvent));
-         param1.addMessageEvent(new class_466(onPollErrorEvent));
+         param1.addMessageEvent(new PollContentsEvent(onPollContentsEvent));
+         param1.addMessageEvent(new PollOfferEvent(onPollOfferEvent));
+         param1.addMessageEvent(new PollErrorEvent(onPollErrorEvent));
       }
       
-      private function onPollOfferEvent(param1:class_922) : void
+      private function onPollOfferEvent(param1:PollOfferEvent) : void
       {
          var _loc4_:RoomSessionPollEvent = null;
          if(!param1)
@@ -45,7 +45,7 @@ package com.sulake.habbo.session.handler
          listener.events.dispatchEvent(_loc4_);
       }
       
-      private function onPollErrorEvent(param1:class_466) : void
+      private function onPollErrorEvent(param1:PollErrorEvent) : void
       {
          var _loc4_:RoomSessionPollEvent = null;
          if(!param1)
@@ -63,7 +63,7 @@ package com.sulake.habbo.session.handler
          listener.events.dispatchEvent(_loc4_);
       }
       
-      private function onPollContentsEvent(param1:class_222) : void
+      private function onPollContentsEvent(param1:PollContentsEvent) : void
       {
          var _loc4_:RoomSessionPollEvent = null;
          if(!param1)

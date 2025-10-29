@@ -50,15 +50,15 @@ package com.sulake.habbo.friendbar.groupforums
    import com.sulake.habbo.communication.messages.outgoing.groupforums.class_650;
    import com.sulake.habbo.communication.messages.outgoing.groupforums.UpdateForumSettingsMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.groupforums.class_917;
-   import com.sulake.habbo.communication.messages.incoming.groupforums.class_281;
-   import com.sulake.habbo.communication.messages.incoming.groupforums.class_299;
-   import com.sulake.habbo.communication.messages.incoming.groupforums.class_334;
-   import com.sulake.habbo.communication.messages.incoming.groupforums.class_339;
-   import com.sulake.habbo.communication.messages.incoming.groupforums.class_495;
-   import com.sulake.habbo.communication.messages.incoming.groupforums.class_573;
-   import com.sulake.habbo.communication.messages.incoming.groupforums.class_624;
-   import com.sulake.habbo.communication.messages.incoming.groupforums.class_782;
-   import com.sulake.habbo.communication.messages.incoming.groupforums.class_988;
+   import com.sulake.habbo.communication.messages.incoming.groupforums.ThreadMessagesMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.groupforums.UpdateThreadMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.groupforums.UpdateMessageMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.groupforums.ForumsListMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.groupforums.ForumDataMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.groupforums.ForumThreadsMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.groupforums.UnreadForumsCountMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.groupforums.PostThreadMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.groupforums.PostMessageMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.users.class_322;
    
    public class GroupForumController extends Component implements class_3505, ILinkEventTracker
@@ -210,15 +210,15 @@ package com.sulake.habbo.friendbar.groupforums
       
       override protected function initComponent() : void
       {
-         _communicationManager.addHabboConnectionMessageEvent(new class_988(onPostMessageMessage));
-         _communicationManager.addHabboConnectionMessageEvent(new class_299(onUpdateThread));
-         _communicationManager.addHabboConnectionMessageEvent(new class_624(onUnreadForumsCountMessage));
-         _communicationManager.addHabboConnectionMessageEvent(new class_334(onUpdateMessage));
-         _communicationManager.addHabboConnectionMessageEvent(new class_339(onForumsList));
-         _communicationManager.addHabboConnectionMessageEvent(new class_782(onPostThreadMessage));
-         _communicationManager.addHabboConnectionMessageEvent(new class_281(onThreadMessageList));
-         _communicationManager.addHabboConnectionMessageEvent(new class_573(onThreadList));
-         _communicationManager.addHabboConnectionMessageEvent(new class_495(onForumData));
+         _communicationManager.addHabboConnectionMessageEvent(new PostMessageMessageEvent(onPostMessageMessage));
+         _communicationManager.addHabboConnectionMessageEvent(new UpdateThreadMessageEvent(onUpdateThread));
+         _communicationManager.addHabboConnectionMessageEvent(new UnreadForumsCountMessageEvent(onUnreadForumsCountMessage));
+         _communicationManager.addHabboConnectionMessageEvent(new UpdateMessageMessageEvent(onUpdateMessage));
+         _communicationManager.addHabboConnectionMessageEvent(new ForumsListMessageEvent(onForumsList));
+         _communicationManager.addHabboConnectionMessageEvent(new PostThreadMessageEvent(onPostThreadMessage));
+         _communicationManager.addHabboConnectionMessageEvent(new ThreadMessagesMessageEvent(onThreadMessageList));
+         _communicationManager.addHabboConnectionMessageEvent(new ForumThreadsMessageEvent(onThreadList));
+         _communicationManager.addHabboConnectionMessageEvent(new ForumDataMessageEvent(onForumData));
          context.addLinkEventTracker(this);
          startPollingForUnreadForumsCount();
       }
@@ -327,7 +327,7 @@ package com.sulake.habbo.friendbar.groupforums
          _communicationManager.connection.send(new class_539(param1,param2,20));
       }
       
-      private function onForumsList(param1:class_339) : void
+      private function onForumsList(param1:ForumsListMessageEvent) : void
       {
          var _loc3_:class_1563 = param1.getParser();
          var _loc2_:ForumsListData = new ForumsListData(_loc3_);
@@ -360,7 +360,7 @@ package com.sulake.habbo.friendbar.groupforums
          _communicationManager.connection.send(new class_1002(param1));
       }
       
-      private function onForumData(param1:class_495) : void
+      private function onForumData(param1:ForumDataMessageEvent) : void
       {
          var _loc2_:Map = null;
          var _loc3_:String = null;
@@ -395,7 +395,7 @@ package com.sulake.habbo.friendbar.groupforums
          }
       }
       
-      private function onThreadList(param1:class_573) : void
+      private function onThreadList(param1:ForumThreadsMessageEvent) : void
       {
          var _loc2_:class_1436 = param1.getParser();
          if(var_513 == null || var_513.groupId != _loc2_.groupId)
@@ -418,7 +418,7 @@ package com.sulake.habbo.friendbar.groupforums
          }
       }
       
-      private function onThreadMessageList(param1:class_281) : void
+      private function onThreadMessageList(param1:ThreadMessagesMessageEvent) : void
       {
          var _loc6_:class_1666 = null;
          var _loc3_:class_1511 = param1.getParser();
@@ -466,7 +466,7 @@ package com.sulake.habbo.friendbar.groupforums
          }
       }
       
-      private function onPostThreadMessage(param1:class_782) : void
+      private function onPostThreadMessage(param1:PostThreadMessageEvent) : void
       {
          var _loc3_:class_1754 = null;
          var _loc2_:class_1481 = class_1481(param1.getParser());
@@ -506,7 +506,7 @@ package com.sulake.habbo.friendbar.groupforums
          }
       }
       
-      private function onPostMessageMessage(param1:class_988) : void
+      private function onPostMessageMessage(param1:PostMessageMessageEvent) : void
       {
          if(var_3020)
          {
@@ -574,7 +574,7 @@ package com.sulake.habbo.friendbar.groupforums
          }
       }
       
-      private function onUpdateThread(param1:class_299) : void
+      private function onUpdateThread(param1:UpdateThreadMessageEvent) : void
       {
          var _loc2_:class_1281 = param1.getParser();
          if(var_513 == null || var_513.groupId != _loc2_.groupId)
@@ -623,7 +623,7 @@ package com.sulake.habbo.friendbar.groupforums
          }
       }
       
-      private function onUpdateMessage(param1:class_334) : void
+      private function onUpdateMessage(param1:UpdateMessageMessageEvent) : void
       {
          var _loc5_:int = 0;
          var _loc6_:class_1666 = null;
@@ -803,7 +803,7 @@ package com.sulake.habbo.friendbar.groupforums
          }
       }
       
-      private function onUnreadForumsCountMessage(param1:class_624) : void
+      private function onUnreadForumsCountMessage(param1:UnreadForumsCountMessageEvent) : void
       {
          updateUnreadForumsCount(param1.getParser().unreadForumsCount);
       }

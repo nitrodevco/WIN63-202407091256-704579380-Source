@@ -15,7 +15,7 @@ package com.sulake.habbo.friendbar.landingview.widget
    import com.sulake.habbo.communication.messages.outgoing.quest.class_429;
    import com.sulake.habbo.communication.messages.outgoing.quest.class_823;
    import com.sulake.habbo.communication.messages.incoming.quest.class_1715;
-   import com.sulake.habbo.communication.messages.incoming.quest.class_973;
+   import com.sulake.habbo.communication.messages.incoming.quest.QuestDailyMessageEvent;
    
    public class DailyQuestWidget implements IDisposable, ILandingViewWidget, ISlotAwareWidget, class_3836
    {
@@ -84,7 +84,7 @@ package com.sulake.habbo.friendbar.landingview.widget
       public function initialize() : void
       {
          _container = IWindowContainer(_landingView.getXmlWindow("daily_quest"));
-         _landingView.communicationManager.addHabboConnectionMessageEvent(new class_973(onDailyQuest));
+         _landingView.communicationManager.addHabboConnectionMessageEvent(new QuestDailyMessageEvent(onDailyQuest));
          _container.findChildByName("accept_button").procedure = onAcceptButton;
          _container.findChildByName("go_button").procedure = onGoButton;
          _container.findChildByName("next_quest_region").procedure = onNextQuest;

@@ -9,7 +9,7 @@ package com.sulake.habbo.ui.handler
    import com.sulake.room.object.IRoomObject;
    import flash.events.Event;
    import com.sulake.habbo.communication.messages.parser.room.furniture.class_1331;
-   import com.sulake.habbo.communication.messages.incoming.room.furniture.class_710;
+   import com.sulake.habbo.communication.messages.incoming.room.furniture.CustomStackingHeightUpdateMessageEvent;
    
    public class class_3586 implements IRoomWidgetHandler
    {
@@ -39,10 +39,10 @@ package com.sulake.habbo.ui.handler
       public function set container(param1:IRoomWidgetHandlerContainer) : void
       {
          _container = param1;
-         _container.connection.addMessageEvent(new class_710(onStackHeightUpdate));
+         _container.connection.addMessageEvent(new CustomStackingHeightUpdateMessageEvent(onStackHeightUpdate));
       }
       
-      private function onStackHeightUpdate(param1:class_710) : void
+      private function onStackHeightUpdate(param1:CustomStackingHeightUpdateMessageEvent) : void
       {
          var _loc2_:class_1331 = param1.getParser();
          if(var_1629 && validateRights())

@@ -7,7 +7,7 @@ package com.sulake.habbo.help
    import com.sulake.habbo.toolbar.events.HabboToolbarEvent;
    import flash.events.TimerEvent;
    import flash.utils.Timer;
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_510;
+   import com.sulake.habbo.communication.messages.incoming.room.engine.RoomEntryInfoMessageEvent;
    import com.sulake.habbo.communication.messages.parser.help.data.class_1698;
    
    public class GuideHelpManager implements IDisposable
@@ -39,7 +39,7 @@ package com.sulake.habbo.help
          var_2898 = new HelpController(this);
          var_2698 = new GuideSessionController(this);
          var_3123 = new ChatReviewReporterFeedbackCtrl(_habboHelp);
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_510(onRoomEnter));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new RoomEntryInfoMessageEvent(onRoomEnter));
       }
       
       public function get habboHelp() : HabboHelp

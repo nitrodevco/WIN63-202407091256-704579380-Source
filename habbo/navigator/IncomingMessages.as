@@ -8,56 +8,56 @@ package com.sulake.habbo.navigator {
     import com.sulake.core.window.events.WindowEvent
     import com.sulake.core.window.utils.class_3348
     import com.sulake.habbo.communication.IHabboCommunicationManager
-    import com.sulake.habbo.communication.messages.incoming.competition.class_293
+    import com.sulake.habbo.communication.messages.incoming.competition.NoOwnedRoomsAlertMessageEvent
     import com.sulake.habbo.communication.messages.incoming.friendlist.FriendListFragmentMessageEvent
     import com.sulake.habbo.communication.messages.incoming.friendlist.FriendListUpdateEvent
-    import com.sulake.habbo.communication.messages.incoming.game.directory.class_418
-    import com.sulake.habbo.communication.messages.incoming.handshake.class_143
-    import com.sulake.habbo.communication.messages.incoming.handshake.class_485
-    import com.sulake.habbo.communication.messages.incoming.handshake.class_556
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_1038
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_1079
+    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2GameStartedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.handshake.UserRightsMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.handshake.GenericErrorEvent
+    import com.sulake.habbo.communication.messages.incoming.handshake.UserObjectEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.FlatAccessDeniedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.ConvertedRoomIdEvent
     import com.sulake.habbo.communication.messages.incoming.navigator.class_129
     import com.sulake.habbo.communication.messages.incoming.navigator.class_1675
     import com.sulake.habbo.communication.messages.incoming.navigator.class_1727
     import com.sulake.habbo.communication.messages.incoming.navigator.class_1742
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_296
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_454
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_467
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_487
+    import com.sulake.habbo.communication.messages.incoming.navigator.OfficialRoomsEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.GuestRoomSearchResultEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.CategoriesWithVisitorCountEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.RoomInfoUpdatedEvent
     import com.sulake.habbo.communication.messages.incoming.navigator.class_491
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_526
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_534
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_605
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_627
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_722
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_746
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_750
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_761
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_795
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_837
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_898
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_936
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_979
-    import com.sulake.habbo.communication.messages.incoming.room.chat.class_583
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_510
-    import com.sulake.habbo.communication.messages.incoming.room.session.class_128
-    import com.sulake.habbo.communication.messages.incoming.room.session.class_357
-    import com.sulake.habbo.communication.messages.incoming.room.session.class_640
-    import com.sulake.habbo.communication.messages.incoming.room.session.class_875
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_1032
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_1044
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_1064
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_1082
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_319
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_540
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_718
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_770
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_839
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_923
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_963
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_987
-    import com.sulake.habbo.communication.messages.incoming.users.class_1057
+    import com.sulake.habbo.communication.messages.incoming.navigator.UserEventCatsEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.CompetitionRoomsDataMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.UserFlatCatsEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.RoomEventEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.CanCreateRoomEventEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.RoomRatingEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.RoomEventCancelEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.FavouriteChangedEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.FlatCreatedEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.DoorbellMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.GetGuestRoomResultEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.PopularRoomTagsResultEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.CanCreateRoomEvent
+    import com.sulake.habbo.communication.messages.incoming.room.chat.RoomFilterSettingsMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.RoomEntryInfoMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.session.RoomForwardMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.session.FlatAccessibleMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.session.CloseConnectionMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.session.CantConnectMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.ShowEnforceRoomCategoryDialogEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.FlatControllerAddedEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.UserUnbannedFromRoomEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.NoSuchFlatEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsErrorEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsSavedEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.FlatControllersEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsDataEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.FlatControllerRemovedEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.BannedUsersFromRoomEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.MuteAllInRoomEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsSaveErrorEvent
+    import com.sulake.habbo.communication.messages.incoming.users.ScrSendUserInfoEvent
     import com.sulake.habbo.communication.messages.outgoing.friendlist.FollowFriendMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.navigator.class_553
     import com.sulake.habbo.communication.messages.outgoing.navigator.class_831
@@ -113,53 +113,53 @@ package com.sulake.habbo.navigator {
             super();
             _navigator = param1;
             var communication: IHabboCommunicationManager = _navigator.communication;
-            communication.addHabboConnectionMessageEvent(new class_750(onRoomEventCancel));
-            communication.addHabboConnectionMessageEvent(new class_923(onBannedUsersFromRoom));
-            communication.addHabboConnectionMessageEvent(new class_1064(onUserUnbannedFromRoom));
-            communication.addHabboConnectionMessageEvent(new class_510(onRoomEnter));
-            communication.addHabboConnectionMessageEvent(new class_605(onUserFlatCats));
-            communication.addHabboConnectionMessageEvent(new class_936(onPopularRoomTagsResult));
-            communication.addHabboConnectionMessageEvent(new class_718(onFlatControllers));
-            communication.addHabboConnectionMessageEvent(new class_746(onRoomRating));
-            communication.addHabboConnectionMessageEvent(new class_296(onOfficialRooms));
-            communication.addHabboConnectionMessageEvent(new class_128(onRoomForward));
-            communication.addHabboConnectionMessageEvent(new class_583(onRoomFilterSettings));
+            communication.addHabboConnectionMessageEvent(new RoomEventCancelEvent(onRoomEventCancel));
+            communication.addHabboConnectionMessageEvent(new BannedUsersFromRoomEvent(onBannedUsersFromRoom));
+            communication.addHabboConnectionMessageEvent(new UserUnbannedFromRoomEvent(onUserUnbannedFromRoom));
+            communication.addHabboConnectionMessageEvent(new RoomEntryInfoMessageEvent(onRoomEnter));
+            communication.addHabboConnectionMessageEvent(new UserFlatCatsEvent(onUserFlatCats));
+            communication.addHabboConnectionMessageEvent(new PopularRoomTagsResultEvent(onPopularRoomTagsResult));
+            communication.addHabboConnectionMessageEvent(new FlatControllersEvent(onFlatControllers));
+            communication.addHabboConnectionMessageEvent(new RoomRatingEvent(onRoomRating));
+            communication.addHabboConnectionMessageEvent(new OfficialRoomsEvent(onOfficialRooms));
+            communication.addHabboConnectionMessageEvent(new RoomForwardMessageEvent(onRoomForward));
+            communication.addHabboConnectionMessageEvent(new RoomFilterSettingsMessageEvent(onRoomFilterSettings));
             communication.addHabboConnectionMessageEvent(new FriendListUpdateEvent(onFriendListUpdate));
             communication.addHabboConnectionMessageEvent(new FriendListFragmentMessageEvent(onFriendsListFragment));
-            communication.addHabboConnectionMessageEvent(new class_770(onRoomSettingsData));
-            communication.addHabboConnectionMessageEvent(new class_467(onCategoriesWithUserCount));
-            communication.addHabboConnectionMessageEvent(new class_526(onUserEventCats));
-            communication.addHabboConnectionMessageEvent(new class_319(onRoomSettingsError));
-            communication.addHabboConnectionMessageEvent(new class_898(onRoomInfo));
-            communication.addHabboConnectionMessageEvent(new class_640(onRoomExit));
-            communication.addHabboConnectionMessageEvent(new class_839(onFlatControllerRemoved));
-            communication.addHabboConnectionMessageEvent(new class_418(onGameStarted));
-            communication.addHabboConnectionMessageEvent(new class_1038(onFlatAccessDenied));
-            communication.addHabboConnectionMessageEvent(new class_540(onRoomSettingsSaved));
-            communication.addHabboConnectionMessageEvent(new class_987(onRoomSettingsSaveError));
-            communication.addHabboConnectionMessageEvent(new class_1082(onNoSuchFlat));
+            communication.addHabboConnectionMessageEvent(new RoomSettingsDataEvent(onRoomSettingsData));
+            communication.addHabboConnectionMessageEvent(new CategoriesWithVisitorCountEvent(onCategoriesWithUserCount));
+            communication.addHabboConnectionMessageEvent(new UserEventCatsEvent(onUserEventCats));
+            communication.addHabboConnectionMessageEvent(new RoomSettingsErrorEvent(onRoomSettingsError));
+            communication.addHabboConnectionMessageEvent(new GetGuestRoomResultEvent(onRoomInfo));
+            communication.addHabboConnectionMessageEvent(new CloseConnectionMessageEvent(onRoomExit));
+            communication.addHabboConnectionMessageEvent(new FlatControllerRemovedEvent(onFlatControllerRemoved));
+            communication.addHabboConnectionMessageEvent(new Game2GameStartedMessageEvent(onGameStarted));
+            communication.addHabboConnectionMessageEvent(new FlatAccessDeniedMessageEvent(onFlatAccessDenied));
+            communication.addHabboConnectionMessageEvent(new RoomSettingsSavedEvent(onRoomSettingsSaved));
+            communication.addHabboConnectionMessageEvent(new RoomSettingsSaveErrorEvent(onRoomSettingsSaveError));
+            communication.addHabboConnectionMessageEvent(new NoSuchFlatEvent(onNoSuchFlat));
             communication.addHabboConnectionMessageEvent(new class_491(onNavigatorSettings));
-            communication.addHabboConnectionMessageEvent(new class_454(onGuestRoomSearchResult));
-            communication.addHabboConnectionMessageEvent(new class_837(onDoorbell));
-            communication.addHabboConnectionMessageEvent(new class_1044(onFlatControllerAdded));
-            communication.addHabboConnectionMessageEvent(new class_979(onCanCreateRoom));
-            communication.addHabboConnectionMessageEvent(new class_556(onUserObject));
-            communication.addHabboConnectionMessageEvent(new class_1079(onConvertedRoomId));
-            communication.addHabboConnectionMessageEvent(new class_875(onCantConnect));
-            communication.addHabboConnectionMessageEvent(new class_722(onCanCreateRoomEventEvent));
-            communication.addHabboConnectionMessageEvent(new class_485(onError));
+            communication.addHabboConnectionMessageEvent(new GuestRoomSearchResultEvent(onGuestRoomSearchResult));
+            communication.addHabboConnectionMessageEvent(new DoorbellMessageEvent(onDoorbell));
+            communication.addHabboConnectionMessageEvent(new FlatControllerAddedEvent(onFlatControllerAdded));
+            communication.addHabboConnectionMessageEvent(new CanCreateRoomEvent(onCanCreateRoom));
+            communication.addHabboConnectionMessageEvent(new UserObjectEvent(onUserObject));
+            communication.addHabboConnectionMessageEvent(new ConvertedRoomIdEvent(onConvertedRoomId));
+            communication.addHabboConnectionMessageEvent(new CantConnectMessageEvent(onCantConnect));
+            communication.addHabboConnectionMessageEvent(new CanCreateRoomEventEvent(onCanCreateRoomEventEvent));
+            communication.addHabboConnectionMessageEvent(new GenericErrorEvent(onError));
             communication.addHabboConnectionMessageEvent(new class_129(onFavourites));
-            communication.addHabboConnectionMessageEvent(new class_627(onRoomEventEvent));
-            communication.addHabboConnectionMessageEvent(new class_534(onCompetitionData));
-            communication.addHabboConnectionMessageEvent(new class_143(onUserRights));
-            communication.addHabboConnectionMessageEvent(new class_1032(onEnforceRoomCategorySelection));
-            communication.addHabboConnectionMessageEvent(new class_357(onDoorOpened));
-            communication.addHabboConnectionMessageEvent(new class_795(onFlatCreated));
-            communication.addHabboConnectionMessageEvent(new class_1057(onSubscriptionInfo));
-            communication.addHabboConnectionMessageEvent(new class_487(onRoomInfoUpdated));
-            communication.addHabboConnectionMessageEvent(new class_963(onMuteAllEvent));
-            communication.addHabboConnectionMessageEvent(new class_761(onFavouriteChanged));
-            communication.addHabboConnectionMessageEvent(new class_293(onNoOwnedRoomsAlert));
+            communication.addHabboConnectionMessageEvent(new RoomEventEvent(onRoomEventEvent));
+            communication.addHabboConnectionMessageEvent(new CompetitionRoomsDataMessageEvent(onCompetitionData));
+            communication.addHabboConnectionMessageEvent(new UserRightsMessageEvent(onUserRights));
+            communication.addHabboConnectionMessageEvent(new ShowEnforceRoomCategoryDialogEvent(onEnforceRoomCategorySelection));
+            communication.addHabboConnectionMessageEvent(new FlatAccessibleMessageEvent(onDoorOpened));
+            communication.addHabboConnectionMessageEvent(new FlatCreatedEvent(onFlatCreated));
+            communication.addHabboConnectionMessageEvent(new ScrSendUserInfoEvent(onSubscriptionInfo));
+            communication.addHabboConnectionMessageEvent(new RoomInfoUpdatedEvent(onRoomInfoUpdated));
+            communication.addHabboConnectionMessageEvent(new MuteAllInRoomEvent(onMuteAllEvent));
+            communication.addHabboConnectionMessageEvent(new FavouriteChangedEvent(onFavouriteChanged));
+            communication.addHabboConnectionMessageEvent(new NoOwnedRoomsAlertMessageEvent(onNoOwnedRoomsAlert));
         }
 
         public function get data(): NavigatorData {
@@ -167,8 +167,8 @@ package com.sulake.habbo.navigator {
         }
 
         private function onMuteAllEvent(param1: IMessageEvent): void {
-            var _loc4_: class_963;
-            var _loc3_: class_1374 = (_loc4_ = param1 as class_963).getParser();
+            var _loc4_: MuteAllInRoomEvent;
+            var _loc3_: class_1374 = (_loc4_ = param1 as MuteAllInRoomEvent).getParser();
             var _loc2_: class_1675 = _navigator.data.enteredGuestRoom;
             if (_loc2_ != null) {
                 _loc2_.allInRoomMuted = _loc3_.allMuted;
@@ -182,14 +182,14 @@ package com.sulake.habbo.navigator {
         }
 
         private function onUserObject(param1: IMessageEvent): void {
-            var _loc2_: class_1267 = class_556(param1).getParser();
+            var _loc2_: class_1267 = UserObjectEvent(param1).getParser();
             data.avatarId = _loc2_.id;
             _navigator.send(new class_831());
             _navigator.send(new class_998());
         }
 
         private function onUserRights(param1: IMessageEvent): void {
-            var _loc2_: class_143 = class_143(param1);
+            var _loc2_: UserRightsMessageEvent = UserRightsMessageEvent(param1);
             if (_loc2_.securityLevel >= 5) {
                 _navigator.data.eventMod = true;
             }
@@ -199,13 +199,13 @@ package com.sulake.habbo.navigator {
         }
 
         private function onCategoriesWithUserCount(param1: IMessageEvent): void {
-            var _loc2_: class_1388 = class_467(param1).getParser();
+            var _loc2_: class_1388 = CategoriesWithVisitorCountEvent(param1).getParser();
             data.categoriesWithVisitorData = _loc2_.data;
             class_14.log("Received Categories with user count: " + data.categoriesWithVisitorData.categoryToCurrentUserCountMap.length);
         }
 
         private function onOfficialRooms(param1: IMessageEvent): void {
-            var _loc2_: class_1368 = class_296(param1).getParser();
+            var _loc2_: class_1368 = OfficialRoomsEvent(param1).getParser();
             data.officialRooms = _loc2_.data;
             data.adRoom = _loc2_.adRoom;
             data.promotedRooms = _loc2_.promotedRooms;
@@ -213,19 +213,19 @@ package com.sulake.habbo.navigator {
         }
 
         private function onGuestRoomSearchResult(param1: IMessageEvent): void {
-            var _loc2_: class_1742 = class_454(param1).getParser().data;
+            var _loc2_: class_1742 = GuestRoomSearchResultEvent(param1).getParser().data;
             data.guestRoomSearchResults = _loc2_;
             class_14.log("Received GuestRoomSearch: " + data.guestRoomSearchResults.rooms.length);
         }
 
         private function onPopularRoomTagsResult(param1: IMessageEvent): void {
-            var _loc2_: class_1727 = class_936(param1).getParser().data;
+            var _loc2_: class_1727 = PopularRoomTagsResultEvent(param1).getParser().data;
             data.popularTags = _loc2_;
             class_14.log("Received popular room tags: " + data.popularTags.tags.length);
         }
 
         private function onRoomEventEvent(param1: IMessageEvent): void {
-            var _loc2_: class_1157 = class_627(param1).getParser();
+            var _loc2_: class_1157 = RoomEventEvent(param1).getParser();
             class_14.log("Got room event: " + _loc2_.data.ownerAvatarId + ", " + _loc2_.data.eventName);
             data.roomEventData = _loc2_.data.ownerAvatarId > 0 ? _loc2_.data : null;
             _navigator.roomEventInfoCtrl.refresh();
@@ -238,7 +238,7 @@ package com.sulake.habbo.navigator {
 
         private function onCanCreateRoomEventEvent(param1: IMessageEvent): void {
             var _loc3_: SimpleAlertView = null;
-            var _loc2_: class_1349 = class_722(param1).getParser();
+            var _loc2_: class_1349 = CanCreateRoomEventEvent(param1).getParser();
             class_14.log("CAN CREATE EVENT: " + _loc2_.canCreateEvent);
             if (_loc2_.canCreateEvent) {
                 _navigator.roomEventViewCtrl.show();
@@ -250,7 +250,7 @@ package com.sulake.habbo.navigator {
         }
 
         private function onRoomEnter(param1: IMessageEvent): void {
-            var _loc2_: class_1339 = class_510(param1).getParser();
+            var _loc2_: class_1339 = RoomEntryInfoMessageEvent(param1).getParser();
             class_14.log("Navigator: entering room");
             data.onRoomEnter(_loc2_);
             closeOpenCantConnectAlerts();
@@ -267,7 +267,7 @@ package com.sulake.habbo.navigator {
         private function onRoomInfo(param1: IMessageEvent): void {
             var _loc3_: * = false;
             var _loc4_: RoomSessionTags = null;
-            var _loc2_: RoomSettingsDataEvent = class_898(param1).getParser();
+            var _loc2_: RoomSettingsDataEvent = GetGuestRoomResultEvent(param1).getParser();
             class_14.log("Got room info: " + _loc2_.enterRoom + ", " + _loc2_.roomForward);
             if (_loc2_.enterRoom) {
                 data.enteredRoom = _loc2_.data;
@@ -309,7 +309,7 @@ package com.sulake.habbo.navigator {
         }
 
         private function onFlatCreated(param1: IMessageEvent): void {
-            var _loc2_: class_1616 = class_795(param1).getParser();
+            var _loc2_: class_1616 = FlatCreatedEvent(param1).getParser();
             ErrorReportStorage.addDebugData("IncomingEvent", "Flat created: " + _loc2_.flatId + ", " + _loc2_.flatName);
             data.createdFlatId = _loc2_.flatId;
             _navigator.goToRoom(_loc2_.flatId, true);
@@ -323,19 +323,19 @@ package com.sulake.habbo.navigator {
         }
 
         private function onSubscriptionInfo(param1: IMessageEvent): void {
-            var _loc2_: class_1359 = class_1057(param1).getParser();
+            var _loc2_: class_1359 = ScrSendUserInfoEvent(param1).getParser();
             class_14.log("Got subscription info: " + _loc2_.productName + ", " + _loc2_.daysToPeriodEnd + ", " + _loc2_.memberPeriods + ", " + _loc2_.periodsSubscribedAhead + ", " + _loc2_.responseType);
             data.hcMember = _loc2_.daysToPeriodEnd > 0;
         }
 
         private function onRoomForward(param1: IMessageEvent): void {
-            var _loc2_: class_1208 = class_128(param1).getParser();
+            var _loc2_: class_1208 = RoomForwardMessageEvent(param1).getParser();
             class_14.log("Got room forward: " + _loc2_.roomId);
             forwardToRoom(_loc2_.roomId);
         }
 
         private function onConvertedRoomId(param1: IMessageEvent): void {
-            var _loc2_: class_1180 = class_1079(param1).getParser();
+            var _loc2_: class_1180 = ConvertedRoomIdEvent(param1).getParser();
             if (_navigator.webRoomReport) {
                 _navigator.habboHelp.reportRoom(_loc2_.convertedId, _navigator.webRoomReportedName, "");
             } else {
@@ -404,21 +404,21 @@ package com.sulake.habbo.navigator {
         }
 
         private function onUserFlatCats(param1: IMessageEvent): void {
-            var _loc3_: class_1377 = (param1 as class_605).getParser();
+            var _loc3_: class_1377 = (param1 as UserFlatCatsEvent).getParser();
             _navigator.data.categories = _loc3_.nodes;
             var _loc2_: RoomsTabPageDecorator = RoomsTabPageDecorator(_navigator.tabs.getTab(2).tabPageDecorator);
             _loc2_.prepareRoomCategories();
         }
 
         private function onUserEventCats(param1: IMessageEvent): void {
-            var _loc2_: class_1129 = (param1 as class_526).getParser();
+            var _loc2_: class_1129 = (param1 as UserEventCatsEvent).getParser();
             _navigator.data.eventCategories = _loc2_.eventCategories;
         }
 
         private function onRoomSettingsData(param1: IMessageEvent): void {
             var _loc2_: class_1120 = null;
             try {
-                _loc2_ = (param1 as class_770).getParser();
+                _loc2_ = (param1 as RoomSettingsDataEvent).getParser();
                 _navigator.roomSettingsCtrl.onRoomSettings(_loc2_.data);
                 class_14.log("GOT ROOM SETTINGS DATA: " + _loc2_.data.name + ", " + _loc2_.data.maximumVisitors + ", " + _loc2_.data.maximumVisitorsLimit);
             } catch (e: Error) {
@@ -427,28 +427,28 @@ package com.sulake.habbo.navigator {
         }
 
         private function onRoomFilterSettings(param1: IMessageEvent): void {
-            var _loc2_: class_1253 = (param1 as class_583).getParser();
+            var _loc2_: class_1253 = (param1 as RoomFilterSettingsMessageEvent).getParser();
             _navigator.roomFilterCtrl.onRoomFilterSettings(_loc2_.badWords);
             class_14.log("GOT ROOM FILTER SETTINGS: " + _loc2_.badWords);
         }
 
         private function onRoomSettingsError(param1: IMessageEvent): void {
-            var _loc2_: class_1296 = (param1 as class_319).getParser();
+            var _loc2_: class_1296 = (param1 as RoomSettingsErrorEvent).getParser();
         }
 
         private function onRoomSettingsSaved(param1: IMessageEvent): void {
-            var _loc2_: class_1514 = (param1 as class_540).getParser();
+            var _loc2_: class_1514 = (param1 as RoomSettingsSavedEvent).getParser();
             ErrorReportStorage.addDebugData("IncomingEvent", "Room settings saved: " + _loc2_.roomId);
             _navigator.mainViewCtrl.reloadRoomList(5);
         }
 
         private function onRoomSettingsSaveError(param1: IMessageEvent): void {
-            var _loc2_: class_1204 = (param1 as class_987).getParser();
+            var _loc2_: class_1204 = (param1 as RoomSettingsSaveErrorEvent).getParser();
             _navigator.roomSettingsCtrl.onRoomSettingsSaveError(_loc2_.roomId, _loc2_.errorCode, _loc2_.info);
         }
 
         private function onRoomInfoUpdated(param1: IMessageEvent): void {
-            var _loc2_: class_1468 = (param1 as class_487).getParser();
+            var _loc2_: class_1468 = (param1 as RoomInfoUpdatedEvent).getParser();
             class_14.log("ROOM UPDATED: " + _loc2_.flatId);
             _navigator.send(new class_553(_loc2_.flatId, false, false));
         }
@@ -459,7 +459,7 @@ package com.sulake.habbo.navigator {
         }
 
         private function onFavouriteChanged(param1: IMessageEvent): void {
-            var _loc2_: class_1446 = (param1 as class_761).getParser();
+            var _loc2_: class_1446 = (param1 as FavouriteChangedEvent).getParser();
             class_14.log("Received favourite changed: " + _loc2_.flatId + ", " + _loc2_.added);
             _navigator.data.favouriteChanged(_loc2_.flatId, _loc2_.added);
             _navigator.roomInfoViewCtrl.reload();
@@ -468,7 +468,7 @@ package com.sulake.habbo.navigator {
 
         private function onCanCreateRoom(param1: IMessageEvent): void {
             var _loc2_: AlertView = null;
-            var _loc3_: class_1483 = (param1 as class_979).getParser();
+            var _loc3_: class_1483 = (param1 as CanCreateRoomEvent).getParser();
             class_14.log("Can create room: " + _loc3_.resultCode + ", " + _loc3_.roomLimit);
             if (_loc3_.resultCode == 0) {
                 _navigator.roomCreateViewCtrl.show();
@@ -484,38 +484,38 @@ package com.sulake.habbo.navigator {
         }
 
         private function onFlatControllers(param1: IMessageEvent): void {
-            var _loc2_: class_1185 = (param1 as class_718).getParser();
+            var _loc2_: class_1185 = (param1 as FlatControllersEvent).getParser();
             class_14.log("Got flat controllers: " + _loc2_.roomId + ", " + _loc2_.controllers.length);
             _navigator.roomSettingsCtrl.onFlatControllers(_loc2_.roomId, _loc2_.controllers);
         }
 
         private function onFlatControllerAdded(param1: IMessageEvent): void {
-            var _loc2_: class_1399 = (param1 as class_1044).getParser();
+            var _loc2_: class_1399 = (param1 as FlatControllerAddedEvent).getParser();
             class_14.log("Flat controller added: " + _loc2_.flatId + ", " + _loc2_.data.userId + ", " + _loc2_.data.userName);
             _navigator.roomSettingsCtrl.onFlatControllerAdded(_loc2_.flatId, _loc2_.data);
         }
 
         private function onFlatControllerRemoved(param1: IMessageEvent): void {
-            var _loc2_: class_1293 = (param1 as class_839).getParser();
+            var _loc2_: class_1293 = (param1 as FlatControllerRemovedEvent).getParser();
             class_14.log("Flat controller removed: " + _loc2_.flatId + ", " + _loc2_.userId);
             _navigator.roomSettingsCtrl.onFlatControllerRemoved(_loc2_.flatId, _loc2_.userId);
         }
 
         private function onBannedUsersFromRoom(param1: IMessageEvent): void {
-            var _loc2_: class_1429 = (param1 as class_923).getParser();
+            var _loc2_: class_1429 = (param1 as BannedUsersFromRoomEvent).getParser();
             class_14.log("Got Banned users for room: " + _loc2_.roomId + ", " + _loc2_.bannedUsers.length);
             _navigator.roomSettingsCtrl.onBannedUsersFromRoom(_loc2_.roomId, _loc2_.bannedUsers);
         }
 
         private function onUserUnbannedFromRoom(param1: IMessageEvent): void {
-            var _loc2_: class_1417 = (param1 as class_1064).getParser();
+            var _loc2_: class_1417 = (param1 as UserUnbannedFromRoomEvent).getParser();
             class_14.log("User was unbanned from room. User Id: " + _loc2_.userId + " Room Id: " + _loc2_.roomId);
             _navigator.roomSettingsCtrl.onUserUnbannedFromRoom(_loc2_.roomId, _loc2_.userId);
         }
 
         private function onError(param1: IMessageEvent): void {
             var event: IMessageEvent = param1;
-            var error: class_485 = event as class_485;
+            var error: GenericErrorEvent = event as GenericErrorEvent;
             if (error == null) {
                 return;
             }
@@ -551,7 +551,7 @@ package com.sulake.habbo.navigator {
         }
 
         private function onDoorbell(param1: IMessageEvent): void {
-            var _loc2_: class_837 = param1 as class_837;
+            var _loc2_: DoorbellMessageEvent = param1 as DoorbellMessageEvent;
             if (_loc2_ == null) {
                 return;
             }
@@ -562,7 +562,7 @@ package com.sulake.habbo.navigator {
         }
 
         private function onDoorOpened(param1: IMessageEvent): void {
-            var _loc3_: class_357 = param1 as class_357;
+            var _loc3_: FlatAccessibleMessageEvent = param1 as FlatAccessibleMessageEvent;
             if (_loc3_ == null) {
                 return;
             }
@@ -573,14 +573,14 @@ package com.sulake.habbo.navigator {
         }
 
         private function onRoomRating(param1: IMessageEvent): void {
-            var _loc2_: class_1523 = (param1 as class_746).getParser();
+            var _loc2_: class_1523 = (param1 as RoomRatingEvent).getParser();
             _navigator.data.currentRoomRating = _loc2_.rating;
             _navigator.data.canRate = _loc2_.canRate;
             this._navigator.roomInfoViewCtrl.reload();
         }
 
         private function onFlatAccessDenied(param1: IMessageEvent): void {
-            var _loc2_: class_1539 = (param1 as class_1038).getParser();
+            var _loc2_: class_1539 = (param1 as FlatAccessDeniedMessageEvent).getParser();
             if (_loc2_.userName == null || _loc2_.userName == "") {
                 _navigator.doorbell.showNoAnswer();
             }
@@ -595,7 +595,7 @@ package com.sulake.habbo.navigator {
             _navigator.roomSettingsCtrl.onFriendListUpdate();
         }
 
-        private function onCompetitionData(param1: class_534): void {
+        private function onCompetitionData(param1: CompetitionRoomsDataMessageEvent): void {
             _navigator.data.competitionRoomsData = param1.getParser().data;
         }
 
@@ -604,7 +604,7 @@ package com.sulake.habbo.navigator {
             _navigator.trackNavigationDataPoint("Room Forward", "go.roomforward", "", param1);
         }
 
-        private function onNoOwnedRoomsAlert(param1: class_293): void {
+        private function onNoOwnedRoomsAlert(param1: NoOwnedRoomsAlertMessageEvent): void {
             _navigator.startRoomCreation();
         }
 
@@ -638,7 +638,7 @@ package com.sulake.habbo.navigator {
 
         private function onCantConnect(param1: IMessageEvent): void {
             var _loc2_: SimpleAlertView = null;
-            var _loc3_: class_1428 = (param1 as class_875).getParser();
+            var _loc3_: class_1428 = (param1 as CantConnectMessageEvent).getParser();
             class_14.log("FAILED TO CONNECT: REASON: " + _loc3_.reason);
             switch (_loc3_.reason - 1) {
                 case 0:
@@ -664,7 +664,7 @@ package com.sulake.habbo.navigator {
         }
 
         private function onEnforceRoomCategorySelection(param1: IMessageEvent): void {
-            var _loc2_: class_1587 = (param1 as class_1032).getParser();
+            var _loc2_: class_1587 = (param1 as ShowEnforceRoomCategoryDialogEvent).getParser();
             _navigator.enforceCategoryCtrl.show(_loc2_.selectionType);
         }
     }

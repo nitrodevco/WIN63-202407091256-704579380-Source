@@ -77,8 +77,8 @@ package com.sulake.habbo.ui.handler
    import com.sulake.habbo.communication.messages.outgoing.room.avatar.class_742;
    import com.sulake.habbo.communication.messages.incoming.room.pets.class_1705;
    import com.sulake.habbo.communication.messages.incoming.users.class_1199;
-   import com.sulake.habbo.communication.messages.incoming.users.class_438;
-   import com.sulake.habbo.communication.messages.incoming.users.class_835;
+   import com.sulake.habbo.communication.messages.incoming.users.RelationshipStatusInfoEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.HabboGroupDetailsMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.users.class_201;
    import com.sulake.habbo.communication.messages.outgoing.users.class_322;
    import com.sulake.habbo.communication.messages.outgoing.users.GetRelationshipStatusInfoMessageComposer;
@@ -187,14 +187,14 @@ package com.sulake.habbo.ui.handler
          }
          if(_container.connection)
          {
-            var_2774 = new class_835(onGroupDetails);
+            var_2774 = new HabboGroupDetailsMessageEvent(onGroupDetails);
             _container.connection.addMessageEvent(var_2774);
-            var_2966 = new class_438(onRelationshipStatusEvent);
+            var_2966 = new RelationshipStatusInfoEvent(onRelationshipStatusEvent);
             _container.connection.addMessageEvent(var_2966);
          }
       }
       
-      private function onGroupDetails(param1:class_835) : void
+      private function onGroupDetails(param1:HabboGroupDetailsMessageEvent) : void
       {
          var _loc2_:class_1199 = param1.data;
          if(var_1629.furniData.groupId == _loc2_.groupId)
@@ -1468,7 +1468,7 @@ package com.sulake.habbo.ui.handler
          }
       }
       
-      private function onRelationshipStatusEvent(param1:class_438) : void
+      private function onRelationshipStatusEvent(param1:RelationshipStatusInfoEvent) : void
       {
          if(var_1629 && var_1629.mainWindow.visible)
          {

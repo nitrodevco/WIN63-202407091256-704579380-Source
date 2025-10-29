@@ -54,7 +54,7 @@ package com.sulake.habbo.roomevents.wired_setup
    import flash.utils.Dictionary;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredcontext.variables.WiredVariable;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredcontext.params.AllVariablesInRoom;
-   import com.sulake.habbo.communication.messages.incoming.users.class_596;
+   import com.sulake.habbo.communication.messages.incoming.users.GuildMembershipsMessageEvent;
    
    public class UserDefinedRoomEventsCtrl
    {
@@ -852,7 +852,7 @@ package com.sulake.habbo.roomevents.wired_setup
          return _loc2_ == _roomEvents.sessionDataManager.userId;
       }
       
-      public function onGuildMemberships(param1:class_596) : void
+      public function onGuildMemberships(param1:GuildMembershipsMessageEvent) : void
       {
          var _loc2_:class_3531 = resolveType();
          if(_loc2_ != null)

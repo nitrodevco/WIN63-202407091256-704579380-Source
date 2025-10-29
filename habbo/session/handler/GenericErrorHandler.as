@@ -6,7 +6,7 @@ package com.sulake.habbo.session.handler
    import com.sulake.habbo.session.IRoomSession;
    import com.sulake.habbo.session.events.RoomSessionErrorMessageEvent;
    import com.sulake.habbo.communication.messages.parser.handshake.class_1366;
-   import com.sulake.habbo.communication.messages.incoming.handshake.class_485;
+   import com.sulake.habbo.communication.messages.incoming.handshake.GenericErrorEvent;
    
    public class GenericErrorHandler extends BaseHandler
    {
@@ -19,13 +19,13 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         param1.addMessageEvent(new class_485(onGenericError));
+         param1.addMessageEvent(new GenericErrorEvent(onGenericError));
       }
       
       private function onGenericError(param1:IMessageEvent) : void
       {
          var _loc4_:String = null;
-         var _loc2_:class_1366 = (param1 as class_485).getParser();
+         var _loc2_:class_1366 = (param1 as GenericErrorEvent).getParser();
          if(_loc2_ == null)
          {
             return;

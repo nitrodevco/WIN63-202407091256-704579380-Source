@@ -27,7 +27,7 @@ package com.sulake.habbo.ui.widget.memenu
    import flash.geom.Point;
    import flash.utils.Dictionary;
    import com.sulake.habbo.communication.messages.parser.perk.class_1448;
-   import com.sulake.habbo.communication.messages.incoming.perk.class_828;
+   import com.sulake.habbo.communication.messages.incoming.perk.PerkAllowancesMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.talent.class_1018;
    
    public class MeMenuMainView implements IMeMenuView
@@ -42,7 +42,7 @@ package com.sulake.habbo.ui.widget.memenu
       
       private var _icons:Dictionary;
       
-      private var _perkAllowancesMessageEvent:class_828;
+      private var _perkAllowancesMessageEvent:PerkAllowancesMessageEvent;
       
       private var _config:ICoreConfiguration;
       
@@ -70,7 +70,7 @@ package com.sulake.habbo.ui.widget.memenu
          _icons["talents_icon"] = ["compass_white","compass_color"];
          _icons["guide_icon"] = ["lighthouse_white","lighthouse_color"];
          var_1629 = param1;
-         _perkAllowancesMessageEvent = new class_828(onPerkAllowances);
+         _perkAllowancesMessageEvent = new PerkAllowancesMessageEvent(onPerkAllowances);
          var_1629.handler.container.connection.addMessageEvent(_perkAllowancesMessageEvent);
          createWindow(param2);
       }
@@ -432,7 +432,7 @@ package com.sulake.habbo.ui.widget.memenu
          }
       }
       
-      private function onPerkAllowances(param1:class_828) : void
+      private function onPerkAllowances(param1:PerkAllowancesMessageEvent) : void
       {
          var _loc2_:class_1448 = param1.getParser();
          setGuideToolVisibility(_loc2_.isPerkAllowed("USE_GUIDE_TOOL"));

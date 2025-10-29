@@ -29,8 +29,8 @@ package com.sulake.habbo.ui.widget.camera
    import flash.net.FileReference;
    import flash.utils.ByteArray;
    import flash.utils.setTimeout;
-   import com.sulake.habbo.communication.messages.incoming.camera.class_473;
-   import com.sulake.habbo.communication.messages.incoming.camera.class_532;
+   import com.sulake.habbo.communication.messages.incoming.camera.CameraPublishStatusMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.camera.CompetitionStatusMessageEvent;
    
    public class CameraPhotoLab implements IDisposable
    {
@@ -430,7 +430,7 @@ package com.sulake.habbo.ui.widget.camera
          }
       }
       
-      public function publishingStatus(param1:class_473) : void
+      public function publishingStatus(param1:CameraPublishStatusMessageEvent) : void
       {
          if(var_1816)
          {
@@ -438,7 +438,7 @@ package com.sulake.habbo.ui.widget.camera
          }
       }
       
-      public function competitionStatus(param1:class_532) : void
+      public function competitionStatus(param1:CompetitionStatusMessageEvent) : void
       {
          if(var_1816)
          {

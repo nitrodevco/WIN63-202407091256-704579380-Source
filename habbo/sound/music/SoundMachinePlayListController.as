@@ -14,8 +14,8 @@ package com.sulake.habbo.sound.music
    import com.sulake.habbo.communication.messages.parser.sound.class_1395;
    import com.sulake.habbo.communication.messages.outgoing.sound.GetSoundMachinePlayListMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.sound.class_1648;
-   import com.sulake.habbo.communication.messages.incoming.sound.class_382;
-   import com.sulake.habbo.communication.messages.incoming.sound.class_747;
+   import com.sulake.habbo.communication.messages.incoming.sound.PlayListSongAddedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.sound.PlayListMessageEvent;
    
    public class SoundMachinePlayListController implements class_3609
    {
@@ -51,8 +51,8 @@ package com.sulake.habbo.sound.music
          var_26 = param5;
          var_1923 = param2;
          _messageEvents = [];
-         _messageEvents.push(new class_747(onPlayListMessage));
-         _messageEvents.push(new class_382(onPlayListSongAddedMessage));
+         _messageEvents.push(new PlayListMessageEvent(onPlayListMessage));
+         _messageEvents.push(new PlayListSongAddedMessageEvent(onPlayListSongAddedMessage));
          for each(var _loc6_ in _messageEvents)
          {
             var_26.addMessageEvent(_loc6_);
@@ -342,8 +342,8 @@ package com.sulake.habbo.sound.music
          var _loc2_:SongDataEntry = null;
          var _loc7_:int = 0;
          var _loc4_:class_1387;
-         var _loc5_:class_747;
-         var _loc6_:int = (_loc4_ = (_loc5_ = param1 as class_747).getParser() as class_1387).synchronizationCount;
+         var _loc5_:PlayListMessageEvent;
+         var _loc6_:int = (_loc4_ = (_loc5_ = param1 as PlayListMessageEvent).getParser() as class_1387).synchronizationCount;
          var _loc3_:Array = convertParserPlayList(_loc4_.playList);
          if(_loc3_ == null || _loc3_.length == 0)
          {
@@ -385,8 +385,8 @@ package com.sulake.habbo.sound.music
       
       private function onPlayListSongAddedMessage(param1:IMessageEvent) : void
       {
-         var _loc4_:class_382;
-         var _loc3_:class_1395 = (_loc4_ = param1 as class_382).getParser() as class_1395;
+         var _loc4_:PlayListSongAddedMessageEvent;
+         var _loc3_:class_1395 = (_loc4_ = param1 as PlayListSongAddedMessageEvent).getParser() as class_1395;
          var _loc2_:SongDataEntry = new SongDataEntry(_loc3_.entry.id,_loc3_.entry.length,_loc3_.entry.name,_loc3_.entry.creator,null);
          if(_loc2_ == null)
          {

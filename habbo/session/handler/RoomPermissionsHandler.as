@@ -4,9 +4,9 @@ package com.sulake.habbo.session.handler
    import com.sulake.core.communication.messages.IMessageEvent;
    import com.sulake.habbo.session.IRoomHandlerListener;
    import com.sulake.habbo.session.IRoomSession;
-   import com.sulake.habbo.communication.messages.incoming.room.permissions.class_500;
-   import com.sulake.habbo.communication.messages.incoming.room.permissions.class_702;
-   import com.sulake.habbo.communication.messages.incoming.room.permissions.class_809;
+   import com.sulake.habbo.communication.messages.incoming.room.permissions.YouAreOwnerMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.room.permissions.YouAreNotControllerMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.room.permissions.YouAreControllerMessageEvent;
    import com.sulake.habbo.communication.messages.parser.room.permissions.class_1202;
    import com.sulake.habbo.communication.messages.parser.room.permissions.class_1250;
    
@@ -21,15 +21,15 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         param1.addMessageEvent(new class_809(onYouAreController));
-         param1.addMessageEvent(new class_702(onYouAreNotController));
-         param1.addMessageEvent(new class_500(onYouAreOwner));
+         param1.addMessageEvent(new YouAreControllerMessageEvent(onYouAreController));
+         param1.addMessageEvent(new YouAreNotControllerMessageEvent(onYouAreNotController));
+         param1.addMessageEvent(new YouAreOwnerMessageEvent(onYouAreOwner));
       }
       
       private function onYouAreController(param1:IMessageEvent) : void
       {
-         var _loc4_:class_809;
-         if((_loc4_ = param1 as class_809) == null)
+         var _loc4_:YouAreControllerMessageEvent;
+         if((_loc4_ = param1 as YouAreControllerMessageEvent) == null)
          {
             return;
          }
@@ -48,8 +48,8 @@ package com.sulake.habbo.session.handler
       
       private function onYouAreNotController(param1:IMessageEvent) : void
       {
-         var _loc4_:class_702;
-         if((_loc4_ = param1 as class_702) == null)
+         var _loc4_:YouAreNotControllerMessageEvent;
+         if((_loc4_ = param1 as YouAreNotControllerMessageEvent) == null)
          {
             return;
          }
@@ -68,7 +68,7 @@ package com.sulake.habbo.session.handler
       
       private function onYouAreOwner(param1:IMessageEvent) : void
       {
-         var _loc3_:class_500 = param1 as class_500;
+         var _loc3_:YouAreOwnerMessageEvent = param1 as YouAreOwnerMessageEvent;
          if(_loc3_ == null)
          {
             return;

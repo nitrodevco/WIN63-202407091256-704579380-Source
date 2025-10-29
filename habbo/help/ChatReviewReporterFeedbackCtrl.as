@@ -5,8 +5,8 @@ package com.sulake.habbo.help
    import com.sulake.core.window.components.ITextWindow;
    import com.sulake.core.window.components.class_3514;
    import com.sulake.core.window.events.WindowEvent;
-   import com.sulake.habbo.communication.messages.incoming.help.class_185;
-   import com.sulake.habbo.communication.messages.incoming.help.class_651;
+   import com.sulake.habbo.communication.messages.incoming.help.GuideTicketCreationResultMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.help.GuideTicketResolutionMessageEvent;
    
    public class ChatReviewReporterFeedbackCtrl implements IDisposable
    {
@@ -20,8 +20,8 @@ package com.sulake.habbo.help
       {
          super();
          _habboHelp = param1;
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_651(onTicketResolved));
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_185(onCreateResult));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new GuideTicketResolutionMessageEvent(onTicketResolved));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new GuideTicketCreationResultMessageEvent(onCreateResult));
       }
       
       public function dispose() : void
@@ -39,12 +39,12 @@ package com.sulake.habbo.help
          return _habboHelp == null;
       }
       
-      private function onTicketResolved(param1:class_651) : void
+      private function onTicketResolved(param1:GuideTicketResolutionMessageEvent) : void
       {
          show(param1.getParser().localizationCode);
       }
       
-      private function onCreateResult(param1:class_185) : void
+      private function onCreateResult(param1:GuideTicketCreationResultMessageEvent) : void
       {
          show(param1.getParser().localizationCode);
       }

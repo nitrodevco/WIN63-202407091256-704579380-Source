@@ -17,9 +17,9 @@ package com.sulake.habbo.catalog.vault
    import com.sulake.habbo.communication.messages.parser.vault.class_1275;
    import com.sulake.habbo.communication.messages.parser.vault.class_1463;
    import com.sulake.habbo.communication.messages.parser.vault.class_1556;
-   import com.sulake.habbo.communication.messages.incoming.vault.class_426;
-   import com.sulake.habbo.communication.messages.incoming.vault.class_564;
-   import com.sulake.habbo.communication.messages.incoming.vault.class_578;
+   import com.sulake.habbo.communication.messages.incoming.vault.CreditVaultStatusMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.vault.IncomeRewardClaimResponseMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.vault.IncomeRewardStatusMessageEvent;
    
    public class VaultController extends Component implements ILinkEventTracker
    {
@@ -62,9 +62,9 @@ package com.sulake.habbo.catalog.vault
       override protected function initComponent() : void
       {
          _messageEvents = new Vector.<IMessageEvent>(0);
-         addMessageEvent(new class_426(onVaultStatusMessageEvent));
-         addMessageEvent(new class_578(onIncomeRewardStatusMessageEvent));
-         addMessageEvent(new class_564(onIncomeRewardClaimResponseMessageEvent));
+         addMessageEvent(new CreditVaultStatusMessageEvent(onVaultStatusMessageEvent));
+         addMessageEvent(new IncomeRewardStatusMessageEvent(onIncomeRewardStatusMessageEvent));
+         addMessageEvent(new IncomeRewardClaimResponseMessageEvent(onIncomeRewardClaimResponseMessageEvent));
          context.addLinkEventTracker(this);
       }
       
@@ -77,7 +77,7 @@ package com.sulake.habbo.catalog.vault
          _messageEvents.push(_communicationManager.addHabboConnectionMessageEvent(param1));
       }
       
-      private function onVaultStatusMessageEvent(param1:class_426) : void
+      private function onVaultStatusMessageEvent(param1:CreditVaultStatusMessageEvent) : void
       {
          var _loc2_:class_1463 = null;
          if(var_1631 && !var_1631.disposed)
@@ -87,7 +87,7 @@ package com.sulake.habbo.catalog.vault
          }
       }
       
-      private function onIncomeRewardStatusMessageEvent(param1:class_578) : void
+      private function onIncomeRewardStatusMessageEvent(param1:IncomeRewardStatusMessageEvent) : void
       {
          var _loc2_:class_1556 = null;
          if(var_1631 && !var_1631.disposed)
@@ -97,7 +97,7 @@ package com.sulake.habbo.catalog.vault
          }
       }
       
-      private function onIncomeRewardClaimResponseMessageEvent(param1:class_564) : void
+      private function onIncomeRewardClaimResponseMessageEvent(param1:IncomeRewardClaimResponseMessageEvent) : void
       {
          var _loc2_:class_1275 = null;
          if(var_1631 && !var_1631.disposed)

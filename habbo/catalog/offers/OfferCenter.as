@@ -13,7 +13,7 @@ package com.sulake.habbo.catalog.offers
    import flash.events.TimerEvent;
    import flash.utils.Timer;
    import com.sulake.habbo.communication.messages.parser.notifications.class_1153;
-   import com.sulake.habbo.communication.messages.incoming.notifications.class_649;
+   import com.sulake.habbo.communication.messages.incoming.notifications.OfferRewardDeliveredMessageEvent;
    
    public class OfferCenter implements IOfferCenter, IDisposable
    {
@@ -43,7 +43,7 @@ package com.sulake.habbo.catalog.offers
       
       private var var_2551:Timer;
       
-      private var _offerRewardDeliveredMessageEvent:class_649;
+      private var _offerRewardDeliveredMessageEvent:OfferRewardDeliveredMessageEvent;
       
       public function OfferCenter(param1:IHabboWindowManager, param2:IAssetLibrary, param3:IHabboCatalog)
       {
@@ -51,7 +51,7 @@ package com.sulake.habbo.catalog.offers
          _windowManager = param1;
          _assets = param2;
          _catalog = param3;
-         _offerRewardDeliveredMessageEvent = new class_649(onOfferRewardDelivered);
+         _offerRewardDeliveredMessageEvent = new OfferRewardDeliveredMessageEvent(onOfferRewardDelivered);
          _catalog.connection.addMessageEvent(_offerRewardDeliveredMessageEvent);
          _providers = new Vector.<IOfferProvider>(0);
          _providers.push(new SupersonicProvider(this));
@@ -94,7 +94,7 @@ package com.sulake.habbo.catalog.offers
          return null;
       }
       
-      private function onOfferRewardDelivered(param1:class_649) : void
+      private function onOfferRewardDelivered(param1:OfferRewardDeliveredMessageEvent) : void
       {
          var _loc2_:class_1153 = param1.getParser();
          addReward(_loc2_.name,_loc2_.contentType,_loc2_.classId);

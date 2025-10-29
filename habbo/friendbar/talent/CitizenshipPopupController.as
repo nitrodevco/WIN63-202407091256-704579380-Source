@@ -8,7 +8,7 @@ package com.sulake.habbo.friendbar.talent
    import com.sulake.habbo.window.utils.IModalDialog;
    import flash.events.TimerEvent;
    import flash.utils.Timer;
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_510;
+   import com.sulake.habbo.communication.messages.incoming.room.engine.RoomEntryInfoMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.talent.class_1018;
    
    public class CitizenshipPopupController implements IDisposable
@@ -21,7 +21,7 @@ package com.sulake.habbo.friendbar.talent
       
       private var _disposed:Boolean;
       
-      private var var_3493:class_510;
+      private var var_3493:RoomEntryInfoMessageEvent;
       
       private var var_4318:Boolean;
       
@@ -29,7 +29,7 @@ package com.sulake.habbo.friendbar.talent
       {
          super();
          _habboTalent = param1;
-         var_3493 = new class_510(onRoomEnter);
+         var_3493 = new RoomEntryInfoMessageEvent(onRoomEnter);
          _habboTalent.communicationManager.addHabboConnectionMessageEvent(var_3493);
       }
       

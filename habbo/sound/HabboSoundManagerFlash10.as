@@ -30,7 +30,7 @@ package com.sulake.habbo.sound
    import com.sulake.habbo.communication.messages.outgoing.sound.class_700;
    import com.sulake.habbo.communication.messages.parser.preferences.class_1413;
    import com.sulake.habbo.communication.messages.outgoing.preferences.class_525;
-   import com.sulake.habbo.communication.messages.incoming.preferences.class_219;
+   import com.sulake.habbo.communication.messages.incoming.preferences.AccountPreferencesEvent;
    
    public class HabboSoundManagerFlash10 extends Component implements class_2240, IUpdateReceiver
    {
@@ -408,7 +408,7 @@ package com.sulake.habbo.sound
          var_2935 = new FurniSamplePlaybackManager(this,_roomEngine.events);
          _roomEngine.events.addEventListener("REPSE_PLAY_SOUND",onRoomEngineObjectPlaySound);
          _roomEngine.events.addEventListener("REPSE_PLAY_SOUND_AT_PITCH",onRoomEngineObjectPlaySound);
-         var_26.addMessageEvent(new class_219(onSoundSettingsEvent));
+         var_26.addMessageEvent(new AccountPreferencesEvent(onSoundSettingsEvent));
          var_26.send(new class_700());
       }
       
@@ -468,7 +468,7 @@ package com.sulake.habbo.sound
       
       private function onSoundSettingsEvent(param1:IMessageEvent) : void
       {
-         var _loc3_:class_219 = param1 as class_219;
+         var _loc3_:AccountPreferencesEvent = param1 as AccountPreferencesEvent;
          var _loc2_:class_1413 = _loc3_.getParser() as class_1413;
          var _loc4_:Number;
          if((_loc4_ = _loc2_.uiVolume) == 1)

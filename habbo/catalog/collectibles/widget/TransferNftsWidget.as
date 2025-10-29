@@ -15,8 +15,8 @@ package com.sulake.habbo.catalog.collectibles.widget
    import com.sulake.habbo.localization.IHabboLocalizationManager;
    import com.sulake.habbo.communication.messages.parser.collectibles.class_1233;
    import com.sulake.habbo.communication.messages.parser.collectibles.class_1322;
-   import com.sulake.habbo.communication.messages.incoming.collectibles.class_378;
-   import com.sulake.habbo.communication.messages.incoming.collectibles.class_883;
+   import com.sulake.habbo.communication.messages.incoming.collectibles.NftTransferFeeMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.collectibles.NftTransferAssetsResultMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.collectibles.class_215;
    import com.sulake.habbo.communication.messages.outgoing.collectibles.NftTransferAssetsMessageComposer;
    
@@ -84,15 +84,15 @@ package com.sulake.habbo.catalog.collectibles.widget
             return;
          }
          _messageEvents = new Vector.<IMessageEvent>(0);
-         _messageEvents.push(new class_378(onNftTransferFeeMessage));
-         _messageEvents.push(new class_883(onNftTransferResultMessage));
+         _messageEvents.push(new NftTransferFeeMessageEvent(onNftTransferFeeMessage));
+         _messageEvents.push(new NftTransferAssetsResultMessageEvent(onNftTransferResultMessage));
          for each(var _loc1_ in _messageEvents)
          {
             var_1754.addMessageEvent(_loc1_);
          }
       }
       
-      private function onNftTransferFeeMessage(param1:class_378) : void
+      private function onNftTransferFeeMessage(param1:NftTransferFeeMessageEvent) : void
       {
          var_3804 = false;
          var _loc2_:class_1233 = param1.getParser();
@@ -149,7 +149,7 @@ package com.sulake.habbo.catalog.collectibles.widget
          updateTransferButtonState();
       }
       
-      private function onNftTransferResultMessage(param1:class_883) : void
+      private function onNftTransferResultMessage(param1:NftTransferAssetsResultMessageEvent) : void
       {
          var _loc2_:class_1322 = param1.getParser();
          var_1754.notifications.addItem(_loc2_.success ? localization.getLocalization("collectibles.transfer.success") : String(localization.getLocalizationWithParams("collectibles.transfer.error","","id",_loc2_.resultCode)),"info","icon_curator_stamp_large_png");

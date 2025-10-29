@@ -7,9 +7,9 @@ package com.sulake.habbo.session.handler
    import com.sulake.habbo.communication.messages.parser.poll.class_1276;
    import com.sulake.habbo.communication.messages.parser.poll.class_1364;
    import com.sulake.habbo.communication.messages.parser.poll.class_1534;
-   import com.sulake.habbo.communication.messages.incoming.poll.class_277;
-   import com.sulake.habbo.communication.messages.incoming.poll.class_507;
-   import com.sulake.habbo.communication.messages.incoming.poll.class_719;
+   import com.sulake.habbo.communication.messages.incoming.poll.QuestionEvent;
+   import com.sulake.habbo.communication.messages.incoming.poll.QuestionFinishedEvent;
+   import com.sulake.habbo.communication.messages.incoming.poll.QuestionAnsweredEvent;
    
    public class WordQuizHandler extends BaseHandler
    {
@@ -22,12 +22,12 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         param1.addMessageEvent(new class_277(onQuestionStatus));
-         param1.addMessageEvent(new class_719(onQuestionAnsweredEvent));
-         param1.addMessageEvent(new class_507(onQuestionFinishedEvent));
+         param1.addMessageEvent(new QuestionEvent(onQuestionStatus));
+         param1.addMessageEvent(new QuestionAnsweredEvent(onQuestionAnsweredEvent));
+         param1.addMessageEvent(new QuestionFinishedEvent(onQuestionFinishedEvent));
       }
       
-      private function onQuestionStatus(param1:class_277) : void
+      private function onQuestionStatus(param1:QuestionEvent) : void
       {
          var _loc4_:RoomSessionWordQuizEvent = null;
          if(!param1)
@@ -48,7 +48,7 @@ package com.sulake.habbo.session.handler
          listener.events.dispatchEvent(_loc4_);
       }
       
-      private function onQuestionAnsweredEvent(param1:class_719) : void
+      private function onQuestionAnsweredEvent(param1:QuestionAnsweredEvent) : void
       {
          var _loc4_:RoomSessionWordQuizEvent = null;
          if(!param1)
@@ -67,7 +67,7 @@ package com.sulake.habbo.session.handler
          listener.events.dispatchEvent(_loc4_);
       }
       
-      private function onQuestionFinishedEvent(param1:class_507) : void
+      private function onQuestionFinishedEvent(param1:QuestionFinishedEvent) : void
       {
          var _loc4_:RoomSessionWordQuizEvent = null;
          if(!param1)

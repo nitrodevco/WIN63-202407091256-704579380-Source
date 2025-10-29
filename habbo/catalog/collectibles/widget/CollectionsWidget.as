@@ -19,9 +19,9 @@ package com.sulake.habbo.catalog.collectibles.widget
    import com.sulake.habbo.communication.messages.parser.collectibles.class_1218;
    import com.sulake.habbo.communication.messages.parser.collectibles.class_1521;
    import com.sulake.habbo.communication.messages.parser.collectibles.class_1692;
-   import com.sulake.habbo.communication.messages.incoming.collectibles.class_444;
-   import com.sulake.habbo.communication.messages.incoming.collectibles.class_699;
-   import com.sulake.habbo.communication.messages.incoming.collectibles.class_767;
+   import com.sulake.habbo.communication.messages.incoming.collectibles.NftCollectionsMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.collectibles.NftRewardItemClaimResultMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.collectibles.NftBonusItemClaimResultMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.collectibles.class_969;
    
    public class CollectionsWidget implements IUpdateReceiver
@@ -119,9 +119,9 @@ package com.sulake.habbo.catalog.collectibles.widget
       private function addMessageEvents() : void
       {
          _messageEvents = new Vector.<IMessageEvent>(0);
-         _messageEvents.push(new class_444(onNftCollectionsMessage));
-         _messageEvents.push(new class_767(onBonusClaimResult));
-         _messageEvents.push(new class_699(onRewardClaimResult));
+         _messageEvents.push(new NftCollectionsMessageEvent(onNftCollectionsMessage));
+         _messageEvents.push(new NftBonusItemClaimResultMessageEvent(onBonusClaimResult));
+         _messageEvents.push(new NftRewardItemClaimResultMessageEvent(onRewardClaimResult));
          for each(var _loc1_ in _messageEvents)
          {
             var_1754.addMessageEvent(_loc1_);
@@ -179,7 +179,7 @@ package com.sulake.habbo.catalog.collectibles.widget
          }
       }
       
-      private function onNftCollectionsMessage(param1:class_444) : void
+      private function onNftCollectionsMessage(param1:NftCollectionsMessageEvent) : void
       {
          var _loc2_:CollectionsNavigationNodeRenderer = null;
          if(!var_3841 || _navigationList.numListItems != 0)
@@ -212,7 +212,7 @@ package com.sulake.habbo.catalog.collectibles.widget
          controller.catalog.events.dispatchEvent(new CatalogEvent("COLLECTIBLE_CLAIM_WAIT"));
       }
       
-      private function onBonusClaimResult(param1:class_767) : void
+      private function onBonusClaimResult(param1:NftBonusItemClaimResultMessageEvent) : void
       {
          var _loc2_:class_1218 = param1.getParser();
          sendClaimNotification(_loc2_.success);
@@ -232,7 +232,7 @@ package com.sulake.habbo.catalog.collectibles.widget
          }
       }
       
-      private function onRewardClaimResult(param1:class_699) : void
+      private function onRewardClaimResult(param1:NftRewardItemClaimResultMessageEvent) : void
       {
          var _loc2_:class_1521 = param1.getParser();
          sendClaimNotification(_loc2_.success);

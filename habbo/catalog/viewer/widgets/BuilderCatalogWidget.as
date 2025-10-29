@@ -10,7 +10,7 @@ package com.sulake.habbo.catalog.viewer.widgets
    import com.sulake.habbo.catalog.class_3377;
    import com.sulake.habbo.catalog.viewer.widgets.events.CatalogWidgetRoomChangedEvent;
    import com.sulake.habbo.catalog.viewer.widgets.events.SelectProductEvent;
-   import com.sulake.habbo.communication.messages.incoming.room.permissions.class_500;
+   import com.sulake.habbo.communication.messages.incoming.room.permissions.YouAreOwnerMessageEvent;
    
    public class BuilderCatalogWidget extends CatalogWidget implements class_3558, IDisposable
    {
@@ -20,13 +20,13 @@ package com.sulake.habbo.catalog.viewer.widgets
       
       private var _offer:class_3377;
       
-      private var var_3440:class_500;
+      private var var_3440:YouAreOwnerMessageEvent;
       
       public function BuilderCatalogWidget(param1:IWindowContainer, param2:HabboCatalog)
       {
          super(param1);
          _catalog = param2;
-         var_3440 = new class_500(onYouAreOwner);
+         var_3440 = new YouAreOwnerMessageEvent(onYouAreOwner);
          _catalog.connection.addMessageEvent(var_3440);
       }
       
@@ -70,7 +70,7 @@ package com.sulake.habbo.catalog.viewer.widgets
          updateButtons(false);
       }
       
-      private function onYouAreOwner(param1:class_500) : void
+      private function onYouAreOwner(param1:YouAreOwnerMessageEvent) : void
       {
          if(_catalog.catalogType != "BUILDERS_CLUB")
          {

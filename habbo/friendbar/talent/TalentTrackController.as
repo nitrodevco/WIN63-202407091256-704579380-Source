@@ -27,15 +27,15 @@ package com.sulake.habbo.friendbar.talent
    import com.sulake.habbo.communication.messages.parser.talent.class_1771;
    import com.sulake.habbo.communication.messages.parser.talent.class_1783;
    import com.sulake.habbo.communication.messages.incoming.users.class_1199;
-   import com.sulake.habbo.communication.messages.incoming.users.class_547;
-   import com.sulake.habbo.communication.messages.incoming.users.class_693;
-   import com.sulake.habbo.communication.messages.incoming.users.class_835;
+   import com.sulake.habbo.communication.messages.incoming.users.EmailStatusResultEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.ChangeEmailResultEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.HabboGroupDetailsMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.users.class_1056;
    import com.sulake.habbo.communication.messages.outgoing.users.class_201;
    import com.sulake.habbo.communication.messages.outgoing.users.class_607;
    import com.sulake.habbo.communication.messages.outgoing.talent.class_1018;
    import com.sulake.habbo.communication.messages.outgoing.talent.class_639;
-   import com.sulake.habbo.communication.messages.incoming.talent.class_559;
+   import com.sulake.habbo.communication.messages.incoming.talent.TalentTrackMessageEvent;
    
    public class TalentTrackController implements IDisposable
    {
@@ -132,13 +132,13 @@ package com.sulake.habbo.friendbar.talent
       
       public function initialize() : void
       {
-         _habboTalent.communicationManager.addHabboConnectionMessageEvent(new class_559(onTalentTrack));
-         _habboTalent.communicationManager.addHabboConnectionMessageEvent(new class_693(onChangeEmailResult));
-         _habboTalent.communicationManager.addHabboConnectionMessageEvent(new class_835(onGroupDetails));
-         _habboTalent.communicationManager.addHabboConnectionMessageEvent(new class_547(onEmailStatus));
+         _habboTalent.communicationManager.addHabboConnectionMessageEvent(new TalentTrackMessageEvent(onTalentTrack));
+         _habboTalent.communicationManager.addHabboConnectionMessageEvent(new ChangeEmailResultEvent(onChangeEmailResult));
+         _habboTalent.communicationManager.addHabboConnectionMessageEvent(new HabboGroupDetailsMessageEvent(onGroupDetails));
+         _habboTalent.communicationManager.addHabboConnectionMessageEvent(new EmailStatusResultEvent(onEmailStatus));
       }
       
-      private function onEmailStatus(param1:class_547) : void
+      private function onEmailStatus(param1:EmailStatusResultEvent) : void
       {
          var _loc2_:IWindowContainer = getEmailContainer();
          if(_loc2_ != null)
@@ -149,19 +149,19 @@ package com.sulake.habbo.friendbar.talent
          }
       }
       
-      private function onChangeEmailResult(param1:class_693) : void
+      private function onChangeEmailResult(param1:ChangeEmailResultEvent) : void
       {
          setEmailErrorStatus(true,param1.getParser().result);
       }
       
-      private function onTalentTrack(param1:class_559) : void
+      private function onTalentTrack(param1:TalentTrackMessageEvent) : void
       {
          var _loc2_:class_1193 = param1.getParser();
          _talentTrack = _loc2_.getTalentTrack();
          createWindow();
       }
       
-      private function onGroupDetails(param1:class_835) : void
+      private function onGroupDetails(param1:HabboGroupDetailsMessageEvent) : void
       {
          var _loc2_:class_1199 = param1.data;
          if(_loc2_.groupId == var_3940)

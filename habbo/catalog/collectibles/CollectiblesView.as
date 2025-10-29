@@ -21,8 +21,8 @@ package com.sulake.habbo.catalog.collectibles
    import com.sulake.habbo.window.IHabboWindowManager;
    import com.sulake.habbo.communication.messages.parser.collectibles.class_1278;
    import com.sulake.habbo.communication.messages.parser.collectibles.class_1484;
-   import com.sulake.habbo.communication.messages.incoming.collectibles.class_1074;
-   import com.sulake.habbo.communication.messages.incoming.collectibles.class_981;
+   import com.sulake.habbo.communication.messages.incoming.collectibles.NftCollectionsScoreMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.collectibles.CollectibleWalletAddressesMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.collectibles.class_405;
    import com.sulake.habbo.communication.messages.outgoing.collectibles.class_643;
    
@@ -163,8 +163,8 @@ package com.sulake.habbo.catalog.collectibles
             return;
          }
          _messageEvents = new Vector.<IMessageEvent>(0);
-         _messageEvents.push(new class_981(onCollectableWalletAddressMessage));
-         _messageEvents.push(new class_1074(onCollectionsScoreMessage));
+         _messageEvents.push(new CollectibleWalletAddressesMessageEvent(onCollectableWalletAddressMessage));
+         _messageEvents.push(new NftCollectionsScoreMessageEvent(onCollectionsScoreMessage));
          for each(var _loc1_ in _messageEvents)
          {
             var_319.addMessageEvent(_loc1_);
@@ -193,7 +193,7 @@ package com.sulake.habbo.catalog.collectibles
          }
       }
       
-      private function onCollectionsScoreMessage(param1:class_1074) : void
+      private function onCollectionsScoreMessage(param1:NftCollectionsScoreMessageEvent) : void
       {
          var _loc3_:* = 0;
          var _loc2_:class_1484 = param1.getParser();
@@ -222,7 +222,7 @@ package com.sulake.habbo.catalog.collectibles
          collectorLevelBg2.color = _loc3_;
       }
       
-      private function onCollectableWalletAddressMessage(param1:class_981) : void
+      private function onCollectableWalletAddressMessage(param1:CollectibleWalletAddressesMessageEvent) : void
       {
          var_3829 = false;
          var _loc2_:class_1278 = param1.getParser();

@@ -22,8 +22,8 @@ package com.sulake.habbo.friendbar.onBoardingHc
    import onBoardingHcUi.WaitIndicator;
    import com.sulake.habbo.communication.messages.parser.avatar.class_1162;
    import com.sulake.habbo.communication.messages.parser.avatar.class_1164;
-   import com.sulake.habbo.communication.messages.incoming.avatar.class_341;
-   import com.sulake.habbo.communication.messages.incoming.avatar.class_725;
+   import com.sulake.habbo.communication.messages.incoming.avatar.ChangeUserNameResultMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.avatar.CheckUserNameResultMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.avatar.class_242;
    import com.sulake.habbo.communication.messages.outgoing.avatar.class_390;
    
@@ -89,13 +89,13 @@ package com.sulake.habbo.friendbar.onBoardingHc
          _container = param2;
          _dialogWidth = param3;
          init();
-         var_4841 = param1.communicationManager.addHabboConnectionMessageEvent(new class_341(onChangeUserNameResult));
-         var_4521 = param1.communicationManager.addHabboConnectionMessageEvent(new class_725(onCheckUserNameResult));
+         var_4841 = param1.communicationManager.addHabboConnectionMessageEvent(new ChangeUserNameResultMessageEvent(onChangeUserNameResult));
+         var_4521 = param1.communicationManager.addHabboConnectionMessageEvent(new CheckUserNameResultMessageEvent(onCheckUserNameResult));
          var_2200 = new Timer(500,1);
          var_2200.addEventListener("timer",onIdleTimer);
       }
       
-      private function onChangeUserNameResult(param1:class_341) : void
+      private function onChangeUserNameResult(param1:ChangeUserNameResultMessageEvent) : void
       {
          if(param1 == null)
          {
@@ -109,7 +109,7 @@ package com.sulake.habbo.friendbar.onBoardingHc
          claimNameResponse(_loc2_.resultCode,_loc2_.name,_loc2_.nameSuggestions);
       }
       
-      private function onCheckUserNameResult(param1:class_725) : void
+      private function onCheckUserNameResult(param1:CheckUserNameResultMessageEvent) : void
       {
          if(param1 == null)
          {
@@ -276,22 +276,22 @@ package com.sulake.habbo.friendbar.onBoardingHc
          nameIsCorrect = false;
          switch(param1)
          {
-            case class_341.var_1586:
+            case ChangeUserNameResultMessageEvent.var_1586:
                nameIsCorrect = true;
                _context.nameChangeCompleted();
                _context.editorFinished();
                break;
-            case class_341.var_1596:
+            case ChangeUserNameResultMessageEvent.var_1596:
                showErrorMessage(_context.getLocalization("rename.error.too_long","OOPS! YOUR NAME\'S TOO LONG TO REMEMBER"));
                break;
-            case class_341.var_1592:
+            case ChangeUserNameResultMessageEvent.var_1592:
                showErrorMessage(_context.getLocalization("rename.error.too_short","OOPS! YOUR NAME\'S TOO SHORT TO PRONOUNCE."));
                break;
-            case class_341.var_1604:
+            case ChangeUserNameResultMessageEvent.var_1604:
                showErrorMessage(_context.getLocalization("rename.error.words","OOPS! THINK HARDER - THAT\'S NOT A VERY NICE NAME."));
                break;
-            case class_341.var_1590:
-            case class_341.var_1617:
+            case ChangeUserNameResultMessageEvent.var_1590:
+            case ChangeUserNameResultMessageEvent.var_1617:
                showErrorMessage(_context.getLocalization("rename.error.taken","OOPS! SOMEONE\'S ALREADY USING THAT NAME."));
          }
       }
@@ -323,20 +323,20 @@ package com.sulake.habbo.friendbar.onBoardingHc
          nameIsCorrect = false;
          switch(param1)
          {
-            case class_341.var_1586:
+            case ChangeUserNameResultMessageEvent.var_1586:
                nameIsCorrect = true;
                break;
-            case class_341.var_1596:
+            case ChangeUserNameResultMessageEvent.var_1596:
                showErrorMessage(_context.getLocalization("rename.error.too_long","OOPS! YOUR NAME\'S TOO LONG TO REMEMBER"));
                break;
-            case class_341.var_1592:
+            case ChangeUserNameResultMessageEvent.var_1592:
                showErrorMessage(_context.getLocalization("rename.error.too_short","OOPS! YOUR NAME\'S TOO SHORT TO PRONOUNCE."));
                break;
-            case class_341.var_1604:
+            case ChangeUserNameResultMessageEvent.var_1604:
                showErrorMessage(_context.getLocalization("rename.error.words","OOPS! THINK HARDER - THAT\'S NOT A VERY NICE NAME."));
                break;
-            case class_341.var_1590:
-            case class_341.var_1617:
+            case ChangeUserNameResultMessageEvent.var_1590:
+            case ChangeUserNameResultMessageEvent.var_1617:
                showErrorMessage(_context.getLocalization("rename.error.taken","OOPS! SOMEONE\'S ALREADY USING THAT NAME."));
          }
          if(var_1805 != null)

@@ -87,8 +87,8 @@ package com.sulake.habbo.ui
    import flash.utils.getTimer;
    import com.sulake.habbo.communication.messages.parser.room.bots.class_1442;
    import com.sulake.habbo.communication.messages.parser.room.bots.class_1493;
-   import com.sulake.habbo.communication.messages.incoming.room.bots.class_181;
-   import com.sulake.habbo.communication.messages.incoming.room.bots.class_612;
+   import com.sulake.habbo.communication.messages.incoming.room.bots.BotForceOpenContextMenuEvent;
+   import com.sulake.habbo.communication.messages.incoming.room.bots.BotSkillListUpdateEvent;
    
    public class RoomDesktop implements IRoomDesktop, IRoomWidgetMessageListener, IRoomWidgetHandlerContainer
    {
@@ -216,9 +216,9 @@ package com.sulake.habbo.ui
          var_52 = param1;
          _assets = param2;
          var_26 = param3;
-         var_2791 = new class_612(onBotSkillListUpdateEvent);
+         var_2791 = new BotSkillListUpdateEvent(onBotSkillListUpdateEvent);
          var_26.addMessageEvent(var_2791);
-         var_2922 = new class_181(onBotForceOpenContextMenuEvent);
+         var_2922 = new BotForceOpenContextMenuEvent(onBotForceOpenContextMenuEvent);
          var_26.addMessageEvent(var_2922);
          var_1643 = new Map();
          var_2739 = new Map();
@@ -656,7 +656,7 @@ package com.sulake.habbo.ui
          var_2577 = null;
       }
       
-      private function onBotSkillListUpdateEvent(param1:class_612) : void
+      private function onBotSkillListUpdateEvent(param1:BotSkillListUpdateEvent) : void
       {
          var _loc2_:class_3490 = null;
          var _loc3_:class_1442 = param1.getParser();
@@ -668,7 +668,7 @@ package com.sulake.habbo.ui
          events.dispatchEvent(new RoomWidgetRentableBotSkillListUpdateEvent(_loc3_.botId,_loc3_.skillList));
       }
       
-      private function onBotForceOpenContextMenuEvent(param1:class_181) : void
+      private function onBotForceOpenContextMenuEvent(param1:BotForceOpenContextMenuEvent) : void
       {
          var _loc2_:class_1493 = param1.getParser();
          events.dispatchEvent(new RoomWidgetRentableBotForceOpenContextMenuEvent(_loc2_.botId));

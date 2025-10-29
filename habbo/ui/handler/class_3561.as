@@ -15,9 +15,9 @@ package com.sulake.habbo.ui.handler
    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_154;
    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_443;
    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_598;
-   import com.sulake.habbo.communication.messages.incoming.room.furniture.class_1096;
-   import com.sulake.habbo.communication.messages.incoming.room.furniture.class_462;
-   import com.sulake.habbo.communication.messages.incoming.room.furniture.class_919;
+   import com.sulake.habbo.communication.messages.incoming.room.furniture.YoutubeControlVideoMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.room.furniture.YoutubeDisplayVideoMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.room.furniture.YoutubeDisplayPlaylistsMessageEvent;
    
    public class class_3561 implements IRoomWidgetHandler
    {
@@ -50,9 +50,9 @@ package com.sulake.habbo.ui.handler
       public function set container(param1:IRoomWidgetHandlerContainer) : void
       {
          _container = param1;
-         addMessageEvent(new class_462(onVideo));
-         addMessageEvent(new class_919(onPlaylists));
-         addMessageEvent(new class_1096(onControlVideo));
+         addMessageEvent(new YoutubeDisplayVideoMessageEvent(onVideo));
+         addMessageEvent(new YoutubeDisplayPlaylistsMessageEvent(onPlaylists));
+         addMessageEvent(new YoutubeControlVideoMessageEvent(onControlVideo));
       }
       
       private function addMessageEvent(param1:IMessageEvent) : void
@@ -74,19 +74,19 @@ package com.sulake.habbo.ui.handler
          }
       }
       
-      private function onVideo(param1:class_462) : void
+      private function onVideo(param1:YoutubeDisplayVideoMessageEvent) : void
       {
          var _loc2_:class_1314 = param1.getParser();
          var_1629.showVideo(_loc2_.furniId,_loc2_.videoId,_loc2_.startAtSeconds,_loc2_.endAtSeconds,_loc2_.state);
       }
       
-      private function onControlVideo(param1:class_1096) : void
+      private function onControlVideo(param1:YoutubeControlVideoMessageEvent) : void
       {
          var _loc2_:class_1596 = param1.getParser();
          var_1629.controlVideo(_loc2_.furniId,_loc2_.commandId);
       }
       
-      private function onPlaylists(param1:class_919) : void
+      private function onPlaylists(param1:YoutubeDisplayPlaylistsMessageEvent) : void
       {
          var _loc2_:class_1383 = param1.getParser();
          var_1629.populatePlaylists(_loc2_.furniId,_loc2_.playlists,_loc2_.selectedPlaylistId);

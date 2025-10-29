@@ -15,7 +15,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
    import com.sulake.habbo.communication.messages.outgoing.quest.class_429;
    import com.sulake.habbo.communication.messages.outgoing.quest.class_823;
    import com.sulake.habbo.communication.messages.incoming.quest.class_1715;
-   import com.sulake.habbo.communication.messages.incoming.quest.class_973;
+   import com.sulake.habbo.communication.messages.incoming.quest.QuestDailyMessageEvent;
    
    public class class_3891 implements IElementHandler, class_3863, IDisposable
    {
@@ -89,7 +89,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
          {
             var_687 = param3[6];
          }
-         param1.communicationManager.addHabboConnectionMessageEvent(new class_973(onDailyQuest));
+         param1.communicationManager.addHabboConnectionMessageEvent(new QuestDailyMessageEvent(onDailyQuest));
          _container = param2 as IWindowContainer;
          _container.findChildByName("accept_button").procedure = onAcceptButton;
          _container.findChildByName("go_button").procedure = onGoButton;

@@ -8,7 +8,7 @@ package com.sulake.habbo.catalog.club
    import com.sulake.habbo.communication.messages.parser.catalog.class_1307;
    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.catalog.class_1646;
-   import com.sulake.habbo.communication.messages.incoming.catalog.class_786;
+   import com.sulake.habbo.communication.messages.incoming.catalog.HabboClubExtendOfferMessageEvent;
    
    public class ClubExtendController
    {
@@ -40,7 +40,7 @@ package com.sulake.habbo.catalog.club
          _disposed = true;
       }
       
-      public function onOffer(param1:class_786) : void
+      public function onOffer(param1:HabboClubExtendOfferMessageEvent) : void
       {
          if(_disposed)
          {

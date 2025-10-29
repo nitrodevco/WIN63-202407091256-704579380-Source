@@ -1,11 +1,11 @@
 package com.sulake.habbo.friendbar.landingview.widget.elements
 {
    import com.sulake.core.window.IWindow;
-   import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.class_481;
+   import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredRewardResultMessageEvent;
    import com.sulake.habbo.friendbar.landingview.HabboLandingView;
    import com.sulake.habbo.friendbar.landingview.interfaces.elements.class_3863;
    import com.sulake.habbo.friendbar.landingview.widget.GenericWidget;
-   import com.sulake.habbo.communication.messages.incoming.inventory.badges.class_683;
+   import com.sulake.habbo.communication.messages.incoming.inventory.badges.IsBadgeRequestFulfilledEvent;
    import com.sulake.habbo.communication.messages.outgoing.inventory.badges.class_441;
    
    public class class_3888 extends class_3879 implements class_3863
@@ -31,8 +31,8 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
          {
             var_4485 = param3[5] == "true";
          }
-         param1.communicationManager.addHabboConnectionMessageEvent(new class_683(onInfo));
-         param1.communicationManager.addHabboConnectionMessageEvent(new class_481(onReward));
+         param1.communicationManager.addHabboConnectionMessageEvent(new IsBadgeRequestFulfilledEvent(onInfo));
+         param1.communicationManager.addHabboConnectionMessageEvent(new WiredRewardResultMessageEvent(onReward));
       }
       
       override protected function onClick() : void
@@ -52,7 +52,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
          return var_4485;
       }
       
-      private function onInfo(param1:class_683) : void
+      private function onInfo(param1:IsBadgeRequestFulfilledEvent) : void
       {
          if(param1.getParser().requestCode == var_3083)
          {
@@ -60,7 +60,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
          }
       }
       
-      private function onReward(param1:class_481) : void
+      private function onReward(param1:WiredRewardResultMessageEvent) : void
       {
          if(window)
          {

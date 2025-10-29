@@ -16,7 +16,7 @@ package com.sulake.habbo.friendbar.landingview.widget
    import com.sulake.habbo.communication.messages.parser.quest.class_1143;
    import com.sulake.habbo.communication.messages.outgoing.quest.GetCommunityGoalProgressMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.quest.class_1678;
-   import com.sulake.habbo.communication.messages.incoming.quest.class_538;
+   import com.sulake.habbo.communication.messages.incoming.quest.CommunityGoalProgressMessageEvent;
    
    public class CommunityGoalWidget implements IUpdateReceiver, ILandingViewWidget, ISettingsAwareWidget
    {
@@ -79,7 +79,7 @@ package com.sulake.habbo.friendbar.landingview.widget
       public function initialize() : void
       {
          var _loc1_:IWindow = null;
-         _landingView.communicationManager.addHabboConnectionMessageEvent(new class_538(onCommunityGoalProgress));
+         _landingView.communicationManager.addHabboConnectionMessageEvent(new CommunityGoalProgressMessageEvent(onCommunityGoalProgress));
          var_1731 = IWindowContainer(var_3380 ? _landingView.getXmlWindow("community_goal_voting") : _landingView.getXmlWindow("community_goal"));
          var_4369 = IStaticBitmapWrapperWindow(var_1731.findChildByName("meter_needle"));
          if(!var_3380)

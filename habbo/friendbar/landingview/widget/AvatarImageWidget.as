@@ -7,8 +7,8 @@ package com.sulake.habbo.friendbar.landingview.widget
    import com.sulake.habbo.friendbar.landingview.HabboLandingView;
    import com.sulake.habbo.friendbar.landingview.interfaces.ILandingViewWidget;
    import com.sulake.habbo.window.widgets.IAvatarImageWidget;
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_337;
-   import com.sulake.habbo.communication.messages.incoming.handshake.class_556;
+   import com.sulake.habbo.communication.messages.incoming.room.engine.UserChangeMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.handshake.UserObjectEvent;
    
    public class AvatarImageWidget implements ILandingViewWidget
    {
@@ -18,16 +18,16 @@ package com.sulake.habbo.friendbar.landingview.widget
       
       private var var_2991:IWidgetWindow;
       
-      private var var_3037:class_556;
+      private var var_3037:UserObjectEvent;
       
-      private var var_3023:class_337;
+      private var var_3023:UserChangeMessageEvent;
       
       public function AvatarImageWidget(param1:HabboLandingView)
       {
          super();
          _landingView = param1;
-         var_3037 = new class_556(onUserObject);
-         var_3023 = new class_337(onUserChange);
+         var_3037 = new UserObjectEvent(onUserObject);
+         var_3023 = new UserChangeMessageEvent(onUserChange);
          _landingView.communicationManager.addHabboConnectionMessageEvent(var_3037);
          _landingView.communicationManager.addHabboConnectionMessageEvent(var_3023);
          _landingView.avatarEditor.events.addEventListener("AVATAR_FIGURE_UPDATED",onAvatarFigureUpdated);
@@ -73,14 +73,14 @@ package com.sulake.habbo.friendbar.landingview.widget
          return _landingView == null;
       }
       
-      private function onUserObject(param1:class_556) : void
+      private function onUserObject(param1:UserObjectEvent) : void
       {
          refreshAvatarInfo(param1.getParser().figure);
       }
       
       private function onUserChange(param1:IMessageEvent) : void
       {
-         var _loc2_:class_337 = param1 as class_337;
+         var _loc2_:UserChangeMessageEvent = param1 as UserChangeMessageEvent;
          if(_loc2_ == null)
          {
             return;

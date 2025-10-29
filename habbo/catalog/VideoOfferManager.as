@@ -4,7 +4,7 @@ package com.sulake.habbo.catalog
    import com.sulake.habbo.catalog.enum.VideoOfferTypeEnum;
    import flash.external.ExternalInterface;
    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
-   import com.sulake.habbo.communication.messages.incoming.handshake.class_143;
+   import com.sulake.habbo.communication.messages.incoming.handshake.UserRightsMessageEvent;
    
    public class VideoOfferManager implements IVideoOfferManager, IDisposable
    {
@@ -46,7 +46,7 @@ package com.sulake.habbo.catalog
          _catalog = param1;
          _launchers = new Vector.<IVideoOfferLauncher>();
          var_593 = false;
-         _catalog.connection.addMessageEvent(new class_143(onUserRights));
+         _catalog.connection.addMessageEvent(new UserRightsMessageEvent(onUserRights));
          addCallbacks();
       }
       
@@ -92,7 +92,7 @@ package com.sulake.habbo.catalog
          }
       }
       
-      private function onUserRights(param1:class_143) : void
+      private function onUserRights(param1:UserRightsMessageEvent) : void
       {
          if(param1.securityLevel >= 1)
          {

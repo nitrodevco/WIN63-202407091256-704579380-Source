@@ -19,8 +19,8 @@ package com.sulake.habbo.ui.handler
    import com.sulake.habbo.communication.messages.outgoing.sound.AddJukeboxDiskComposer;
    import com.sulake.habbo.communication.messages.outgoing.sound.class_934;
    import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListEvent;
-   import com.sulake.habbo.communication.messages.incoming.inventory.furni.class_379;
-   import com.sulake.habbo.communication.messages.incoming.inventory.furni.class_446;
+   import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListAddOrUpdateEvent;
+   import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListRemoveEvent;
    
    public class PlayListEditorWidgetHandler implements IRoomWidgetHandler
    {
@@ -70,8 +70,8 @@ package com.sulake.habbo.ui.handler
       public function set connection(param1:IConnection) : void
       {
          var_3587 = new FurniListEvent(onFurniListUpdated);
-         var_4078 = new class_446(onFurniListUpdated);
-         var_2663 = new class_379(onFurniListUpdated);
+         var_4078 = new FurniListRemoveEvent(onFurniListUpdated);
+         var_2663 = new FurniListAddOrUpdateEvent(onFurniListUpdated);
          var_26 = param1;
          var_26.addMessageEvent(var_3587);
          var_26.addMessageEvent(var_4078);

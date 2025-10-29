@@ -16,9 +16,9 @@ package com.sulake.habbo.help
    import com.sulake.habbo.help.cfh.registry.user.UserRegistryItem;
    import com.sulake.habbo.window.widgets.IIlluminaInputWidget;
    import com.sulake.habbo.window.widgets.IAvatarImageWidget;
-   import com.sulake.habbo.communication.messages.incoming.help.class_1080;
-   import com.sulake.habbo.communication.messages.incoming.help.class_653;
-   import com.sulake.habbo.communication.messages.incoming.help.class_808;
+   import com.sulake.habbo.communication.messages.incoming.help.CallForHelpReplyMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.help.IssueCloseNotificationMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.help.CallForHelpResultMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromSelfieMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.help.class_300;
    import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpMessageComposer;
@@ -78,9 +78,9 @@ package com.sulake.habbo.help
          super();
          _habboHelp = param1;
          var_1964 = new ChatReportController(_habboHelp,onChatReportEvent);
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_808(onCallForHelpResult));
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_653(onIssueClose));
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_1080(onCallForHelpReply));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new CallForHelpResultMessageEvent(onCallForHelpResult));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new IssueCloseNotificationMessageEvent(onIssueClose));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new CallForHelpReplyMessageEvent(onCallForHelpReply));
       }
       
       private static function getCloseReasonKey(param1:int) : String
@@ -659,13 +659,13 @@ package com.sulake.habbo.help
       
       private function onCallForHelpReply(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1249 = class_1080(param1).getParser();
+         var _loc2_:class_1249 = CallForHelpReplyMessageEvent(param1).getParser();
          _habboHelp.windowManager.alert("${help.cfh.reply.title}",_loc2_.message,0,null);
       }
       
       private function onCallForHelpResult(param1:IMessageEvent) : void
       {
-         var _loc3_:class_1346 = class_808(param1).getParser();
+         var _loc3_:class_1346 = CallForHelpResultMessageEvent(param1).getParser();
          var _loc4_:int = _loc3_.resultType;
          var _loc2_:String = _loc3_.messageText;
          switch(_loc4_ - 1)
@@ -685,7 +685,7 @@ package com.sulake.habbo.help
          }
       }
       
-      private function onIssueClose(param1:class_653) : void
+      private function onIssueClose(param1:IssueCloseNotificationMessageEvent) : void
       {
          var _loc3_:class_1478 = param1.getParser();
          var _loc2_:String = _loc3_.messageText;

@@ -11,8 +11,8 @@ package com.sulake.habbo.help
    import com.sulake.habbo.communication.messages.parser.help.class_1240;
    import com.sulake.habbo.communication.messages.parser.help.class_1244;
    import com.sulake.habbo.window.utils.IModalDialog;
-   import com.sulake.habbo.communication.messages.incoming.help.class_811;
-   import com.sulake.habbo.communication.messages.incoming.help.class_968;
+   import com.sulake.habbo.communication.messages.incoming.help.QuizDataMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.help.QuizResultsMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.help.class_1046;
    import com.sulake.habbo.communication.messages.outgoing.help.class_279;
    
@@ -66,8 +66,8 @@ package com.sulake.habbo.help
       {
          super();
          _habboHelp = param1;
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_811(onQuizData));
-         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new class_968(onQuizResults));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new QuizDataMessageEvent(onQuizData));
+         _habboHelp.communicationManager.addHabboConnectionMessageEvent(new QuizResultsMessageEvent(onQuizResults));
       }
       
       public function dispose() : void
@@ -107,7 +107,7 @@ package com.sulake.habbo.help
          _habboHelp.sendMessage(new class_1046("SafetyQuiz1"));
       }
       
-      private function onQuizData(param1:class_811) : void
+      private function onQuizData(param1:QuizDataMessageEvent) : void
       {
          var _loc2_:class_1240 = param1.getParser();
          _habboHelp.closeHabboWay();
@@ -115,7 +115,7 @@ package com.sulake.habbo.help
          showWindow(_loc2_.quizCode,_loc2_.questionIds);
       }
       
-      private function onQuizResults(param1:class_968) : void
+      private function onQuizResults(param1:QuizResultsMessageEvent) : void
       {
          var _loc2_:class_1244 = param1.getParser();
          _questionIdsForWrongAnswers = _loc2_.questionIdsForWrongAnswers;

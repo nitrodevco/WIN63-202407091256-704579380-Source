@@ -33,8 +33,8 @@ package com.sulake.habbo.friendlist {
     import com.sulake.habbo.communication.messages.incoming.friendlist.MessengerInitEvent
     import com.sulake.habbo.communication.messages.incoming.friendlist.NewFriendRequestEvent
     import com.sulake.habbo.communication.messages.incoming.friendlist.RoomInviteErrorEvent
-    import com.sulake.habbo.communication.messages.incoming.handshake.class_143
-    import com.sulake.habbo.communication.messages.incoming.handshake.class_556
+    import com.sulake.habbo.communication.messages.incoming.handshake.UserRightsMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.handshake.UserObjectEvent
     import com.sulake.habbo.communication.messages.outgoing.friendlist.FriendListUpdateMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.MessengerInitMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.SetRelationshipStatusMessageComposer
@@ -148,7 +148,7 @@ package com.sulake.habbo.friendlist {
         }
 
         override protected function initComponent(): void {
-            _communication.addHabboConnectionMessageEvent(new class_556(onUserObject));
+            _communication.addHabboConnectionMessageEvent(new UserObjectEvent(onUserObject));
             _communication.addHabboConnectionMessageEvent(new MessengerInitEvent(onMessengerInit));
             _communication.addHabboConnectionMessageEvent(new FriendListFragmentMessageEvent(onFriendsListFragment));
             context.addLinkEventTracker(this);
@@ -347,7 +347,7 @@ package com.sulake.habbo.friendlist {
         }
 
         private function onUserObject(param1: IMessageEvent): void {
-            var _loc2_: class_1267 = (param1 as class_556).getParser();
+            var _loc2_: class_1267 = (param1 as UserObjectEvent).getParser();
             _avatarId = _loc2_.id;
         }
 
@@ -423,7 +423,7 @@ package com.sulake.habbo.friendlist {
             _communication.addHabboConnectionMessageEvent(new RoomInviteErrorEvent(onRoomInviteError));
             _communication.addHabboConnectionMessageEvent(new FriendListUpdateEvent(onFriendListUpdate));
             _communication.addHabboConnectionMessageEvent(new FollowFriendFailedEvent(onFollowFriendFailed));
-            _communication.addHabboConnectionMessageEvent(new class_143(onUserRights));
+            _communication.addHabboConnectionMessageEvent(new UserRightsMessageEvent(onUserRights));
             _communication.addHabboConnectionMessageEvent(new HabboSearchResultEvent(onHabboSearchResult));
             _communication.addHabboConnectionMessageEvent(new FriendRequestsEvent(onFriendRequests));
             _communication.addHabboConnectionMessageEvent(new NewFriendRequestEvent(onNewFriendRequest));

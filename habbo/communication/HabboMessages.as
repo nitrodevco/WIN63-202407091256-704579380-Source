@@ -2,87 +2,87 @@ package com.sulake.habbo.communication {
     import com.sulake.core.communication.messages.IMessageConfiguration
     import com.sulake.core.utils.Map
     import com.sulake.core.utils.class_885
-    import com.sulake.habbo.communication.messages.incoming.availability.class_1083
-    import com.sulake.habbo.communication.messages.incoming.availability.class_1090
+    import com.sulake.habbo.communication.messages.incoming.availability.LoginFailedHotelClosedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.availability.MaintenanceStatusMessageEvent
     import com.sulake.habbo.communication.messages.incoming.availability.AvailabilityStatusMessageEvent
     import com.sulake.habbo.communication.messages.incoming.availability.class_636
-    import com.sulake.habbo.communication.messages.incoming.availability.class_686
-    import com.sulake.habbo.communication.messages.incoming.availability.class_960
-    import com.sulake.habbo.communication.messages.incoming.avatar.class_199
-    import com.sulake.habbo.communication.messages.incoming.avatar.class_332
-    import com.sulake.habbo.communication.messages.incoming.avatar.class_341
-    import com.sulake.habbo.communication.messages.incoming.avatar.class_725
-    import com.sulake.habbo.communication.messages.incoming.callforhelp.class_177
-    import com.sulake.habbo.communication.messages.incoming.callforhelp.class_642
-    import com.sulake.habbo.communication.messages.incoming.callforhelp.class_696
-    import com.sulake.habbo.communication.messages.incoming.camera.class_1102
-    import com.sulake.habbo.communication.messages.incoming.camera.class_343
-    import com.sulake.habbo.communication.messages.incoming.camera.class_473
-    import com.sulake.habbo.communication.messages.incoming.camera.class_532
-    import com.sulake.habbo.communication.messages.incoming.camera.class_618
-    import com.sulake.habbo.communication.messages.incoming.camera.class_741
-    import com.sulake.habbo.communication.messages.incoming.campaign.class_712
-    import com.sulake.habbo.communication.messages.incoming.campaign.class_961
+    import com.sulake.habbo.communication.messages.incoming.availability.InfoHotelClosingMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.availability.InfoHotelClosedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.avatar.FigureUpdateEvent
+    import com.sulake.habbo.communication.messages.incoming.avatar.WardrobeMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.avatar.ChangeUserNameResultMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.avatar.CheckUserNameResultMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.callforhelp.CfhTopicsInitMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.callforhelp.SanctionStatusEvent
+    import com.sulake.habbo.communication.messages.incoming.callforhelp.CfhSanctionMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.camera.CameraPurchaseOKMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.camera.CameraStorageUrlMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.camera.CameraPublishStatusMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.camera.CompetitionStatusMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.camera.InitCameraMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.camera.ThumbnailStatusMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.campaign.CampaignCalendarDataMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.campaign.CampaignCalendarDoorOpenedMessageEvent
     import com.sulake.habbo.communication.messages.incoming.catalog.SnowWarGameTokensMessageEvent
     import com.sulake.habbo.communication.messages.incoming.catalog.TargetedOfferEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_1039
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_1093
+    import com.sulake.habbo.communication.messages.incoming.catalog.CatalogPageMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.catalog.BonusRareInfoMessageEvent
     import com.sulake.habbo.communication.messages.incoming.catalog.class_149
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_169
+    import com.sulake.habbo.communication.messages.incoming.catalog.BuildersClubSubscriptionStatusMessageEvent
     import com.sulake.habbo.communication.messages.incoming.catalog.class_195
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_209
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_241
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_254
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_264
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_283
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_297
+    import com.sulake.habbo.communication.messages.incoming.catalog.PurchaseErrorMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.catalog.VoucherRedeemOkMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.catalog.SellablePetPalettesMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.catalog.CatalogIndexMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.catalog.LimitedEditionSoldOutEvent
+    import com.sulake.habbo.communication.messages.incoming.catalog.GiftWrappingConfigurationEvent
     import com.sulake.habbo.communication.messages.incoming.catalog.class_545
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_604
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_616
+    import com.sulake.habbo.communication.messages.incoming.catalog.RoomAdPurchaseInfoEvent
+    import com.sulake.habbo.communication.messages.incoming.catalog.HabboClubOffersMessageEvent
     import com.sulake.habbo.communication.messages.incoming.catalog.class_652
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_676
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_690
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_714
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_721
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_733
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_738
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_769
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_786
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_790
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_796
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_812
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_869
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_897
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_944
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_975
-    import com.sulake.habbo.communication.messages.incoming.collectibles.class_1074
-    import com.sulake.habbo.communication.messages.incoming.collectibles.class_160
-    import com.sulake.habbo.communication.messages.incoming.collectibles.class_175
-    import com.sulake.habbo.communication.messages.incoming.collectibles.class_284
-    import com.sulake.habbo.communication.messages.incoming.collectibles.class_321
-    import com.sulake.habbo.communication.messages.incoming.collectibles.class_378
-    import com.sulake.habbo.communication.messages.incoming.collectibles.class_444
-    import com.sulake.habbo.communication.messages.incoming.collectibles.class_593
-    import com.sulake.habbo.communication.messages.incoming.collectibles.class_699
-    import com.sulake.habbo.communication.messages.incoming.collectibles.class_767
-    import com.sulake.habbo.communication.messages.incoming.collectibles.class_829
-    import com.sulake.habbo.communication.messages.incoming.collectibles.class_883
-    import com.sulake.habbo.communication.messages.incoming.collectibles.class_929
-    import com.sulake.habbo.communication.messages.incoming.collectibles.class_981
-    import com.sulake.habbo.communication.messages.incoming.competition.class_293
-    import com.sulake.habbo.communication.messages.incoming.competition.class_394
-    import com.sulake.habbo.communication.messages.incoming.competition.class_533
-    import com.sulake.habbo.communication.messages.incoming.competition.class_581
-    import com.sulake.habbo.communication.messages.incoming.competition.class_659
-    import com.sulake.habbo.communication.messages.incoming.competition.class_692
-    import com.sulake.habbo.communication.messages.incoming.crafting.class_1021
-    import com.sulake.habbo.communication.messages.incoming.crafting.class_689
-    import com.sulake.habbo.communication.messages.incoming.crafting.class_745
-    import com.sulake.habbo.communication.messages.incoming.crafting.class_774
-    import com.sulake.habbo.communication.messages.incoming.error.class_231
-    import com.sulake.habbo.communication.messages.incoming.friendfurni.class_1005
-    import com.sulake.habbo.communication.messages.incoming.friendfurni.class_464
-    import com.sulake.habbo.communication.messages.incoming.friendfurni.class_541
+    import com.sulake.habbo.communication.messages.incoming.catalog.NotEnoughBalanceMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.catalog.VoucherRedeemErrorMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.catalog.SeasonalCalendarDailyOfferMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.catalog.CatalogPageWithEarliestExpiryMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.catalog.LimitedOfferAppearingNextMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.catalog.GiftReceiverNotFoundEvent
+    import com.sulake.habbo.communication.messages.incoming.catalog.TargetedOfferNotFoundEvent
+    import com.sulake.habbo.communication.messages.incoming.catalog.HabboClubExtendOfferMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.catalog.CatalogPublishedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.catalog.BundleDiscountRulesetMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.catalog.ProductOfferEvent
+    import com.sulake.habbo.communication.messages.incoming.catalog.PurchaseNotAllowedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.catalog.ClubGiftInfoEvent
+    import com.sulake.habbo.communication.messages.incoming.catalog.ClubGiftSelectedEvent
+    import com.sulake.habbo.communication.messages.incoming.catalog.PurchaseOKMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.collectibles.NftCollectionsScoreMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectibleMintTokenOffersMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectibleMintableItemResultMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.collectibles.EmeraldBalanceMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectibleMintingEnabledMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.collectibles.NftTransferFeeMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.collectibles.NftCollectionsMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectibleMintTokenCountMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.collectibles.NftRewardItemClaimResultMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.collectibles.NftBonusItemClaimResultMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectableMintableItemTypesMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.collectibles.NftTransferAssetsResultMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.collectibles.SilverBalanceMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectibleWalletAddressesMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.competition.NoOwnedRoomsAlertMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.competition.CompetitionVotingInfoMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.competition.SecondsUntilMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.competition.CurrentTimingCodeMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.competition.IsUserPartOfCompetitionMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.competition.CompetitionEntrySubmitResultMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.crafting.CraftableProductsMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.crafting.CraftingRecipesAvailableMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.crafting.CraftingRecipeMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.crafting.CraftingResultMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.error.ErrorReportEvent
+    import com.sulake.habbo.communication.messages.incoming.friendfurni.FriendFurniOtherLockConfirmedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.friendfurni.FriendFurniStartConfirmationMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.friendfurni.FriendFurniCancelLockMessageEvent
     import com.sulake.habbo.communication.messages.incoming.friendlist.FriendNotificationEvent
     import com.sulake.habbo.communication.messages.incoming.friendlist.RoomInviteErrorEvent
     import com.sulake.habbo.communication.messages.incoming.friendlist.FollowFriendFailedEvent
@@ -112,14 +112,14 @@ package com.sulake.habbo.communication {
     import com.sulake.habbo.communication.messages.incoming.game.directory.Game2StopCounterMessageEvent
     import com.sulake.habbo.communication.messages.incoming.game.directory.Game2UserBlockedMessageEvent
     import com.sulake.habbo.communication.messages.incoming.game.directory.Game2UserLeftGameMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.directory.class_418
-    import com.sulake.habbo.communication.messages.incoming.game.directory.class_423
-    import com.sulake.habbo.communication.messages.incoming.game.directory.class_707
-    import com.sulake.habbo.communication.messages.incoming.game.directory.class_892
+    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2GameStartedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2UserJoinedGameMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2GameLongDataMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2GameCreatedMessageEvent
     import com.sulake.habbo.communication.messages.incoming.game.lobby.UserGameAchievementsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.lobby.class_1012
-    import com.sulake.habbo.communication.messages.incoming.game.lobby.class_494
-    import com.sulake.habbo.communication.messages.incoming.game.lobby.class_894
+    import com.sulake.habbo.communication.messages.incoming.game.lobby.AchievementResolutionCompletedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.game.lobby.AchievementResolutionProgressMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.game.lobby.AchievementResolutionsMessageEvent
     import com.sulake.habbo.communication.messages.incoming.game.score.Game2FriendsLeaderboardEvent
     import com.sulake.habbo.communication.messages.incoming.game.score.Game2TotalGroupLeaderboardEvent
     import com.sulake.habbo.communication.messages.incoming.game.score.Game2TotalLeaderboardEvent
@@ -130,398 +130,398 @@ package com.sulake.habbo.communication {
     import com.sulake.habbo.communication.messages.incoming.game.score.WeeklyCompetitiveLeaderboardEvent
     import com.sulake.habbo.communication.messages.incoming.game.score.WeeklyGameRewardEvent
     import com.sulake.habbo.communication.messages.incoming.game.score.WeeklyGameRewardWinnersEvent
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.class_1055
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.class_220
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.class_245
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.class_255
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.class_269
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.class_314
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.class_316
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.class_404
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.class_628
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.class_679
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.class_744
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.class_903
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.class_958
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.ingame.class_1067
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.ingame.class_350
-    import com.sulake.habbo.communication.messages.incoming.gifts.class_484
-    import com.sulake.habbo.communication.messages.incoming.gifts.class_766
-    import com.sulake.habbo.communication.messages.incoming.gifts.class_785
-    import com.sulake.habbo.communication.messages.incoming.groupforums.class_281
-    import com.sulake.habbo.communication.messages.incoming.groupforums.class_299
-    import com.sulake.habbo.communication.messages.incoming.groupforums.class_334
-    import com.sulake.habbo.communication.messages.incoming.groupforums.class_339
-    import com.sulake.habbo.communication.messages.incoming.groupforums.class_495
-    import com.sulake.habbo.communication.messages.incoming.groupforums.class_573
-    import com.sulake.habbo.communication.messages.incoming.groupforums.class_624
-    import com.sulake.habbo.communication.messages.incoming.groupforums.class_782
-    import com.sulake.habbo.communication.messages.incoming.groupforums.class_988
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2StageRunningMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2GameEndingMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2ArenaEnteredMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2PlayerRematchesMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2EnterArenaFailedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2PlayerExitedGameArenaMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2StageEndingMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2EnterArenaMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2StageStillLoadingMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2StageStartingMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2GameRejoinMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2StageLoadMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2GameChatFromPlayerMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.ingame.Game2FullGameStatusMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.ingame.Game2GameStatusMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.gifts.TryVerificationCodeResultMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.gifts.TryPhoneNumberResultMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.gifts.PhoneCollectionStateMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.groupforums.ThreadMessagesMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.groupforums.UpdateThreadMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.groupforums.UpdateMessageMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.groupforums.ForumsListMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.groupforums.ForumDataMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.groupforums.ForumThreadsMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.groupforums.UnreadForumsCountMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.groupforums.PostThreadMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.groupforums.PostMessageMessageEvent
     import com.sulake.habbo.communication.messages.incoming.handshake.NoobnessLevelMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.handshake.class_1060
-    import com.sulake.habbo.communication.messages.incoming.handshake.class_1103
-    import com.sulake.habbo.communication.messages.incoming.handshake.class_134
-    import com.sulake.habbo.communication.messages.incoming.handshake.class_143
-    import com.sulake.habbo.communication.messages.incoming.handshake.class_223
-    import com.sulake.habbo.communication.messages.incoming.handshake.class_257
-    import com.sulake.habbo.communication.messages.incoming.handshake.class_280
-    import com.sulake.habbo.communication.messages.incoming.handshake.class_474
-    import com.sulake.habbo.communication.messages.incoming.handshake.class_483
-    import com.sulake.habbo.communication.messages.incoming.handshake.class_485
-    import com.sulake.habbo.communication.messages.incoming.handshake.class_556
+    import com.sulake.habbo.communication.messages.incoming.handshake.CompleteDiffieHandshakeEvent
+    import com.sulake.habbo.communication.messages.incoming.handshake.IdentityAccountsEvent
+    import com.sulake.habbo.communication.messages.incoming.handshake.InitDiffieHandshakeEvent
+    import com.sulake.habbo.communication.messages.incoming.handshake.UserRightsMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.handshake.UniqueMachineIDEvent
+    import com.sulake.habbo.communication.messages.incoming.handshake.PingMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.handshake.DisconnectReasonEvent
+    import com.sulake.habbo.communication.messages.incoming.handshake.IsFirstLoginOfDayEvent
+    import com.sulake.habbo.communication.messages.incoming.handshake.AuthenticationOKMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.handshake.GenericErrorEvent
+    import com.sulake.habbo.communication.messages.incoming.handshake.UserObjectEvent
     import com.sulake.habbo.communication.messages.incoming.help.CallForHelpPendingCallsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.class_1080
+    import com.sulake.habbo.communication.messages.incoming.help.CallForHelpReplyMessageEvent
     import com.sulake.habbo.communication.messages.incoming.help.class_135
-    import com.sulake.habbo.communication.messages.incoming.help.class_145
-    import com.sulake.habbo.communication.messages.incoming.help.class_174
-    import com.sulake.habbo.communication.messages.incoming.help.class_182
-    import com.sulake.habbo.communication.messages.incoming.help.class_185
-    import com.sulake.habbo.communication.messages.incoming.help.class_302
-    import com.sulake.habbo.communication.messages.incoming.help.class_306
-    import com.sulake.habbo.communication.messages.incoming.help.class_410
-    import com.sulake.habbo.communication.messages.incoming.help.class_440
-    import com.sulake.habbo.communication.messages.incoming.help.class_465
-    import com.sulake.habbo.communication.messages.incoming.help.class_509
-    import com.sulake.habbo.communication.messages.incoming.help.class_572
+    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionErrorMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionStartedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.help.CallForHelpDisabledNotifyMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.help.GuideTicketCreationResultMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionMessageMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.help.GuideOnDutyStatusMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.help.ChatReviewSessionStartedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.help.ChatReviewSessionOfferedToGuideMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionRequesterRoomMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.help.GuideReportingStatusMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionPartnerIsTypingMessageEvent
     import com.sulake.habbo.communication.messages.incoming.help.class_579
-    import com.sulake.habbo.communication.messages.incoming.help.class_603
-    import com.sulake.habbo.communication.messages.incoming.help.class_638
-    import com.sulake.habbo.communication.messages.incoming.help.class_644
-    import com.sulake.habbo.communication.messages.incoming.help.class_651
-    import com.sulake.habbo.communication.messages.incoming.help.class_653
+    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionInvitedToGuideRoomMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.help.ChatReviewSessionVotingStatusMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.help.ChatReviewSessionResultsMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.help.GuideTicketResolutionMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.help.IssueCloseNotificationMessageEvent
     import com.sulake.habbo.communication.messages.incoming.help.class_673
-    import com.sulake.habbo.communication.messages.incoming.help.class_697
+    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionEndedMessageEvent
     import com.sulake.habbo.communication.messages.incoming.help.class_784
-    import com.sulake.habbo.communication.messages.incoming.help.class_808
-    import com.sulake.habbo.communication.messages.incoming.help.class_811
+    import com.sulake.habbo.communication.messages.incoming.help.CallForHelpResultMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.help.QuizDataMessageEvent
     import com.sulake.habbo.communication.messages.incoming.help.class_819
-    import com.sulake.habbo.communication.messages.incoming.help.class_867
-    import com.sulake.habbo.communication.messages.incoming.help.class_880
+    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionDetachedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionAttachedMessageEvent
     import com.sulake.habbo.communication.messages.incoming.help.class_895
-    import com.sulake.habbo.communication.messages.incoming.help.class_953
-    import com.sulake.habbo.communication.messages.incoming.help.class_965
-    import com.sulake.habbo.communication.messages.incoming.help.class_968
-    import com.sulake.habbo.communication.messages.incoming.hotlooks.class_1104
-    import com.sulake.habbo.communication.messages.incoming.inventory.achievements.class_1109
-    import com.sulake.habbo.communication.messages.incoming.inventory.achievements.class_470
-    import com.sulake.habbo.communication.messages.incoming.inventory.achievements.class_854
-    import com.sulake.habbo.communication.messages.incoming.inventory.avatareffect.class_1072
-    import com.sulake.habbo.communication.messages.incoming.inventory.avatareffect.class_1108
-    import com.sulake.habbo.communication.messages.incoming.inventory.avatareffect.class_233
-    import com.sulake.habbo.communication.messages.incoming.inventory.avatareffect.class_247
-    import com.sulake.habbo.communication.messages.incoming.inventory.avatareffect.class_327
-    import com.sulake.habbo.communication.messages.incoming.inventory.badges.class_1019
-    import com.sulake.habbo.communication.messages.incoming.inventory.badges.class_522
-    import com.sulake.habbo.communication.messages.incoming.inventory.badges.class_623
-    import com.sulake.habbo.communication.messages.incoming.inventory.badges.class_683
-    import com.sulake.habbo.communication.messages.incoming.inventory.bots.class_250
+    import com.sulake.habbo.communication.messages.incoming.help.CallForHelpPendingCallsDeletedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.help.ChatReviewSessionDetachedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.help.QuizResultsMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.hotlooks.HotLooksMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.achievements.AchievementsScoreEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.achievements.AchievementsEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.achievements.AchievementEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.avatareffect.AvatarEffectsMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.avatareffect.AvatarEffectActivatedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.avatareffect.AvatarEffectSelectedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.avatareffect.AvatarEffectAddedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.avatareffect.AvatarEffectExpiredMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.badges.BadgeReceivedEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.badges.BadgesEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.badges.BadgePointLimitsEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.badges.IsBadgeRequestFulfilledEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.bots.BotRemovedFromInventoryEvent
     import com.sulake.habbo.communication.messages.incoming.inventory.bots.class_258
-    import com.sulake.habbo.communication.messages.incoming.inventory.bots.class_588
-    import com.sulake.habbo.communication.messages.incoming.inventory.bots.class_592
-    import com.sulake.habbo.communication.messages.incoming.inventory.clothing.class_1073
+    import com.sulake.habbo.communication.messages.incoming.inventory.bots.BotInventoryEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.bots.BotAddedToInventoryEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.clothing.FigureSetIdsEvent
     import com.sulake.habbo.communication.messages.incoming.inventory.clothing.class_401
     import com.sulake.habbo.communication.messages.incoming.inventory.clothing.class_456
     import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.furni.class_274
-    import com.sulake.habbo.communication.messages.incoming.inventory.furni.class_340
-    import com.sulake.habbo.communication.messages.incoming.inventory.furni.class_379
-    import com.sulake.habbo.communication.messages.incoming.inventory.furni.class_446
-    import com.sulake.habbo.communication.messages.incoming.inventory.pets.class_140
-    import com.sulake.habbo.communication.messages.incoming.inventory.pets.class_265
-    import com.sulake.habbo.communication.messages.incoming.inventory.pets.class_278
-    import com.sulake.habbo.communication.messages.incoming.inventory.pets.class_292
-    import com.sulake.habbo.communication.messages.incoming.inventory.pets.class_311
-    import com.sulake.habbo.communication.messages.incoming.inventory.pets.class_399
-    import com.sulake.habbo.communication.messages.incoming.inventory.pets.class_602
-    import com.sulake.habbo.communication.messages.incoming.inventory.pets.class_615
-    import com.sulake.habbo.communication.messages.incoming.inventory.pets.class_716
-    import com.sulake.habbo.communication.messages.incoming.inventory.purse.class_459
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.class_1006
+    import com.sulake.habbo.communication.messages.incoming.inventory.furni.PostItPlacedEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListInvalidateEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListAddOrUpdateEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListRemoveEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.pets.ConfirmBreedingResultEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.pets.GoToBreedingNestFailureEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.pets.PetAddedToInventoryEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.pets.PetBreedingEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.pets.PetReceivedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.pets.NestBreedingSuccessEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.pets.PetInventoryEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.pets.ConfirmBreedingRequestEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.pets.PetRemovedFromInventoryEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.purse.CreditBalanceEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingOpenEvent
     import com.sulake.habbo.communication.messages.incoming.inventory.trading.class_144
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.class_187
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.class_262
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.class_310
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.class_349
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.class_384
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.class_407
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.class_528
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.class_535
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.class_587
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.class_705
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.class_872
-    import com.sulake.habbo.communication.messages.incoming.landingview.class_162
-    import com.sulake.habbo.communication.messages.incoming.landingview.votes.class_860
-    import com.sulake.habbo.communication.messages.incoming.marketplace.class_1077
-    import com.sulake.habbo.communication.messages.incoming.marketplace.class_248
-    import com.sulake.habbo.communication.messages.incoming.marketplace.class_431
-    import com.sulake.habbo.communication.messages.incoming.marketplace.class_549
-    import com.sulake.habbo.communication.messages.incoming.marketplace.class_633
-    import com.sulake.habbo.communication.messages.incoming.marketplace.class_900
-    import com.sulake.habbo.communication.messages.incoming.marketplace.class_926
-    import com.sulake.habbo.communication.messages.incoming.marketplace.class_943
-    import com.sulake.habbo.communication.messages.incoming.moderation.class_1024
-    import com.sulake.habbo.communication.messages.incoming.moderation.class_1068
-    import com.sulake.habbo.communication.messages.incoming.moderation.class_1084
-    import com.sulake.habbo.communication.messages.incoming.moderation.class_211
-    import com.sulake.habbo.communication.messages.incoming.moderation.class_237
-    import com.sulake.habbo.communication.messages.incoming.moderation.class_324
-    import com.sulake.habbo.communication.messages.incoming.moderation.class_398
-    import com.sulake.habbo.communication.messages.incoming.moderation.class_415
-    import com.sulake.habbo.communication.messages.incoming.moderation.class_476
-    import com.sulake.habbo.communication.messages.incoming.moderation.class_504
-    import com.sulake.habbo.communication.messages.incoming.moderation.class_514
-    import com.sulake.habbo.communication.messages.incoming.moderation.class_574
-    import com.sulake.habbo.communication.messages.incoming.moderation.class_680
-    import com.sulake.habbo.communication.messages.incoming.moderation.class_688
-    import com.sulake.habbo.communication.messages.incoming.moderation.class_851
-    import com.sulake.habbo.communication.messages.incoming.mysterybox.class_601
-    import com.sulake.habbo.communication.messages.incoming.mysterybox.class_621
-    import com.sulake.habbo.communication.messages.incoming.mysterybox.class_695
-    import com.sulake.habbo.communication.messages.incoming.mysterybox.class_843
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_1038
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_1079
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingConfirmationEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingOtherNotAllowedEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingAcceptEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingYouAreNotAllowedEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradeSilverFeeMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingNotOpenEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingCloseEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingCompletedEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradeSilverSetMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradeOpenFailedEvent
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingItemListEvent
+    import com.sulake.habbo.communication.messages.incoming.landingview.PromoArticlesMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.landingview.votes.CommunityVoteReceivedEvent
+    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceBuyOfferResultEvent
+    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceConfigurationEvent
+    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceItemStatsEvent
+    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketPlaceOwnOffersEvent
+    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketPlaceOffersEvent
+    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceMakeOfferResult
+    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceCancelOfferResultEvent
+    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceCanMakeOfferResult
+    import com.sulake.habbo.communication.messages.incoming.moderation.RoomVisitsEvent
+    import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorInitMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.moderation.IssueInfoMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.moderation.UserBannedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.moderation.CfhChatlogEvent
+    import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorUserInfoEvent
+    import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorActionResultMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.moderation.IssuePickFailedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.moderation.IssueDeletedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorRoomInfoEvent
+    import com.sulake.habbo.communication.messages.incoming.moderation.UserChatlogEvent
+    import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorCautionEvent
+    import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorToolPreferencesEvent
+    import com.sulake.habbo.communication.messages.incoming.moderation.RoomChatlogEvent
+    import com.sulake.habbo.communication.messages.incoming.mysterybox.ShowMysteryBoxWaitMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.mysterybox.MysteryBoxKeysMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.mysterybox.CancelMysteryBoxWaitMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.mysterybox.GotMysteryBoxPrizeMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.FlatAccessDeniedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.ConvertedRoomIdEvent
     import com.sulake.habbo.communication.messages.incoming.navigator.class_129
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_296
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_454
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_467
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_487
+    import com.sulake.habbo.communication.messages.incoming.navigator.OfficialRoomsEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.GuestRoomSearchResultEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.CategoriesWithVisitorCountEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.RoomInfoUpdatedEvent
     import com.sulake.habbo.communication.messages.incoming.navigator.class_491
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_526
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_534
+    import com.sulake.habbo.communication.messages.incoming.navigator.UserEventCatsEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.CompetitionRoomsDataMessageEvent
     import com.sulake.habbo.communication.messages.incoming.navigator.class_590
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_605
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_627
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_722
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_746
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_750
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_761
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_795
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_837
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_898
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_936
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_979
+    import com.sulake.habbo.communication.messages.incoming.navigator.UserFlatCatsEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.RoomEventEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.CanCreateRoomEventEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.RoomRatingEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.RoomEventCancelEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.FavouriteChangedEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.FlatCreatedEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.DoorbellMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.GetGuestRoomResultEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.PopularRoomTagsResultEvent
+    import com.sulake.habbo.communication.messages.incoming.navigator.CanCreateRoomEvent
     import com.sulake.habbo.communication.messages.incoming.newnavigator.class_151
     import com.sulake.habbo.communication.messages.incoming.newnavigator.class_348
     import com.sulake.habbo.communication.messages.incoming.newnavigator.class_364
     import com.sulake.habbo.communication.messages.incoming.newnavigator.class_713
     import com.sulake.habbo.communication.messages.incoming.newnavigator.class_760
     import com.sulake.habbo.communication.messages.incoming.newnavigator.class_954
-    import com.sulake.habbo.communication.messages.incoming.nft.class_240
-    import com.sulake.habbo.communication.messages.incoming.nft.class_567
-    import com.sulake.habbo.communication.messages.incoming.nft.class_957
-    import com.sulake.habbo.communication.messages.incoming.notifications.class_164
-    import com.sulake.habbo.communication.messages.incoming.notifications.class_205
-    import com.sulake.habbo.communication.messages.incoming.notifications.class_267
-    import com.sulake.habbo.communication.messages.incoming.notifications.class_289
-    import com.sulake.habbo.communication.messages.incoming.notifications.class_377
-    import com.sulake.habbo.communication.messages.incoming.notifications.class_469
-    import com.sulake.habbo.communication.messages.incoming.notifications.class_523
-    import com.sulake.habbo.communication.messages.incoming.notifications.class_552
-    import com.sulake.habbo.communication.messages.incoming.notifications.class_649
-    import com.sulake.habbo.communication.messages.incoming.notifications.class_800
-    import com.sulake.habbo.communication.messages.incoming.notifications.class_803
-    import com.sulake.habbo.communication.messages.incoming.notifications.class_858
-    import com.sulake.habbo.communication.messages.incoming.notifications.class_959
-    import com.sulake.habbo.communication.messages.incoming.nux.class_295
-    import com.sulake.habbo.communication.messages.incoming.nux.class_685
-    import com.sulake.habbo.communication.messages.incoming.nux.class_694
-    import com.sulake.habbo.communication.messages.incoming.perk.class_256
-    import com.sulake.habbo.communication.messages.incoming.perk.class_828
-    import com.sulake.habbo.communication.messages.incoming.poll.class_222
-    import com.sulake.habbo.communication.messages.incoming.poll.class_277
-    import com.sulake.habbo.communication.messages.incoming.poll.class_466
-    import com.sulake.habbo.communication.messages.incoming.poll.class_507
-    import com.sulake.habbo.communication.messages.incoming.poll.class_719
-    import com.sulake.habbo.communication.messages.incoming.poll.class_922
-    import com.sulake.habbo.communication.messages.incoming.preferences.class_219
-    import com.sulake.habbo.communication.messages.incoming.quest.class_1001
-    import com.sulake.habbo.communication.messages.incoming.quest.class_1016
-    import com.sulake.habbo.communication.messages.incoming.quest.class_345
-    import com.sulake.habbo.communication.messages.incoming.quest.class_538
-    import com.sulake.habbo.communication.messages.incoming.quest.class_548
-    import com.sulake.habbo.communication.messages.incoming.quest.class_836
-    import com.sulake.habbo.communication.messages.incoming.quest.class_907
+    import com.sulake.habbo.communication.messages.incoming.nft.UserNftWardrobeMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.nft.UserNftChatStylesMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.nft.UserNftWardrobeSelectionMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.notifications.ClubGiftNotificationEvent
+    import com.sulake.habbo.communication.messages.incoming.notifications.HabboAchievementNotificationMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.notifications.HabboBroadcastMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.notifications.ActivityPointsMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.notifications.MOTDNotificationEvent
+    import com.sulake.habbo.communication.messages.incoming.notifications.HabboActivityPointNotificationMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.notifications.NotificationDialogMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.notifications.UnseenItemsEvent
+    import com.sulake.habbo.communication.messages.incoming.notifications.OfferRewardDeliveredMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.notifications.ElementPointerMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.notifications.InfoFeedEnableMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.notifications.PetLevelNotificationEvent
+    import com.sulake.habbo.communication.messages.incoming.notifications.RestoreClientMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.nux.NewUserExperienceNotCompleteEvent
+    import com.sulake.habbo.communication.messages.incoming.nux.SelectInitialRoomEvent
+    import com.sulake.habbo.communication.messages.incoming.nux.NewUserExperienceGiftOfferEvent
+    import com.sulake.habbo.communication.messages.incoming.perk.CitizenshipVipOfferPromoEnabledEvent
+    import com.sulake.habbo.communication.messages.incoming.perk.PerkAllowancesMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.poll.PollContentsEvent
+    import com.sulake.habbo.communication.messages.incoming.poll.QuestionEvent
+    import com.sulake.habbo.communication.messages.incoming.poll.PollErrorEvent
+    import com.sulake.habbo.communication.messages.incoming.poll.QuestionFinishedEvent
+    import com.sulake.habbo.communication.messages.incoming.poll.QuestionAnsweredEvent
+    import com.sulake.habbo.communication.messages.incoming.poll.PollOfferEvent
+    import com.sulake.habbo.communication.messages.incoming.preferences.AccountPreferencesEvent
+    import com.sulake.habbo.communication.messages.incoming.quest.QuestCancelledMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.quest.QuestCompletedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.quest.SeasonalQuestsMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.quest.CommunityGoalProgressMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.quest.EpicPopupMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.quest.ConcurrentUsersGoalProgressMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.quest.QuestsMessageEvent
     import com.sulake.habbo.communication.messages.incoming.quest.class_931
-    import com.sulake.habbo.communication.messages.incoming.quest.class_946
-    import com.sulake.habbo.communication.messages.incoming.quest.class_973
-    import com.sulake.habbo.communication.messages.incoming.quest.class_983
-    import com.sulake.habbo.communication.messages.incoming.room.action.class_133
-    import com.sulake.habbo.communication.messages.incoming.room.action.class_313
-    import com.sulake.habbo.communication.messages.incoming.room.action.class_408
-    import com.sulake.habbo.communication.messages.incoming.room.action.class_866
-    import com.sulake.habbo.communication.messages.incoming.room.action.class_918
-    import com.sulake.habbo.communication.messages.incoming.room.action.class_994
-    import com.sulake.habbo.communication.messages.incoming.room.bots.class_1088
-    import com.sulake.habbo.communication.messages.incoming.room.bots.class_181
-    import com.sulake.habbo.communication.messages.incoming.room.bots.class_612
-    import com.sulake.habbo.communication.messages.incoming.room.bots.class_792
+    import com.sulake.habbo.communication.messages.incoming.quest.CommunityGoalHallOfFameMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.quest.QuestDailyMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.quest.QuestMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.action.SleepMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.action.DanceMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.action.CarryObjectMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.action.ExpressionMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.action.AvatarEffectMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.action.UseObjectMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.bots.BotCommandConfigurationEvent
+    import com.sulake.habbo.communication.messages.incoming.room.bots.BotForceOpenContextMenuEvent
+    import com.sulake.habbo.communication.messages.incoming.room.bots.BotSkillListUpdateEvent
+    import com.sulake.habbo.communication.messages.incoming.room.bots.BotErrorEvent
     import com.sulake.habbo.communication.messages.incoming.room.camera.class_380
-    import com.sulake.habbo.communication.messages.incoming.room.chat.class_1078
-    import com.sulake.habbo.communication.messages.incoming.room.chat.class_1092
-    import com.sulake.habbo.communication.messages.incoming.room.chat.class_184
-    import com.sulake.habbo.communication.messages.incoming.room.chat.class_372
-    import com.sulake.habbo.communication.messages.incoming.room.chat.class_468
-    import com.sulake.habbo.communication.messages.incoming.room.chat.class_583
-    import com.sulake.habbo.communication.messages.incoming.room.chat.class_758
-    import com.sulake.habbo.communication.messages.incoming.room.chat.class_921
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_1000
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_1065
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_1106
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_148
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_198
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_252
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_323
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_333
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_335
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_337
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_386
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_393
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_432
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_447
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_486
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_492
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_510
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_558
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_641
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_654
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_660
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_671
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_691
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_762
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_776
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_778
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_853
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_927
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_945
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_947
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_962
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.class_1096
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.class_1110
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.class_161
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.class_276
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.class_434
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.class_460
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.class_462
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.class_597
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.class_620
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.class_629
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.class_637
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.class_708
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.class_710
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.class_730
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.class_810
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.class_818
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.class_844
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.class_878
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.class_919
-    import com.sulake.habbo.communication.messages.incoming.room.layout.class_228
-    import com.sulake.habbo.communication.messages.incoming.room.layout.class_971
-    import com.sulake.habbo.communication.messages.incoming.room.permissions.class_500
-    import com.sulake.habbo.communication.messages.incoming.room.permissions.class_702
-    import com.sulake.habbo.communication.messages.incoming.room.permissions.class_809
-    import com.sulake.habbo.communication.messages.incoming.room.pets.class_189
-    import com.sulake.habbo.communication.messages.incoming.room.pets.class_263
-    import com.sulake.habbo.communication.messages.incoming.room.pets.class_298
-    import com.sulake.habbo.communication.messages.incoming.room.pets.class_537
-    import com.sulake.habbo.communication.messages.incoming.room.pets.class_608
-    import com.sulake.habbo.communication.messages.incoming.room.pets.class_613
-    import com.sulake.habbo.communication.messages.incoming.room.pets.class_751
-    import com.sulake.habbo.communication.messages.incoming.room.pets.class_863
-    import com.sulake.habbo.communication.messages.incoming.room.pets.class_920
-    import com.sulake.habbo.communication.messages.incoming.room.session.class_1027
-    import com.sulake.habbo.communication.messages.incoming.room.session.class_1105
-    import com.sulake.habbo.communication.messages.incoming.room.session.class_128
-    import com.sulake.habbo.communication.messages.incoming.room.session.class_357
-    import com.sulake.habbo.communication.messages.incoming.room.session.class_427
-    import com.sulake.habbo.communication.messages.incoming.room.session.class_518
-    import com.sulake.habbo.communication.messages.incoming.room.session.class_566
-    import com.sulake.habbo.communication.messages.incoming.room.session.class_640
-    import com.sulake.habbo.communication.messages.incoming.room.session.class_875
-    import com.sulake.habbo.communication.messages.incoming.room.session.class_886
-    import com.sulake.habbo.communication.messages.incoming.room.session.class_899
-    import com.sulake.habbo.communication.messages.incoming.room.session.class_948
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_1032
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_1044
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_1064
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_1082
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_319
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_540
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_718
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_770
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_839
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_923
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_963
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_987
-    import com.sulake.habbo.communication.messages.incoming.sound.class_1051
-    import com.sulake.habbo.communication.messages.incoming.sound.class_1066
-    import com.sulake.habbo.communication.messages.incoming.sound.class_1069
-    import com.sulake.habbo.communication.messages.incoming.sound.class_382
-    import com.sulake.habbo.communication.messages.incoming.sound.class_662
-    import com.sulake.habbo.communication.messages.incoming.sound.class_747
-    import com.sulake.habbo.communication.messages.incoming.sound.class_765
-    import com.sulake.habbo.communication.messages.incoming.sound.class_794
-    import com.sulake.habbo.communication.messages.incoming.talent.class_1107
-    import com.sulake.habbo.communication.messages.incoming.talent.class_381
-    import com.sulake.habbo.communication.messages.incoming.talent.class_559
+    import com.sulake.habbo.communication.messages.incoming.room.chat.UserTypingMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.chat.RemainingMutePeriodEvent
+    import com.sulake.habbo.communication.messages.incoming.room.chat.ChatMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.chat.WhisperMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.chat.ShoutMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.chat.RoomFilterSettingsMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.chat.RoomChatSettingsMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.chat.FloodControlMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.UserUpdateMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.WiredMovementsMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.RoomPropertyMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ItemUpdateMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectRemoveMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.HeightMapMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectDataUpdateMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectAddMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.SpecialRoomEffectMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.UserChangeMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.BuildersClubPlacementWarningMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectRemoveConfirmMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.FurnitureAliasesMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.FavoriteMembershipUpdateMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectsDataUpdateMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.UserRemoveMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.RoomEntryInfoMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.UsersMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.HeightMapUpdateMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectsMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ItemRemoveMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ItemDataUpdateMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectUpdateMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectRemoveMultipleMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.FloorHeightMapMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.SlideObjectBundleMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ItemsStateUpdateMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ItemStateUpdateMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ItemAddMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ItemsMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.engine.RoomVisualizationSettingsEvent
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.YoutubeControlVideoMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.DiceValueMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.PresentOpenedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.CustomUserNotificationMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.FurniRentOrBuyoutOfferMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.AreaHideMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.YoutubeDisplayVideoMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.RentableSpaceRentOkMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.RentableSpaceRentFailedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.RoomMessageNotificationMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.OneWayDoorStatusMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.RequestSpamWallPostItMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.CustomStackingHeightUpdateMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.OpenPetPackageRequestedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.RentableSpaceStatusMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.OpenPetPackageResultMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.GuildFurniContextMenuInfoMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.RoomDimmerPresetsMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.YoutubeDisplayPlaylistsMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.layout.RoomOccupiedTilesMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.layout.RoomEntryTileMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.permissions.YouAreOwnerMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.permissions.YouAreNotControllerMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.permissions.YouAreControllerMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.pets.PetCommandsMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.pets.PetLevelUpdateEvent
+    import com.sulake.habbo.communication.messages.incoming.room.pets.PetRespectFailedEvent
+    import com.sulake.habbo.communication.messages.incoming.room.pets.PetExperienceEvent
+    import com.sulake.habbo.communication.messages.incoming.room.pets.PetFigureUpdateEvent
+    import com.sulake.habbo.communication.messages.incoming.room.pets.PetInfoMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.pets.PetBreedingResultEvent
+    import com.sulake.habbo.communication.messages.incoming.room.pets.PetStatusUpdateEvent
+    import com.sulake.habbo.communication.messages.incoming.room.pets.PetPlacingErrorEvent
+    import com.sulake.habbo.communication.messages.incoming.room.session.HanditemConfigurationMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.session.OpenConnectionMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.session.RoomForwardMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.session.FlatAccessibleMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.session.GamePlayerValueMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.session.YouAreNotSpectatorMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.session.YouAreSpectatorMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.session.CloseConnectionMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.session.CantConnectMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.session.YouArePlayingGameMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.session.RoomReadyMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.room.session.RoomQueueStatusMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.ShowEnforceRoomCategoryDialogEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.FlatControllerAddedEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.UserUnbannedFromRoomEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.NoSuchFlatEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsErrorEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsSavedEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.FlatControllersEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsDataEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.FlatControllerRemovedEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.BannedUsersFromRoomEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.MuteAllInRoomEvent
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsSaveErrorEvent
+    import com.sulake.habbo.communication.messages.incoming.sound.TraxSongInfoMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.sound.JukeboxSongDisksMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.sound.UserSongDisksInventoryMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.sound.PlayListSongAddedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.sound.NowPlayingMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.sound.PlayListMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.sound.OfficialSongIdMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.sound.JukeboxPlayListFullMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.talent.TalentTrackLevelMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.talent.TalentLevelUpMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.talent.TalentTrackMessageEvent
     import com.sulake.habbo.communication.messages.incoming.tracking.LatencyPingResponseMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.userclassification.class_356
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.class_1034
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.class_1042
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.class_329
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.class_362
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.class_481
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.class_498
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.class_586
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.class_743
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.class_783
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.class_857
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.class_1100
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.class_158
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.class_326
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.class_353
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.class_442
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.class_657
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.class_877
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.class_905
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.class_910
+    import com.sulake.habbo.communication.messages.incoming.userclassification.UserClassificationMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredFurniConditionEvent
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredSaveSuccessEvent
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.OpenEvent
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredFurniTriggerEvent
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredRewardResultMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredFurniSelectorEvent
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredFurniActionEvent
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredFurniAddonEvent
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredValidationErrorEvent
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredFurniVariableEvent
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredRoomStatsEvent
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredPermissionsEvent
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredRoomSettingsEvent
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredAllVariablesHashEvent
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredVariablesForObjectEvent
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredAllVariablesDiffsEvent
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredMenuErrorEvent
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredErrorLogsEvent
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredAllVariableHoldersEvent
     import com.sulake.habbo.communication.messages.incoming.users.GuildEditorDataMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.class_1057
-    import com.sulake.habbo.communication.messages.incoming.users.class_132
-    import com.sulake.habbo.communication.messages.incoming.users.class_147
-    import com.sulake.habbo.communication.messages.incoming.users.class_150
-    import com.sulake.habbo.communication.messages.incoming.users.class_172
-    import com.sulake.habbo.communication.messages.incoming.users.class_196
-    import com.sulake.habbo.communication.messages.incoming.users.class_210
-    import com.sulake.habbo.communication.messages.incoming.users.class_217
-    import com.sulake.habbo.communication.messages.incoming.users.class_226
-    import com.sulake.habbo.communication.messages.incoming.users.class_232
-    import com.sulake.habbo.communication.messages.incoming.users.class_238
-    import com.sulake.habbo.communication.messages.incoming.users.class_246
-    import com.sulake.habbo.communication.messages.incoming.users.class_266
-    import com.sulake.habbo.communication.messages.incoming.users.class_315
-    import com.sulake.habbo.communication.messages.incoming.users.class_358
-    import com.sulake.habbo.communication.messages.incoming.users.class_402
-    import com.sulake.habbo.communication.messages.incoming.users.class_438
-    import com.sulake.habbo.communication.messages.incoming.users.class_543
-    import com.sulake.habbo.communication.messages.incoming.users.class_547
-    import com.sulake.habbo.communication.messages.incoming.users.class_557
-    import com.sulake.habbo.communication.messages.incoming.users.class_596
-    import com.sulake.habbo.communication.messages.incoming.users.class_611
-    import com.sulake.habbo.communication.messages.incoming.users.class_630
-    import com.sulake.habbo.communication.messages.incoming.users.class_668
-    import com.sulake.habbo.communication.messages.incoming.users.class_670
-    import com.sulake.habbo.communication.messages.incoming.users.class_693
-    import com.sulake.habbo.communication.messages.incoming.users.class_787
-    import com.sulake.habbo.communication.messages.incoming.users.class_799
-    import com.sulake.habbo.communication.messages.incoming.users.class_830
-    import com.sulake.habbo.communication.messages.incoming.users.class_835
-    import com.sulake.habbo.communication.messages.incoming.users.class_846
-    import com.sulake.habbo.communication.messages.incoming.users.class_908
-    import com.sulake.habbo.communication.messages.incoming.users.class_949
-    import com.sulake.habbo.communication.messages.incoming.users.class_996
-    import com.sulake.habbo.communication.messages.incoming.vault.class_426
-    import com.sulake.habbo.communication.messages.incoming.vault.class_564
-    import com.sulake.habbo.communication.messages.incoming.vault.class_578
+    import com.sulake.habbo.communication.messages.incoming.users.ScrSendUserInfoEvent
+    import com.sulake.habbo.communication.messages.incoming.users.ExtendedProfileChangedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.PetRespectNotificationEvent
+    import com.sulake.habbo.communication.messages.incoming.users.GroupDetailsChangedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.GuildMembershipRejectedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.HandItemReceivedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.UserNameChangedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.AccountSafetyLockStatusChangeMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.GuildMembersMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.HabboGroupJoinFailedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.GuildEditInfoMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.HabboGroupDeactivatedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.GuildCreationInfoMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.GuildMembershipUpdatedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.ScrSendKickbackInfoMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.GuildMemberFurniCountInHQMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.RelationshipStatusInfoEvent
+    import com.sulake.habbo.communication.messages.incoming.users.IgnoreResultMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.EmailStatusResultEvent
+    import com.sulake.habbo.communication.messages.incoming.users.ApproveNameMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.GuildMembershipsMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.HabboGroupBadgesMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.PetSupplementedNotificationEvent
+    import com.sulake.habbo.communication.messages.incoming.users.GuildMemberMgmtFailedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.IgnoredUsersMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.ChangeEmailResultEvent
+    import com.sulake.habbo.communication.messages.incoming.users.GuildCreatedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.RespectNotificationMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.GuildEditFailedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.HabboGroupDetailsMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.HabboUserBadgesMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.GroupMembershipRequestedMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.InClientLinkMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.users.ExtendedProfileMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.vault.CreditVaultStatusMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.vault.IncomeRewardClaimResponseMessageEvent
+    import com.sulake.habbo.communication.messages.incoming.vault.IncomeRewardStatusMessageEvent
     import com.sulake.habbo.communication.messages.outgoing.camera.class_1004
     import com.sulake.habbo.communication.messages.outgoing.camera.PublishPhotoMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.camera.class_728
@@ -1633,528 +1633,528 @@ package com.sulake.habbo.communication {
             _composers[966] = SaveRoomSettingsMessageComposer;
             _composers[976] = SaveWardrobeOutfitMessageComposer;
             _composers[997] = GetCatalogPageWithEarliestExpiryComposer;
-            _events[1] = class_1006;
-            _events[1002] = class_659;
+            _events[1] = TradingOpenEvent;
+            _events[1002] = IsUserPartOfCompetitionMessageEvent;
             _events[1005] = TargetedOfferEvent;
-            _events[1008] = class_604;
-            _events[1009] = class_1027;
-            _events[1011] = class_310;
-            _events[1013] = class_564;
-            _events[1018] = class_796;
-            _events[104] = class_574;
-            _events[106] = class_1096;
-            _events[1061] = class_473;
-            _events[1069] = class_1032;
-            _events[1076] = class_182;
-            _events[1084] = class_442;
-            _events[1093] = class_660;
-            _events[1110] = class_265;
-            _events[1118] = class_394;
-            _events[1119] = class_1072;
+            _events[1008] = RoomAdPurchaseInfoEvent;
+            _events[1009] = HanditemConfigurationMessageEvent;
+            _events[1011] = TradingAcceptEvent;
+            _events[1013] = IncomeRewardClaimResponseMessageEvent;
+            _events[1018] = BundleDiscountRulesetMessageEvent;
+            _events[104] = UserChatlogEvent;
+            _events[106] = YoutubeControlVideoMessageEvent;
+            _events[1061] = CameraPublishStatusMessageEvent;
+            _events[1069] = ShowEnforceRoomCategoryDialogEvent;
+            _events[1076] = CallForHelpDisabledNotifyMessageEvent;
+            _events[1084] = WiredVariablesForObjectEvent;
+            _events[1093] = ItemRemoveMessageEvent;
+            _events[1110] = GoToBreedingNestFailureEvent;
+            _events[1118] = CompetitionVotingInfoMessageEvent;
+            _events[1119] = AvatarEffectsMessageEvent;
             _events[1122] = FindFriendsProcessResultEvent;
-            _events[1124] = class_232;
-            _events[1128] = class_751;
+            _events[1124] = HabboGroupJoinFailedMessageEvent;
+            _events[1128] = PetBreedingResultEvent;
             _events[1134] = class_713;
-            _events[1135] = class_843;
-            _events[114] = class_803;
+            _events[1135] = GotMysteryBoxPrizeMessageEvent;
+            _events[114] = InfoFeedEnableMessageEvent;
             _events[1142] = FriendListFragmentMessageEvent;
-            _events[1145] = class_410;
-            _events[1154] = class_869;
-            _events[1156] = class_758;
-            _events[1164] = class_919;
+            _events[1145] = ChatReviewSessionStartedMessageEvent;
+            _events[1154] = PurchaseNotAllowedMessageEvent;
+            _events[1156] = RoomChatSettingsMessageEvent;
+            _events[1164] = YoutubeDisplayPlaylistsMessageEvent;
             _events[118] = class_456;
-            _events[1183] = class_746;
-            _events[1196] = class_1109;
-            _events[1205] = class_567;
+            _events[1183] = RoomRatingEvent;
+            _events[1196] = AchievementsScoreEvent;
+            _events[1205] = UserNftChatStylesMessageEvent;
             _events[1207] = NewFriendRequestEvent;
-            _events[1209] = class_981;
-            _events[1227] = class_616;
+            _events[1209] = CollectibleWalletAddressesMessageEvent;
+            _events[1227] = HabboClubOffersMessageEvent;
             _events[1245] = class_151;
             _events[1252] = class_784;
-            _events[1254] = class_494;
-            _events[1256] = class_679;
-            _events[1266] = class_250;
-            _events[1267] = class_1102;
-            _events[1270] = class_776;
-            _events[1271] = class_1051;
-            _events[1278] = class_903;
-            _events[1287] = class_205;
-            _events[1296] = class_770;
-            _events[1297] = class_721;
-            _events[1299] = class_408;
+            _events[1254] = AchievementResolutionProgressMessageEvent;
+            _events[1256] = Game2StageStartingMessageEvent;
+            _events[1266] = BotRemovedFromInventoryEvent;
+            _events[1267] = CameraPurchaseOKMessageEvent;
+            _events[1270] = FloorHeightMapMessageEvent;
+            _events[1271] = TraxSongInfoMessageEvent;
+            _events[1278] = Game2StageLoadMessageEvent;
+            _events[1287] = HabboAchievementNotificationMessageEvent;
+            _events[1296] = RoomSettingsDataEvent;
+            _events[1297] = CatalogPageWithEarliestExpiryMessageEvent;
+            _events[1299] = CarryObjectMessageEvent;
             _events[1306] = class_652;
-            _events[131] = class_637;
+            _events[131] = OneWayDoorStatusMessageEvent;
             _events[1310] = class_348;
-            _events[1318] = class_189;
-            _events[1330] = class_828;
-            _events[134] = class_1012;
-            _events[1343] = class_774;
-            _events[1346] = class_278;
-            _events[1349] = class_306;
-            _events[137] = class_460;
-            _events[1373] = class_1042;
-            _events[1376] = class_535;
-            _events[1395] = class_384;
+            _events[1318] = PetCommandsMessageEvent;
+            _events[1330] = PerkAllowancesMessageEvent;
+            _events[134] = AchievementResolutionCompletedMessageEvent;
+            _events[1343] = CraftingResultMessageEvent;
+            _events[1346] = PetAddedToInventoryEvent;
+            _events[1349] = GuideOnDutyStatusMessageEvent;
+            _events[137] = AreaHideMessageEvent;
+            _events[1373] = WiredSaveSuccessEvent;
+            _events[1376] = TradingCompletedEvent;
+            _events[1395] = TradeSilverFeeMessageEvent;
             _events[1396] = class_954;
-            _events[1397] = class_733;
-            _events[1411] = class_790;
-            _events[1412] = class_812;
-            _events[1416] = class_143;
-            _events[1417] = class_1103;
-            _events[1419] = class_897;
-            _events[1423] = class_1082;
-            _events[1429] = class_799;
-            _events[1432] = class_559;
-            _events[1438] = class_644;
-            _events[1440] = class_335;
-            _events[1444] = class_786;
-            _events[145] = class_533;
-            _events[1454] = class_476;
-            _events[146] = class_857;
-            _events[1485] = class_174;
-            _events[1487] = class_466;
-            _events[1489] = class_795;
+            _events[1397] = LimitedOfferAppearingNextMessageEvent;
+            _events[1411] = CatalogPublishedMessageEvent;
+            _events[1412] = ProductOfferEvent;
+            _events[1416] = UserRightsMessageEvent;
+            _events[1417] = IdentityAccountsEvent;
+            _events[1419] = ClubGiftInfoEvent;
+            _events[1423] = NoSuchFlatEvent;
+            _events[1429] = RespectNotificationMessageEvent;
+            _events[1432] = TalentTrackMessageEvent;
+            _events[1438] = ChatReviewSessionResultsMessageEvent;
+            _events[1440] = SpecialRoomEffectMessageEvent;
+            _events[1444] = HabboClubExtendOfferMessageEvent;
+            _events[145] = SecondsUntilMessageEvent;
+            _events[1454] = IssuePickFailedMessageEvent;
+            _events[146] = WiredFurniVariableEvent;
+            _events[1485] = GuideSessionStartedMessageEvent;
+            _events[1487] = PollErrorEvent;
+            _events[1489] = FlatCreatedEvent;
             _events[1492] = class_673;
-            _events[1519] = class_854;
-            _events[1527] = class_792;
-            _events[1546] = class_837;
-            _events[1552] = class_504;
-            _events[1564] = class_187;
-            _events[1569] = class_835;
-            _events[1572] = class_654;
+            _events[1519] = AchievementEvent;
+            _events[1527] = BotErrorEvent;
+            _events[1546] = DoorbellMessageEvent;
+            _events[1552] = IssueDeletedMessageEvent;
+            _events[1564] = TradingConfirmationEvent;
+            _events[1569] = HabboGroupDetailsMessageEvent;
+            _events[1572] = ObjectsMessageEvent;
             _events[1575] = GuildEditorDataMessageEvent;
-            _events[1578] = class_633;
-            _events[1580] = class_971;
-            _events[1593] = class_315;
-            _events[1604] = class_459;
+            _events[1578] = MarketPlaceOffersEvent;
+            _events[1580] = RoomEntryTileMessageEvent;
+            _events[1593] = GuildMembershipUpdatedMessageEvent;
+            _events[1604] = CreditBalanceEvent;
             _events[1623] = MessengerInitEvent;
-            _events[1632] = class_184;
-            _events[1646] = class_638;
-            _events[1654] = class_552;
-            _events[1661] = class_778;
-            _events[1673] = class_1001;
-            _events[1674] = class_329;
-            _events[1682] = class_557;
-            _events[1683] = class_794;
-            _events[1699] = class_465;
+            _events[1632] = ChatMessageEvent;
+            _events[1646] = ChatReviewSessionVotingStatusMessageEvent;
+            _events[1654] = UnseenItemsEvent;
+            _events[1661] = SlideObjectBundleMessageEvent;
+            _events[1673] = QuestCancelledMessageEvent;
+            _events[1674] = OpenEvent;
+            _events[1682] = ApproveNameMessageEvent;
+            _events[1683] = JukeboxPlayListFullMessageEvent;
+            _events[1699] = GuideSessionRequesterRoomMessageEvent;
             _events[1714] = Game2StopCounterMessageEvent;
-            _events[1722] = class_722;
-            _events[173] = class_469;
-            _events[1730] = class_623;
-            _events[1751] = class_327;
-            _events[1753] = class_707;
-            _events[1758] = class_481;
-            _events[1764] = class_241;
-            _events[1767] = class_918;
-            _events[1772] = class_185;
-            _events[1773] = class_487;
-            _events[1774] = class_507;
-            _events[1780] = class_1078;
-            _events[1795] = class_744;
-            _events[1796] = class_877;
-            _events[1797] = class_867;
-            _events[180] = class_284;
+            _events[1722] = CanCreateRoomEventEvent;
+            _events[173] = HabboActivityPointNotificationMessageEvent;
+            _events[1730] = BadgePointLimitsEvent;
+            _events[1751] = AvatarEffectExpiredMessageEvent;
+            _events[1753] = Game2GameLongDataMessageEvent;
+            _events[1758] = WiredRewardResultMessageEvent;
+            _events[1764] = VoucherRedeemOkMessageEvent;
+            _events[1767] = AvatarEffectMessageEvent;
+            _events[1772] = GuideTicketCreationResultMessageEvent;
+            _events[1773] = RoomInfoUpdatedEvent;
+            _events[1774] = QuestionFinishedEvent;
+            _events[1780] = UserTypingMessageEvent;
+            _events[1795] = Game2GameRejoinMessageEvent;
+            _events[1796] = WiredMenuErrorEvent;
+            _events[1797] = GuideSessionDetachedMessageEvent;
+            _events[180] = EmeraldBalanceMessageEvent;
             _events[1819] = ConsoleMessageHistoryEvent;
-            _events[1820] = class_830;
-            _events[1823] = class_377;
-            _events[183] = class_583;
-            _events[1875] = class_162;
-            _events[1879] = class_953;
-            _events[1906] = class_1038;
+            _events[1820] = GuildEditFailedMessageEvent;
+            _events[1823] = MOTDNotificationEvent;
+            _events[183] = RoomFilterSettingsMessageEvent;
+            _events[1875] = PromoArticlesMessageEvent;
+            _events[1879] = CallForHelpPendingCallsDeletedMessageEvent;
+            _events[1906] = FlatAccessDeniedMessageEvent;
             _events[1916] = NoobnessLevelMessageEvent;
-            _events[1923] = class_910;
+            _events[1923] = WiredAllVariableHoldersEvent;
             _events[1928] = FriendNotificationEvent;
-            _events[1940] = class_402;
-            _events[1961] = class_651;
-            _events[1993] = class_522;
-            _events[200] = class_295;
-            _events[2014] = class_326;
-            _events[2016] = class_1074;
-            _events[2021] = class_787;
-            _events[2029] = class_226;
-            _events[2034] = class_147;
-            _events[2039] = class_683;
-            _events[2044] = class_880;
-            _events[2048] = class_898;
-            _events[2049] = class_705;
-            _events[2055] = class_957;
+            _events[1940] = GuildMemberFurniCountInHQMessageEvent;
+            _events[1961] = GuideTicketResolutionMessageEvent;
+            _events[1993] = BadgesEvent;
+            _events[200] = NewUserExperienceNotCompleteEvent;
+            _events[2014] = WiredRoomSettingsEvent;
+            _events[2016] = NftCollectionsScoreMessageEvent;
+            _events[2021] = GuildCreatedMessageEvent;
+            _events[2029] = GuildMembersMessageEvent;
+            _events[2034] = PetRespectNotificationEvent;
+            _events[2039] = IsBadgeRequestFulfilledEvent;
+            _events[2044] = GuideSessionAttachedMessageEvent;
+            _events[2048] = GetGuestRoomResultEvent;
+            _events[2049] = TradeOpenFailedEvent;
+            _events[2055] = UserNftWardrobeSelectionMessageEvent;
             _events[2067] = Game2UserBlockedMessageEvent;
-            _events[207] = class_800;
-            _events[2095] = class_1107;
-            _events[2101] = class_148;
-            _events[2111] = class_518;
-            _events[2117] = class_222;
-            _events[2130] = class_603;
-            _events[2141] = class_1080;
-            _events[2146] = class_175;
-            _events[215] = class_296;
+            _events[207] = ElementPointerMessageEvent;
+            _events[2095] = TalentTrackLevelMessageEvent;
+            _events[2101] = ItemUpdateMessageEvent;
+            _events[2111] = YouAreNotSpectatorMessageEvent;
+            _events[2117] = PollContentsEvent;
+            _events[2130] = GuideSessionInvitedToGuideRoomMessageEvent;
+            _events[2141] = CallForHelpReplyMessageEvent;
+            _events[2146] = CollectibleMintableItemResultMessageEvent;
+            _events[215] = OfficialRoomsEvent;
             _events[2152] = class_195;
-            _events[2154] = class_302;
-            _events[2161] = class_588;
-            _events[2190] = class_128;
-            _events[2193] = class_492;
-            _events[2194] = class_247;
-            _events[2196] = class_596;
-            _events[2200] = class_676;
-            _events[2210] = class_686;
-            _events[2217] = class_172;
-            _events[2239] = class_836;
-            _events[2240] = class_597;
-            _events[2258] = class_908;
-            _events[226] = class_398;
-            _events[2260] = class_246;
+            _events[2154] = GuideSessionMessageMessageEvent;
+            _events[2161] = BotInventoryEvent;
+            _events[2190] = RoomForwardMessageEvent;
+            _events[2193] = UserRemoveMessageEvent;
+            _events[2194] = AvatarEffectAddedMessageEvent;
+            _events[2196] = GuildMembershipsMessageEvent;
+            _events[2200] = NotEnoughBalanceMessageEvent;
+            _events[2210] = InfoHotelClosingMessageEvent;
+            _events[2217] = GuildMembershipRejectedMessageEvent;
+            _events[2239] = ConcurrentUsersGoalProgressMessageEvent;
+            _events[2240] = RentableSpaceRentOkMessageEvent;
+            _events[2258] = GroupMembershipRequestedMessageEvent;
+            _events[226] = ModeratorUserInfoEvent;
+            _events[2260] = HabboGroupDeactivatedMessageEvent;
             _events[228] = Game2GameNotFoundMessageEvent;
-            _events[2288] = class_745;
-            _events[2308] = class_1039;
-            _events[2318] = class_514;
-            _events[2319] = class_237;
-            _events[2323] = class_483;
-            _events[2327] = class_602;
-            _events[234] = class_447;
-            _events[2342] = class_276;
-            _events[2346] = class_615;
-            _events[237] = class_894;
-            _events[2376] = class_427;
+            _events[2288] = CraftingRecipeMessageEvent;
+            _events[2308] = CatalogPageMessageEvent;
+            _events[2318] = ModeratorRoomInfoEvent;
+            _events[2319] = CfhChatlogEvent;
+            _events[2323] = AuthenticationOKMessageEvent;
+            _events[2327] = PetInventoryEvent;
+            _events[234] = FavoriteMembershipUpdateMessageEvent;
+            _events[2342] = CustomUserNotificationMessageEvent;
+            _events[2346] = ConfirmBreedingRequestEvent;
+            _events[237] = AchievementResolutionsMessageEvent;
+            _events[2376] = GamePlayerValueMessageEvent;
             _events[2383] = class_545;
-            _events[2386] = class_340;
-            _events[2389] = class_423;
-            _events[2405] = class_274;
-            _events[2417] = class_926;
-            _events[2422] = class_440;
-            _events[2425] = class_549;
-            _events[2429] = class_689;
-            _events[2437] = class_949;
-            _events[2439] = class_765;
+            _events[2386] = FurniListInvalidateEvent;
+            _events[2389] = Game2UserJoinedGameMessageEvent;
+            _events[2405] = PostItPlacedEvent;
+            _events[2417] = MarketplaceCancelOfferResultEvent;
+            _events[2422] = ChatReviewSessionOfferedToGuideMessageEvent;
+            _events[2425] = MarketPlaceOwnOffersEvent;
+            _events[2429] = CraftingRecipesAvailableMessageEvent;
+            _events[2437] = InClientLinkMessageEvent;
+            _events[2439] = OfficialSongIdMessageEvent;
             _events[2449] = class_149;
-            _events[2455] = class_630;
-            _events[2457] = class_923;
-            _events[2464] = class_810;
-            _events[2472] = class_537;
+            _events[2455] = PetSupplementedNotificationEvent;
+            _events[2457] = BannedUsersFromRoomEvent;
+            _events[2464] = RentableSpaceStatusMessageEvent;
+            _events[2472] = PetExperienceEvent;
             _events[2474] = Game2TotalGroupLeaderboardEvent;
-            _events[2495] = class_886;
-            _events[2498] = class_407;
-            _events[25] = class_350;
+            _events[2495] = YouArePlayingGameMessageEvent;
+            _events[2498] = TradingNotOpenEvent;
+            _events[25] = Game2GameStatusMessageEvent;
             _events[2508] = FollowFriendFailedEvent;
             _events[2514] = RoomInviteEvent;
-            _events[2518] = class_1093;
-            _events[2551] = class_334;
-            _events[2557] = class_1021;
-            _events[2559] = class_245;
-            _events[2590] = class_418;
-            _events[261] = class_431;
-            _events[2619] = class_613;
-            _events[2621] = class_1088;
-            _events[2627] = class_900;
-            _events[263] = class_618;
-            _events[2641] = class_219;
-            _events[2657] = class_920;
-            _events[2661] = class_958;
-            _events[2662] = class_975;
-            _events[2670] = class_256;
-            _events[2674] = class_1077;
-            _events[2675] = class_994;
+            _events[2518] = BonusRareInfoMessageEvent;
+            _events[2551] = UpdateMessageMessageEvent;
+            _events[2557] = CraftableProductsMessageEvent;
+            _events[2559] = Game2ArenaEnteredMessageEvent;
+            _events[2590] = Game2GameStartedMessageEvent;
+            _events[261] = MarketplaceItemStatsEvent;
+            _events[2619] = PetInfoMessageEvent;
+            _events[2621] = BotCommandConfigurationEvent;
+            _events[2627] = MarketplaceMakeOfferResult;
+            _events[263] = InitCameraMessageEvent;
+            _events[2641] = AccountPreferencesEvent;
+            _events[2657] = PetPlacingErrorEvent;
+            _events[2661] = Game2GameChatFromPlayerMessageEvent;
+            _events[2662] = PurchaseOKMessageEvent;
+            _events[2670] = CitizenshipVipOfferPromoEnabledEvent;
+            _events[2674] = MarketplaceBuyOfferResultEvent;
+            _events[2675] = UseObjectMessageEvent;
             _events[2676] = class_129;
-            _events[2677] = class_220;
-            _events[2680] = class_337;
-            _events[2689] = class_1110;
-            _events[2691] = class_965;
-            _events[2709] = class_324;
-            _events[2741] = class_415;
-            _events[2771] = class_311;
+            _events[2677] = Game2GameEndingMessageEvent;
+            _events[2680] = UserChangeMessageEvent;
+            _events[2689] = DiceValueMessageEvent;
+            _events[2691] = ChatReviewSessionDetachedMessageEvent;
+            _events[2709] = ModeratorMessageEvent;
+            _events[2741] = ModeratorActionResultMessageEvent;
+            _events[2771] = PetReceivedMessageEvent;
             _events[279] = class_756; //MiniMailNewMessageEvent
-            _events[2791] = class_510;
-            _events[2798] = class_611;
-            _events[2799] = class_566;
-            _events[2802] = class_228;
-            _events[2805] = class_382;
-            _events[2807] = class_872;
+            _events[2791] = RoomEntryInfoMessageEvent;
+            _events[2798] = HabboGroupBadgesMessageEvent;
+            _events[2799] = YouAreSpectatorMessageEvent;
+            _events[2802] = RoomOccupiedTilesMessageEvent;
+            _events[2805] = PlayListSongAddedMessageEvent;
+            _events[2807] = TradingItemListEvent;
             _events[2813] = Game2InArenaQueueMessageEvent;
-            _events[2814] = class_697;
-            _events[2834] = class_372;
+            _events[2814] = GuideSessionEndedMessageEvent;
+            _events[2834] = WhisperMessageEvent;
             _events[2835] = Game2GameDirectoryStatusMessageEvent;
-            _events[2843] = class_592;
-            _events[2846] = class_558;
+            _events[2843] = BotAddedToInventoryEvent;
+            _events[2846] = UsersMessageEvent;
             _events[2850] = RoomAdErrorEvent;
-            _events[2854] = class_1055;
-            _events[2861] = class_426;
-            _events[2869] = class_1064;
-            _events[2875] = class_289;
-            _events[2879] = class_210;
-            _events[2893] = class_640;
-            _events[2920] = class_767;
-            _events[2923] = class_738;
-            _events[2930] = class_696;
+            _events[2854] = Game2StageRunningMessageEvent;
+            _events[2861] = CreditVaultStatusMessageEvent;
+            _events[2869] = UserUnbannedFromRoomEvent;
+            _events[2875] = ActivityPointsMessageEvent;
+            _events[2879] = UserNameChangedMessageEvent;
+            _events[2893] = CloseConnectionMessageEvent;
+            _events[2920] = NftBonusItemClaimResultMessageEvent;
+            _events[2923] = GiftReceiverNotFoundEvent;
+            _events[2930] = CfhSanctionMessageEvent;
             _events[2935] = NewConsoleMessageEvent;
-            _events[2936] = class_543;
-            _events[2948] = class_641;
+            _events[2936] = IgnoreResultMessageEvent;
+            _events[2948] = HeightMapUpdateMessageEvent;
             _events[295] = WeeklyGameRewardEvent;
-            _events[2957] = class_608;
-            _events[2962] = class_316;
+            _events[2957] = PetFigureUpdateEvent;
+            _events[2962] = Game2StageEndingMessageEvent;
             _events[2965] = WeeklyCompetitiveFriendsLeaderboardEvent;
-            _events[2969] = class_358;
+            _events[2969] = ScrSendKickbackInfoMessageEvent;
             _events[297] = class_144;
-            _events[2976] = class_769;
-            _events[298] = class_211;
-            _events[30] = class_1068;
-            _events[3000] = class_1065;
-            _events[3002] = class_298;
-            _events[3006] = class_292;
-            _events[3007] = class_323;
-            _events[3011] = class_671;
-            _events[3012] = class_181;
-            _events[3024] = class_899;
-            _events[3031] = class_718;
-            _events[3037] = class_627;
-            _events[3040] = class_692;
-            _events[3043] = class_1100;
-            _events[3048] = class_556;
-            _events[3053] = class_725;
-            _events[3054] = class_1067;
-            _events[3059] = class_690;
-            _events[3060] = class_297;
-            _events[3063] = class_710;
-            _events[3075] = class_691;
-            _events[3077] = class_1084;
-            _events[3079] = class_160;
-            _events[308] = class_528;
-            _events[3088] = class_948;
+            _events[2976] = TargetedOfferNotFoundEvent;
+            _events[298] = UserBannedMessageEvent;
+            _events[30] = ModeratorInitMessageEvent;
+            _events[3000] = WiredMovementsMessageEvent;
+            _events[3002] = PetRespectFailedEvent;
+            _events[3006] = PetBreedingEvent;
+            _events[3007] = ObjectDataUpdateMessageEvent;
+            _events[3011] = ItemDataUpdateMessageEvent;
+            _events[3012] = BotForceOpenContextMenuEvent;
+            _events[3024] = RoomReadyMessageEvent;
+            _events[3031] = FlatControllersEvent;
+            _events[3037] = RoomEventEvent;
+            _events[3040] = CompetitionEntrySubmitResultMessageEvent;
+            _events[3043] = WiredRoomStatsEvent;
+            _events[3048] = UserObjectEvent;
+            _events[3053] = CheckUserNameResultMessageEvent;
+            _events[3054] = Game2FullGameStatusMessageEvent;
+            _events[3059] = VoucherRedeemErrorMessageEvent;
+            _events[3060] = GiftWrappingConfigurationEvent;
+            _events[3063] = CustomStackingHeightUpdateMessageEvent;
+            _events[3075] = ObjectUpdateMessageEvent;
+            _events[3077] = IssueInfoMessageEvent;
+            _events[3079] = CollectibleMintTokenOffersMessageEvent;
+            _events[308] = TradingCloseEvent;
+            _events[3088] = RoomQueueStatusMessageEvent;
             _events[3097] = class_579;
-            _events[3104] = class_1034;
-            _events[3108] = class_712;
-            _events[3113] = class_314;
-            _events[3116] = class_809;
-            _events[3117] = class_699;
-            _events[3122] = class_333;
+            _events[3104] = WiredFurniConditionEvent;
+            _events[3108] = CampaignCalendarDataMessageEvent;
+            _events[3113] = Game2PlayerExitedGameArenaMessageEvent;
+            _events[3116] = YouAreControllerMessageEvent;
+            _events[3117] = NftRewardItemClaimResultMessageEvent;
+            _events[3122] = ObjectAddMessageEvent;
             _events[3125] = AcceptFriendResultEvent;
-            _events[3126] = class_1090;
-            _events[3129] = class_474;
-            _events[3134] = class_343;
-            _events[3139] = class_164;
-            _events[3140] = class_386;
-            _events[3158] = class_233;
-            _events[316] = class_853;
-            _events[3160] = class_851;
-            _events[3169] = class_462;
+            _events[3126] = MaintenanceStatusMessageEvent;
+            _events[3129] = IsFirstLoginOfDayEvent;
+            _events[3134] = CameraStorageUrlMessageEvent;
+            _events[3139] = ClubGiftNotificationEvent;
+            _events[3140] = BuildersClubPlacementWarningMessageEvent;
+            _events[3158] = AvatarEffectSelectedMessageEvent;
+            _events[316] = ItemsStateUpdateMessageEvent;
+            _events[3160] = RoomChatlogEvent;
+            _events[3169] = YoutubeDisplayVideoMessageEvent;
             _events[3172] = class_590;
-            _events[3187] = class_345;
-            _events[3199] = class_573;
-            _events[32] = class_762;
-            _events[320] = class_509;
-            _events[3208] = class_434;
-            _events[3210] = class_936;
+            _events[3187] = SeasonalQuestsMessageEvent;
+            _events[3199] = ForumThreadsMessageEvent;
+            _events[32] = ObjectRemoveMultipleMessageEvent;
+            _events[320] = GuideReportingStatusMessageEvent;
+            _events[3208] = FurniRentOrBuyoutOfferMessageEvent;
+            _events[3210] = PopularRoomTagsResultEvent;
             _events[3214] = Game2WeeklyFriendsLeaderboardEvent;
             _events[3224] = WeeklyCompetitiveLeaderboardEvent;
-            _events[3226] = class_929;
-            _events[3229] = class_1104;
-            _events[3230] = class_987;
-            _events[3233] = class_198;
-            _events[3259] = class_839;
+            _events[3226] = SilverBalanceMessageEvent;
+            _events[3229] = HotLooksMessageEvent;
+            _events[3230] = RoomSettingsSaveErrorEvent;
+            _events[3233] = ObjectRemoveMessageEvent;
+            _events[3259] = FlatControllerRemovedEvent;
             _events[3260] = Game2GameCancelledMessageEvent;
-            _events[3262] = class_264;
-            _events[327] = class_1105;
-            _events[3270] = class_624;
+            _events[3262] = CatalogIndexMessageEvent;
+            _events[327] = OpenConnectionMessageEvent;
+            _events[3270] = UnreadForumsCountMessageEvent;
             _events[3288] = class_258;
-            _events[3299] = class_378;
-            _events[33] = class_578;
+            _events[3299] = NftTransferFeeMessageEvent;
+            _events[33] = IncomeRewardStatusMessageEvent;
             _events[3313] = FriendRequestsEvent;
-            _events[3314] = class_393;
-            _events[3326] = class_670;
-            _events[334] = class_688;
-            _events[3343] = class_829;
-            _events[3348] = class_1005;
-            _events[3382] = class_581;
-            _events[3383] = class_1108;
+            _events[3314] = ObjectRemoveConfirmMessageEvent;
+            _events[3326] = IgnoredUsersMessageEvent;
+            _events[334] = ModeratorToolPreferencesEvent;
+            _events[3343] = CollectableMintableItemTypesMessageEvent;
+            _events[3348] = FriendFurniOtherLockConfirmedMessageEvent;
+            _events[3382] = CurrentTimingCodeMessageEvent;
+            _events[3383] = AvatarEffectActivatedMessageEvent;
             _events[3392] = Game2WeeklyLeaderboardEvent;
-            _events[34] = class_454;
-            _events[3405] = class_1092;
-            _events[3407] = class_962;
-            _events[3408] = class_747;
-            _events[341] = class_150;
-            _events[3410] = class_132;
-            _events[3414] = class_593;
-            _events[3415] = class_927;
+            _events[34] = GuestRoomSearchResultEvent;
+            _events[3405] = RemainingMutePeriodEvent;
+            _events[3407] = RoomVisualizationSettingsEvent;
+            _events[3408] = PlayListMessageEvent;
+            _events[341] = GroupDetailsChangedMessageEvent;
+            _events[3410] = ExtendedProfileChangedMessageEvent;
+            _events[3414] = CollectibleMintTokenCountMessageEvent;
+            _events[3415] = ItemStateUpdateMessageEvent;
             _events[3430] = InterstitialMessageEvent;
-            _events[3437] = class_1044;
-            _events[3442] = class_240;
-            _events[3444] = class_158;
-            _events[3447] = class_540;
+            _events[3437] = FlatControllerAddedEvent;
+            _events[3442] = UserNftWardrobeMessageEvent;
+            _events[3444] = WiredPermissionsEvent;
+            _events[3447] = RoomSettingsSavedEvent;
             _events[3449] = AvailabilityStatusMessageEvent;
-            _events[3453] = class_269;
+            _events[3453] = Game2EnterArenaFailedMessageEvent;
             _events[3464] = Game2WeeklyGroupLeaderboardEvent;
             _events[3471] = HabboSearchResultEvent;
-            _events[3478] = class_907;
-            _events[3481] = class_404;
+            _events[3478] = QuestsMessageEvent;
+            _events[3481] = Game2EnterArenaMessageEvent;
             _events[3490] = UserGameAchievementsMessageEvent;
-            _events[3492] = class_252;
+            _events[3492] = HeightMapMessageEvent;
             _events[3498] = InstantMessageErrorEvent;
             _events[3502] = class_401;
-            _events[3504] = class_1083;
-            _events[3505] = class_818;
-            _events[3506] = class_716;
-            _events[351] = class_621;
-            _events[3514] = class_947;
-            _events[3517] = class_620;
-            _events[3518] = class_782;
-            _events[352] = class_538;
-            _events[3523] = class_761;
-            _events[3525] = class_959;
-            _events[3536] = class_808;
-            _events[3538] = class_438;
+            _events[3504] = LoginFailedHotelClosedMessageEvent;
+            _events[3505] = OpenPetPackageResultMessageEvent;
+            _events[3506] = PetRemovedFromInventoryEvent;
+            _events[351] = MysteryBoxKeysMessageEvent;
+            _events[3514] = ItemsMessageEvent;
+            _events[3517] = RentableSpaceRentFailedMessageEvent;
+            _events[3518] = PostThreadMessageEvent;
+            _events[352] = CommunityGoalProgressMessageEvent;
+            _events[3523] = FavouriteChangedEvent;
+            _events[3525] = RestoreClientMessageEvent;
+            _events[3536] = CallForHelpResultMessageEvent;
+            _events[3538] = RelationshipStatusInfoEvent;
             _events[3550] = FurniListEvent;
-            _events[3551] = class_444;
-            _events[3554] = class_468;
-            _events[3555] = class_883;
+            _events[3551] = NftCollectionsMessageEvent;
+            _events[3554] = ShoutMessageEvent;
+            _events[3555] = NftTransferAssetsResultMessageEvent;
             _events[3573] = Game2FriendsLeaderboardEvent;
-            _events[3579] = class_299;
-            _events[358] = class_946;
+            _events[3579] = UpdateThreadMessageEvent;
+            _events[358] = CommunityGoalHallOfFameMessageEvent;
             _events[3580] = class_819;
-            _events[3581] = class_968;
-            _events[3583] = class_694;
-            _events[3585] = class_921;
-            _events[3595] = class_379;
-            _events[3598] = class_878;
-            _events[3603] = class_653;
-            _events[3610] = class_332;
-            _events[3613] = class_319;
-            _events[3619] = class_1024;
-            _events[3627] = class_979;
-            _events[3628] = class_811;
-            _events[3633] = class_1106;
-            _events[3635] = class_657;
-            _events[365] = class_532;
+            _events[3581] = QuizResultsMessageEvent;
+            _events[3583] = NewUserExperienceGiftOfferEvent;
+            _events[3585] = FloodControlMessageEvent;
+            _events[3595] = FurniListAddOrUpdateEvent;
+            _events[3598] = RoomDimmerPresetsMessageEvent;
+            _events[3603] = IssueCloseNotificationMessageEvent;
+            _events[3610] = WardrobeMessageEvent;
+            _events[3613] = RoomSettingsErrorEvent;
+            _events[3619] = RoomVisitsEvent;
+            _events[3627] = CanCreateRoomEvent;
+            _events[3628] = QuizDataMessageEvent;
+            _events[3633] = RoomPropertyMessageEvent;
+            _events[3635] = WiredAllVariablesDiffsEvent;
+            _events[365] = CompetitionStatusMessageEvent;
             _events[3658] = class_364;
             _events[3661] = Game2AccountGameStatusMessageEvent;
-            _events[3669] = class_988;
-            _events[367] = class_743;
-            _events[3675] = class_283;
-            _events[3679] = class_741;
-            _events[369] = class_353;
-            _events[3691] = class_446;
-            _events[3693] = class_685;
-            _events[3696] = class_642;
+            _events[3669] = PostMessageMessageEvent;
+            _events[367] = WiredFurniAddonEvent;
+            _events[3675] = LimitedEditionSoldOutEvent;
+            _events[3679] = ThumbnailStatusMessageEvent;
+            _events[369] = WiredAllVariablesHashEvent;
+            _events[3691] = FurniListRemoveEvent;
+            _events[3693] = SelectInitialRoomEvent;
+            _events[3696] = SanctionStatusEvent;
             _events[3718] = class_760;
             _events[3720] = SnowWarGameTokensMessageEvent;
             _events[3722] = class_931;
-            _events[3731] = class_266;
-            _events[3732] = class_341;
-            _events[3748] = class_612;
-            _events[3758] = class_399;
-            _events[3764] = class_381;
-            _events[3766] = class_783;
+            _events[3731] = GuildCreationInfoMessageEvent;
+            _events[3732] = ChangeUserNameResultMessageEvent;
+            _events[3748] = BotSkillListUpdateEvent;
+            _events[3758] = NestBreedingSuccessEvent;
+            _events[3764] = TalentLevelUpMessageEvent;
+            _events[3766] = WiredValidationErrorEvent;
             _events[3769] = Game2TotalLeaderboardEvent;
-            _events[3774] = class_255;
-            _events[3775] = class_973;
-            _events[3777] = class_1060;
-            _events[3778] = class_177;
-            _events[3806] = class_785;
-            _events[381] = class_248;
-            _events[3812] = class_356;
-            _events[3819] = class_695;
-            _events[382] = class_432;
-            _events[3825] = class_719;
-            _events[3844] = class_730;
-            _events[3855] = class_866;
+            _events[3774] = Game2PlayerRematchesMessageEvent;
+            _events[3775] = QuestDailyMessageEvent;
+            _events[3777] = CompleteDiffieHandshakeEvent;
+            _events[3778] = CfhTopicsInitMessageEvent;
+            _events[3806] = PhoneCollectionStateMessageEvent;
+            _events[381] = MarketplaceConfigurationEvent;
+            _events[3812] = UserClassificationMessageEvent;
+            _events[3819] = CancelMysteryBoxWaitMessageEvent;
+            _events[382] = FurnitureAliasesMessageEvent;
+            _events[3825] = QuestionAnsweredEvent;
+            _events[3844] = OpenPetPackageRequestedMessageEvent;
+            _events[3855] = ExpressionMessageEvent;
             _events[3856] = class_307; //MiniMailUnreadCountEvent
-            _events[3859] = class_662;
-            _events[3874] = class_267;
+            _events[3859] = NowPlayingMessageEvent;
+            _events[3874] = HabboBroadcastMessageEvent;
             _events[3884] = WeeklyGameRewardWinnersEvent;
-            _events[3892] = class_960;
-            _events[3907] = class_169;
-            _events[3911] = class_1000;
-            _events[3915] = class_500;
-            _events[3920] = class_161;
-            _events[3929] = class_484;
-            _events[3959] = class_548;
-            _events[3960] = class_349;
-            _events[3961] = class_922;
+            _events[3892] = InfoHotelClosedMessageEvent;
+            _events[3907] = BuildersClubSubscriptionStatusMessageEvent;
+            _events[3911] = UserUpdateMessageEvent;
+            _events[3915] = YouAreOwnerMessageEvent;
+            _events[3920] = PresentOpenedMessageEvent;
+            _events[3929] = TryVerificationCodeResultMessageEvent;
+            _events[3959] = EpicPopupMessageEvent;
+            _events[3960] = TradingYouAreNotAllowedEvent;
+            _events[3961] = PollOfferEvent;
             _events[3966] = FriendListUpdateEvent;
-            _events[3968] = class_983;
-            _events[3974] = class_223;
-            _events[3975] = class_846;
-            _events[3983] = class_680;
-            _events[3988] = class_254;
+            _events[3968] = QuestMessageEvent;
+            _events[3974] = UniqueMachineIDEvent;
+            _events[3975] = HabboUserBadgesMessageEvent;
+            _events[3983] = ModeratorCautionEvent;
+            _events[3988] = SellablePetPalettesMessageEvent;
             _events[3994] = RoomInviteErrorEvent;
-            _events[4000] = class_280;
-            _events[403] = class_262;
-            _events[404] = class_470;
-            _events[431] = class_357;
-            _events[440] = class_523;
-            _events[442] = class_1019;
-            _events[45] = class_541;
-            _events[464] = class_1073;
-            _events[472] = class_714;
-            _events[473] = class_486;
-            _events[481] = class_209;
-            _events[497] = class_277;
-            _events[502] = class_961;
-            _events[517] = class_1069;
-            _events[523] = class_605;
-            _events[529] = class_572;
-            _events[541] = class_863;
+            _events[4000] = DisconnectReasonEvent;
+            _events[403] = TradingOtherNotAllowedEvent;
+            _events[404] = AchievementsEvent;
+            _events[431] = FlatAccessibleMessageEvent;
+            _events[440] = NotificationDialogMessageEvent;
+            _events[442] = BadgeReceivedEvent;
+            _events[45] = FriendFurniCancelLockMessageEvent;
+            _events[464] = FigureSetIdsEvent;
+            _events[472] = SeasonalCalendarDailyOfferMessageEvent;
+            _events[473] = ObjectsDataUpdateMessageEvent;
+            _events[481] = PurchaseErrorMessageEvent;
+            _events[497] = QuestionEvent;
+            _events[502] = CampaignCalendarDoorOpenedMessageEvent;
+            _events[517] = UserSongDisksInventoryMessageEvent;
+            _events[523] = UserFlatCatsEvent;
+            _events[529] = GuideSessionPartnerIsTypingMessageEvent;
+            _events[541] = PetStatusUpdateEvent;
             _events[553] = class_135;
-            _events[558] = class_313;
-            _events[573] = class_321;
-            _events[574] = class_1079;
-            _events[585] = class_464;
-            _events[586] = class_693;
-            _events[588] = class_498;
-            _events[598] = class_485;
-            _events[619] = class_495;
+            _events[558] = DanceMessageEvent;
+            _events[573] = CollectibleMintingEnabledMessageEvent;
+            _events[574] = ConvertedRoomIdEvent;
+            _events[585] = FriendFurniStartConfirmationMessageEvent;
+            _events[586] = ChangeEmailResultEvent;
+            _events[588] = WiredFurniSelectorEvent;
+            _events[598] = GenericErrorEvent;
+            _events[619] = ForumDataMessageEvent;
             _events[623] = class_636;
-            _events[63] = class_963;
-            _events[631] = class_844;
-            _events[633] = class_263;
-            _events[647] = class_281;
-            _events[652] = class_905;
-            _events[654] = class_217;
-            _events[657] = class_231;
-            _events[658] = class_257;
+            _events[63] = MuteAllInRoomEvent;
+            _events[631] = GuildFurniContextMenuInfoMessageEvent;
+            _events[633] = PetLevelUpdateEvent;
+            _events[647] = ThreadMessagesMessageEvent;
+            _events[652] = WiredErrorLogsEvent;
+            _events[654] = AccountSafetyLockStatusChangeMessageEvent;
+            _events[657] = ErrorReportEvent;
+            _events[658] = PingMessageEvent;
             _events[668] = Game2JoiningGameFailedMessageEvent;
-            _events[674] = class_892;
-            _events[675] = class_858;
-            _events[677] = class_1016;
-            _events[679] = class_944;
-            _events[684] = class_945;
+            _events[674] = Game2GameCreatedMessageEvent;
+            _events[675] = PetLevelNotificationEvent;
+            _events[677] = QuestCompletedMessageEvent;
+            _events[679] = ClubGiftSelectedEvent;
+            _events[684] = ItemAddMessageEvent;
             _events[687] = MessengerErrorEvent;
-            _events[692] = class_601;
-            _events[695] = class_943;
-            _events[712] = class_547;
-            _events[713] = class_145;
-            _events[731] = class_629;
-            _events[739] = class_534;
-            _events[770] = class_293;
-            _events[771] = class_134;
-            _events[791] = class_628;
+            _events[692] = ShowMysteryBoxWaitMessageEvent;
+            _events[695] = MarketplaceCanMakeOfferResult;
+            _events[712] = EmailStatusResultEvent;
+            _events[713] = GuideSessionErrorMessageEvent;
+            _events[731] = RoomMessageNotificationMessageEvent;
+            _events[739] = CompetitionRoomsDataMessageEvent;
+            _events[770] = NoOwnedRoomsAlertMessageEvent;
+            _events[771] = InitDiffieHandshakeEvent;
+            _events[791] = Game2StageStillLoadingMessageEvent;
             _events[795] = Game2UserLeftGameMessageEvent;
-            _events[804] = class_526;
-            _events[805] = class_750;
-            _events[807] = class_133;
-            _events[816] = class_339;
-            _events[817] = class_702;
-            _events[836] = class_199;
-            _events[840] = class_649;
-            _events[845] = class_766;
-            _events[847] = class_1066;
+            _events[804] = UserEventCatsEvent;
+            _events[805] = RoomEventCancelEvent;
+            _events[807] = SleepMessageEvent;
+            _events[816] = ForumsListMessageEvent;
+            _events[817] = YouAreNotControllerMessageEvent;
+            _events[836] = FigureUpdateEvent;
+            _events[840] = OfferRewardDeliveredMessageEvent;
+            _events[845] = TryPhoneNumberResultMessageEvent;
+            _events[847] = JukeboxSongDisksMessageEvent;
             _events[85] = class_895;
-            _events[853] = class_668;
-            _events[858] = class_875;
+            _events[853] = GuildMemberMgmtFailedMessageEvent;
+            _events[858] = CantConnectMessageEvent;
             _events[865] = Game2StartingGameFailedMessageEvent;
-            _events[867] = class_860;
+            _events[867] = CommunityVoteReceivedEvent;
             _events[873] = Game2StartCounterMessageEvent;
             _events[878] = CallForHelpPendingCallsMessageEvent;
-            _events[889] = class_196;
-            _events[893] = class_362;
+            _events[889] = HandItemReceivedMessageEvent;
+            _events[893] = WiredFurniTriggerEvent;
             _events[895] = class_491;
-            _events[919] = class_996;
-            _events[929] = class_140;
+            _events[919] = ExtendedProfileMessageEvent;
+            _events[929] = ConfirmBreedingResultEvent;
             _events[931] = LatencyPingResponseMessageEvent;
-            _events[937] = class_1057;
-            _events[939] = class_587;
-            _events[965] = class_467;
-            _events[968] = class_238;
+            _events[937] = ScrSendUserInfoEvent;
+            _events[939] = TradeSilverSetMessageEvent;
+            _events[965] = CategoriesWithVisitorCountEvent;
+            _events[968] = GuildEditInfoMessageEvent;
             _events[972] = class_380;
-            _events[975] = class_708;
-            _events[996] = class_586;
+            _events[975] = RequestSpamWallPostItMessageEvent;
+            _events[996] = WiredFurniActionEvent;
         }
 
         public function HabboMessages() {

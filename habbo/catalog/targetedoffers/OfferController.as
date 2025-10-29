@@ -15,7 +15,7 @@ package com.sulake.habbo.catalog.targetedoffers
    import com.sulake.habbo.communication.messages.outgoing.catalog.class_909;
    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.catalog.TargetedOfferEvent;
-   import com.sulake.habbo.communication.messages.incoming.catalog.class_769;
+   import com.sulake.habbo.communication.messages.incoming.catalog.TargetedOfferNotFoundEvent;
    
    public class OfferController implements class_1812
    {
@@ -40,7 +40,7 @@ package com.sulake.habbo.catalog.targetedoffers
          super();
          _catalog = param1;
          _catalog.connection.addMessageEvent(new TargetedOfferEvent(onTargetedOffer));
-         _catalog.connection.addMessageEvent(new class_769(onTargetedOfferNotFound));
+         _catalog.connection.addMessageEvent(new TargetedOfferNotFoundEvent(onTargetedOfferNotFound));
          _catalog.events.addEventListener("catalog_purse_update",onPurseUpdate);
          _catalog.sessionDataManager.addProductsReadyEventListener(this);
       }
@@ -84,7 +84,7 @@ package com.sulake.habbo.catalog.targetedoffers
          }
       }
       
-      private function onTargetedOfferNotFound(param1:class_769) : void
+      private function onTargetedOfferNotFound(param1:TargetedOfferNotFoundEvent) : void
       {
          var_3559 = new MallOfferExternalInterfaceHelper(this);
       }

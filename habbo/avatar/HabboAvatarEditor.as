@@ -29,7 +29,7 @@ package com.sulake.habbo.avatar
    import flash.display.BitmapData;
    import flash.utils.Dictionary;
    import com.sulake.habbo.communication.messages.outgoing.register.class_675;
-   import com.sulake.habbo.communication.messages.incoming.nft.class_957;
+   import com.sulake.habbo.communication.messages.incoming.nft.UserNftWardrobeSelectionMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.nft.SaveUserNftWardrobeMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.nft.class_757;
    
@@ -75,7 +75,7 @@ package com.sulake.habbo.avatar
       
       private var var_4484:Boolean = false;
       
-      private var var_3170:class_957;
+      private var var_3170:UserNftWardrobeSelectionMessageEvent;
       
       private var var_1491:String;
       
@@ -139,7 +139,7 @@ package com.sulake.habbo.avatar
          }
          if(var_480.communication)
          {
-            var_3170 = new class_957(onUserNftWardrobeMessage);
+            var_3170 = new UserNftWardrobeSelectionMessageEvent(onUserNftWardrobeMessage);
             var_480.communication.addHabboConnectionMessageEvent(var_3170);
             sendGetSelectedNftWardrobeOutfitMessage();
          }
@@ -175,7 +175,7 @@ package com.sulake.habbo.avatar
          }
       }
       
-      private function onUserNftWardrobeMessage(param1:class_957) : void
+      private function onUserNftWardrobeMessage(param1:UserNftWardrobeSelectionMessageEvent) : void
       {
          var_1491 = param1.getParser().currentTokenId;
          var_4092 = param1.getParser().fallbackFigureString;

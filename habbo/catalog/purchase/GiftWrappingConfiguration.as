@@ -1,7 +1,7 @@
 package com.sulake.habbo.catalog.purchase
 {
    import com.sulake.habbo.communication.messages.parser.catalog.class_1182;
-   import com.sulake.habbo.communication.messages.incoming.catalog.class_297;
+   import com.sulake.habbo.communication.messages.incoming.catalog.GiftWrappingConfigurationEvent;
    
    public class GiftWrappingConfiguration
    {
@@ -19,7 +19,7 @@ package com.sulake.habbo.catalog.purchase
       
       private var var_684:Array;
       
-      public function GiftWrappingConfiguration(param1:class_297)
+      public function GiftWrappingConfiguration(param1:GiftWrappingConfigurationEvent)
       {
          super();
          if(param1 == null)

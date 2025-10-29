@@ -38,17 +38,17 @@ package com.sulake.habbo.groups
    import com.sulake.iid.IIDHabboWindowManager;
    import com.sulake.iid.IIDSessionDataManager;
    import flash.display.BitmapData;
-   import com.sulake.habbo.communication.messages.incoming.room.session.class_640;
-   import com.sulake.habbo.communication.messages.incoming.navigator.class_795;
-   import com.sulake.habbo.communication.messages.incoming.navigator.class_898;
+   import com.sulake.habbo.communication.messages.incoming.room.session.CloseConnectionMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.navigator.FlatCreatedEvent;
+   import com.sulake.habbo.communication.messages.incoming.navigator.GetGuestRoomResultEvent;
    import com.sulake.habbo.communication.messages.parser.users.class_1359;
    import com.sulake.habbo.communication.messages.parser.navigator.RoomSettingsDataEvent;
    import com.sulake.habbo.communication.messages.parser.navigator.class_1616;
    import com.sulake.habbo.communication.messages.parser.handshake.class_1267;
    import com.sulake.habbo.communication.messages.parser.room.engine.class_1339;
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_510;
+   import com.sulake.habbo.communication.messages.incoming.room.engine.RoomEntryInfoMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
-   import com.sulake.habbo.communication.messages.incoming.users.class_1057;
+   import com.sulake.habbo.communication.messages.incoming.users.ScrSendUserInfoEvent;
    import com.sulake.habbo.communication.messages.incoming.users.class_1184;
    import com.sulake.habbo.communication.messages.incoming.users.class_1197;
    import com.sulake.habbo.communication.messages.incoming.users.class_1199;
@@ -56,26 +56,26 @@ package com.sulake.habbo.groups
    import com.sulake.habbo.communication.messages.incoming.users.GuildEditorDataMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.users.class_1251;
    import com.sulake.habbo.communication.messages.incoming.users.class_1300;
-   import com.sulake.habbo.communication.messages.incoming.users.class_132;
-   import com.sulake.habbo.communication.messages.incoming.users.class_150;
+   import com.sulake.habbo.communication.messages.incoming.users.ExtendedProfileChangedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.GroupDetailsChangedMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.users.class_1581;
-   import com.sulake.habbo.communication.messages.incoming.users.class_172;
-   import com.sulake.habbo.communication.messages.incoming.users.class_226;
-   import com.sulake.habbo.communication.messages.incoming.users.class_232;
-   import com.sulake.habbo.communication.messages.incoming.users.class_238;
-   import com.sulake.habbo.communication.messages.incoming.users.class_246;
-   import com.sulake.habbo.communication.messages.incoming.users.class_266;
-   import com.sulake.habbo.communication.messages.incoming.users.class_315;
-   import com.sulake.habbo.communication.messages.incoming.users.class_402;
-   import com.sulake.habbo.communication.messages.incoming.users.class_438;
-   import com.sulake.habbo.communication.messages.incoming.users.class_668;
-   import com.sulake.habbo.communication.messages.incoming.users.class_787;
-   import com.sulake.habbo.communication.messages.incoming.users.class_830;
-   import com.sulake.habbo.communication.messages.incoming.users.class_835;
-   import com.sulake.habbo.communication.messages.incoming.users.class_846;
-   import com.sulake.habbo.communication.messages.incoming.users.class_908;
-   import com.sulake.habbo.communication.messages.incoming.users.class_996;
-   import com.sulake.habbo.communication.messages.incoming.handshake.class_556;
+   import com.sulake.habbo.communication.messages.incoming.users.GuildMembershipRejectedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.GuildMembersMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.HabboGroupJoinFailedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.GuildEditInfoMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.HabboGroupDeactivatedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.GuildCreationInfoMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.GuildMembershipUpdatedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.GuildMemberFurniCountInHQMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.RelationshipStatusInfoEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.GuildMemberMgmtFailedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.GuildCreatedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.GuildEditFailedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.HabboGroupDetailsMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.HabboUserBadgesMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.GroupMembershipRequestedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.ExtendedProfileMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.handshake.UserObjectEvent;
    import com.sulake.habbo.communication.messages.outgoing.users.class_142;
    import com.sulake.habbo.communication.messages.outgoing.users.class_201;
    import com.sulake.habbo.communication.messages.outgoing.users.class_322;
@@ -185,31 +185,31 @@ package com.sulake.habbo.groups
       override protected function initComponent() : void
       {
          _messageEvents = new Vector.<IMessageEvent>(0);
-         addMessageEvent(new class_132(onExtendedProfileChanged));
-         addMessageEvent(new class_830(onGuildEditFailed));
-         addMessageEvent(new class_172(var_2154.onGuildMembershipRejected));
-         addMessageEvent(new class_246(onGroupDeactivated));
-         addMessageEvent(new class_898(onRoomInfo));
-         addMessageEvent(new class_1057(onSubscriptionInfo));
-         addMessageEvent(new class_556(onUserObject));
-         addMessageEvent(new class_640(onRoomLeave));
+         addMessageEvent(new ExtendedProfileChangedMessageEvent(onExtendedProfileChanged));
+         addMessageEvent(new GuildEditFailedMessageEvent(onGuildEditFailed));
+         addMessageEvent(new GuildMembershipRejectedMessageEvent(var_2154.onGuildMembershipRejected));
+         addMessageEvent(new HabboGroupDeactivatedMessageEvent(onGroupDeactivated));
+         addMessageEvent(new GetGuestRoomResultEvent(onRoomInfo));
+         addMessageEvent(new ScrSendUserInfoEvent(onSubscriptionInfo));
+         addMessageEvent(new UserObjectEvent(onUserObject));
+         addMessageEvent(new CloseConnectionMessageEvent(onRoomLeave));
          addMessageEvent(new GuildEditorDataMessageEvent(onGuildEditorData));
-         addMessageEvent(new class_266(onGuildCreationInfo));
-         addMessageEvent(new class_232(onJoinFailed));
-         addMessageEvent(new class_795(onFlatCreated));
-         addMessageEvent(new class_150(onGroupDetailsChanged));
-         addMessageEvent(new class_846(onUserBadgesMessage));
-         addMessageEvent(new class_510(onRoomEnter));
-         addMessageEvent(new class_402(onKickConfirmation));
-         addMessageEvent(new class_908(var_2154.onMembershipRequested));
-         addMessageEvent(new class_996(onExtendedProfile));
-         addMessageEvent(new class_315(var_2154.onGuildMembershipUpdated));
-         addMessageEvent(new class_835(onGroupDetails));
-         addMessageEvent(new class_787(onGuildCreated));
-         addMessageEvent(new class_438(onRelationshipStatusInfo));
-         addMessageEvent(new class_226(var_2154.onGuildMembers));
-         addMessageEvent(new class_668(var_2154.onGuildMemberMgmtFailed));
-         addMessageEvent(new class_238(onGuildEditInfo));
+         addMessageEvent(new GuildCreationInfoMessageEvent(onGuildCreationInfo));
+         addMessageEvent(new HabboGroupJoinFailedMessageEvent(onJoinFailed));
+         addMessageEvent(new FlatCreatedEvent(onFlatCreated));
+         addMessageEvent(new GroupDetailsChangedMessageEvent(onGroupDetailsChanged));
+         addMessageEvent(new HabboUserBadgesMessageEvent(onUserBadgesMessage));
+         addMessageEvent(new RoomEntryInfoMessageEvent(onRoomEnter));
+         addMessageEvent(new GuildMemberFurniCountInHQMessageEvent(onKickConfirmation));
+         addMessageEvent(new GroupMembershipRequestedMessageEvent(var_2154.onMembershipRequested));
+         addMessageEvent(new ExtendedProfileMessageEvent(onExtendedProfile));
+         addMessageEvent(new GuildMembershipUpdatedMessageEvent(var_2154.onGuildMembershipUpdated));
+         addMessageEvent(new HabboGroupDetailsMessageEvent(onGroupDetails));
+         addMessageEvent(new GuildCreatedMessageEvent(onGuildCreated));
+         addMessageEvent(new RelationshipStatusInfoEvent(onRelationshipStatusInfo));
+         addMessageEvent(new GuildMembersMessageEvent(var_2154.onGuildMembers));
+         addMessageEvent(new GuildMemberMgmtFailedMessageEvent(var_2154.onGuildMemberMgmtFailed));
+         addMessageEvent(new GuildEditInfoMessageEvent(onGuildEditInfo));
          context.addLinkEventTracker(this);
       }
       
@@ -337,14 +337,14 @@ package com.sulake.habbo.groups
       
       private function onGroupDeactivated(param1:IMessageEvent) : void
       {
-         var _loc2_:int = int(class_246(param1).groupId);
+         var _loc2_:int = int(HabboGroupDeactivatedMessageEvent(param1).groupId);
          var_2315.onGroupDeactivated(_loc2_);
          var_2050.onGroupDeactivated(_loc2_);
       }
       
       private function onGroupDetails(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1199 = class_835(param1).data;
+         var _loc2_:class_1199 = HabboGroupDetailsMessageEvent(param1).data;
          var_2315.onGroupDetails(_loc2_);
          var_2061.onGroupDetails(_loc2_);
          var_2050.onGroupDetails(_loc2_);
@@ -352,7 +352,7 @@ package com.sulake.habbo.groups
       
       private function onExtendedProfile(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1581 = class_996(param1).data;
+         var _loc2_:class_1581 = ExtendedProfileMessageEvent(param1).data;
          if(_loc2_.openProfileWindow)
          {
             var_2061.badgeUpdateExpected = true;
@@ -363,13 +363,13 @@ package com.sulake.habbo.groups
       
       private function onExtendedProfileChanged(param1:IMessageEvent) : void
       {
-         var _loc2_:int = int(class_132(param1).userId);
+         var _loc2_:int = int(ExtendedProfileChangedMessageEvent(param1).userId);
          var_2061.onProfileChanged(_loc2_);
       }
       
       private function onGroupDetailsChanged(param1:IMessageEvent) : void
       {
-         var _loc2_:int = int(class_150(param1).groupId);
+         var _loc2_:int = int(GroupDetailsChangedMessageEvent(param1).groupId);
          if(var_2315.isDisplayingGroup(_loc2_) || var_2050.isDisplayingGroup(_loc2_))
          {
             send(new class_201(_loc2_,false));
@@ -380,7 +380,7 @@ package com.sulake.habbo.groups
       {
          var _loc3_:String = null;
          var _loc4_:String = null;
-         var _loc2_:int = int(class_232(param1).reason);
+         var _loc2_:int = int(HabboGroupJoinFailedMessageEvent(param1).reason);
          if(_loc2_ == 4)
          {
             var_2918.show(false);
@@ -395,14 +395,14 @@ package com.sulake.habbo.groups
       
       private function onGuildCreationInfo(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1197 = class_266(param1).data;
+         var _loc2_:class_1197 = GuildCreationInfoMessageEvent(param1).data;
          var_2208.onGuildCreationInfo(_loc2_);
          requestGuildEditorData();
       }
       
       private function onGuildEditInfo(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1184 = class_238(param1).data;
+         var _loc2_:class_1184 = GuildEditInfoMessageEvent(param1).data;
          var_2208.onGuildEditInfo(_loc2_);
          requestGuildEditorData();
       }
@@ -417,7 +417,7 @@ package com.sulake.habbo.groups
       {
          var_2315.close();
          var_2050.close();
-         var _loc2_:class_1339 = class_510(param1).getParser();
+         var _loc2_:class_1339 = RoomEntryInfoMessageEvent(param1).getParser();
          var_369 = _loc2_.guestRoomId;
       }
       
@@ -436,7 +436,7 @@ package com.sulake.habbo.groups
       {
          var _loc3_:String = null;
          var _loc4_:String = null;
-         var _loc2_:int = int(class_830(param1).reason);
+         var _loc2_:int = int(GuildEditFailedMessageEvent(param1).reason);
          if(_loc2_ == 2)
          {
             var_2918.show(true);
@@ -451,19 +451,19 @@ package com.sulake.habbo.groups
       
       private function onUserObject(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1267 = class_556(param1).getParser();
+         var _loc2_:class_1267 = UserObjectEvent(param1).getParser();
          var_894 = _loc2_.id;
       }
       
       private function onFlatCreated(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1616 = class_795(param1).getParser();
+         var _loc2_:class_1616 = FlatCreatedEvent(param1).getParser();
          var_2208.onFlatCreated(_loc2_.flatId,_loc2_.flatName);
       }
       
       private function onGuildCreated(param1:IMessageEvent) : void
       {
-         var _loc2_:class_787 = class_787(param1);
+         var _loc2_:GuildCreatedMessageEvent = GuildCreatedMessageEvent(param1);
          var_3007.show(_loc2_.groupId);
          var_2208.close();
          var_2050.expectedGroupId = _loc2_.groupId;
@@ -475,8 +475,8 @@ package com.sulake.habbo.groups
       
       private function onKickConfirmation(param1:IMessageEvent) : void
       {
-         var _loc4_:int = int(class_402(param1).userId());
-         var _loc6_:int = int(class_402(param1).furniCount());
+         var _loc4_:int = int(GuildMemberFurniCountInHQMessageEvent(param1).userId());
+         var _loc6_:int = int(GuildMemberFurniCountInHQMessageEvent(param1).furniCount());
          var _loc5_:class_1251 = null;
          var _loc2_:class_1212 = var_2154.data;
          var _loc3_:String = var_2104.targetBlocked ? "group.block" : "group.kick";
@@ -524,14 +524,14 @@ package com.sulake.habbo.groups
       
       private function onSubscriptionInfo(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1359 = class_1057(param1).getParser();
+         var _loc2_:class_1359 = ScrSendUserInfoEvent(param1).getParser();
          var_4456 = _loc2_.isVIP && _loc2_.minutesUntilExpiration > 0;
          var_2208.onSubscriptionChange();
       }
       
       private function onRoomInfo(param1:IMessageEvent) : void
       {
-         var _loc2_:RoomSettingsDataEvent = class_898(param1).getParser();
+         var _loc2_:RoomSettingsDataEvent = GetGuestRoomResultEvent(param1).getParser();
          if(_loc2_.enterRoom)
          {
             var_2050.onRoomInfo(_loc2_.data);
@@ -540,11 +540,11 @@ package com.sulake.habbo.groups
       
       private function onRelationshipStatusInfo(param1:IMessageEvent) : void
       {
-         var _loc2_:class_438 = class_438(param1);
+         var _loc2_:RelationshipStatusInfoEvent = RelationshipStatusInfoEvent(param1);
          var_2061.onRelationshipStatusInfo(_loc2_.userId,_loc2_.relationshipStatusMap);
       }
       
-      private function onUserBadgesMessage(param1:class_846) : void
+      private function onUserBadgesMessage(param1:HabboUserBadgesMessageEvent) : void
       {
          var_2061.onUserBadges(param1.userId,param1.badges);
       }

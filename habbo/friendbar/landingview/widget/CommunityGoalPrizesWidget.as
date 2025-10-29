@@ -12,10 +12,10 @@ package com.sulake.habbo.friendbar.landingview.widget
    import com.sulake.habbo.friendbar.landingview.layout.CommonWidgetSettings;
    import com.sulake.habbo.friendbar.landingview.layout.WidgetContainerLayout;
    import com.sulake.habbo.window.widgets.IAvatarImageWidget;
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_337;
-   import com.sulake.habbo.communication.messages.incoming.handshake.class_556;
+   import com.sulake.habbo.communication.messages.incoming.room.engine.UserChangeMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.handshake.UserObjectEvent;
    import com.sulake.habbo.communication.messages.incoming.quest.class_1678;
-   import com.sulake.habbo.communication.messages.incoming.quest.class_538;
+   import com.sulake.habbo.communication.messages.incoming.quest.CommunityGoalProgressMessageEvent;
    
    public class CommunityGoalPrizesWidget implements ILandingViewWidget, ISettingsAwareWidget
    {
@@ -50,9 +50,9 @@ package com.sulake.habbo.friendbar.landingview.widget
       public function initialize() : void
       {
          _container = IWindowContainer(_landingView.getXmlWindow("achievement_competition_prizes"));
-         _landingView.communicationManager.addHabboConnectionMessageEvent(new class_538(onCommunityGoalProgress));
-         _landingView.communicationManager.addHabboConnectionMessageEvent(new class_337(onUserChange));
-         _landingView.communicationManager.addHabboConnectionMessageEvent(new class_556(onUserObject));
+         _landingView.communicationManager.addHabboConnectionMessageEvent(new CommunityGoalProgressMessageEvent(onCommunityGoalProgress));
+         _landingView.communicationManager.addHabboConnectionMessageEvent(new UserChangeMessageEvent(onUserChange));
+         _landingView.communicationManager.addHabboConnectionMessageEvent(new UserObjectEvent(onUserObject));
       }
       
       public function refresh() : void
@@ -126,7 +126,7 @@ package com.sulake.habbo.friendbar.landingview.widget
          return var_47.rewardUserLimits[param1 - 1];
       }
       
-      private function onCommunityGoalProgress(param1:class_538) : void
+      private function onCommunityGoalProgress(param1:CommunityGoalProgressMessageEvent) : void
       {
          var_47 = param1.getParser().data;
          refreshContent();
@@ -156,13 +156,13 @@ package com.sulake.habbo.friendbar.landingview.widget
          return "${" + _loc2_ + "}";
       }
       
-      private function onUserObject(param1:class_556) : void
+      private function onUserObject(param1:UserObjectEvent) : void
       {
          var_426 = param1.getParser().figure;
          refreshAvatarInfo();
       }
       
-      private function onUserChange(param1:class_337) : void
+      private function onUserChange(param1:UserChangeMessageEvent) : void
       {
          if(param1 != null && param1.id == -1)
          {

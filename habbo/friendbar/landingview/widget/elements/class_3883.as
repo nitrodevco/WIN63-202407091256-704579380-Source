@@ -15,7 +15,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
    import flash.utils.Timer;
    import com.sulake.habbo.communication.messages.outgoing.quest.GetCommunityGoalProgressMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.quest.class_1678;
-   import com.sulake.habbo.communication.messages.incoming.quest.class_538;
+   import com.sulake.habbo.communication.messages.incoming.quest.CommunityGoalProgressMessageEvent;
    
    public class class_3883 implements IElementHandler, IDisposable, class_3863, ILayoutNameProvider, class_3860
    {
@@ -40,7 +40,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
       {
          if(_landingView)
          {
-            _landingView.communicationManager.removeHabboConnectionMessageEvent(new class_538(onCommunityGoalProgress));
+            _landingView.communicationManager.removeHabboConnectionMessageEvent(new CommunityGoalProgressMessageEvent(onCommunityGoalProgress));
             _landingView = null;
          }
          if(var_2551)
@@ -74,7 +74,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
             _window.x = int(param3[5]);
             _window.y = int(param3[6]);
          }
-         _landingView.communicationManager.addHabboConnectionMessageEvent(new class_538(onCommunityGoalProgress));
+         _landingView.communicationManager.addHabboConnectionMessageEvent(new CommunityGoalProgressMessageEvent(onCommunityGoalProgress));
          var_2551 = new Timer(_loc8_);
          var_2551.addEventListener("timer",onPollTimer);
       }
@@ -101,7 +101,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
          return "element_community_goal_score";
       }
       
-      private function onCommunityGoalProgress(param1:class_538) : void
+      private function onCommunityGoalProgress(param1:CommunityGoalProgressMessageEvent) : void
       {
          var _loc4_:class_1678 = null;
          var _loc2_:IWidgetWindow = null;

@@ -12,7 +12,7 @@ package com.sulake.habbo.ui.handler
    import flash.events.Event;
    import com.sulake.habbo.communication.messages.parser.room.furniture.class_1279;
    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_530;
-   import com.sulake.habbo.communication.messages.incoming.room.furniture.class_708;
+   import com.sulake.habbo.communication.messages.incoming.room.furniture.RequestSpamWallPostItMessageEvent;
    
    public class SpamWallPostItWidgetHandler implements IRoomWidgetHandler
    {
@@ -48,7 +48,7 @@ package com.sulake.habbo.ui.handler
       
       public function set connection(param1:IConnection) : void
       {
-         var_4192 = new class_708(onSpamWallPostItRequest);
+         var_4192 = new RequestSpamWallPostItMessageEvent(onSpamWallPostItRequest);
          var_26 = param1;
          var_26.addMessageEvent(var_4192);
       }
@@ -63,7 +63,7 @@ package com.sulake.habbo.ui.handler
          }
       }
       
-      private function onSpamWallPostItRequest(param1:class_708) : void
+      private function onSpamWallPostItRequest(param1:RequestSpamWallPostItMessageEvent) : void
       {
          var _loc7_:String = null;
          if(param1 == null)

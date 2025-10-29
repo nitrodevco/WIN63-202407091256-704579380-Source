@@ -14,7 +14,7 @@ package com.sulake.habbo.friendbar.landingview.widget
    import com.sulake.habbo.friendbar.landingview.layout.CommonWidgetSettings;
    import com.sulake.habbo.friendbar.landingview.layout.WidgetContainerLayout;
    import com.sulake.habbo.utils.HabboWebTools;
-   import com.sulake.habbo.communication.messages.incoming.landingview.class_162;
+   import com.sulake.habbo.communication.messages.incoming.landingview.PromoArticlesMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.landingview.class_1738;
    
    public class PromoArticleWidget implements ILandingViewWidget, ISettingsAwareWidget, IUpdateReceiver
@@ -52,7 +52,7 @@ package com.sulake.habbo.friendbar.landingview.widget
       {
          _container = IWindowContainer(_landingView.getXmlWindow("promo_article"));
          _container.procedure = onMouse;
-         var_2763 = new class_162(onPromoArticles);
+         var_2763 = new PromoArticlesMessageEvent(onPromoArticles);
          _landingView.communicationManager.addHabboConnectionMessageEvent(var_2763);
       }
       
@@ -243,7 +243,7 @@ package com.sulake.habbo.friendbar.landingview.widget
          _loc3_.assetUri = "progress_disk_flat_" + (param2 ? "on" : "off");
       }
       
-      private function onPromoArticles(param1:class_162) : void
+      private function onPromoArticles(param1:PromoArticlesMessageEvent) : void
       {
          var_698 = [];
          for each(var _loc2_ in param1.getParser().articles)

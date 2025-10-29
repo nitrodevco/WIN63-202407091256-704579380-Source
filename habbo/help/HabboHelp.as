@@ -44,8 +44,8 @@ package com.sulake.habbo.help
    import com.sulake.iid.IIDSessionDataManager;
    import flash.net.URLRequest;
    import flash.net.navigateToURL;
-   import com.sulake.habbo.communication.messages.incoming.room.session.class_899;
-   import com.sulake.habbo.communication.messages.incoming.navigator.class_898;
+   import com.sulake.habbo.communication.messages.incoming.room.session.RoomReadyMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.navigator.GetGuestRoomResultEvent;
    import com.sulake.habbo.communication.messages.parser.game.snowwar.arena.class_1407;
    import com.sulake.habbo.communication.messages.parser.navigator.RoomSettingsDataEvent;
    import com.sulake.habbo.communication.messages.parser.room.session.class_1207;
@@ -53,18 +53,18 @@ package com.sulake.habbo.help
    import com.sulake.habbo.communication.messages.parser.room.engine.class_1339;
    import com.sulake.habbo.communication.messages.parser.callforhelp.class_1245;
    import com.sulake.habbo.communication.messages.incoming.room.engine.class_1668;
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_510;
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_558;
+   import com.sulake.habbo.communication.messages.incoming.room.engine.RoomEntryInfoMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.room.engine.UsersMessageEvent;
    import com.sulake.habbo.communication.messages.parser.game.snowwar.data.object.HumanGameObjectData;
    import com.sulake.habbo.communication.messages.outgoing.friendlist.RemoveFriendMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.callforhelp.class_1746;
-   import com.sulake.habbo.communication.messages.incoming.callforhelp.class_177;
-   import com.sulake.habbo.communication.messages.incoming.callforhelp.class_642;
+   import com.sulake.habbo.communication.messages.incoming.callforhelp.CfhTopicsInitMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.callforhelp.SanctionStatusEvent;
    import com.sulake.habbo.communication.messages.incoming.help.CallForHelpPendingCallsMessageEvent;
-   import com.sulake.habbo.communication.messages.incoming.help.class_182;
-   import com.sulake.habbo.communication.messages.incoming.help.class_509;
-   import com.sulake.habbo.communication.messages.incoming.help.class_953;
-   import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.class_679;
+   import com.sulake.habbo.communication.messages.incoming.help.CallForHelpDisabledNotifyMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.help.GuideReportingStatusMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.help.CallForHelpPendingCallsDeletedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2StageStartingMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.help.class_275;
    import com.sulake.habbo.communication.messages.outgoing.help.class_531;
    import com.sulake.habbo.communication.messages.outgoing.help.class_561;
@@ -470,17 +470,17 @@ package com.sulake.habbo.help
       override protected function initComponent() : void
       {
          _messageEvents = new Vector.<IMessageEvent>(0);
-         addMessageEvent(new class_182(onCallForHelpDisabledNotify));
-         addMessageEvent(new class_898(onGuestRoomResult));
-         addMessageEvent(new class_177(onCfhTopics));
-         addMessageEvent(new class_558(onUsers));
-         addMessageEvent(new class_899(onRoomReady));
-         addMessageEvent(new class_642(onSanctionStatusEvent));
-         addMessageEvent(new class_509(onGuideReportingStatus));
+         addMessageEvent(new CallForHelpDisabledNotifyMessageEvent(onCallForHelpDisabledNotify));
+         addMessageEvent(new GetGuestRoomResultEvent(onGuestRoomResult));
+         addMessageEvent(new CfhTopicsInitMessageEvent(onCfhTopics));
+         addMessageEvent(new UsersMessageEvent(onUsers));
+         addMessageEvent(new RoomReadyMessageEvent(onRoomReady));
+         addMessageEvent(new SanctionStatusEvent(onSanctionStatusEvent));
+         addMessageEvent(new GuideReportingStatusMessageEvent(onGuideReportingStatus));
          addMessageEvent(new CallForHelpPendingCallsMessageEvent(onPendingCallsForHelp));
-         addMessageEvent(new class_953(onPendingCallsForHelpDeleted));
-         addMessageEvent(new class_679(onGameStageStarting));
-         addMessageEvent(new class_510(onRoomEnter));
+         addMessageEvent(new CallForHelpPendingCallsDeletedMessageEvent(onPendingCallsForHelpDeleted));
+         addMessageEvent(new Game2StageStartingMessageEvent(onGameStageStarting));
+         addMessageEvent(new RoomEntryInfoMessageEvent(onRoomEnter));
          var_3049 = new ChatEventHandler(this);
          var_2056 = new GuideHelpManager(this);
          var_1649 = new CallForHelpManager(this);
@@ -684,7 +684,7 @@ package com.sulake.habbo.help
          var_1972.submitCallForHelp(false);
       }
       
-      private function onGuideReportingStatus(param1:class_509) : void
+      private function onGuideReportingStatus(param1:GuideReportingStatusMessageEvent) : void
       {
          var _loc2_:class_1312 = param1.getParser();
          switch(_loc2_.statusCode)
@@ -725,7 +725,7 @@ package com.sulake.habbo.help
          var_1864 = 0;
       }
       
-      private function onCallForHelpDisabledNotify(param1:class_182) : void
+      private function onCallForHelpDisabledNotify(param1:CallForHelpDisabledNotifyMessageEvent) : void
       {
          _windowManager.simpleAlert("${help.emergency.global_mute.caption}","${help.emergency.global_mute.subtitle}","${help.emergency.global_mute.message}","${help.emergency.global_mute.link}",param1.getParser().infoUrl);
       }
@@ -754,7 +754,7 @@ package com.sulake.habbo.help
       {
          var _loc3_:int = 0;
          var _loc4_:class_1668 = null;
-         var _loc2_:class_1333 = class_558(param1).getParser();
+         var _loc2_:class_1333 = UsersMessageEvent(param1).getParser();
          _loc3_ = 0;
          while(_loc3_ < _loc2_.getUserCount())
          {
@@ -766,7 +766,7 @@ package com.sulake.habbo.help
          }
       }
       
-      private function onGameStageStarting(param1:class_679) : void
+      private function onGameStageStarting(param1:Game2StageStartingMessageEvent) : void
       {
          var _loc6_:HumanGameObjectData = null;
          var _loc2_:class_1407 = param1.getParser();
@@ -786,13 +786,13 @@ package com.sulake.habbo.help
       
       private function onRoomReady(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1207 = class_899(param1).getParser();
+         var _loc2_:class_1207 = RoomReadyMessageEvent(param1).getParser();
          _userRegistry.registerRoom(_loc2_.roomId,"");
       }
       
       private function onGuestRoomResult(param1:IMessageEvent) : void
       {
-         var _loc2_:RoomSettingsDataEvent = class_898(param1).getParser();
+         var _loc2_:RoomSettingsDataEvent = GetGuestRoomResultEvent(param1).getParser();
          _userRegistry.registerRoom(_loc2_.data.flatId,_loc2_.data.roomName);
       }
       
@@ -811,13 +811,13 @@ package com.sulake.habbo.help
          return _instantMessageRegistry;
       }
       
-      private function onRoomEnter(param1:class_510) : void
+      private function onRoomEnter(param1:RoomEntryInfoMessageEvent) : void
       {
-         var _loc2_:class_1339 = class_510(param1).getParser();
+         var _loc2_:class_1339 = RoomEntryInfoMessageEvent(param1).getParser();
          var_1632 = _loc2_.guestRoomId;
       }
       
-      private function onCfhTopics(param1:class_177) : void
+      private function onCfhTopics(param1:CfhTopicsInitMessageEvent) : void
       {
          var _loc2_:class_1245 = param1.getParser();
          var_217 = _loc2_.callForHelpCategories;
@@ -921,7 +921,7 @@ package com.sulake.habbo.help
          sendMessage(new class_275(param1));
       }
       
-      private function onSanctionStatusEvent(param1:class_642) : void
+      private function onSanctionStatusEvent(param1:SanctionStatusEvent) : void
       {
          _sanctionInfo.openWindow(param1);
       }

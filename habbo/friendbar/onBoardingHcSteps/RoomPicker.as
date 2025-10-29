@@ -20,7 +20,7 @@ package com.sulake.habbo.friendbar.onBoardingHcSteps
    import com.sulake.habbo.communication.messages.parser.nux.class_1475;
    import com.sulake.habbo.communication.messages.outgoing.navigator.class_991;
    import com.sulake.habbo.communication.messages.outgoing.nux.class_873;
-   import com.sulake.habbo.communication.messages.incoming.nux.class_685;
+   import com.sulake.habbo.communication.messages.incoming.nux.SelectInitialRoomEvent;
    
    public class RoomPicker implements IDisposable
    {
@@ -67,7 +67,7 @@ package com.sulake.habbo.friendbar.onBoardingHcSteps
          super();
          _newUserFlow = param1;
          _container = param2;
-         var_4275 = param1.communicationManager.addHabboConnectionMessageEvent(new class_685(onSelectInitialRoomResponse));
+         var_4275 = param1.communicationManager.addHabboConnectionMessageEvent(new SelectInitialRoomEvent(onSelectInitialRoomResponse));
       }
       
       private static function get galleryUrl() : String
@@ -75,7 +75,7 @@ package com.sulake.habbo.friendbar.onBoardingHcSteps
          return "https://images.habbo.com/c_images/nux/";
       }
       
-      private function onSelectInitialRoomResponse(param1:class_685) : void
+      private function onSelectInitialRoomResponse(param1:SelectInitialRoomEvent) : void
       {
          if(param1 == null)
          {

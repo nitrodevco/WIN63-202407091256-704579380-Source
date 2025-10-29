@@ -7,13 +7,13 @@ package com.sulake.habbo.session.handler
    import com.sulake.habbo.session.IRoomSession;
    import com.sulake.habbo.session.events.RoomSessionDoorbellEvent;
    import com.sulake.habbo.session.events.RoomSessionQueueEvent;
-   import com.sulake.habbo.communication.messages.incoming.room.session.class_1105;
-   import com.sulake.habbo.communication.messages.incoming.room.session.class_357;
-   import com.sulake.habbo.communication.messages.incoming.room.session.class_566;
-   import com.sulake.habbo.communication.messages.incoming.room.session.class_640;
-   import com.sulake.habbo.communication.messages.incoming.room.session.class_899;
-   import com.sulake.habbo.communication.messages.incoming.room.session.class_948;
-   import com.sulake.habbo.communication.messages.incoming.navigator.class_1038;
+   import com.sulake.habbo.communication.messages.incoming.room.session.OpenConnectionMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.room.session.FlatAccessibleMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.room.session.YouAreSpectatorMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.room.session.CloseConnectionMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.room.session.RoomReadyMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.room.session.RoomQueueStatusMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.navigator.FlatAccessDeniedMessageEvent;
    import com.sulake.habbo.communication.messages.parser.navigator.class_1539;
    import com.sulake.habbo.communication.messages.parser.room.session.class_1159;
    import com.sulake.habbo.communication.messages.parser.room.session.class_1207;
@@ -39,16 +39,16 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         param1.addMessageEvent(new class_1105(onRoomConnected));
-         param1.addMessageEvent(new class_357(onFlatAccessible));
-         param1.addMessageEvent(new class_899(onRoomReady));
-         param1.addMessageEvent(new class_640(onRoomDisconnected));
-         param1.addMessageEvent(new class_1038(onFlatAccessDenied));
-         param1.addMessageEvent(new class_948(onRoomQueueStatus));
-         param1.addMessageEvent(new class_566(onYouAreSpectator));
+         param1.addMessageEvent(new OpenConnectionMessageEvent(onRoomConnected));
+         param1.addMessageEvent(new FlatAccessibleMessageEvent(onFlatAccessible));
+         param1.addMessageEvent(new RoomReadyMessageEvent(onRoomReady));
+         param1.addMessageEvent(new CloseConnectionMessageEvent(onRoomDisconnected));
+         param1.addMessageEvent(new FlatAccessDeniedMessageEvent(onFlatAccessDenied));
+         param1.addMessageEvent(new RoomQueueStatusMessageEvent(onRoomQueueStatus));
+         param1.addMessageEvent(new YouAreSpectatorMessageEvent(onYouAreSpectator));
       }
       
-      private function onRoomConnected(param1:class_1105) : void
+      private function onRoomConnected(param1:OpenConnectionMessageEvent) : void
       {
          var _loc2_:class_1159 = param1.getParser();
          if(_loc2_ == null)
@@ -61,7 +61,7 @@ package com.sulake.habbo.session.handler
          }
       }
       
-      private function onFlatAccessible(param1:class_357) : void
+      private function onFlatAccessible(param1:FlatAccessibleMessageEvent) : void
       {
          var _loc3_:IRoomSession = null;
          var _loc2_:class_1515 = param1.getParser();
@@ -83,7 +83,7 @@ package com.sulake.habbo.session.handler
          }
       }
       
-      private function onRoomReady(param1:class_899) : void
+      private function onRoomReady(param1:RoomReadyMessageEvent) : void
       {
          var _loc2_:class_1207 = param1.getParser();
          if(_loc2_ == null)
@@ -99,7 +99,7 @@ package com.sulake.habbo.session.handler
          }
       }
       
-      private function onFlatAccessDenied(param1:class_1038) : void
+      private function onFlatAccessDenied(param1:FlatAccessDeniedMessageEvent) : void
       {
          var _loc3_:IRoomSession = null;
          var _loc2_:class_1539 = param1.getParser();
@@ -135,7 +135,7 @@ package com.sulake.habbo.session.handler
          }
       }
       
-      private function onRoomQueueStatus(param1:class_948) : void
+      private function onRoomQueueStatus(param1:RoomQueueStatusMessageEvent) : void
       {
          var _loc5_:class_1634 = null;
          var _loc6_:RoomSessionQueueEvent = null;
@@ -169,7 +169,7 @@ package com.sulake.habbo.session.handler
          }
       }
       
-      private function onYouAreSpectator(param1:class_566) : void
+      private function onYouAreSpectator(param1:YouAreSpectatorMessageEvent) : void
       {
          if(listener == null)
          {

@@ -15,7 +15,7 @@ package com.sulake.habbo.friendbar.landingview.widget
    import com.sulake.habbo.session.product.class_3423;
    import flash.display.BitmapData;
    import com.sulake.habbo.communication.messages.outgoing.catalog.GetBonusRareInfoMessageComposer;
-   import com.sulake.habbo.communication.messages.incoming.catalog.class_1093;
+   import com.sulake.habbo.communication.messages.incoming.catalog.BonusRareInfoMessageEvent;
    
    public class BonusRarePromoWidget implements ILandingViewWidget, class_1812, ISettingsAwareWidget, IGetImageListener
    {
@@ -44,7 +44,7 @@ package com.sulake.habbo.friendbar.landingview.widget
          if(!disposed)
          {
             _landingView.roomEngine.events.removeEventListener("REE_ENGINE_INITIALIZED",onRoomEngineInitialized);
-            _landingView.communicationManager.removeHabboConnectionMessageEvent(new class_1093(onBonusRareInfoMessage));
+            _landingView.communicationManager.removeHabboConnectionMessageEvent(new BonusRareInfoMessageEvent(onBonusRareInfoMessage));
             _landingView = null;
             _container = null;
          }
@@ -60,7 +60,7 @@ package com.sulake.habbo.friendbar.landingview.widget
          _container = IWindowContainer(_landingView.getXmlWindow("bonus_rare_promo"));
          _container.findChildByName("buy_button").procedure = onOpenCreditsPageButton;
          _container.visible = false;
-         _landingView.communicationManager.addHabboConnectionMessageEvent(new class_1093(onBonusRareInfoMessage));
+         _landingView.communicationManager.addHabboConnectionMessageEvent(new BonusRareInfoMessageEvent(onBonusRareInfoMessage));
          _landingView.roomEngine.events.addEventListener("REE_ENGINE_INITIALIZED",onRoomEngineInitialized);
          requestBonusRareInfo();
       }
@@ -116,7 +116,7 @@ package com.sulake.habbo.friendbar.landingview.widget
          }
       }
       
-      private function onBonusRareInfoMessage(param1:class_1093) : void
+      private function onBonusRareInfoMessage(param1:BonusRareInfoMessageEvent) : void
       {
          var_398 = param1.getParser().productType;
          var_389 = param1.getParser().productClassId;

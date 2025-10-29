@@ -13,12 +13,12 @@ package com.sulake.habbo.ui.handler
    import com.sulake.habbo.ui.widget.messages.RoomWidgetMessage;
    import com.sulake.room.object.IRoomObject;
    import flash.events.Event;
-   import com.sulake.habbo.communication.messages.incoming.crafting.class_1021;
-   import com.sulake.habbo.communication.messages.incoming.crafting.class_689;
-   import com.sulake.habbo.communication.messages.incoming.crafting.class_745;
-   import com.sulake.habbo.communication.messages.incoming.crafting.class_774;
+   import com.sulake.habbo.communication.messages.incoming.crafting.CraftableProductsMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.crafting.CraftingRecipesAvailableMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.crafting.CraftingRecipeMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.crafting.CraftingResultMessageEvent;
    import com.sulake.habbo.communication.messages.parser.crafting.class_1649;
-   import com.sulake.habbo.communication.messages.incoming.inventory.furni.class_340;
+   import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListInvalidateEvent;
    import com.sulake.habbo.communication.messages.outgoing.inventory.furni.RequestFurniInventoryComposer;
    import com.sulake.habbo.communication.messages.outgoing.crafting.CraftComposer;
    import com.sulake.habbo.communication.messages.outgoing.crafting.GetCraftableProductsComposer;
@@ -78,10 +78,10 @@ package com.sulake.habbo.ui.handler
             return;
          }
          _messageEvents = new Vector.<IMessageEvent>(0);
-         _messageEvents.push(new class_1021(onCraftableProductsMessage));
-         _messageEvents.push(new class_745(onCraftingRecipeMessage));
-         _messageEvents.push(new class_774(onCraftingResultMessage));
-         _messageEvents.push(new class_689(onCraftingRecipesAvailableMessage));
+         _messageEvents.push(new CraftableProductsMessageEvent(onCraftableProductsMessage));
+         _messageEvents.push(new CraftingRecipeMessageEvent(onCraftingRecipeMessage));
+         _messageEvents.push(new CraftingResultMessageEvent(onCraftingResultMessage));
+         _messageEvents.push(new CraftingRecipesAvailableMessageEvent(onCraftingRecipesAvailableMessage));
          for each(var _loc1_ in _messageEvents)
          {
             _container.connection.addMessageEvent(_loc1_);
@@ -133,7 +133,7 @@ package com.sulake.habbo.ui.handler
          _container.connection.send(new GetCraftableProductsComposer(var_2516));
       }
       
-      private function onCraftableProductsMessage(param1:class_1021) : void
+      private function onCraftableProductsMessage(param1:CraftableProductsMessageEvent) : void
       {
          var_3483 = false;
          if(!var_1629)
@@ -157,7 +157,7 @@ package com.sulake.habbo.ui.handler
          _container.connection.send(new class_972(param1));
       }
       
-      private function onCraftingRecipeMessage(param1:class_745) : void
+      private function onCraftingRecipeMessage(param1:CraftingRecipeMessageEvent) : void
       {
          var_1629.showCraftingRecipe(param1.getParser().ingredients);
       }
@@ -167,7 +167,7 @@ package com.sulake.habbo.ui.handler
          _container.connection.send(new class_891(var_2516,param1));
       }
       
-      private function onCraftingRecipesAvailableMessage(param1:class_689) : void
+      private function onCraftingRecipesAvailableMessage(param1:CraftingRecipesAvailableMessageEvent) : void
       {
          var_1629.infoCtrl.craftingSecretRecipesAvailable(param1.getParser().count,param1.getParser().recipeComplete);
       }
@@ -191,7 +191,7 @@ package com.sulake.habbo.ui.handler
          _container.connection.send(new class_890(var_2516,_loc1_));
       }
       
-      private function onCraftingResultMessage(param1:class_774) : void
+      private function onCraftingResultMessage(param1:CraftingResultMessageEvent) : void
       {
          var _loc2_:class_1649 = null;
          var _loc3_:class_3365 = null;
@@ -221,12 +221,12 @@ package com.sulake.habbo.ui.handler
          var_3265 = true;
          if(var_2806 == null)
          {
-            var_2806 = new class_340(onFurniListInvalidate);
+            var_2806 = new FurniListInvalidateEvent(onFurniListInvalidate);
             _container.connection.addMessageEvent(var_2806);
          }
       }
       
-      private function onFurniListInvalidate(param1:class_340) : void
+      private function onFurniListInvalidate(param1:FurniListInvalidateEvent) : void
       {
          _container.connection.send(new RequestFurniInventoryComposer());
          _container.connection.send(new GetCraftableProductsComposer(var_2516));

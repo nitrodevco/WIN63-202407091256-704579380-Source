@@ -8,7 +8,7 @@ package com.sulake.habbo.help
    import com.sulake.core.window.events.WindowEvent;
    import com.sulake.habbo.utils.StringUtil;
    import com.sulake.habbo.communication.messages.parser.callforhelp.class_1607;
-   import com.sulake.habbo.communication.messages.incoming.callforhelp.class_642;
+   import com.sulake.habbo.communication.messages.incoming.callforhelp.SanctionStatusEvent;
    
    public class SanctionInfo implements IDisposable
    {
@@ -45,7 +45,7 @@ package com.sulake.habbo.help
          return _disposed;
       }
       
-      public function openWindow(param1:class_642) : void
+      public function openWindow(param1:SanctionStatusEvent) : void
       {
          dispose();
          _disposed = false;

@@ -10,7 +10,7 @@ package com.sulake.habbo.avatar.view
    import com.sulake.core.window.events.WindowEvent;
    import com.sulake.habbo.avatar.AvatarEditorView;
    import com.sulake.habbo.avatar.HabboAvatarEditorManager;
-   import com.sulake.habbo.communication.messages.incoming.avatar.class_341;
+   import com.sulake.habbo.communication.messages.incoming.avatar.ChangeUserNameResultMessageEvent;
    
    public class AvatarEditorNameChangeView
    {
@@ -202,26 +202,26 @@ package com.sulake.habbo.avatar.view
          }
          switch(param1)
          {
-            case class_341.var_1590:
+            case ChangeUserNameResultMessageEvent.var_1590:
                var_480.localization.registerParameter("help.tutorial.name.taken","name",param2);
                _loc5_.text = var_480.localization.getLocalization("help.tutorial.name.taken");
                break;
-            case class_341.var_1604:
+            case ChangeUserNameResultMessageEvent.var_1604:
                var_480.localization.registerParameter("help.tutorial.name.invalid","name",param2);
                _loc5_.text = var_480.localization.getLocalization("help.tutorial.name.invalid");
                break;
-            case class_341.var_1595:
+            case ChangeUserNameResultMessageEvent.var_1595:
                break;
-            case class_341.var_1596:
+            case ChangeUserNameResultMessageEvent.var_1596:
                _loc5_.text = var_480.localization.getLocalization("help.tutorial.name.long");
                break;
-            case class_341.var_1592:
+            case ChangeUserNameResultMessageEvent.var_1592:
                _loc5_.text = var_480.localization.getLocalization("help.tutorial.name.short");
                break;
-            case class_341.var_1617:
+            case ChangeUserNameResultMessageEvent.var_1617:
                _loc5_.text = var_480.localization.getLocalization("help.tutorial.name.change_not_allowed");
                break;
-            case class_341.var_1620:
+            case ChangeUserNameResultMessageEvent.var_1620:
                _loc5_.text = var_480.localization.getLocalization("help.tutorial.name.merge_hotel_down");
          }
          var _loc4_:IWindowContainer;
@@ -229,7 +229,7 @@ package com.sulake.habbo.avatar.view
          {
             return;
          }
-         if(param1 == class_341.var_1620 || param1 == class_341.var_1617)
+         if(param1 == ChangeUserNameResultMessageEvent.var_1620 || param1 == ChangeUserNameResultMessageEvent.var_1617)
          {
             _loc4_.visible = false;
             return;

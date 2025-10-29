@@ -4,24 +4,24 @@ package com.sulake.habbo.room {
    import com.sulake.core.communication.messages.IMessageEvent
    import com.sulake.core.window.events.WindowEvent
    import com.sulake.core.window.utils.class_3441
-   import com.sulake.habbo.communication.messages.incoming.handshake.class_556
-   import com.sulake.habbo.communication.messages.incoming.help.class_145
-   import com.sulake.habbo.communication.messages.incoming.help.class_174
-   import com.sulake.habbo.communication.messages.incoming.help.class_697
-   import com.sulake.habbo.communication.messages.incoming.room.action.class_133
-   import com.sulake.habbo.communication.messages.incoming.room.action.class_313
-   import com.sulake.habbo.communication.messages.incoming.room.action.class_408
-   import com.sulake.habbo.communication.messages.incoming.room.action.class_866
-   import com.sulake.habbo.communication.messages.incoming.room.action.class_918
-   import com.sulake.habbo.communication.messages.incoming.room.action.class_994
-   import com.sulake.habbo.communication.messages.incoming.room.chat.class_1078
-   import com.sulake.habbo.communication.messages.incoming.room.chat.class_184
-   import com.sulake.habbo.communication.messages.incoming.room.chat.class_372
-   import com.sulake.habbo.communication.messages.incoming.room.chat.class_468
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_1000
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_1065
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_1106
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_148
+   import com.sulake.habbo.communication.messages.incoming.handshake.UserObjectEvent
+   import com.sulake.habbo.communication.messages.incoming.help.GuideSessionErrorMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.help.GuideSessionStartedMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.help.GuideSessionEndedMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.action.SleepMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.action.DanceMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.action.CarryObjectMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.action.ExpressionMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.action.AvatarEffectMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.action.UseObjectMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.chat.UserTypingMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.chat.ChatMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.chat.WhisperMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.chat.ShoutMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.UserUpdateMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.WiredMovementsMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.RoomPropertyMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.ItemUpdateMessageEvent
    import com.sulake.habbo.communication.messages.incoming.room.engine.class_1668
    import com.sulake.habbo.communication.messages.incoming.room.engine.class_1693
    import com.sulake.habbo.communication.messages.incoming.room.engine.class_1710
@@ -29,43 +29,43 @@ package com.sulake.habbo.room {
    import com.sulake.habbo.communication.messages.incoming.room.engine.class_1753
    import com.sulake.habbo.communication.messages.incoming.room.engine.class_1765
    import com.sulake.habbo.communication.messages.incoming.room.engine.class_1766
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_198
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_252
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_323
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_333
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_335
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_337
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_386
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_393
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_432
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_486
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_492
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_558
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_641
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_654
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_660
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_671
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_691
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_762
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_776
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_778
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_853
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_927
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_945
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_947
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_962
-   import com.sulake.habbo.communication.messages.incoming.room.furniture.class_1110
-   import com.sulake.habbo.communication.messages.incoming.room.furniture.class_460
-   import com.sulake.habbo.communication.messages.incoming.room.furniture.class_637
-   import com.sulake.habbo.communication.messages.incoming.room.layout.class_971
-   import com.sulake.habbo.communication.messages.incoming.room.pets.class_537
-   import com.sulake.habbo.communication.messages.incoming.room.pets.class_608
-   import com.sulake.habbo.communication.messages.incoming.room.session.class_1027
-   import com.sulake.habbo.communication.messages.incoming.room.session.class_427
-   import com.sulake.habbo.communication.messages.incoming.room.session.class_518
-   import com.sulake.habbo.communication.messages.incoming.room.session.class_886
-   import com.sulake.habbo.communication.messages.incoming.room.session.class_899
-   import com.sulake.habbo.communication.messages.incoming.users.class_543
+   import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectRemoveMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.HeightMapMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectDataUpdateMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectAddMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.SpecialRoomEffectMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.UserChangeMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.BuildersClubPlacementWarningMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectRemoveConfirmMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.FurnitureAliasesMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectsDataUpdateMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.UserRemoveMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.UsersMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.HeightMapUpdateMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectsMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.ItemRemoveMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.ItemDataUpdateMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectUpdateMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectRemoveMultipleMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.FloorHeightMapMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.SlideObjectBundleMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.ItemsStateUpdateMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.ItemStateUpdateMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.ItemAddMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.ItemsMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.engine.RoomVisualizationSettingsEvent
+   import com.sulake.habbo.communication.messages.incoming.room.furniture.DiceValueMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.furniture.AreaHideMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.furniture.OneWayDoorStatusMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.layout.RoomEntryTileMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.pets.PetExperienceEvent
+   import com.sulake.habbo.communication.messages.incoming.room.pets.PetFigureUpdateEvent
+   import com.sulake.habbo.communication.messages.incoming.room.session.HanditemConfigurationMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.session.GamePlayerValueMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.session.YouAreNotSpectatorMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.session.YouArePlayingGameMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.room.session.RoomReadyMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.users.IgnoreResultMessageEvent
    import com.sulake.habbo.communication.messages.outgoing.catalog.class_270
    import com.sulake.habbo.communication.messages.outgoing.catalog.class_852
    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_216
@@ -167,7 +167,7 @@ package com.sulake.habbo.room {
         private var var_26: IConnection = null;
         private var var_1630: IRoomCreator = null;
         private var var_1689: RoomPlaneParser = null;
-        private var var_2517: class_971 = null;
+        private var var_2517: RoomEntryTileMessageEvent = null;
         private var var_4252: int = -1;
         private var _initialConnection: Boolean = true;
         private var var_4975: int = -1000000000;
@@ -182,61 +182,61 @@ package com.sulake.habbo.room {
             }
             if (param1 != null) {
                 var_26 = param1;
-                param1.addMessageEvent(new class_556(onOwnUserEvent));
-                param1.addMessageEvent(new class_899(onRoomReady));
-                param1.addMessageEvent(new class_1106(onRoomProperty));
-                param1.addMessageEvent(new class_971(onEntryTileData));
-                param1.addMessageEvent(new class_776(onFloorHeightMap));
-                param1.addMessageEvent(new class_252(onHeightMap));
-                param1.addMessageEvent(new class_641(onHeightMapUpdate));
-                param1.addMessageEvent(new class_962(onRoomVisualizationSettings));
-                param1.addMessageEvent(new class_432(onFurnitureAliases));
-                param1.addMessageEvent(new class_460(onAreaHide));
-                param1.addMessageEvent(new class_654(onObjects));
-                param1.addMessageEvent(new class_333(onObjectAdd));
-                param1.addMessageEvent(new class_691(onObjectUpdate));
-                param1.addMessageEvent(new class_323(onObjectDataUpdate));
-                param1.addMessageEvent(new class_486(onObjectsDataUpdate));
-                param1.addMessageEvent(new class_198(onObjectRemove));
-                param1.addMessageEvent(new class_762(onObjectRemoveMultiple));
-                param1.addMessageEvent(new class_947(onItems));
-                param1.addMessageEvent(new class_945(onItemAdd));
-                param1.addMessageEvent(new class_660(onItemRemove));
-                param1.addMessageEvent(new class_148(onItemUpdate));
-                param1.addMessageEvent(new class_927(onItemStateUpdate));
-                param1.addMessageEvent(new class_853(onItemsStateUpdate));
-                param1.addMessageEvent(new class_671(onItemDataUpdate));
-                param1.addMessageEvent(new class_558(onUsers));
-                param1.addMessageEvent(new class_1000(onUserUpdate));
-                param1.addMessageEvent(new class_492(onUserRemove));
-                param1.addMessageEvent(new class_337(onUserChange));
-                param1.addMessageEvent(new class_866(onExpression));
-                param1.addMessageEvent(new class_313(onDance));
-                param1.addMessageEvent(new class_918(onAvatarEffect));
-                param1.addMessageEvent(new class_133(onAvatarSleep));
-                param1.addMessageEvent(new class_408(onCarryObject));
-                param1.addMessageEvent(new class_994(onUseObject));
-                param1.addMessageEvent(new class_778(onSlideUpdate));
-                param1.addMessageEvent(new class_1065(onWiredMovements));
-                param1.addMessageEvent(new class_184(onChat));
-                param1.addMessageEvent(new class_372(onChat));
-                param1.addMessageEvent(new class_468(onChat));
-                param1.addMessageEvent(new class_1078(onTypingStatus));
-                param1.addMessageEvent(new class_1110(onDiceValue));
-                param1.addMessageEvent(new class_637(onOneWayDoorStatus));
-                param1.addMessageEvent(new class_537(onPetExperience));
-                param1.addMessageEvent(new class_886(onPlayingGame));
-                param1.addMessageEvent(new class_518(onYouAreNotSpectator));
-                param1.addMessageEvent(new class_427(onGamePlayerNumberValue));
-                param1.addMessageEvent(new class_1027(onHanditemConfiguration));
-                param1.addMessageEvent(new class_608(onPetFigureUpdate));
-                param1.addMessageEvent(new class_543(onIgnoreResult));
-                param1.addMessageEvent(new class_174(onGuideSessionStarted));
-                param1.addMessageEvent(new class_697(onGuideSessionEnded));
-                param1.addMessageEvent(new class_145(onGuideSessionError));
-                param1.addMessageEvent(new class_335(onSpecialRoomEvent));
-                param1.addMessageEvent(new class_386(onBCPlacementWarning));
-                param1.addMessageEvent(new class_393(onObjectRemoveConfirm));
+                param1.addMessageEvent(new UserObjectEvent(onOwnUserEvent));
+                param1.addMessageEvent(new RoomReadyMessageEvent(onRoomReady));
+                param1.addMessageEvent(new RoomPropertyMessageEvent(onRoomProperty));
+                param1.addMessageEvent(new RoomEntryTileMessageEvent(onEntryTileData));
+                param1.addMessageEvent(new FloorHeightMapMessageEvent(onFloorHeightMap));
+                param1.addMessageEvent(new HeightMapMessageEvent(onHeightMap));
+                param1.addMessageEvent(new HeightMapUpdateMessageEvent(onHeightMapUpdate));
+                param1.addMessageEvent(new RoomVisualizationSettingsEvent(onRoomVisualizationSettings));
+                param1.addMessageEvent(new FurnitureAliasesMessageEvent(onFurnitureAliases));
+                param1.addMessageEvent(new AreaHideMessageEvent(onAreaHide));
+                param1.addMessageEvent(new ObjectsMessageEvent(onObjects));
+                param1.addMessageEvent(new ObjectAddMessageEvent(onObjectAdd));
+                param1.addMessageEvent(new ObjectUpdateMessageEvent(onObjectUpdate));
+                param1.addMessageEvent(new ObjectDataUpdateMessageEvent(onObjectDataUpdate));
+                param1.addMessageEvent(new ObjectsDataUpdateMessageEvent(onObjectsDataUpdate));
+                param1.addMessageEvent(new ObjectRemoveMessageEvent(onObjectRemove));
+                param1.addMessageEvent(new ObjectRemoveMultipleMessageEvent(onObjectRemoveMultiple));
+                param1.addMessageEvent(new ItemsMessageEvent(onItems));
+                param1.addMessageEvent(new ItemAddMessageEvent(onItemAdd));
+                param1.addMessageEvent(new ItemRemoveMessageEvent(onItemRemove));
+                param1.addMessageEvent(new ItemUpdateMessageEvent(onItemUpdate));
+                param1.addMessageEvent(new ItemStateUpdateMessageEvent(onItemStateUpdate));
+                param1.addMessageEvent(new ItemsStateUpdateMessageEvent(onItemsStateUpdate));
+                param1.addMessageEvent(new ItemDataUpdateMessageEvent(onItemDataUpdate));
+                param1.addMessageEvent(new UsersMessageEvent(onUsers));
+                param1.addMessageEvent(new UserUpdateMessageEvent(onUserUpdate));
+                param1.addMessageEvent(new UserRemoveMessageEvent(onUserRemove));
+                param1.addMessageEvent(new UserChangeMessageEvent(onUserChange));
+                param1.addMessageEvent(new ExpressionMessageEvent(onExpression));
+                param1.addMessageEvent(new DanceMessageEvent(onDance));
+                param1.addMessageEvent(new AvatarEffectMessageEvent(onAvatarEffect));
+                param1.addMessageEvent(new SleepMessageEvent(onAvatarSleep));
+                param1.addMessageEvent(new CarryObjectMessageEvent(onCarryObject));
+                param1.addMessageEvent(new UseObjectMessageEvent(onUseObject));
+                param1.addMessageEvent(new SlideObjectBundleMessageEvent(onSlideUpdate));
+                param1.addMessageEvent(new WiredMovementsMessageEvent(onWiredMovements));
+                param1.addMessageEvent(new ChatMessageEvent(onChat));
+                param1.addMessageEvent(new WhisperMessageEvent(onChat));
+                param1.addMessageEvent(new ShoutMessageEvent(onChat));
+                param1.addMessageEvent(new UserTypingMessageEvent(onTypingStatus));
+                param1.addMessageEvent(new DiceValueMessageEvent(onDiceValue));
+                param1.addMessageEvent(new OneWayDoorStatusMessageEvent(onOneWayDoorStatus));
+                param1.addMessageEvent(new PetExperienceEvent(onPetExperience));
+                param1.addMessageEvent(new YouArePlayingGameMessageEvent(onPlayingGame));
+                param1.addMessageEvent(new YouAreNotSpectatorMessageEvent(onYouAreNotSpectator));
+                param1.addMessageEvent(new GamePlayerValueMessageEvent(onGamePlayerNumberValue));
+                param1.addMessageEvent(new HanditemConfigurationMessageEvent(onHanditemConfiguration));
+                param1.addMessageEvent(new PetFigureUpdateEvent(onPetFigureUpdate));
+                param1.addMessageEvent(new IgnoreResultMessageEvent(onIgnoreResult));
+                param1.addMessageEvent(new GuideSessionStartedMessageEvent(onGuideSessionStarted));
+                param1.addMessageEvent(new GuideSessionEndedMessageEvent(onGuideSessionEnded));
+                param1.addMessageEvent(new GuideSessionErrorMessageEvent(onGuideSessionError));
+                param1.addMessageEvent(new SpecialRoomEffectMessageEvent(onSpecialRoomEvent));
+                param1.addMessageEvent(new BuildersClubPlacementWarningMessageEvent(onBCPlacementWarning));
+                param1.addMessageEvent(new ObjectRemoveConfirmMessageEvent(onObjectRemoveConfirm));
             }
         }
 
@@ -270,8 +270,8 @@ package com.sulake.habbo.room {
             if (var_1630 == null) {
                 return;
             }
-            if (param1 is class_1065) {
-                _loc4_ = (param1 as class_1065).getParser();
+            if (param1 is WiredMovementsMessageEvent) {
+                _loc4_ = (param1 as WiredMovementsMessageEvent).getParser();
                 for each(var _loc5_ in _loc4_.userMoves) {
                     onWiredUserMove(_loc5_);
                 }
@@ -328,7 +328,7 @@ package com.sulake.habbo.room {
             var parser: class_1624;
             var composer: IMessageComposer;
             var event: IMessageEvent = param1;
-            var confirmationEvent: class_393 = event as class_393;
+            var confirmationEvent: ObjectRemoveConfirmMessageEvent = event as ObjectRemoveConfirmMessageEvent;
             if (confirmationEvent == null) {
                 return;
             }
@@ -349,7 +349,7 @@ package com.sulake.habbo.room {
             var parser: class_1391;
             var composer: IMessageComposer;
             var event: IMessageEvent = param1;
-            var warningEvent: class_386 = event as class_386;
+            var warningEvent: BuildersClubPlacementWarningMessageEvent = event as BuildersClubPlacementWarningMessageEvent;
             if (warningEvent == null) {
                 return;
             }
@@ -371,7 +371,7 @@ package com.sulake.habbo.room {
         }
 
         private function onOwnUserEvent(param1: IMessageEvent): void {
-            var _loc2_: class_556 = param1 as class_556;
+            var _loc2_: UserObjectEvent = param1 as UserObjectEvent;
             if (_loc2_ == null) {
                 return;
             }
@@ -382,8 +382,8 @@ package com.sulake.habbo.room {
         }
 
         private function onRoomReady(param1: IMessageEvent): void {
-            var _loc4_: class_899;
-            if ((_loc4_ = param1 as class_899) == null || _loc4_.getParser() == null || param1.connection == null) {
+            var _loc4_: RoomReadyMessageEvent;
+            if ((_loc4_ = param1 as RoomReadyMessageEvent) == null || _loc4_.getParser() == null || param1.connection == null) {
                 return;
             }
             var _loc2_: class_1207 = _loc4_.getParser();
@@ -403,14 +403,14 @@ package com.sulake.habbo.room {
         }
 
         private function onFurnitureAliases(param1: IMessageEvent): void {
-            var _loc5_: class_432 = null;
+            var _loc5_: FurnitureAliasesMessageEvent = null;
             var _loc2_: class_1548 = null;
             var _loc3_: int = 0;
             var _loc6_: int = 0;
             var _loc4_: String = null;
             var _loc7_: String = null;
             if (var_1630 != null) {
-                if ((_loc5_ = param1 as class_432) == null || _loc5_.getParser() == null) {
+                if ((_loc5_ = param1 as FurnitureAliasesMessageEvent) == null || _loc5_.getParser() == null) {
                     return;
                 }
                 _loc2_ = _loc5_.getParser();
@@ -434,8 +434,8 @@ package com.sulake.habbo.room {
             var _loc12_: Number = NaN;
             var _loc5_: Boolean = false;
             var _loc2_: Boolean = false;
-            var _loc7_: class_252;
-            if ((_loc7_ = param1 as class_252) == null || _loc7_.getParser() == null) {
+            var _loc7_: HeightMapMessageEvent;
+            if ((_loc7_ = param1 as HeightMapMessageEvent) == null || _loc7_.getParser() == null) {
                 return;
             }
             if (var_1630 == null) {
@@ -467,8 +467,8 @@ package com.sulake.habbo.room {
         private function onHeightMapUpdate(param1: IMessageEvent): void {
             var _loc6_: int = 0;
             var _loc7_: int = 0;
-            var _loc5_: class_641;
-            if ((_loc5_ = param1 as class_641) == null || _loc5_.getParser() == null) {
+            var _loc5_: HeightMapUpdateMessageEvent;
+            if ((_loc5_ = param1 as HeightMapUpdateMessageEvent) == null || _loc5_.getParser() == null) {
                 return;
             }
             if (var_1630 == null) {
@@ -492,7 +492,7 @@ package com.sulake.habbo.room {
         }
 
         private function onRoomVisualizationSettings(param1: IMessageEvent): void {
-            var _loc2_: class_962 = param1 as class_962;
+            var _loc2_: RoomVisualizationSettingsEvent = param1 as RoomVisualizationSettingsEvent;
             if (_loc2_ == null || _loc2_.getParser() == null) {
                 return;
             }
@@ -508,8 +508,8 @@ package com.sulake.habbo.room {
         }
 
         private function onAreaHide(param1: IMessageEvent): void {
-            var _loc4_: class_460;
-            if ((_loc4_ = param1 as class_460) == null || _loc4_.getParser() == null) {
+            var _loc4_: AreaHideMessageEvent;
+            if ((_loc4_ = param1 as AreaHideMessageEvent) == null || _loc4_.getParser() == null) {
                 return;
             }
             var _loc2_: class_1168 = _loc4_.getParser();
@@ -520,8 +520,8 @@ package com.sulake.habbo.room {
         }
 
         private function onRoomProperty(param1: IMessageEvent): void {
-            var _loc6_: class_1106;
-            if ((_loc6_ = param1 as class_1106) == null || _loc6_.getParser() == null) {
+            var _loc6_: RoomPropertyMessageEvent;
+            if ((_loc6_ = param1 as RoomPropertyMessageEvent) == null || _loc6_.getParser() == null) {
                 return;
             }
             var _loc2_: class_1437 = _loc6_.getParser();
@@ -533,7 +533,7 @@ package com.sulake.habbo.room {
             }
         }
 
-        private function onEntryTileData(param1: class_971): void {
+        private function onEntryTileData(param1: RoomEntryTileMessageEvent): void {
             var_2517 = param1;
         }
 
@@ -543,8 +543,8 @@ package com.sulake.habbo.room {
             var _loc20_: int = 0;
             var _loc9_: int = 0;
             var _loc8_: int = 0;
-            var _loc14_: class_776;
-            if ((_loc14_ = param1 as class_776) == null || _loc14_.getParser() == null) {
+            var _loc14_: FloorHeightMapMessageEvent;
+            if ((_loc14_ = param1 as FloorHeightMapMessageEvent) == null || _loc14_.getParser() == null) {
                 return;
             }
             var _loc11_: class_1471 = _loc14_.getParser();
@@ -629,7 +629,7 @@ package com.sulake.habbo.room {
         private function onObjects(param1: IMessageEvent): void {
             var _loc6_: int = 0;
             var _loc4_: class_1765 = null;
-            var _loc3_: class_654 = param1 as class_654;
+            var _loc3_: ObjectsMessageEvent = param1 as ObjectsMessageEvent;
             if (_loc3_ == null || _loc3_.getParser() == null) {
                 return;
             }
@@ -644,7 +644,7 @@ package com.sulake.habbo.room {
         }
 
         private function onObjectAdd(param1: IMessageEvent): void {
-            var _loc2_: class_333 = param1 as class_333;
+            var _loc2_: ObjectAddMessageEvent = param1 as ObjectAddMessageEvent;
             if (_loc2_ == null || _loc2_.getParser() == null) {
                 return;
             }
@@ -656,7 +656,7 @@ package com.sulake.habbo.room {
         private function onObjectUpdate(param1: IMessageEvent): void {
             var _loc2_: IVector3d = null;
             var _loc6_: IVector3d = null;
-            var _loc3_: class_691 = param1 as class_691;
+            var _loc3_: ObjectUpdateMessageEvent = param1 as ObjectUpdateMessageEvent;
             if (_loc3_ == null || _loc3_.getParser() == null) {
                 return;
             }
@@ -675,8 +675,8 @@ package com.sulake.habbo.room {
         }
 
         private function onObjectDataUpdate(param1: IMessageEvent): void {
-            var _loc4_: class_323;
-            if ((_loc4_ = param1 as class_323) == null || _loc4_.getParser() == null) {
+            var _loc4_: ObjectDataUpdateMessageEvent;
+            if ((_loc4_ = param1 as ObjectDataUpdateMessageEvent) == null || _loc4_.getParser() == null) {
                 return;
             }
             if (var_1630 == null) {
@@ -695,8 +695,8 @@ package com.sulake.habbo.room {
             var _loc7_: int = 0;
             var _loc8_: int = 0;
             var _loc3_: IStuffData = null;
-            var _loc4_: class_486;
-            if ((_loc4_ = param1 as class_486) == null || _loc4_.getParser() == null) {
+            var _loc4_: ObjectsDataUpdateMessageEvent;
+            if ((_loc4_ = param1 as ObjectsDataUpdateMessageEvent) == null || _loc4_.getParser() == null) {
                 return;
             }
             if (var_1630 == null) {
@@ -720,7 +720,7 @@ package com.sulake.habbo.room {
             var id: int;
             var delay: int;
             var event: IMessageEvent = param1;
-            var objectRemoveEvent: class_198 = event as class_198;
+            var objectRemoveEvent: ObjectRemoveMessageEvent = event as ObjectRemoveMessageEvent;
             if (objectRemoveEvent == null || objectRemoveEvent.getParser() == null) {
                 return;
             }
@@ -740,8 +740,8 @@ package com.sulake.habbo.room {
         }
 
         private function onObjectRemoveMultiple(param1: IMessageEvent): void {
-            var _loc4_: class_762;
-            if ((_loc4_ = param1 as class_762) == null || _loc4_.getParser() == null) {
+            var _loc4_: ObjectRemoveMultipleMessageEvent;
+            if ((_loc4_ = param1 as ObjectRemoveMultipleMessageEvent) == null || _loc4_.getParser() == null) {
                 return;
             }
             if (var_1630 == null) {
@@ -770,8 +770,8 @@ package com.sulake.habbo.room {
         private function onItems(param1: IMessageEvent): void {
             var _loc5_: int = 0;
             var _loc3_: class_1710 = null;
-            var _loc6_: class_947;
-            if ((_loc6_ = param1 as class_947) == null || _loc6_.getParser() == null) {
+            var _loc6_: ItemsMessageEvent;
+            if ((_loc6_ = param1 as ItemsMessageEvent) == null || _loc6_.getParser() == null) {
                 return;
             }
             var _loc2_: class_1570 = _loc6_.getParser();
@@ -785,7 +785,7 @@ package com.sulake.habbo.room {
         }
 
         private function onItemAdd(param1: IMessageEvent): void {
-            var _loc2_: class_945 = param1 as class_945;
+            var _loc2_: ItemAddMessageEvent = param1 as ItemAddMessageEvent;
             if (_loc2_ == null || _loc2_.getParser() == null) {
                 return;
             }
@@ -797,7 +797,7 @@ package com.sulake.habbo.room {
         }
 
         private function onItemRemove(param1: IMessageEvent): void {
-            var _loc3_: class_660 = param1 as class_660;
+            var _loc3_: ItemRemoveMessageEvent = param1 as ItemRemoveMessageEvent;
             if (_loc3_ == null || _loc3_.getParser() == null) {
                 return;
             }
@@ -811,8 +811,8 @@ package com.sulake.habbo.room {
         private function onItemUpdate(param1: IMessageEvent): void {
             var _loc2_: IVector3d = null;
             var _loc5_: IVector3d = null;
-            var _loc6_: class_148;
-            if ((_loc6_ = param1 as class_148) == null || _loc6_.getParser() == null) {
+            var _loc6_: ItemUpdateMessageEvent;
+            if ((_loc6_ = param1 as ItemUpdateMessageEvent) == null || _loc6_.getParser() == null) {
                 return;
             }
             var _loc3_: class_1319 = _loc6_.getParser();
@@ -830,7 +830,7 @@ package com.sulake.habbo.room {
         }
 
         private function onItemStateUpdate(param1: IMessageEvent): void {
-            var _loc3_: class_927 = param1 as class_927;
+            var _loc3_: ItemStateUpdateMessageEvent = param1 as ItemStateUpdateMessageEvent;
             if (_loc3_ == null || _loc3_.getParser() == null) {
                 return;
             }
@@ -841,8 +841,8 @@ package com.sulake.habbo.room {
         private function onItemsStateUpdate(param1: IMessageEvent): void {
             var _loc4_: int = 0;
             var _loc2_: class_1766 = null;
-            var _loc5_: class_853;
-            if ((_loc5_ = param1 as class_853) == null || _loc5_.getParser() == null) {
+            var _loc5_: ItemsStateUpdateMessageEvent;
+            if ((_loc5_ = param1 as ItemsStateUpdateMessageEvent) == null || _loc5_.getParser() == null) {
                 return;
             }
             var _loc3_: class_1227 = _loc5_.getParser();
@@ -855,7 +855,7 @@ package com.sulake.habbo.room {
         }
 
         private function onMultipleItemStateUpdates(param1: IMessageEvent): void {
-            var _loc3_: class_927 = param1 as class_927;
+            var _loc3_: ItemStateUpdateMessageEvent = param1 as ItemStateUpdateMessageEvent;
             if (_loc3_ == null || _loc3_.getParser() == null) {
                 return;
             }
@@ -864,7 +864,7 @@ package com.sulake.habbo.room {
         }
 
         private function onItemDataUpdate(param1: IMessageEvent): void {
-            var _loc3_: class_671 = param1 as class_671;
+            var _loc3_: ItemDataUpdateMessageEvent = param1 as ItemDataUpdateMessageEvent;
             if (_loc3_ == null || _loc3_.getParser() == null) {
                 return;
             }
@@ -896,8 +896,8 @@ package com.sulake.habbo.room {
             var _loc2_: IVector3d = null;
             var _loc6_: IVector3d = null;
             var _loc5_: int = 0;
-            var _loc8_: class_558;
-            if ((_loc8_ = param1 as class_558) == null || _loc8_.getParser() == null) {
+            var _loc8_: UsersMessageEvent;
+            if ((_loc8_ = param1 as UsersMessageEvent) == null || _loc8_.getParser() == null) {
                 return;
             }
             if (var_1630 == null) {
@@ -944,8 +944,8 @@ package com.sulake.habbo.room {
             var _loc5_: Boolean = false;
             var _loc15_: Boolean = false;
             var _loc2_: * = 0;
-            var _loc4_: class_1000;
-            if ((_loc4_ = param1 as class_1000) == null || _loc4_.getParser() == null) {
+            var _loc4_: UserUpdateMessageEvent;
+            if ((_loc4_ = param1 as UserUpdateMessageEvent) == null || _loc4_.getParser() == null) {
                 return;
             }
             if (var_1630 == null) {
@@ -1036,7 +1036,7 @@ package com.sulake.habbo.room {
         }
 
         private function onUserRemove(param1: IMessageEvent): void {
-            var _loc3_: class_492 = param1 as class_492;
+            var _loc3_: UserRemoveMessageEvent = param1 as UserRemoveMessageEvent;
             if (_loc3_ == null || _loc3_.getParser() == null) {
                 return;
             }
@@ -1049,7 +1049,7 @@ package com.sulake.habbo.room {
         }
 
         private function onUserChange(param1: IMessageEvent): void {
-            var _loc2_: class_337 = param1 as class_337;
+            var _loc2_: UserChangeMessageEvent = param1 as UserChangeMessageEvent;
             if (_loc2_ == null) {
                 return;
             }
@@ -1057,7 +1057,7 @@ package com.sulake.habbo.room {
         }
 
         private function onPetFigureUpdate(param1: IMessageEvent): void {
-            var _loc3_: class_608 = param1 as class_608;
+            var _loc3_: PetFigureUpdateEvent = param1 as PetFigureUpdateEvent;
             if (_loc3_ == null) {
                 return;
             }
@@ -1066,7 +1066,7 @@ package com.sulake.habbo.room {
         }
 
         private function onExpression(param1: IMessageEvent): void {
-            var _loc2_: class_866 = param1 as class_866;
+            var _loc2_: ExpressionMessageEvent = param1 as ExpressionMessageEvent;
             if (_loc2_ == null) {
                 return;
             }
@@ -1081,7 +1081,7 @@ package com.sulake.habbo.room {
         }
 
         private function onDance(param1: IMessageEvent): void {
-            var _loc2_: class_313 = param1 as class_313;
+            var _loc2_: DanceMessageEvent = param1 as DanceMessageEvent;
             if (_loc2_ == null || _loc2_.getParser() == null) {
                 return;
             }
@@ -1093,7 +1093,7 @@ package com.sulake.habbo.room {
         }
 
         private function onAvatarEffect(param1: IMessageEvent): void {
-            var _loc3_: class_918 = param1 as class_918;
+            var _loc3_: AvatarEffectMessageEvent = param1 as AvatarEffectMessageEvent;
             if (_loc3_ == null || _loc3_.getParser() == null) {
                 return;
             }
@@ -1105,8 +1105,8 @@ package com.sulake.habbo.room {
         }
 
         private function onAvatarSleep(param1: IMessageEvent): void {
-            var _loc4_: class_133;
-            if ((_loc4_ = param1 as class_133) == null || _loc4_.getParser() == null) {
+            var _loc4_: SleepMessageEvent;
+            if ((_loc4_ = param1 as SleepMessageEvent) == null || _loc4_.getParser() == null) {
                 return;
             }
             if (var_1630 == null) {
@@ -1125,8 +1125,8 @@ package com.sulake.habbo.room {
             if (var_1630 == null) {
                 return;
             }
-            if (param1 is class_408) {
-                _loc2_ = (param1 as class_408).getParser();
+            if (param1 is CarryObjectMessageEvent) {
+                _loc2_ = (param1 as CarryObjectMessageEvent).getParser();
                 var_1630.updateObjectUserAction(var_1632, _loc2_.userId, "figure_carry_object", _loc2_.itemType);
             }
         }
@@ -1136,8 +1136,8 @@ package com.sulake.habbo.room {
             if (var_1630 == null) {
                 return;
             }
-            if (param1 is class_994) {
-                _loc2_ = (param1 as class_994).getParser();
+            if (param1 is UseObjectMessageEvent) {
+                _loc2_ = (param1 as UseObjectMessageEvent).getParser();
                 var_1630.updateObjectUserAction(var_1632, _loc2_.userId, "figure_use_object", _loc2_.itemType);
             }
         }
@@ -1151,8 +1151,8 @@ package com.sulake.habbo.room {
             if (var_1630 == null) {
                 return;
             }
-            if (param1 is class_778) {
-                _loc3_ = (param1 as class_778).getParser();
+            if (param1 is SlideObjectBundleMessageEvent) {
+                _loc3_ = (param1 as SlideObjectBundleMessageEvent).getParser();
                 var_1630.updateObjectFurniture(var_1632, _loc3_.id, null, null, 1, null);
                 var_1630.updateObjectFurniture(var_1632, _loc3_.id, null, null, 2, null);
                 _loc6_ = _loc3_.objectList;
@@ -1260,15 +1260,15 @@ package com.sulake.habbo.room {
                 return;
             }
             var _loc3_: IRoomSession = var_1630.roomSessionManager.getSession(var_1632);
-            if (param1 is class_184) {
-                _loc2_ = (param1 as class_184).getParser();
-            } else if (param1 is class_372) {
-                _loc2_ = (param1 as class_372).getParser();
+            if (param1 is ChatMessageEvent) {
+                _loc2_ = (param1 as ChatMessageEvent).getParser();
+            } else if (param1 is WhisperMessageEvent) {
+                _loc2_ = (param1 as WhisperMessageEvent).getParser();
                 if (_loc2_ && _loc3_ && _loc2_.userId == _loc3_.ownUserRoomId) {
                     return;
                 }
-            } else if (param1 is class_468) {
-                _loc2_ = (param1 as class_468).getParser();
+            } else if (param1 is ShoutMessageEvent) {
+                _loc2_ = (param1 as ShoutMessageEvent).getParser();
             }
             if (_loc2_ == null) {
                 return;
@@ -1278,7 +1278,7 @@ package com.sulake.habbo.room {
         }
 
         private function onTypingStatus(param1: IMessageEvent): void {
-            var _loc2_: class_1078 = param1 as class_1078;
+            var _loc2_: UserTypingMessageEvent = param1 as UserTypingMessageEvent;
             if (_loc2_ == null) {
                 return;
             }
@@ -1290,7 +1290,7 @@ package com.sulake.habbo.room {
             var_1630.updateObjectUserAction(var_1632, _loc3_.userId, "figure_is_typing", _loc4_);
         }
 
-        private function onPetExperience(param1: class_537): void {
+        private function onPetExperience(param1: PetExperienceEvent): void {
             if (param1 == null) {
                 return;
             }
@@ -1299,8 +1299,8 @@ package com.sulake.habbo.room {
         }
 
         private function onDiceValue(param1: IMessageEvent): void {
-            var _loc5_: class_1110;
-            if ((_loc5_ = param1 as class_1110) == null || _loc5_.getParser() == null) {
+            var _loc5_: DiceValueMessageEvent;
+            if ((_loc5_ = param1 as DiceValueMessageEvent) == null || _loc5_.getParser() == null) {
                 return;
             }
             if (var_1630 == null) {
@@ -1314,7 +1314,7 @@ package com.sulake.habbo.room {
         }
 
         private function onOneWayDoorStatus(param1: IMessageEvent): void {
-            var _loc2_: class_637 = param1 as class_637;
+            var _loc2_: OneWayDoorStatusMessageEvent = param1 as OneWayDoorStatusMessageEvent;
             if (_loc2_ == null || _loc2_.getParser() == null) {
                 return;
             }
@@ -1328,7 +1328,7 @@ package com.sulake.habbo.room {
             var_1630.updateObjectFurniture(var_1632, _loc5_, null, null, _loc6_, _loc4_);
         }
 
-        private function onPlayingGame(param1: class_886): void {
+        private function onPlayingGame(param1: YouArePlayingGameMessageEvent): void {
             if (param1 == null) {
                 return;
             }
@@ -1337,7 +1337,7 @@ package com.sulake.habbo.room {
             var_1630.setIsPlayingGame(var_1632, _loc2_);
         }
 
-        private function onYouAreNotSpectator(param1: class_518): void {
+        private function onYouAreNotSpectator(param1: YouAreNotSpectatorMessageEvent): void {
             if (param1 == null) {
                 return;
             }
@@ -1356,7 +1356,7 @@ package com.sulake.habbo.room {
             var_1630.leaveSpectate();
         }
 
-        private function onHanditemConfiguration(param1: class_1027): void {
+        private function onHanditemConfiguration(param1: HanditemConfigurationMessageEvent): void {
             if (param1 == null) {
                 return;
             }
@@ -1371,8 +1371,8 @@ package com.sulake.habbo.room {
             if (var_1630 == null) {
                 return;
             }
-            if (param1 is class_427) {
-                _loc2_ = (param1 as class_427).getParser();
+            if (param1 is GamePlayerValueMessageEvent) {
+                _loc2_ = (param1 as GamePlayerValueMessageEvent).getParser();
                 _loc3_ = getRoomId(0);
                 var_1630.updateObjectUserAction(_loc3_, _loc2_.userId, "figure_number_value", _loc2_.value);
             }
@@ -1382,7 +1382,7 @@ package com.sulake.habbo.room {
             if (!var_1630.configuration.getBoolean("avatar.ignored.bubble.enabled")) {
                 return;
             }
-            var _loc2_: class_543 = param1 as class_543;
+            var _loc2_: IgnoreResultMessageEvent = param1 as IgnoreResultMessageEvent;
             var _loc3_: class_3490 = var_1630.roomSessionManager.getSession(var_1632).userDataManager.getUserData(_loc2_.userId);
             if (_loc3_ != null) {
                 switch (_loc2_.result - 1) {

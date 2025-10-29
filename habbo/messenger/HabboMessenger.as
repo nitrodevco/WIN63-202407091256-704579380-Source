@@ -18,8 +18,8 @@ package com.sulake.habbo.messenger {
     import com.sulake.habbo.communication.messages.incoming.friendlist.ConsoleMessageHistoryEvent
     import com.sulake.habbo.communication.messages.incoming.friendlist.NewConsoleMessageEvent
     import com.sulake.habbo.communication.messages.incoming.friendlist.class_756
-    import com.sulake.habbo.communication.messages.incoming.preferences.class_219
-    import com.sulake.habbo.communication.messages.incoming.users.class_835
+    import com.sulake.habbo.communication.messages.incoming.preferences.AccountPreferencesEvent
+    import com.sulake.habbo.communication.messages.incoming.users.HabboGroupDetailsMessageEvent
     import com.sulake.habbo.communication.messages.outgoing.room.session.class_974
     import com.sulake.habbo.communication.messages.parser.friendlist.class_1187
     import com.sulake.habbo.communication.messages.parser.friendlist.class_1288
@@ -100,8 +100,8 @@ package com.sulake.habbo.messenger {
         override protected function initComponent(): void {
             _messageEvents = new Vector.<IMessageEvent>(0);
             addMessageEvent(new MessengerInitEvent(onMessengerInit));
-            addMessageEvent(new class_219(onAccountPreferences));
-            addMessageEvent(new class_835(onHabboGroupDetails));
+            addMessageEvent(new AccountPreferencesEvent(onAccountPreferences));
+            addMessageEvent(new HabboGroupDetailsMessageEvent(onHabboGroupDetails));
             if (getBoolean("client.minimail.embed.enabled")) {
                 addMessageEvent(new class_756(onMiniMailMessage));
                 addMessageEvent(new class_307(onMiniMailUnreadCount));
@@ -135,11 +135,11 @@ package com.sulake.habbo.messenger {
             events.dispatchEvent(new MiniMailMessageEvent("MMME_unread", _miniMailUnreadCount));
         }
 
-        private function onAccountPreferences(param1: class_219): void {
+        private function onAccountPreferences(param1: AccountPreferencesEvent): void {
             _roomInvitesIgnored = param1.getParser().roomInvitesIgnored;
         }
 
-        private function onHabboGroupDetails(param1: class_835): void {
+        private function onHabboGroupDetails(param1: HabboGroupDetailsMessageEvent): void {
             if (_followingToGroupRoom) {
                 _followingToGroupRoom = false;
                 send(new class_974(param1.data.roomId));

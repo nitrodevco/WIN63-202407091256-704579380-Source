@@ -22,8 +22,8 @@ package com.sulake.habbo.ui.widget.camera
    import flash.display.BitmapData;
    import flash.geom.Matrix;
    import flash.geom.Rectangle;
-   import com.sulake.habbo.communication.messages.incoming.camera.class_473;
-   import com.sulake.habbo.communication.messages.incoming.camera.class_532;
+   import com.sulake.habbo.communication.messages.incoming.camera.CameraPublishStatusMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.camera.CompetitionStatusMessageEvent;
    
    public class CameraWidget extends RoomWidgetBase
    {
@@ -217,7 +217,7 @@ package com.sulake.habbo.ui.widget.camera
          }
       }
       
-      public function publishingStatus(param1:class_473) : void
+      public function publishingStatus(param1:CameraPublishStatusMessageEvent) : void
       {
          if(var_1737)
          {
@@ -225,7 +225,7 @@ package com.sulake.habbo.ui.widget.camera
          }
       }
       
-      public function competitionStatus(param1:class_532) : void
+      public function competitionStatus(param1:CompetitionStatusMessageEvent) : void
       {
          if(var_1737)
          {

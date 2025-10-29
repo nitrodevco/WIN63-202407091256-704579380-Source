@@ -6,18 +6,18 @@ package com.sulake.habbo.moderation
    import com.sulake.core.utils.Map;
    import com.sulake.core.window.events.WindowEvent;
    import com.sulake.core.window.utils.class_3348;
-   import com.sulake.habbo.communication.messages.incoming.moderation.class_1024
-   import com.sulake.habbo.communication.messages.incoming.moderation.class_1068
-   import com.sulake.habbo.communication.messages.incoming.moderation.class_1084
-   import com.sulake.habbo.communication.messages.incoming.moderation.class_237
-   import com.sulake.habbo.communication.messages.incoming.moderation.class_398
-   import com.sulake.habbo.communication.messages.incoming.moderation.class_415
-   import com.sulake.habbo.communication.messages.incoming.moderation.class_476
-   import com.sulake.habbo.communication.messages.incoming.moderation.class_504
-   import com.sulake.habbo.communication.messages.incoming.moderation.class_514
-   import com.sulake.habbo.communication.messages.incoming.moderation.class_574
-   import com.sulake.habbo.communication.messages.incoming.moderation.class_688
-   import com.sulake.habbo.communication.messages.incoming.moderation.class_851
+   import com.sulake.habbo.communication.messages.incoming.moderation.RoomVisitsEvent
+   import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorInitMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.moderation.IssueInfoMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.moderation.CfhChatlogEvent
+   import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorUserInfoEvent
+   import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorActionResultMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.moderation.IssuePickFailedMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.moderation.IssueDeletedMessageEvent
+   import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorRoomInfoEvent
+   import com.sulake.habbo.communication.messages.incoming.moderation.UserChatlogEvent
+   import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorToolPreferencesEvent
+   import com.sulake.habbo.communication.messages.incoming.moderation.RoomChatlogEvent
    import com.sulake.habbo.communication.messages.parser.moderation.class_1138
    import com.sulake.habbo.communication.messages.parser.moderation.class_1229
    import com.sulake.habbo.communication.messages.parser.moderation.class_1254
@@ -34,19 +34,19 @@ package com.sulake.habbo.moderation
    import com.sulake.habbo.communication.messages.parser.moderation.class_1762
    import com.sulake.habbo.userclassification.UserClassificationData;
    import flash.utils.Dictionary;
-   import com.sulake.habbo.communication.messages.incoming.room.session.class_640;
+   import com.sulake.habbo.communication.messages.incoming.room.session.CloseConnectionMessageEvent;
    import package_141.*;
    import com.sulake.habbo.communication.messages.parser.room.engine.class_1339;
    import com.sulake.habbo.communication.messages.parser.userclassification.class_1201;
    import com.sulake.habbo.communication.messages.parser.callforhelp.class_1223;
    import com.sulake.habbo.communication.messages.parser.callforhelp.class_1245;
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_510;
+   import com.sulake.habbo.communication.messages.incoming.room.engine.RoomEntryInfoMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.callforhelp.class_1746;
-   import com.sulake.habbo.communication.messages.incoming.callforhelp.class_177;
-   import com.sulake.habbo.communication.messages.incoming.callforhelp.class_696;
+   import com.sulake.habbo.communication.messages.incoming.callforhelp.CfhTopicsInitMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.callforhelp.CfhSanctionMessageEvent;
    import package_53.*;
    import com.sulake.habbo.communication.messages.outgoing.moderator.class_360;
-   import com.sulake.habbo.communication.messages.incoming.userclassification.class_356;
+   import com.sulake.habbo.communication.messages.incoming.userclassification.UserClassificationMessageEvent;
    
    public class ModerationMessageHandler
    {
@@ -77,26 +77,26 @@ package com.sulake.habbo.moderation
          super();
          _moderationManager = param1;
          var _loc2_:IConnection = param1.connection;
-         _loc2_.addMessageEvent(new class_237(onCfhChatlog));
-         _loc2_.addMessageEvent(new class_851(onRoomChatlog));
-         _loc2_.addMessageEvent(new class_504(onIssueDeleted));
-         _loc2_.addMessageEvent(new class_510(onRoomEnter));
-         _loc2_.addMessageEvent(new class_476(onIssuePickFailed));
-         _loc2_.addMessageEvent(new class_640(onRoomExit));
-         _loc2_.addMessageEvent(new class_696(onSanctions));
-         _loc2_.addMessageEvent(new class_1068(onModeratorInit));
-         _loc2_.addMessageEvent(new class_1084(onIssueInfo));
-         _loc2_.addMessageEvent(new class_415(onModeratorActionResult));
-         _loc2_.addMessageEvent(new class_514(onRoomInfo));
-         _loc2_.addMessageEvent(new class_574(onUserChatlog));
-         _loc2_.addMessageEvent(new class_1024(onRoomVisits));
-         _loc2_.addMessageEvent(new class_356(onRoomUserClassification));
-         _loc2_.addMessageEvent(new class_177(onCfhTopics));
-         _loc2_.addMessageEvent(new class_688(onModeratorToolPreferences));
-         _loc2_.addMessageEvent(new class_398(onUserInfo));
+         _loc2_.addMessageEvent(new CfhChatlogEvent(onCfhChatlog));
+         _loc2_.addMessageEvent(new RoomChatlogEvent(onRoomChatlog));
+         _loc2_.addMessageEvent(new IssueDeletedMessageEvent(onIssueDeleted));
+         _loc2_.addMessageEvent(new RoomEntryInfoMessageEvent(onRoomEnter));
+         _loc2_.addMessageEvent(new IssuePickFailedMessageEvent(onIssuePickFailed));
+         _loc2_.addMessageEvent(new CloseConnectionMessageEvent(onRoomExit));
+         _loc2_.addMessageEvent(new CfhSanctionMessageEvent(onSanctions));
+         _loc2_.addMessageEvent(new ModeratorInitMessageEvent(onModeratorInit));
+         _loc2_.addMessageEvent(new IssueInfoMessageEvent(onIssueInfo));
+         _loc2_.addMessageEvent(new ModeratorActionResultMessageEvent(onModeratorActionResult));
+         _loc2_.addMessageEvent(new ModeratorRoomInfoEvent(onRoomInfo));
+         _loc2_.addMessageEvent(new UserChatlogEvent(onUserChatlog));
+         _loc2_.addMessageEvent(new RoomVisitsEvent(onRoomVisits));
+         _loc2_.addMessageEvent(new UserClassificationMessageEvent(onRoomUserClassification));
+         _loc2_.addMessageEvent(new CfhTopicsInitMessageEvent(onCfhTopics));
+         _loc2_.addMessageEvent(new ModeratorToolPreferencesEvent(onModeratorToolPreferences));
+         _loc2_.addMessageEvent(new ModeratorUserInfoEvent(onUserInfo));
       }
       
-      private function onIssueInfo(param1:class_1084) : void
+      private function onIssueInfo(param1:IssueInfoMessageEvent) : void
       {
          if(param1 == null || _moderationManager == null)
          {
@@ -112,7 +112,7 @@ package com.sulake.habbo.moderation
          _moderationManager.issueManager.updateIssue(_loc3_);
       }
       
-      private function onModeratorInit(param1:class_1068) : void
+      private function onModeratorInit(param1:ModeratorInitMessageEvent) : void
       {
          var _loc4_:* = null;
          if(param1 == null || _moderationManager == null)
@@ -136,7 +136,7 @@ package com.sulake.habbo.moderation
          _moderationManager.startPanel.show();
       }
       
-      private function onModeratorToolPreferences(param1:class_688) : void
+      private function onModeratorToolPreferences(param1:ModeratorToolPreferencesEvent) : void
       {
          var _loc2_:class_1229 = null;
          if(_moderationManager && _moderationManager.issueManager)
@@ -146,14 +146,14 @@ package com.sulake.habbo.moderation
          }
       }
       
-      private function onIssuePickFailed(param1:class_476) : void
+      private function onIssuePickFailed(param1:IssuePickFailedMessageEvent) : void
       {
          var alert:Boolean;
          var issues:Array;
          var retryEnabled:Boolean;
          var retryCount:int;
          var pickedAlready:Boolean;
-         var event:class_476 = param1;
+         var event:IssuePickFailedMessageEvent = param1;
          var parser:class_1533 = event.getParser();
          if(parser == null)
          {
@@ -184,7 +184,7 @@ package com.sulake.habbo.moderation
          }
       }
       
-      private function onIssueDeleted(param1:class_504) : void
+      private function onIssueDeleted(param1:IssueDeletedMessageEvent) : void
       {
          if(param1 == null || _moderationManager == null)
          {
@@ -198,7 +198,7 @@ package com.sulake.habbo.moderation
          _moderationManager.issueManager.removeIssue(_loc2_.issueId);
       }
       
-      private function onUserInfo(param1:class_398) : void
+      private function onUserInfo(param1:ModeratorUserInfoEvent) : void
       {
          var _loc3_:class_1138 = param1.getParser();
          class_14.log("GOT USER INFO: " + _loc3_.data.userId + ", " + _loc3_.data.cautionCount);
@@ -208,7 +208,7 @@ package com.sulake.habbo.moderation
          }
       }
       
-      private function onRoomInfo(param1:class_514) : void
+      private function onRoomInfo(param1:ModeratorRoomInfoEvent) : void
       {
          var _loc2_:* = null;
          var _loc3_:class_1599 = param1.getParser();
@@ -218,7 +218,7 @@ package com.sulake.habbo.moderation
          }
       }
       
-      private function onCfhChatlog(param1:class_237) : void
+      private function onCfhChatlog(param1:CfhChatlogEvent) : void
       {
          var _loc3_:class_1254 = param1.getParser();
          var _loc2_:Array = [];
@@ -229,7 +229,7 @@ package com.sulake.habbo.moderation
          onChatlog("Call For Help Evidence #" + _loc3_.data.chatRecordId,3,_loc3_.data.callId,_loc2_,_loc4_);
       }
       
-      private function onRoomChatlog(param1:class_851) : void
+      private function onRoomChatlog(param1:RoomChatlogEvent) : void
       {
          var _loc3_:class_1606 = param1.getParser();
          var _loc2_:Array = [];
@@ -238,7 +238,7 @@ package com.sulake.habbo.moderation
          onChatlog("Room Chatlog: " + _loc3_.data.roomName,4,_loc3_.data.roomId,_loc2_,_loc4_);
       }
       
-      private function onUserChatlog(param1:class_574) : void
+      private function onUserChatlog(param1:UserChatlogEvent) : void
       {
          var _loc2_:class_1343 = param1.getParser();
          var _loc3_:Dictionary = new Dictionary();
@@ -255,7 +255,7 @@ package com.sulake.habbo.moderation
          }
       }
       
-      private function onRoomVisits(param1:class_1024) : void
+      private function onRoomVisits(param1:RoomVisitsEvent) : void
       {
          var _loc2_:* = null;
          var _loc4_:class_1287 = param1.getParser();
@@ -266,11 +266,11 @@ package com.sulake.habbo.moderation
          }
       }
       
-      private function onRoomUserClassification(param1:class_356) : void
+      private function onRoomUserClassification(param1:UserClassificationMessageEvent) : void
       {
          var _loc9_:* = null;
          var _loc5_:class_1201;
-         var _loc10_:Map = (_loc5_ = (param1 as class_356).getParser()).classifiedUsernameMap;
+         var _loc10_:Map = (_loc5_ = (param1 as UserClassificationMessageEvent).getParser()).classifiedUsernameMap;
          var _loc3_:Map = _loc5_.classifiedUserTypeMap;
          var _loc6_:int = 1;
          var _loc7_:Array = [];
@@ -287,14 +287,14 @@ package com.sulake.habbo.moderation
          }
       }
       
-      private function onSanctions(param1:class_696) : void
+      private function onSanctions(param1:CfhSanctionMessageEvent) : void
       {
          var _loc2_:class_1223 = param1.getParser();
          class_14.log("Got sanction data..." + [_loc2_.issueId,_loc2_.accountId,_loc2_.sanctionType]);
          _moderationManager.issueManager.updateSanctionData(_loc2_.issueId,_loc2_.accountId,_loc2_.sanctionType);
       }
       
-      private function onCfhTopics(param1:class_177) : void
+      private function onCfhTopics(param1:CfhTopicsInitMessageEvent) : void
       {
          var _loc2_:* = undefined;
          var _loc3_:class_1245 = param1.getParser();
@@ -302,7 +302,7 @@ package com.sulake.habbo.moderation
          _moderationManager.cfhTopics = _loc2_;
       }
       
-      private function onRoomEnter(param1:class_510) : void
+      private function onRoomEnter(param1:RoomEntryInfoMessageEvent) : void
       {
          var _loc2_:* = null;
          var _loc3_:class_1339 = param1.getParser();
@@ -314,7 +314,7 @@ package com.sulake.habbo.moderation
          }
       }
       
-      private function onRoomExit(param1:class_640) : void
+      private function onRoomExit(param1:CloseConnectionMessageEvent) : void
       {
          var _loc2_:* = null;
          this._moderationManager.currentFlatId = 0;
@@ -325,7 +325,7 @@ package com.sulake.habbo.moderation
          }
       }
       
-      private function onModeratorActionResult(param1:class_415) : void
+      private function onModeratorActionResult(param1:ModeratorActionResultMessageEvent) : void
       {
          var _loc2_:class_1330 = param1.getParser();
          class_14.log("GOT MOD ACTION RESULT: " + _loc2_.userId + ", " + _loc2_.success);

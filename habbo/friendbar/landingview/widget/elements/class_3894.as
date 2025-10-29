@@ -5,7 +5,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
    import com.sulake.habbo.friendbar.landingview.widget.GenericWidget;
    import com.sulake.habbo.communication.messages.outgoing.competition.ForwardToASubmittableRoomMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.competition.class_463;
-   import com.sulake.habbo.communication.messages.incoming.competition.class_659;
+   import com.sulake.habbo.communication.messages.incoming.competition.IsUserPartOfCompetitionMessageEvent;
    
    public class class_3894 extends class_3879
    {
@@ -29,7 +29,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
          super.initialize(param1,param2,param3,param4);
          _submittedKey = param3[2];
          var_891 = param3[3];
-         param1.communicationManager.addHabboConnectionMessageEvent(new class_659(onInfo));
+         param1.communicationManager.addHabboConnectionMessageEvent(new IsUserPartOfCompetitionMessageEvent(onInfo));
       }
       
       override public function refresh() : void
@@ -53,7 +53,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
          }
       }
       
-      private function onInfo(param1:class_659) : void
+      private function onInfo(param1:IsUserPartOfCompetitionMessageEvent) : void
       {
          var_925 = param1.getParser().isPartOf;
          var_1458 = param1.getParser().targetId;

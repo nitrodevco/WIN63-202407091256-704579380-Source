@@ -7,7 +7,7 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_settings
    import com.sulake.habbo.roomevents.wired_menu.WiredMenuController;
    import com.sulake.habbo.roomevents.wired_menu.tabs.WiredMenuDefaultTab;
    import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.wiredmenu.class_1257;
-   import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.class_326;
+   import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredRoomSettingsEvent;
    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_412;
    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredSetPreferencesMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_736;
@@ -33,7 +33,7 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_settings
          MODIFY_PERMISSION_OPTIONS = [1,2,3];
          READ_PERMISSION_OPTIONS = [0,1,2,3];
          super(param1,param2);
-         addMessageEvent(new class_326(onWiredSettings));
+         addMessageEvent(new WiredRoomSettingsEvent(onWiredSettings));
          updateLoadingState();
          requestData();
          for each(_loc4_ in MODIFY_PERMISSION_OPTIONS)
@@ -58,7 +58,7 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_settings
          syntaxCheckbox.addEventListener("WE_UNSELECTED",onPreferencesChanged);
       }
       
-      private function onWiredSettings(param1:class_326) : void
+      private function onWiredSettings(param1:WiredRoomSettingsEvent) : void
       {
          var _loc2_:class_1257 = param1.getParser();
          var_649 = _loc2_.modifyPermissionMask;

@@ -22,8 +22,8 @@ package com.sulake.habbo.campaign
    import com.sulake.iid.IIDHabboWindowManager;
    import com.sulake.iid.IIDRoomEngine;
    import com.sulake.iid.IIDSessionDataManager;
-   import com.sulake.habbo.communication.messages.incoming.campaign.class_712;
-   import com.sulake.habbo.communication.messages.incoming.campaign.class_961;
+   import com.sulake.habbo.communication.messages.incoming.campaign.CampaignCalendarDataMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.campaign.CampaignCalendarDoorOpenedMessageEvent;
    import com.sulake.habbo.communication.messages.parser.campaign.class_1115;
    import com.sulake.habbo.communication.messages.parser.campaign.class_1499;
    import com.sulake.habbo.communication.messages.parser.campaign.class_1641;
@@ -94,12 +94,12 @@ package com.sulake.habbo.campaign
             var_2067.missedDays = new <int>[2,3];
             showCalendar();
          }
-         _communicationManager.addHabboConnectionMessageEvent(new class_712(onCampaignCalendarDataMessageEvent));
-         _communicationManager.addHabboConnectionMessageEvent(new class_961(onCampaignCalendarDoorOpenedMessageEvent));
+         _communicationManager.addHabboConnectionMessageEvent(new CampaignCalendarDataMessageEvent(onCampaignCalendarDataMessageEvent));
+         _communicationManager.addHabboConnectionMessageEvent(new CampaignCalendarDoorOpenedMessageEvent(onCampaignCalendarDoorOpenedMessageEvent));
          context.addLinkEventTracker(this);
       }
       
-      private function onCampaignCalendarDataMessageEvent(param1:class_712) : void
+      private function onCampaignCalendarDataMessageEvent(param1:CampaignCalendarDataMessageEvent) : void
       {
          if(false && var_4083)
          {
@@ -109,7 +109,7 @@ package com.sulake.habbo.campaign
          var_2067 = _loc2_.cloneData();
       }
       
-      private function onCampaignCalendarDoorOpenedMessageEvent(param1:class_961) : void
+      private function onCampaignCalendarDoorOpenedMessageEvent(param1:CampaignCalendarDoorOpenedMessageEvent) : void
       {
          var _loc2_:class_1115 = param1.getParser();
          if(_loc2_.doorOpened)

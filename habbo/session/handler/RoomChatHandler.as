@@ -12,15 +12,15 @@ package com.sulake.habbo.session.handler
    import com.sulake.habbo.communication.messages.parser.users.class_1357;
    import com.sulake.habbo.communication.messages.parser.room.chat.class_1344;
    import com.sulake.habbo.communication.messages.parser.room.chat.class_1558;
-   import com.sulake.habbo.communication.messages.incoming.room.chat.class_1092;
-   import com.sulake.habbo.communication.messages.incoming.room.chat.class_184;
-   import com.sulake.habbo.communication.messages.incoming.room.chat.class_372;
-   import com.sulake.habbo.communication.messages.incoming.room.chat.class_468;
-   import com.sulake.habbo.communication.messages.incoming.room.chat.class_921;
-   import com.sulake.habbo.communication.messages.incoming.users.class_147;
-   import com.sulake.habbo.communication.messages.incoming.users.class_196;
-   import com.sulake.habbo.communication.messages.incoming.users.class_630;
-   import com.sulake.habbo.communication.messages.incoming.users.class_799;
+   import com.sulake.habbo.communication.messages.incoming.room.chat.RemainingMutePeriodEvent;
+   import com.sulake.habbo.communication.messages.incoming.room.chat.ChatMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.room.chat.WhisperMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.room.chat.ShoutMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.room.chat.FloodControlMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.PetRespectNotificationEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.HandItemReceivedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.PetSupplementedNotificationEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.RespectNotificationMessageEvent;
    
    public class RoomChatHandler extends BaseHandler
    {
@@ -33,27 +33,27 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         param1.addMessageEvent(new class_184(onRoomChat));
-         param1.addMessageEvent(new class_372(onRoomWhisper));
-         param1.addMessageEvent(new class_468(onRoomShout));
-         param1.addMessageEvent(new class_799(onRespectNotification));
-         param1.addMessageEvent(new class_147(onPetRespectNotification));
-         param1.addMessageEvent(new class_630(onPetSupplementedNotification));
-         param1.addMessageEvent(new class_921(onFloodControl));
-         param1.addMessageEvent(new class_196(onHandItemNotification));
-         param1.addMessageEvent(new class_1092(onRemainingMutePeriod));
+         param1.addMessageEvent(new ChatMessageEvent(onRoomChat));
+         param1.addMessageEvent(new WhisperMessageEvent(onRoomWhisper));
+         param1.addMessageEvent(new ShoutMessageEvent(onRoomShout));
+         param1.addMessageEvent(new RespectNotificationMessageEvent(onRespectNotification));
+         param1.addMessageEvent(new PetRespectNotificationEvent(onPetRespectNotification));
+         param1.addMessageEvent(new PetSupplementedNotificationEvent(onPetSupplementedNotification));
+         param1.addMessageEvent(new FloodControlMessageEvent(onFloodControl));
+         param1.addMessageEvent(new HandItemReceivedMessageEvent(onHandItemNotification));
+         param1.addMessageEvent(new RemainingMutePeriodEvent(onRemainingMutePeriod));
       }
       
       private function onRoomChat(param1:IMessageEvent) : void
       {
-         var _loc2_:class_184 = null;
+         var _loc2_:ChatMessageEvent = null;
          var _loc4_:IRoomSession = null;
          var _loc5_:String = null;
          var _loc6_:int = 0;
          var _loc3_:class_1344 = null;
          if(listener && listener.events)
          {
-            _loc2_ = param1 as class_184;
+            _loc2_ = param1 as ChatMessageEvent;
             if(_loc2_ && _loc2_.getParser())
             {
                if((_loc4_ = listener.getSession(var_1662)) == null)
@@ -79,7 +79,7 @@ package com.sulake.habbo.session.handler
          var _loc7_:int = 0;
          var _loc3_:class_3490 = null;
          var _loc6_:String = null;
-         var _loc2_:class_799 = param1 as class_799;
+         var _loc2_:RespectNotificationMessageEvent = param1 as RespectNotificationMessageEvent;
          if(listener && listener.events)
          {
             if((_loc4_ = listener.getSession(var_1662)) == null)
@@ -98,7 +98,7 @@ package com.sulake.habbo.session.handler
          }
       }
       
-      private function onPetRespectNotification(param1:class_147) : void
+      private function onPetRespectNotification(param1:PetRespectNotificationEvent) : void
       {
          if(param1 == null || listener == null || listener.events == null)
          {
@@ -128,7 +128,7 @@ package com.sulake.habbo.session.handler
          listener.events.dispatchEvent(new RoomSessionChatEvent(_loc5_,_loc4_,_loc2_.roomObjectId,"",_loc6_,1));
       }
       
-      private function onPetSupplementedNotification(param1:class_630) : void
+      private function onPetSupplementedNotification(param1:PetSupplementedNotificationEvent) : void
       {
          if(param1 == null || listener == null || listener.events == null)
          {
@@ -171,7 +171,7 @@ package com.sulake.habbo.session.handler
          listener.events.dispatchEvent(new RoomSessionChatEvent(_loc7_,_loc4_,_loc2_.roomObjectId,"",_loc8_,1,null,_loc6_));
       }
       
-      private function onHandItemNotification(param1:class_196) : void
+      private function onHandItemNotification(param1:HandItemReceivedMessageEvent) : void
       {
          var _loc2_:IRoomSession = null;
          if(listener && listener.events)
@@ -184,7 +184,7 @@ package com.sulake.habbo.session.handler
          }
       }
       
-      private function onRemainingMutePeriod(param1:class_1092) : void
+      private function onRemainingMutePeriod(param1:RemainingMutePeriodEvent) : void
       {
          var _loc2_:IRoomSession = null;
          if(listener && listener.events)
@@ -199,14 +199,14 @@ package com.sulake.habbo.session.handler
       
       private function onRoomWhisper(param1:IMessageEvent) : void
       {
-         var _loc2_:class_372 = null;
+         var _loc2_:WhisperMessageEvent = null;
          var _loc4_:IRoomSession = null;
          var _loc5_:String = null;
          var _loc6_:int = 0;
          var _loc3_:class_1344 = null;
          if(listener && listener.events)
          {
-            _loc2_ = param1 as class_372;
+            _loc2_ = param1 as WhisperMessageEvent;
             if(_loc2_ && _loc2_.getParser())
             {
                if((_loc4_ = listener.getSession(var_1662)) == null)
@@ -223,14 +223,14 @@ package com.sulake.habbo.session.handler
       
       private function onRoomShout(param1:IMessageEvent) : void
       {
-         var _loc2_:class_468 = null;
+         var _loc2_:ShoutMessageEvent = null;
          var _loc4_:IRoomSession = null;
          var _loc5_:String = null;
          var _loc6_:int = 0;
          var _loc3_:class_1344 = null;
          if(listener && listener.events)
          {
-            _loc2_ = param1 as class_468;
+            _loc2_ = param1 as ShoutMessageEvent;
             if(_loc2_ && _loc2_.getParser())
             {
                if((_loc4_ = listener.getSession(var_1662)) == null)
@@ -252,7 +252,7 @@ package com.sulake.habbo.session.handler
          var _loc2_:int = 0;
          if(listener && listener.events)
          {
-            _loc3_ = (param1 as class_921).getParser();
+            _loc3_ = (param1 as FloodControlMessageEvent).getParser();
             if((_loc4_ = listener.getSession(var_1662)) == null)
             {
                return;

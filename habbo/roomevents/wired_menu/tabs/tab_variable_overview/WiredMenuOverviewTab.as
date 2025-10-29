@@ -20,7 +20,7 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_variable_overview
    import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.wiredmenu.class_1165;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredcontext.variables.ObjectIdAndValuePair;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredcontext.variables.WiredVariable;
-   import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.class_910;
+   import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredAllVariableHoldersEvent;
    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_1040;
    
    public class WiredMenuOverviewTab extends WiredMenuDefaultTab implements IUpdateReceiver
@@ -76,7 +76,7 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_variable_overview
          createVariableList();
          createPropertiesTable();
          createTextTable();
-         addMessageEvent(new class_910(onAllVariableHolders));
+         addMessageEvent(new WiredAllVariableHoldersEvent(onAllVariableHolders));
          highlightHoldersButton.addEventListener("WME_CLICK",onHighlightClick);
       }
       
@@ -142,7 +142,7 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_variable_overview
          }
       }
       
-      private function onAllVariableHolders(param1:class_910) : void
+      private function onAllVariableHolders(param1:WiredAllVariableHoldersEvent) : void
       {
          var _loc9_:int = 0;
          var _loc8_:Number = NaN;

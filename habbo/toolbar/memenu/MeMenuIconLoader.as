@@ -6,8 +6,8 @@ package com.sulake.habbo.toolbar.memenu
    import flash.display.BitmapData;
    import flash.geom.Point;
    import flash.geom.Rectangle;
-   import com.sulake.habbo.communication.messages.incoming.room.engine.class_337;
-   import com.sulake.habbo.communication.messages.incoming.handshake.class_556;
+   import com.sulake.habbo.communication.messages.incoming.room.engine.UserChangeMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.handshake.UserObjectEvent;
    
    public class MeMenuIconLoader implements IAvatarImageListener
    {
@@ -25,16 +25,16 @@ package com.sulake.habbo.toolbar.memenu
       
       private var var_3604:BitmapData;
       
-      private var var_3037:class_556;
+      private var var_3037:UserObjectEvent;
       
-      private var var_3023:class_337;
+      private var var_3023:UserChangeMessageEvent;
       
       public function MeMenuIconLoader(param1:HabboToolbar)
       {
          super();
          _toolbar = param1;
-         var_3037 = new class_556(onUserObject);
-         var_3023 = new class_337(onUserChange);
+         var_3037 = new UserObjectEvent(onUserObject);
+         var_3023 = new UserChangeMessageEvent(onUserChange);
          _toolbar.communicationManager.addHabboConnectionMessageEvent(var_3037);
          _toolbar.communicationManager.addHabboConnectionMessageEvent(var_3023);
          setMeMenuToolbarIcon();
@@ -109,12 +109,12 @@ package com.sulake.habbo.toolbar.memenu
          setMeMenuToolbarIcon();
       }
       
-      private function onUserObject(param1:class_556) : void
+      private function onUserObject(param1:UserObjectEvent) : void
       {
          setMeMenuToolbarIcon(param1.getParser().figure);
       }
       
-      private function onUserChange(param1:class_337) : void
+      private function onUserChange(param1:UserChangeMessageEvent) : void
       {
          if(param1.id == -1)
          {

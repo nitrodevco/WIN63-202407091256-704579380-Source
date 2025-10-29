@@ -34,8 +34,8 @@ package com.sulake.habbo.ui.handler
    import com.sulake.habbo.ui.widget.messages.RoomWidgetUserActionMessage;
    import com.sulake.room.object.IRoomObject;
    import flash.events.Event;
-   import com.sulake.habbo.communication.messages.incoming.room.furniture.class_276;
-   import com.sulake.habbo.communication.messages.incoming.inventory.furni.class_379;
+   import com.sulake.habbo.communication.messages.incoming.room.furniture.CustomUserNotificationMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListAddOrUpdateEvent;
    
    public class AvatarInfoWidgetHandler implements IRoomWidgetHandler
    {
@@ -142,11 +142,11 @@ package com.sulake.habbo.ui.handler
          }
          if(var_2663 == null)
          {
-            var_2663 = new class_379(onFurniListUpdated);
+            var_2663 = new FurniListAddOrUpdateEvent(onFurniListUpdated);
          }
          if(!var_2431 && _container.connection)
          {
-            var_2431 = new class_276(onCustomUserNotificationMessage);
+            var_2431 = new CustomUserNotificationMessageEvent(onCustomUserNotificationMessage);
             _container.connection.addMessageEvent(var_2431);
          }
          if(_container && _container.toolbar && _container.toolbar.events)
@@ -587,7 +587,7 @@ package com.sulake.habbo.ui.handler
          return null;
       }
       
-      public function onCustomUserNotificationMessage(param1:class_276) : void
+      public function onCustomUserNotificationMessage(param1:CustomUserNotificationMessageEvent) : void
       {
          var _loc2_:int = param1.getParser().code;
          switch(_loc2_ - 4)

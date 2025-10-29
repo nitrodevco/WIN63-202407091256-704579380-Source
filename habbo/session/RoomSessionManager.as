@@ -7,7 +7,7 @@ package com.sulake.habbo.session {
     import com.sulake.core.utils.Map
     import com.sulake.habbo.avatar.IAvatarRenderManager
     import com.sulake.habbo.communication.IHabboCommunicationManager
-    import com.sulake.habbo.communication.messages.incoming.room.engine.class_962
+    import com.sulake.habbo.communication.messages.incoming.room.engine.RoomVisualizationSettingsEvent
     import com.sulake.habbo.communication.messages.outgoing.roomdirectory.class_589
     import com.sulake.habbo.freeflowchat.class_1809
     import com.sulake.habbo.room.IRoomEngine
@@ -110,7 +110,7 @@ package com.sulake.habbo.session {
             try {
                 createHandlers();
                 if (var_3347 && _communication != null) {
-                    _communication.addHabboConnectionMessageEvent(new class_962(onRoomVisualizationSettings));
+                    _communication.addHabboConnectionMessageEvent(new RoomVisualizationSettingsEvent(onRoomVisualizationSettings));
                 }
                 executePendingSessionRequest();
             } catch (e: Error) {
@@ -182,7 +182,7 @@ package com.sulake.habbo.session {
             }
         }
 
-        private function onRoomVisualizationSettings(param1: class_962): void {
+        private function onRoomVisualizationSettings(param1: RoomVisualizationSettingsEvent): void {
             var _loc3_: int = 0;
             var _loc8_: int = 0;
             var _loc2_: int = 0;

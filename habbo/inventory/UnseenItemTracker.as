@@ -6,7 +6,7 @@ package com.sulake.habbo.inventory
    import flash.events.IEventDispatcher;
    import flash.utils.Dictionary;
    import com.sulake.habbo.communication.messages.parser.notifications.class_1592;
-   import com.sulake.habbo.communication.messages.incoming.notifications.class_552;
+   import com.sulake.habbo.communication.messages.incoming.notifications.UnseenItemsEvent;
    import com.sulake.habbo.communication.messages.outgoing.notifications.class_204;
    import com.sulake.habbo.communication.messages.outgoing.notifications.class_554;
    
@@ -29,7 +29,7 @@ package com.sulake.habbo.inventory
          _inventory = param3;
          name_1 = param2;
          _unseenItems = new Dictionary();
-         _communication.addHabboConnectionMessageEvent(new class_552(onUnseenItems));
+         _communication.addHabboConnectionMessageEvent(new UnseenItemsEvent(onUnseenItems));
       }
       
       public function dispose() : void
@@ -124,7 +124,7 @@ package com.sulake.habbo.inventory
          return 0;
       }
       
-      private function onUnseenItems(param1:class_552) : void
+      private function onUnseenItems(param1:UnseenItemsEvent) : void
       {
          var _loc2_:Boolean = false;
          var _loc5_:Array = null;

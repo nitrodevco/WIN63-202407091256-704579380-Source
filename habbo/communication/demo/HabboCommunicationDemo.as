@@ -13,7 +13,7 @@ package com.sulake.habbo.communication.demo {
     import com.sulake.habbo.communication.IHabboWebApiSession
     import com.sulake.habbo.communication.login.AvatarData
     import com.sulake.habbo.communication.login.ILoginProvider
-    import com.sulake.habbo.communication.messages.incoming.handshake.class_280
+    import com.sulake.habbo.communication.messages.incoming.handshake.DisconnectReasonEvent
     import com.sulake.habbo.communication.messages.outgoing.handshake.ClientHelloMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.handshake.UniqueIDMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.handshake.class_3383
@@ -237,12 +237,12 @@ package com.sulake.habbo.communication.demo {
             var_1607 = true;
             if (!var_22) {
                 if (param2 == null || param2.length < 6) {
-                    param2 = String(_localization.getLocalization(class_280.resolveDisconnectedReasonLocalizationKey(param1)));
+                    param2 = String(_localization.getLocalization(DisconnectReasonEvent.resolveDisconnectedReasonLocalizationKey(param1)));
                 }
                 _loc3_ = "connection.login.logged_out";
                 _localization.registerParameter(_loc3_, "reason", param1.toString());
                 _localization.registerParameter(_loc3_, "reasonName", param2);
-                alert(class_280.resolveDisconnectedReasonLocalizationKey(param1), "${connection.login.logged_out}");
+                alert(DisconnectReasonEvent.resolveDisconnectedReasonLocalizationKey(param1), "${connection.login.logged_out}");
                 return;
             }
             onBufferedDisconnected(param1, param2);
@@ -482,7 +482,7 @@ package com.sulake.habbo.communication.demo {
                     break;
                 default:
                     if (param1.critical) {
-                        disconnected(-1, class_280.resolveDisconnectedReasonLocalizationKey(-1));
+                        disconnected(-1, DisconnectReasonEvent.resolveDisconnectedReasonLocalizationKey(-1));
                     }
             }
         }

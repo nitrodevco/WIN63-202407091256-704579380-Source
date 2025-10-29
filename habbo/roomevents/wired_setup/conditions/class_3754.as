@@ -8,7 +8,7 @@ package com.sulake.habbo.roomevents.wired_setup.conditions
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.class_1659;
    import com.sulake.habbo.roomevents.HabboUserDefinedRoomEvents;
    import com.sulake.habbo.communication.messages.incoming.users.class_1745;
-   import com.sulake.habbo.communication.messages.incoming.users.class_596;
+   import com.sulake.habbo.communication.messages.incoming.users.GuildMembershipsMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.users.class_779;
    
    public class class_3754 extends DefaultConditionType
@@ -120,7 +120,7 @@ package com.sulake.habbo.roomevents.wired_setup.conditions
          }
       }
       
-      override public function onGuildMemberships(param1:class_596) : void
+      override public function onGuildMemberships(param1:GuildMembershipsMessageEvent) : void
       {
          initGuilds(param1.guilds);
       }

@@ -7,7 +7,7 @@ package com.sulake.habbo.session.handler
    import com.sulake.habbo.session.events.RoomSessionDimmerPresetsEvent;
    import com.sulake.habbo.communication.messages.parser.room.furniture.class_1258;
    import com.sulake.habbo.communication.messages.incoming.room.furniture.class_1730;
-   import com.sulake.habbo.communication.messages.incoming.room.furniture.class_878;
+   import com.sulake.habbo.communication.messages.incoming.room.furniture.RoomDimmerPresetsMessageEvent;
    
    public class RoomDimmerPresetsHandler extends BaseHandler
    {
@@ -20,15 +20,15 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         param1.addMessageEvent(new class_878(onRoomDimmerPresets));
+         param1.addMessageEvent(new RoomDimmerPresetsMessageEvent(onRoomDimmerPresets));
       }
       
       private function onRoomDimmerPresets(param1:IMessageEvent) : void
       {
          var _loc4_:int = 0;
          var _loc6_:class_1730 = null;
-         var _loc5_:class_878;
-         if((_loc5_ = param1 as class_878) == null || _loc5_.getParser() == null)
+         var _loc5_:RoomDimmerPresetsMessageEvent;
+         if((_loc5_ = param1 as RoomDimmerPresetsMessageEvent) == null || _loc5_.getParser() == null)
          {
             return;
          }

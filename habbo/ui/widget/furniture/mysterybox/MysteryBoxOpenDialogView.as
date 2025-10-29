@@ -15,9 +15,9 @@ package com.sulake.habbo.ui.widget.furniture.mysterybox
    import com.sulake.room.object.IRoomObject;
    import com.sulake.room.utils.Vector3d;
    import flash.display.BitmapData;
-   import com.sulake.habbo.communication.messages.incoming.mysterybox.class_601;
-   import com.sulake.habbo.communication.messages.incoming.mysterybox.class_695;
-   import com.sulake.habbo.communication.messages.incoming.mysterybox.class_843;
+   import com.sulake.habbo.communication.messages.incoming.mysterybox.ShowMysteryBoxWaitMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.mysterybox.CancelMysteryBoxWaitMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.mysterybox.GotMysteryBoxPrizeMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.mysterybox.class_711;
    import com.sulake.habbo.communication.messages.outgoing.room.engine.UseFurnitureMessageComposer;
    import com.sulake.habbo.communication.messages.parser.mysterybox.class_1408;
@@ -36,11 +36,11 @@ package com.sulake.habbo.ui.widget.furniture.mysterybox
       
       private var var_2060:IRoomObject;
       
-      private var var_3369:class_601;
+      private var var_3369:ShowMysteryBoxWaitMessageEvent;
       
-      private var var_3414:class_695;
+      private var var_3414:CancelMysteryBoxWaitMessageEvent;
       
-      private var var_3382:class_843;
+      private var var_3382:GotMysteryBoxPrizeMessageEvent;
       
       private var var_3115:int = -1;
       
@@ -48,25 +48,25 @@ package com.sulake.habbo.ui.widget.furniture.mysterybox
       {
          super();
          var_1629 = param1;
-         var_3369 = new class_601(onShowMysteryBoxWait);
-         var_3414 = new class_695(onCancelMysteryBoxWait);
-         var_3382 = new class_843(onGotMysteryBoxPrize);
+         var_3369 = new ShowMysteryBoxWaitMessageEvent(onShowMysteryBoxWait);
+         var_3414 = new CancelMysteryBoxWaitMessageEvent(onCancelMysteryBoxWait);
+         var_3382 = new GotMysteryBoxPrizeMessageEvent(onGotMysteryBoxPrize);
          connection.addMessageEvent(var_3369);
          connection.addMessageEvent(var_3414);
          connection.addMessageEvent(var_3382);
       }
       
-      private function onShowMysteryBoxWait(param1:class_601) : void
+      private function onShowMysteryBoxWait(param1:ShowMysteryBoxWaitMessageEvent) : void
       {
          showWaitWindow();
       }
       
-      private function onCancelMysteryBoxWait(param1:class_695) : void
+      private function onCancelMysteryBoxWait(param1:CancelMysteryBoxWaitMessageEvent) : void
       {
          closeWindow();
       }
       
-      private function onGotMysteryBoxPrize(param1:class_843) : void
+      private function onGotMysteryBoxPrize(param1:GotMysteryBoxPrizeMessageEvent) : void
       {
          var _loc2_:class_1408 = param1.getParser();
          showRewardWindow(_loc2_.contentType,_loc2_.classId);

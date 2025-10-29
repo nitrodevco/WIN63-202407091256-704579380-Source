@@ -22,11 +22,11 @@ package com.sulake.habbo.groups
    import com.sulake.habbo.communication.messages.parser.users.class_1631;
    import com.sulake.habbo.communication.messages.incoming.users.class_1212;
    import com.sulake.habbo.communication.messages.incoming.users.class_1251;
-   import com.sulake.habbo.communication.messages.incoming.users.class_172;
-   import com.sulake.habbo.communication.messages.incoming.users.class_226;
-   import com.sulake.habbo.communication.messages.incoming.users.class_315;
-   import com.sulake.habbo.communication.messages.incoming.users.class_668;
-   import com.sulake.habbo.communication.messages.incoming.users.class_908;
+   import com.sulake.habbo.communication.messages.incoming.users.GuildMembershipRejectedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.GuildMembersMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.GuildMembershipUpdatedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.GuildMemberMgmtFailedMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.users.GroupMembershipRequestedMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.users.RejectMembershipRequestMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.users.GetGuildMembersMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.users.AddAdminRightsToMemberMessageComposer;
@@ -106,7 +106,7 @@ package com.sulake.habbo.groups
       
       public function onGuildMembers(param1:IMessageEvent) : void
       {
-         var_47 = class_226(param1).data;
+         var_47 = GuildMembersMessageEvent(param1).data;
          show();
          populateSearchTypes();
          populateUserNameFilter();
@@ -114,7 +114,7 @@ package com.sulake.habbo.groups
       
       public function onGuildMembershipUpdated(param1:IMessageEvent) : void
       {
-         var _loc2_:class_315 = class_315(param1);
+         var _loc2_:GuildMembershipUpdatedMessageEvent = GuildMembershipUpdatedMessageEvent(param1);
          if(var_47 != null && var_47.groupId == _loc2_.guildId)
          {
             var_47.update(_loc2_.data);
@@ -124,7 +124,7 @@ package com.sulake.habbo.groups
       
       public function onGuildMemberMgmtFailed(param1:IMessageEvent) : void
       {
-         var _loc2_:class_668 = class_668(param1);
+         var _loc2_:GuildMemberMgmtFailedMessageEvent = GuildMemberMgmtFailedMessageEvent(param1);
          var _loc3_:int = _loc2_.reason;
          var _loc4_:String = "group.membermgmt.fail." + _loc3_;
          var _loc5_:String = String(var_480.localization.getLocalization(_loc4_,_loc4_));
@@ -137,7 +137,7 @@ package com.sulake.habbo.groups
       
       public function onGuildMembershipRejected(param1:IMessageEvent) : void
       {
-         var _loc2_:class_172 = class_172(param1);
+         var _loc2_:GuildMembershipRejectedMessageEvent = GuildMembershipRejectedMessageEvent(param1);
          if(_window && _window.visible && var_47 != null && var_47.groupId == _loc2_.getParser().guildId)
          {
             doSearch(var_47.pageIndex);
@@ -146,7 +146,7 @@ package com.sulake.habbo.groups
       
       public function onMembershipRequested(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1631 = class_908(param1).getParser();
+         var _loc2_:class_1631 = GroupMembershipRequestedMessageEvent(param1).getParser();
          if(_window && _window.visible && var_47 != null && var_47.groupId == _loc2_.groupId)
          {
             doSearch(var_47.pageIndex);

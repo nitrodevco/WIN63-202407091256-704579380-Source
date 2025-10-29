@@ -22,8 +22,8 @@ package com.sulake.habbo.sound.music
    import com.sulake.habbo.communication.messages.outgoing.sound.class_1009;
    import com.sulake.habbo.communication.messages.outgoing.sound.class_183;
    import com.sulake.habbo.communication.messages.outgoing.sound.class_775;
-   import com.sulake.habbo.communication.messages.incoming.sound.class_1051;
-   import com.sulake.habbo.communication.messages.incoming.sound.class_1069;
+   import com.sulake.habbo.communication.messages.incoming.sound.TraxSongInfoMessageEvent;
+   import com.sulake.habbo.communication.messages.incoming.sound.UserSongDisksInventoryMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.sound.class_1763;
    
    public class HabboMusicController implements class_3410, IDisposable
@@ -90,8 +90,8 @@ package com.sulake.habbo.sound.music
          name_1 = param2;
          _roomEvents = param3;
          var_26 = param4;
-         _messageEvents.push(new class_1051(onSongInfoMessage));
-         _messageEvents.push(new class_1069(onSongDiskInventoryMessage));
+         _messageEvents.push(new TraxSongInfoMessageEvent(onSongInfoMessage));
+         _messageEvents.push(new UserSongDisksInventoryMessageEvent(onSongDiskInventoryMessage));
          for each(var _loc6_ in _messageEvents)
          {
             var_26.addMessageEvent(_loc6_);
@@ -592,7 +592,7 @@ package com.sulake.habbo.sound.music
          var _loc12_:SongDataEntry = null;
          var _loc5_:int = 0;
          var _loc6_:int = 0;
-         var _loc3_:class_1051 = param1 as class_1051;
+         var _loc3_:TraxSongInfoMessageEvent = param1 as TraxSongInfoMessageEvent;
          var _loc2_:class_1152 = _loc3_.getParser() as class_1152;
          var _loc7_:Array = _loc2_.songs;
          _loc8_ = 0;
@@ -724,7 +724,7 @@ package com.sulake.habbo.sound.music
          var _loc4_:int = 0;
          var _loc5_:int = 0;
          var _loc6_:int = 0;
-         var _loc3_:class_1069 = param1 as class_1069;
+         var _loc3_:UserSongDisksInventoryMessageEvent = param1 as UserSongDisksInventoryMessageEvent;
          var _loc2_:class_1270 = _loc3_.getParser() as class_1270;
          var_141.reset();
          _loc4_ = 0;

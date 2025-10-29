@@ -7,7 +7,7 @@ package com.sulake.habbo.roomevents.wired_setup
    import com.sulake.habbo.roomevents.wired_setup.uibuilder.PresetManager;
    import com.sulake.habbo.roomevents.wired_setup.uibuilder.WiredUIBuilder;
    import com.sulake.habbo.roomevents.wired_setup.uibuilder.styles.WiredStyle;
-   import com.sulake.habbo.communication.messages.incoming.users.class_596;
+   import com.sulake.habbo.communication.messages.incoming.users.GuildMembershipsMessageEvent;
    
    public class DefaultElement implements class_3531
    {
@@ -101,7 +101,7 @@ package com.sulake.habbo.roomevents.wired_setup
          return null;
       }
       
-      public function onGuildMemberships(param1:class_596) : void
+      public function onGuildMemberships(param1:GuildMembershipsMessageEvent) : void
       {
       }
       

@@ -12,7 +12,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
    import flash.utils.Timer;
    import com.sulake.habbo.communication.messages.outgoing.quest.GetConcurrentUsersGoalProgressMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.quest.class_214;
-   import com.sulake.habbo.communication.messages.incoming.quest.class_836;
+   import com.sulake.habbo.communication.messages.incoming.quest.ConcurrentUsersGoalProgressMessageEvent;
    
    public class ConcurrentUsersInfoElementHandler implements IElementHandler, IDisposable
    {
@@ -90,7 +90,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
          _loc5_.assetUri = _loc7_;
          updateLocalization();
          param2.procedure = onButton;
-         param1.communicationManager.addHabboConnectionMessageEvent(new class_836(onConcurrentUsersGoalProgress));
+         param1.communicationManager.addHabboConnectionMessageEvent(new ConcurrentUsersGoalProgressMessageEvent(onConcurrentUsersGoalProgress));
          var_1794.start();
       }
       
@@ -153,7 +153,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
          }
       }
       
-      private function onConcurrentUsersGoalProgress(param1:class_836) : void
+      private function onConcurrentUsersGoalProgress(param1:ConcurrentUsersGoalProgressMessageEvent) : void
       {
          var_149 = param1.getParser().state;
          var_554 = param1.getParser().userCount;

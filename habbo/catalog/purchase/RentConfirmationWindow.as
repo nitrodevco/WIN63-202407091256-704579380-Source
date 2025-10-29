@@ -18,7 +18,7 @@ package com.sulake.habbo.catalog.purchase
    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_1003;
    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_287;
    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_584;
-   import com.sulake.habbo.communication.messages.incoming.room.furniture.class_434;
+   import com.sulake.habbo.communication.messages.incoming.room.furniture.FurniRentOrBuyoutOfferMessageEvent;
    
    public class RentConfirmationWindow implements IDisposable, IGetImageListener
    {
@@ -32,7 +32,7 @@ package com.sulake.habbo.catalog.purchase
       
       private var _disposed:Boolean;
       
-      private var _offerMessageEvent:class_434;
+      private var _offerMessageEvent:FurniRentOrBuyoutOfferMessageEvent;
       
       private var _window:IWindowContainer;
       
@@ -54,11 +54,11 @@ package com.sulake.habbo.catalog.purchase
       {
          super();
          _catalog = param1;
-         _offerMessageEvent = new class_434(onFurniRentOrBuyoutOffer);
+         _offerMessageEvent = new FurniRentOrBuyoutOfferMessageEvent(onFurniRentOrBuyoutOffer);
          _catalog.connection.addMessageEvent(_offerMessageEvent);
       }
       
-      private function onFurniRentOrBuyoutOffer(param1:class_434) : void
+      private function onFurniRentOrBuyoutOffer(param1:FurniRentOrBuyoutOfferMessageEvent) : void
       {
          var _loc3_:class_3499 = null;
          if(var_1691 == null)
