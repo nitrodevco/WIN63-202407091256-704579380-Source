@@ -44,8 +44,8 @@ package com.sulake.habbo.friendbar.data
    import com.sulake.habbo.communication.messages.outgoing.friendlist.FollowFriendMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileByNameMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_201;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_322;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetHabboGroupDetailsMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileMessageComposer;
    
    public class HabboFriendBarData extends Component implements IHabboFriendBarData
    {
@@ -253,11 +253,11 @@ package com.sulake.habbo.friendbar.data
          {
             if(param1 > 0)
             {
-               _habboCommunicationManager.connection.send(new class_322(param1));
+               _habboCommunicationManager.connection.send(new GetExtendedProfileMessageComposer(param1));
             }
             else
             {
-               _habboCommunicationManager.connection.send(new class_201(Math.abs(param1),true));
+               _habboCommunicationManager.connection.send(new GetHabboGroupDetailsMessageComposer(Math.abs(param1),true));
             }
          }
       }

@@ -59,9 +59,9 @@ package com.sulake.habbo.navigator {
     import com.sulake.habbo.communication.messages.incoming.navigator.class_1665;
     import com.sulake.habbo.communication.messages.incoming.navigator.class_1675;
     import com.sulake.habbo.communication.messages.outgoing.navigator.ConvertGlobalRoomIdMessageComposer;
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_387;
+    import com.sulake.habbo.communication.messages.outgoing.navigator.ForwardToSomeRoomMessageComposer;
     import com.sulake.habbo.communication.messages.outgoing.navigator.RemoveOwnRoomRightsRoomMessageComposer;
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_553;
+    import com.sulake.habbo.communication.messages.outgoing.navigator.GetGuestRoomMessageComposer;
 
     public class HabboNavigator extends Component implements IHabboNavigator, IHabboTransitionalNavigator, ILinkEventTracker {
 
@@ -326,7 +326,7 @@ package com.sulake.habbo.navigator {
         }
 
         public function goToPrivateRoom(param1: int): void {
-            send(new class_553(param1, false, true));
+            send(new GetGuestRoomMessageComposer(param1, false, true));
         }
 
         public function removeRoomRights(param1: int): void {
@@ -663,7 +663,7 @@ package com.sulake.habbo.navigator {
                             if (_loc3_ > 0) {
                                 goToPrivateRoom(_loc3_);
                             } else {
-                                send(new class_387(_loc2_[2]));
+                                send(new ForwardToSomeRoomMessageComposer(_loc2_[2]));
                             }
                         } else {
                             goToHomeRoom();

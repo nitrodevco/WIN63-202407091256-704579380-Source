@@ -21,10 +21,10 @@ package com.sulake.habbo.phonenumber
    import com.sulake.habbo.communication.messages.incoming.gifts.TryVerificationCodeResultMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.gifts.TryPhoneNumberResultMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.gifts.PhoneCollectionStateMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.gifts.class_457;
-   import com.sulake.habbo.communication.messages.outgoing.gifts.class_478;
-   import com.sulake.habbo.communication.messages.outgoing.gifts.class_706;
-   import com.sulake.habbo.communication.messages.outgoing.gifts.class_859;
+   import com.sulake.habbo.communication.messages.outgoing.gifts.SetPhoneNumberVerificationStatusMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.gifts.VerifyCodeMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.gifts.ResetPhoneNumberStateMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.gifts.TryPhoneNumberMessageComposer;
    
    public class HabboPhoneNumber extends Component
    {
@@ -90,7 +90,7 @@ package com.sulake.habbo.phonenumber
       
       public function sendTryPhoneNumber(param1:String, param2:String) : void
       {
-         var_26.send(new class_859(param1,param2));
+         var_26.send(new TryPhoneNumberMessageComposer(param1,param2));
       }
       
       public function sendTryVerificationCode(param1:String) : void
@@ -100,12 +100,12 @@ package com.sulake.habbo.phonenumber
             return;
          }
          param1 = param1.toUpperCase();
-         var_26.send(new class_478(param1));
+         var_26.send(new VerifyCodeMessageComposer(param1));
       }
       
       public function setNeverAgain() : void
       {
-         var_26.send(new class_457(2));
+         var_26.send(new SetPhoneNumberVerificationStatusMessageComposer(2));
          destroyCollectView();
       }
       
@@ -140,7 +140,7 @@ package com.sulake.habbo.phonenumber
       public function requestPhoneNumberCollectionReset() : void
       {
          destroyVerifyView();
-         var_26.send(new class_706());
+         var_26.send(new ResetPhoneNumberStateMessageComposer());
       }
       
       private function onPhoneNumberResultMessage(param1:TryPhoneNumberResultMessageEvent) : void

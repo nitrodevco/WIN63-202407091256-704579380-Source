@@ -35,11 +35,11 @@ package com.sulake.habbo.catalog.collectibles.widget
    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectibleMintingEnabledMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectibleMintTokenCountMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectableMintableItemTypesMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.collectibles.class_425;
-   import com.sulake.habbo.communication.messages.outgoing.collectibles.class_562;
-   import com.sulake.habbo.communication.messages.outgoing.collectibles.class_626;
-   import com.sulake.habbo.communication.messages.outgoing.collectibles.class_727;
-   import com.sulake.habbo.communication.messages.outgoing.collectibles.class_815;
+   import com.sulake.habbo.communication.messages.outgoing.collectibles.GetCollectibleMintableItemTypesMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.collectibles.GetCollectibleMintTokensMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.collectibles.MintItemMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.collectibles.GetCollectibleMintingEnabledMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.collectibles.GetMintTokenOffersMessageComposer;
    
    public class MintInventoryListWidget implements IUpdateReceiver
    {
@@ -180,7 +180,7 @@ package com.sulake.habbo.catalog.collectibles.widget
          if(param1 != null)
          {
             var_3728 = true;
-            var_1754.send(new class_562(param1));
+            var_1754.send(new GetCollectibleMintTokensMessageComposer(param1));
          }
          updateReadyState(true);
          stampPurchasingContainer.visible = param1 != null;
@@ -287,9 +287,9 @@ package com.sulake.habbo.catalog.collectibles.widget
       private function initializeData() : void
       {
          var_3742 = true;
-         var_1754.send(new class_425());
+         var_1754.send(new GetCollectibleMintableItemTypesMessageComposer());
          var_3816 = true;
-         var_1754.send(new class_727());
+         var_1754.send(new GetCollectibleMintingEnabledMessageComposer());
          if(!var_1754.inventory.checkCategoryInitilization("furni"))
          {
             var_3959 = true;
@@ -300,7 +300,7 @@ package com.sulake.habbo.catalog.collectibles.widget
             activeWallet = var_2396.activeWallet;
          }
          stampBuyButton.disable();
-         var_1754.send(new class_815());
+         var_1754.send(new GetMintTokenOffersMessageComposer());
       }
       
       public function populateItems(param1:Vector.<class_1661>) : void
@@ -430,7 +430,7 @@ package com.sulake.habbo.catalog.collectibles.widget
                return;
             }
             var_3616 = true;
-            var_1754.send(new class_626(_loc4_[0],_loc3_));
+            var_1754.send(new MintItemMessageComposer(_loc4_[0],_loc3_));
          }
          reloadPreview();
       }

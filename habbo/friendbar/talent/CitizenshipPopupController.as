@@ -9,7 +9,7 @@ package com.sulake.habbo.friendbar.talent
    import flash.events.TimerEvent;
    import flash.utils.Timer;
    import com.sulake.habbo.communication.messages.incoming.room.engine.RoomEntryInfoMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.talent.class_1018;
+   import com.sulake.habbo.communication.messages.outgoing.talent.GetTalentTrackMessageComposer;
    
    public class CitizenshipPopupController implements IDisposable
    {
@@ -106,7 +106,7 @@ package com.sulake.habbo.friendbar.talent
             case "show_citizenship":
                hide();
                _habboTalent.tracking.trackTalentTrackOpen("citizenship","citizenshippopup");
-               _habboTalent.send(new class_1018("citizenship"));
+               _habboTalent.send(new GetTalentTrackMessageComposer("citizenship"));
          }
       }
    }

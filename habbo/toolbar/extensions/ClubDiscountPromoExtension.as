@@ -17,7 +17,7 @@ package com.sulake.habbo.toolbar.extensions
    import flash.geom.Point;
    import flash.geom.Rectangle;
    import flash.utils.Timer;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_930;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.GetHabboClubExtendOfferMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    
    public class ClubDiscountPromoExtension
@@ -128,7 +128,7 @@ package com.sulake.habbo.toolbar.extensions
          if(_toolbar.inventory.clubLevel == 2)
          {
             _toolbar.connection.send(new EventLogMessageComposer("DiscountPromo","discount","client.club.extend.discount.clicked"));
-            _toolbar.connection.send(new class_930());
+            _toolbar.connection.send(new GetHabboClubExtendOfferMessageComposer());
          }
       }
       

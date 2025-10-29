@@ -4,7 +4,7 @@ package com.sulake.habbo.groups
    import com.sulake.core.window.IWindow;
    import com.sulake.core.window.components.class_3514;
    import com.sulake.core.window.events.WindowEvent;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_201;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetHabboGroupDetailsMessageComposer;
    
    public class GroupCreatedWindowCtrl implements IDisposable
    {
@@ -62,7 +62,7 @@ package com.sulake.habbo.groups
          if(param1.type == "WME_CLICK")
          {
             close();
-            var_480.send(new class_201(_groupId,false));
+            var_480.send(new GetHabboGroupDetailsMessageComposer(_groupId,false));
          }
       }
       

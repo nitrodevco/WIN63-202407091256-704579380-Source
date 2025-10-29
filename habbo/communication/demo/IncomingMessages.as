@@ -23,10 +23,10 @@ package com.sulake.habbo.communication.demo {
     import com.sulake.habbo.communication.messages.incoming.handshake.AuthenticationOKMessageEvent
     import com.sulake.habbo.communication.messages.incoming.handshake.GenericErrorEvent
     import com.sulake.habbo.communication.messages.outgoing.handshake.PongMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.handshake.class_385
+    import com.sulake.habbo.communication.messages.outgoing.handshake.CompleteDiffieHandshakeMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.handshake.ClientHelloMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.handshake.class_622
-    import com.sulake.habbo.communication.messages.outgoing.handshake.class_840
+    import com.sulake.habbo.communication.messages.outgoing.handshake.InitDiffieHandshakeMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.handshake.InfoRetrieveMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer
     import com.sulake.habbo.communication.messages.parser.availability.class_1211
     import com.sulake.habbo.communication.messages.parser.availability.class_1528
@@ -155,7 +155,7 @@ package com.sulake.habbo.communication.demo {
             var _loc14_: ByteArray = new ByteArray();
             _loc15_.writeMultiByte(_loc6_, "iso-8859-1");
             _rsa.encrypt(_loc15_, _loc14_, _loc15_.length);
-            _loc16_.sendUnencrypted(new class_385(CryptoTools.byteArrayToHexString(_loc14_)));
+            _loc16_.sendUnencrypted(new CompleteDiffieHandshakeMessageComposer(CryptoTools.byteArrayToHexString(_loc14_)));
         }
 
         private function onCompleteDiffieHandshake(param1: IMessageEvent): void {
@@ -188,7 +188,7 @@ package com.sulake.habbo.communication.demo {
         private function onAuthenticationOK(param1: AuthenticationOKMessageEvent): void {
             var _loc4_: IConnection = param1.connection;
             var_1660.dispatchLoginStepEvent("HABBO_CONNECTION_EVENT_AUTHENTICATED");
-            var _loc2_: class_840 = new class_840();
+            var _loc2_: InfoRetrieveMessageComposer = new InfoRetrieveMessageComposer();
             _loc4_.send(_loc2_);
             var _loc3_: EventLogMessageComposer = new EventLogMessageComposer("Login", "socket", "client.auth_ok");
             _loc4_.send(_loc3_);
@@ -312,7 +312,7 @@ package com.sulake.habbo.communication.demo {
                 var_2764 = true;
                 var_1660.dispatchLoginStepEvent("HABBO_CONNECTION_EVENT_HANDSHAKING");
                 _loc2_.sendUnencrypted(new ClientHelloMessageComposer());
-                _loc2_.sendUnencrypted(new class_622());
+                _loc2_.sendUnencrypted(new InitDiffieHandshakeMessageComposer());
             }
         }
 

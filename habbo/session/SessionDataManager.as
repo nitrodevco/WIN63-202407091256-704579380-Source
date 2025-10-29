@@ -34,7 +34,7 @@ package com.sulake.habbo.session
    import flash.utils.Dictionary;
    import com.sulake.habbo.communication.messages.incoming.mysterybox.MysteryBoxKeysMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.room.session.RoomReadyMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.room.chat.class_698;
+   import com.sulake.habbo.communication.messages.outgoing.room.chat.ChatMessageComposer;
    import com.sulake.habbo.communication.messages.parser.users.class_1127;
    import com.sulake.habbo.communication.messages.parser.users.class_1297;
    import com.sulake.habbo.communication.messages.parser.users.class_1585;
@@ -45,11 +45,11 @@ package com.sulake.habbo.session
    import com.sulake.habbo.communication.messages.parser.mysterybox.class_1470;
    import com.sulake.habbo.communication.messages.parser.preferences.class_1413;
    import com.sulake.habbo.communication.messages.incoming.room.engine.UserChangeMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.preferences.class_433;
-   import com.sulake.habbo.communication.messages.outgoing.vault.class_186;
+   import com.sulake.habbo.communication.messages.outgoing.preferences.SetUIFlagsMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.vault.CreditVaultStatusMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.vault.WithdrawCreditVaultMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.vault.class_763;
-   import com.sulake.habbo.communication.messages.outgoing.vault.class_982;
+   import com.sulake.habbo.communication.messages.outgoing.vault.IncomeRewardStatusMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.vault.IncomeRewardClaimMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.room.pets.PetRespectFailedEvent;
    import com.sulake.habbo.communication.messages.incoming.availability.AvailabilityStatusMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.avatar.FigureUpdateEvent;
@@ -63,9 +63,9 @@ package com.sulake.habbo.session
    import com.sulake.habbo.communication.messages.incoming.handshake.NoobnessLevelMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.handshake.UserRightsMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.handshake.UserObjectEvent;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_1017;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_664;
-   import com.sulake.habbo.communication.messages.outgoing.room.pets.class_850;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetUserNftChatStylesMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.GiveStarGemToUserMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.pets.RespectPetMessageComposer;
    
    public class SessionDataManager extends Component implements ISessionDataManager
    {
@@ -282,7 +282,7 @@ package com.sulake.habbo.session
       private function initSessionData() : void
       {
          var_3416.initIgnoreList();
-         send(new class_1017());
+         send(new GetUserNftChatStylesMessageComposer());
       }
       
       private function initBadgeImageManager() : void
@@ -660,7 +660,7 @@ package com.sulake.habbo.session
             }
             var_533 &= ~param1;
          }
-         _communication.connection.send(new class_433(var_533));
+         _communication.connection.send(new SetUIFlagsMessageComposer(var_533));
       }
       
       public function getBadgeImage(param1:String) : BitmapData
@@ -767,7 +767,7 @@ package com.sulake.habbo.session
       {
          if(param1 >= 0)
          {
-            send(new class_664(param1));
+            send(new GiveStarGemToUserMessageComposer(param1));
          }
       }
       
@@ -778,12 +778,12 @@ package com.sulake.habbo.session
       
       public function getCreditVaultStatus() : void
       {
-         send(new class_186());
+         send(new CreditVaultStatusMessageComposer());
       }
       
       public function getIncomeRewardStatus() : void
       {
-         send(new class_763());
+         send(new IncomeRewardStatusMessageComposer());
       }
       
       public function withdrawCreditVault() : void
@@ -793,14 +793,14 @@ package com.sulake.habbo.session
       
       public function claimReward(param1:int) : void
       {
-         send(new class_982(param1));
+         send(new IncomeRewardClaimMessageComposer(param1));
       }
       
       public function givePetRespect(param1:int) : void
       {
          if(param1 >= 0 && var_1569 > 0)
          {
-            send(new class_850(param1));
+            send(new RespectPetMessageComposer(param1));
             var_1569 -= 1;
          }
       }
@@ -1074,7 +1074,7 @@ package com.sulake.habbo.session
       
       public function sendSpecialCommandMessage(param1:String) : void
       {
-         send(new class_698(param1));
+         send(new ChatMessageComposer(param1));
       }
       
       public function get roomSessionManager() : IRoomSessionManager

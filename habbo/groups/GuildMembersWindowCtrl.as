@@ -30,11 +30,11 @@ package com.sulake.habbo.groups
    import com.sulake.habbo.communication.messages.outgoing.users.RejectMembershipRequestMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.users.GetGuildMembersMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.users.AddAdminRightsToMemberMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_224;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_312;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_322;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_585;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_915;
+   import com.sulake.habbo.communication.messages.outgoing.users.ApproveMembershipRequestMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.ApproveAllMembershipRequestsMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.RemoveAdminRightsFromMemberMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.UnblockGroupMemberMessageComposer;
    
    public class GuildMembersWindowCtrl implements IDisposable
    {
@@ -438,11 +438,11 @@ package com.sulake.habbo.groups
          }
          if(_loc2_.blocked)
          {
-            var_480.send(new class_915(var_47.groupId,_loc2_.userId));
+            var_480.send(new UnblockGroupMemberMessageComposer(var_47.groupId,_loc2_.userId));
          }
          else if(_loc2_.admin)
          {
-            var_480.send(new class_585(var_47.groupId,_loc2_.userId));
+            var_480.send(new RemoveAdminRightsFromMemberMessageComposer(var_47.groupId,_loc2_.userId));
          }
          else if(_loc2_.member)
          {
@@ -450,7 +450,7 @@ package com.sulake.habbo.groups
          }
          else
          {
-            var_480.send(new class_224(var_47.groupId,_loc2_.userId));
+            var_480.send(new ApproveMembershipRequestMessageComposer(var_47.groupId,_loc2_.userId));
          }
       }
       
@@ -464,7 +464,7 @@ package com.sulake.habbo.groups
       {
          if(param1.type == "WME_CLICK")
          {
-            var_480.send(new class_322(param2.id));
+            var_480.send(new GetExtendedProfileMessageComposer(param2.id));
          }
       }
       
@@ -503,7 +503,7 @@ package com.sulake.habbo.groups
          {
             return;
          }
-         var_480.send(new class_312(var_47.groupId));
+         var_480.send(new ApproveAllMembershipRequestsMessageComposer(var_47.groupId));
       }
       
       private function getTypeDropMenu() : class_3520

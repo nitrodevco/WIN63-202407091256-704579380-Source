@@ -31,7 +31,7 @@ package com.sulake.habbo.nux
    import com.sulake.habbo.communication.messages.parser.nux.class_1215;
    import com.sulake.habbo.communication.messages.outgoing.nux.class_1232;
    import com.sulake.habbo.communication.messages.outgoing.nux.NewUserExperienceGetGiftsMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.gifts.class_457;
+   import com.sulake.habbo.communication.messages.outgoing.gifts.SetPhoneNumberVerificationStatusMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.nux.class_1714;
    import com.sulake.habbo.communication.messages.incoming.nux.NewUserExperienceNotCompleteEvent;
@@ -155,7 +155,7 @@ package com.sulake.habbo.nux
       
       public function onVerify() : void
       {
-         var_26.send(new class_457(0));
+         var_26.send(new SetPhoneNumberVerificationStatusMessageComposer(0));
       }
       
       public function onReject() : void
@@ -169,7 +169,7 @@ package com.sulake.habbo.nux
          if(param2.type == "WE_OK" && var_26)
          {
             destroyNuxOfferView();
-            var_26.send(new class_457(2));
+            var_26.send(new SetPhoneNumberVerificationStatusMessageComposer(2));
          }
       }
       

@@ -13,8 +13,8 @@ package com.sulake.habbo.inventory.bots
    import com.sulake.habbo.session.IRoomSession;
    import com.sulake.habbo.window.IHabboWindowManager;
    import flash.events.Event;
-   import com.sulake.habbo.communication.messages.outgoing.inventory.bots.class_1022;
-   import com.sulake.habbo.communication.messages.outgoing.room.engine.class_1101;
+   import com.sulake.habbo.communication.messages.outgoing.inventory.bots.GetBotInventoryComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.engine.PlaceBotMessageComposer;
    import com.sulake.habbo.communication.messages.parser.inventory.bots.class_1726;
    
    public class BotsModel implements IInventoryModel
@@ -116,7 +116,7 @@ package com.sulake.habbo.inventory.bots
          {
             return;
          }
-         _loc1_.send(new class_1022());
+         _loc1_.send(new GetBotInventoryComposer());
       }
       
       public function get items() : Map
@@ -214,7 +214,7 @@ package com.sulake.habbo.inventory.bots
          }
          if(!param2)
          {
-            _communication.connection.send(new class_1101(_loc3_.id,0,0));
+            _communication.connection.send(new PlaceBotMessageComposer(_loc3_.id,0,0));
          }
          return true;
       }

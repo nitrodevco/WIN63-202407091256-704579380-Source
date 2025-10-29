@@ -58,23 +58,23 @@ package com.sulake.habbo.help.guidehelp
    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionAttachedMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.help.ChatReviewSessionDetachedMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.perk.PerkAllowancesMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_1015;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_1091;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_291;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_294;
+   import com.sulake.habbo.communication.messages.outgoing.help.ChatReviewGuideDetachedMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionRequesterCancelsMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionResolvedMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionInviteRequesterMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionReportMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_328;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_354;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_397;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_424;
+   import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionOnDutyUpdateMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.help.ChatReviewGuideDecidesOnOfferMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionGuideDecidesMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.help.ChatReviewGuideVoteMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionCreateMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_678;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_773;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_813;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_874;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_201;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_322;
-   import com.sulake.habbo.communication.messages.outgoing.talent.class_1018;
+   import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionGetRequesterRoomMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionFeedbackMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionMessageMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionIsTypingMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetHabboGroupDetailsMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.talent.GetTalentTrackMessageComposer;
    
    public class GuideSessionController implements IDisposable, IIlluminaInputHandler
    {
@@ -284,7 +284,7 @@ package com.sulake.habbo.help.guidehelp
       
       public function showGuideTool() : void
       {
-         _habboHelp.sendMessage(new class_328(_onDuty,var_2559,var_2596,var_2713));
+         _habboHelp.sendMessage(new GuideSessionOnDutyUpdateMessageComposer(_onDuty,var_2559,var_2596,var_2713));
       }
       
       private function onGuideOnDutyStatus(param1:GuideOnDutyStatusMessageEvent) : void
@@ -515,7 +515,7 @@ package com.sulake.habbo.help.guidehelp
                if(_onDuty)
                {
                   setOnDuty(false);
-                  _habboHelp.sendMessage(new class_328(false,false,false,false));
+                  _habboHelp.sendMessage(new GuideSessionOnDutyUpdateMessageComposer(false,false,false,false));
                }
                setStateClosed(false);
             }
@@ -601,7 +601,7 @@ package com.sulake.habbo.help.guidehelp
                   _loc3_ = _habboHelp.getInteger("guide.help.alpha.groupid",0);
                   if(_loc3_ > 0)
                   {
-                     _habboHelp.sendMessage(new class_201(_loc3_,true));
+                     _habboHelp.sendMessage(new GetHabboGroupDetailsMessageComposer(_loc3_,true));
                      _habboHelp.trackGoogle("guideHelp",_window.name + "_groupProfile");
                   }
                }
@@ -632,12 +632,12 @@ package com.sulake.habbo.help.guidehelp
                         setOnDutyStatus(false);
                         return;
                      }
-                     _habboHelp.sendMessage(new class_328(true,var_2559,var_2596,var_2713));
+                     _habboHelp.sendMessage(new GuideSessionOnDutyUpdateMessageComposer(true,var_2559,var_2596,var_2713));
                      _habboHelp.trackGoogle("guideHelp",_window.name + "_onDuty");
                      break;
                   case "WE_UNSELECTED":
                      setOnDutyStatus(false);
-                     _habboHelp.sendMessage(new class_328(false,false,false,false));
+                     _habboHelp.sendMessage(new GuideSessionOnDutyUpdateMessageComposer(false,false,false,false));
                      _habboHelp.trackGoogle("guideHelp",_window.name + "_offDuty");
                }
                break;
@@ -647,7 +647,7 @@ package com.sulake.habbo.help.guidehelp
                   if(_habboHelp.getBoolean("talent.track.enabled"))
                   {
                      _habboHelp.tracking.trackTalentTrackOpen("helper","guidetool");
-                     _habboHelp.sendMessage(new class_1018("helper"));
+                     _habboHelp.sendMessage(new GetTalentTrackMessageComposer("helper"));
                      _habboHelp.trackGoogle("guideHelp",_window.name + "_talent");
                   }
                }
@@ -709,12 +709,12 @@ package com.sulake.habbo.help.guidehelp
          switch(param2.name)
          {
             case "accept_button":
-               _habboHelp.sendMessage(new class_397(true));
+               _habboHelp.sendMessage(new GuideSessionGuideDecidesMessageComposer(true));
                _habboHelp.trackGoogle("guideHelp",_window.name + "_clickAccept");
                closeWindow();
                break;
             case "skip_link":
-               _habboHelp.sendMessage(new class_397(false));
+               _habboHelp.sendMessage(new GuideSessionGuideDecidesMessageComposer(false));
                _habboHelp.trackGoogle("guideHelp",_window.name + "_clickSkip");
                closeWindow();
          }
@@ -747,7 +747,7 @@ package com.sulake.habbo.help.guidehelp
                param1.dispose();
                if(param2.type == "WE_OK")
                {
-                  _habboHelp.sendMessage(new class_678());
+                  _habboHelp.sendMessage(new GuideSessionGetRequesterRoomMessageComposer());
                }
             });
          }
@@ -762,11 +762,11 @@ package com.sulake.habbo.help.guidehelp
          switch(param2.name)
          {
             case "visit_button":
-               _habboHelp.sendMessage(new class_678());
+               _habboHelp.sendMessage(new GuideSessionGetRequesterRoomMessageComposer());
                _habboHelp.trackGoogle("guideHelp",_window.name + "_clickVisit");
                break;
             case "invite_button":
-               _habboHelp.sendMessage(new class_294());
+               _habboHelp.sendMessage(new GuideSessionInviteRequesterMessageComposer());
                _habboHelp.trackGoogle("guideHelp",_window.name + "_clickInvite");
                break;
             case "report_link":
@@ -774,7 +774,7 @@ package com.sulake.habbo.help.guidehelp
                _habboHelp.trackGoogle("guideHelp",_window.name + "_clickReport");
                break;
             case "close_link":
-               _habboHelp.sendMessage(new class_291());
+               _habboHelp.sendMessage(new GuideSessionResolvedMessageComposer());
                _habboHelp.trackGoogle("guideHelp",_window.name + "_clickClose");
                closeWindow();
          }
@@ -811,7 +811,7 @@ package com.sulake.habbo.help.guidehelp
          {
             case "close_button":
             case "header_button_close":
-               _habboHelp.sendMessage(new class_773(true));
+               _habboHelp.sendMessage(new GuideSessionFeedbackMessageComposer(true));
                closeWindow();
                break;
             case "report_link":
@@ -894,7 +894,7 @@ package com.sulake.habbo.help.guidehelp
          var _loc3_:* = param2.name;
          if("cancel_button" === _loc3_)
          {
-            _habboHelp.sendMessage(new class_1091());
+            _habboHelp.sendMessage(new GuideSessionRequesterCancelsMessageComposer());
             _habboHelp.trackGoogle("guideHelp",_window.name + "_clickCancel");
             closeWindow();
          }
@@ -935,7 +935,7 @@ package com.sulake.habbo.help.guidehelp
          switch(param2.name)
          {
             case "guide_name_link":
-               _habboHelp.sendMessage(new class_322(_sessionData.guideId));
+               _habboHelp.sendMessage(new GetExtendedProfileMessageComposer(_sessionData.guideId));
                _habboHelp.trackGoogle("guideHelp",_window.name + "_clickProfile");
                break;
             case "report_guide_link":
@@ -943,7 +943,7 @@ package com.sulake.habbo.help.guidehelp
                _habboHelp.trackGoogle("guideHelp",_window.name + "_clickReport");
                break;
             case "close_link":
-               _habboHelp.sendMessage(new class_291());
+               _habboHelp.sendMessage(new GuideSessionResolvedMessageComposer());
                _habboHelp.trackGoogle("guideHelp",_window.name + "_clickClose");
                closeWindow();
          }
@@ -970,11 +970,11 @@ package com.sulake.habbo.help.guidehelp
          switch(param2.name)
          {
             case "header_button_close":
-               _habboHelp.sendMessage(new class_773(false));
+               _habboHelp.sendMessage(new GuideSessionFeedbackMessageComposer(false));
                closeWindow();
                break;
             case "guide_name_link":
-               _habboHelp.sendMessage(new class_322(_sessionData.guideId));
+               _habboHelp.sendMessage(new GetExtendedProfileMessageComposer(_sessionData.guideId));
                _habboHelp.trackGoogle("guideHelp",_window.name + "_clickProfile");
                break;
             case "report_guide_link":
@@ -983,7 +983,7 @@ package com.sulake.habbo.help.guidehelp
                break;
             case "resubmit_button":
                var_4461 = true;
-               _habboHelp.sendMessage(new class_773(false));
+               _habboHelp.sendMessage(new GuideSessionFeedbackMessageComposer(false));
                _habboHelp.trackGoogle("guideHelp",_window.name + "_clickResubmit");
                closeWindow();
          }
@@ -1010,7 +1010,7 @@ package com.sulake.habbo.help.guidehelp
          switch(param2.name)
          {
             case "guide_name_link":
-               _habboHelp.sendMessage(new class_322(_sessionData.guideId));
+               _habboHelp.sendMessage(new GetExtendedProfileMessageComposer(_sessionData.guideId));
                _habboHelp.trackGoogle("guideHelp",_window.name + "_clickProfile");
                break;
             case "report_guide_link":
@@ -1018,12 +1018,12 @@ package com.sulake.habbo.help.guidehelp
                _habboHelp.trackGoogle("guideHelp",_window.name + "_clickReport");
                break;
             case "positive_button":
-               _habboHelp.sendMessage(new class_773(true));
+               _habboHelp.sendMessage(new GuideSessionFeedbackMessageComposer(true));
                _habboHelp.trackGoogle("guideHelp",_window.name + "_clickPositiveFeedback");
                closeWindow();
                break;
             case "negative_button":
-               _habboHelp.sendMessage(new class_773(false));
+               _habboHelp.sendMessage(new GuideSessionFeedbackMessageComposer(false));
                _habboHelp.trackGoogle("guideHelp",_window.name + "_clickNegativeFeedback");
                closeWindow();
          }
@@ -1073,11 +1073,11 @@ package com.sulake.habbo.help.guidehelp
          switch(param2.name)
          {
             case "skip_link":
-               _habboHelp.sendMessage(new class_354(false));
+               _habboHelp.sendMessage(new ChatReviewGuideDecidesOnOfferMessageComposer(false));
                setStateClosed(true);
                break;
             case "accept_button":
-               _habboHelp.sendMessage(new class_354(true));
+               _habboHelp.sendMessage(new ChatReviewGuideDecidesOnOfferMessageComposer(true));
                setStateGuardianChatReviewWaitForOtherVoters();
          }
       }
@@ -1098,7 +1098,7 @@ package com.sulake.habbo.help.guidehelp
          var _loc3_:* = param2.name;
          if("close_link" === _loc3_)
          {
-            _habboHelp.sendMessage(new class_1015());
+            _habboHelp.sendMessage(new ChatReviewGuideDetachedMessageComposer());
             setStateClosed(true);
          }
       }
@@ -1176,19 +1176,19 @@ package com.sulake.habbo.help.guidehelp
             switch(param2.name)
             {
                case "close_link":
-                  _habboHelp.sendMessage(new class_1015());
+                  _habboHelp.sendMessage(new ChatReviewGuideDetachedMessageComposer());
                   setStateClosed(true);
                   break;
                case "vote_ok":
-                  _habboHelp.sendMessage(new class_424(0));
+                  _habboHelp.sendMessage(new ChatReviewGuideVoteMessageComposer(0));
                   setStateGuardianChatReviewWaitForResults(0);
                   break;
                case "vote_bad":
-                  _habboHelp.sendMessage(new class_424(1));
+                  _habboHelp.sendMessage(new ChatReviewGuideVoteMessageComposer(1));
                   setStateGuardianChatReviewWaitForResults(1);
                   break;
                case "vote_very_bad":
-                  _habboHelp.sendMessage(new class_424(2));
+                  _habboHelp.sendMessage(new ChatReviewGuideVoteMessageComposer(2));
                   setStateGuardianChatReviewWaitForResults(2);
             }
          }
@@ -1244,7 +1244,7 @@ package com.sulake.habbo.help.guidehelp
          {
             case "header_button_close":
             case "close_button":
-               _habboHelp.sendMessage(new class_1015());
+               _habboHelp.sendMessage(new ChatReviewGuideDetachedMessageComposer());
                setStateClosed(true);
          }
       }
@@ -1270,7 +1270,7 @@ package com.sulake.habbo.help.guidehelp
          {
             case "header_button_close":
             case "close_button":
-               _habboHelp.sendMessage(new class_1015());
+               _habboHelp.sendMessage(new ChatReviewGuideDetachedMessageComposer());
                setStateClosed(true);
          }
       }
@@ -1626,7 +1626,7 @@ package com.sulake.habbo.help.guidehelp
       {
          if(param2.length > 0)
          {
-            _habboHelp.sendMessage(new class_813(param2));
+            _habboHelp.sendMessage(new GuideSessionMessageMessageComposer(param2));
             IIlluminaInputWidget(param1.widget).message = "";
             resetTypingTimer();
          }
@@ -1677,7 +1677,7 @@ package com.sulake.habbo.help.guidehelp
          var _loc2_:* = _lastMessageTypedLength != _loc3_;
          if(_lastTypingInfo != _loc2_)
          {
-            _habboHelp.sendMessage(new class_874(_loc2_));
+            _habboHelp.sendMessage(new GuideSessionIsTypingMessageComposer(_loc2_));
             _lastTypingInfo = _loc2_;
          }
          _lastMessageTypedLength = _loc3_;
@@ -1742,7 +1742,7 @@ package com.sulake.habbo.help.guidehelp
       {
          if(_onDuty && getTimer() - var_3954 > _habboHelp.getInteger("guidetool.idle.timeout",300) * 1000)
          {
-            _habboHelp.sendMessage(new class_328(false,var_2559,var_2596,var_2713));
+            _habboHelp.sendMessage(new GuideSessionOnDutyUpdateMessageComposer(false,var_2559,var_2596,var_2713));
          }
       }
    }

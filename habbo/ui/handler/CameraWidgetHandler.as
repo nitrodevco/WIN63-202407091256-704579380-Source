@@ -1,10 +1,10 @@
 package com.sulake.habbo.ui.handler
 {
    import com.sulake.core.runtime.IDisposable;
-   import com.sulake.habbo.communication.messages.outgoing.camera.class_1004;
+   import com.sulake.habbo.communication.messages.outgoing.camera.PurchasePhotoMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.camera.PublishPhotoMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.camera.class_728;
-   import com.sulake.habbo.communication.messages.outgoing.camera.class_914;
+   import com.sulake.habbo.communication.messages.outgoing.camera.RenderRoomMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.camera.RequestCameraConfigurationMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.camera.PhotoCompetitionMessageComposer;
    import com.sulake.habbo.toolbar.events.HabboToolbarEvent;
    import com.sulake.habbo.ui.IRoomWidgetHandler;
@@ -106,7 +106,7 @@ package com.sulake.habbo.ui.handler
       {
          if(_container.sessionDataManager.isPerkAllowed("CAMERA"))
          {
-            _container.connection.send(new class_914());
+            _container.connection.send(new RequestCameraConfigurationMessageComposer());
          }
       }
       
@@ -228,7 +228,7 @@ package com.sulake.habbo.ui.handler
       
       public function confirmPhotoPurchase() : void
       {
-         _container.connection.send(new class_1004());
+         _container.connection.send(new PurchasePhotoMessageComposer());
       }
       
       public function confirmPhotoPublish() : void
@@ -241,12 +241,12 @@ package com.sulake.habbo.ui.handler
          _container.connection.send(new PhotoCompetitionMessageComposer());
       }
       
-      public function collectPhotoData() : class_728
+      public function collectPhotoData() : RenderRoomMessageComposer
       {
-         return var_2687.roomEngine.getRenderRoomMessage(var_1629.getViewPort(),var_2687.roomBackgroundColor) as class_728;
+         return var_2687.roomEngine.getRenderRoomMessage(var_1629.getViewPort(),var_2687.roomBackgroundColor) as RenderRoomMessageComposer;
       }
       
-      public function sendPhotoData(param1:class_728) : void
+      public function sendPhotoData(param1:RenderRoomMessageComposer) : void
       {
          _container.connection.send(param1);
       }

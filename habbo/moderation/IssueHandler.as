@@ -17,8 +17,8 @@ package com.sulake.habbo.moderation
    import com.sulake.habbo.communication.messages.parser.moderation.class_1722;
    import com.sulake.habbo.communication.messages.incoming.callforhelp.class_1746;
    import com.sulake.habbo.communication.messages.incoming.callforhelp.class_1785;
-   import com.sulake.habbo.communication.messages.outgoing.moderator.class_1033;
-   import com.sulake.habbo.communication.messages.outgoing.moderator.class_570;
+   import com.sulake.habbo.communication.messages.outgoing.moderator.GetCfhChatlogMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.moderator.ModToolPreferencesComposer;
    
    public class IssueHandler implements ITrackedWindow, IIssueHandler, IUpdateReceiver
    {
@@ -224,7 +224,7 @@ package com.sulake.habbo.moderation
          }
          _chatFrame = IWindowContainer(_window.findChildByName("chat_cont"));
          var_2643 = IItemListWindow(_chatFrame.findChildByName("evidence_list"));
-         var_2949 = new ChatlogCtrl(new class_1033(var_2262.issueId),_moderationManager,3,var_2262.issueId,var_2262,_chatFrame,var_2643,true);
+         var_2949 = new ChatlogCtrl(new GetCfhChatlogMessageComposer(var_2262.issueId),_moderationManager,3,var_2262.issueId,var_2262,_chatFrame,var_2643,true);
          var_2949.show();
          class_14.log("HARASSER: " + var_1740.reportedUserId);
          updateIssueList();
@@ -238,7 +238,7 @@ package com.sulake.habbo.moderation
          _lastWindowWidth = _window.width;
          var_2707 = _window.height;
          _moderationManager.issueManager.setToolPreferences(var_2534,var_2453,_lastWindowWidth,var_2707);
-         _moderationManager.connection.send(new class_570(var_2534,var_2453,_lastWindowWidth,var_2707));
+         _moderationManager.connection.send(new ModToolPreferencesComposer(var_2534,var_2453,_lastWindowWidth,var_2707));
       }
       
       private function windowDimensionsChanged() : Boolean
@@ -558,7 +558,7 @@ package com.sulake.habbo.moderation
                   }
                   _callerUserInfo = new UserInfoCtrl(_window,_moderationManager,_loc2_,this);
                   _callerUserInfo.load(IWindowContainer(_window.findChildByName("caller_user_info")),_loc3_);
-                  _moderationManager.connection.send(new class_1033(_loc2_.issueId));
+                  _moderationManager.connection.send(new GetCfhChatlogMessageComposer(_loc2_.issueId));
                   var_2949.setId(_loc2_.issueId);
                   _moderationManager.messageHandler.addChatlogListener(var_2949);
                }

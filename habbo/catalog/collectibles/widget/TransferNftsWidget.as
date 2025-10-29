@@ -17,7 +17,7 @@ package com.sulake.habbo.catalog.collectibles.widget
    import com.sulake.habbo.communication.messages.parser.collectibles.class_1322;
    import com.sulake.habbo.communication.messages.incoming.collectibles.NftTransferFeeMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.collectibles.NftTransferAssetsResultMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.collectibles.class_215;
+   import com.sulake.habbo.communication.messages.outgoing.collectibles.GetNftTransferFeeMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.collectibles.NftTransferAssetsMessageComposer;
    
    public class TransferNftsWidget implements IUpdateReceiver
@@ -199,7 +199,7 @@ package com.sulake.habbo.catalog.collectibles.widget
       private function initializeData() : void
       {
          var_3804 = true;
-         var_1754.send(new class_215());
+         var_1754.send(new GetNftTransferFeeMessageComposer());
          var _loc1_:Array = var_2396.walletAddresses;
          if(_loc1_)
          {

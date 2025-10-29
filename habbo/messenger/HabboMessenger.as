@@ -20,7 +20,7 @@ package com.sulake.habbo.messenger {
     import com.sulake.habbo.communication.messages.incoming.friendlist.class_756
     import com.sulake.habbo.communication.messages.incoming.preferences.AccountPreferencesEvent
     import com.sulake.habbo.communication.messages.incoming.users.HabboGroupDetailsMessageEvent
-    import com.sulake.habbo.communication.messages.outgoing.room.session.class_974
+    import com.sulake.habbo.communication.messages.outgoing.room.session.OpenFlatConnectionMessageComposer
     import com.sulake.habbo.communication.messages.parser.friendlist.class_1187
     import com.sulake.habbo.communication.messages.parser.friendlist.class_1288
     import com.sulake.habbo.communication.messages.parser.friendlist.class_1375
@@ -142,7 +142,7 @@ package com.sulake.habbo.messenger {
         private function onHabboGroupDetails(param1: HabboGroupDetailsMessageEvent): void {
             if (_followingToGroupRoom) {
                 _followingToGroupRoom = false;
-                send(new class_974(param1.data.roomId));
+                send(new OpenFlatConnectionMessageComposer(param1.data.roomId));
             }
         }
 

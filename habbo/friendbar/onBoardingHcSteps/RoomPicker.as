@@ -18,8 +18,8 @@ package com.sulake.habbo.friendbar.onBoardingHcSteps
    import onBoardingHcUi.ColouredButton;
    import onBoardingHcUi.LoaderUI;
    import com.sulake.habbo.communication.messages.parser.nux.class_1475;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_991;
-   import com.sulake.habbo.communication.messages.outgoing.nux.class_873;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.UpdateHomeRoomMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.nux.SelectInitialRoomComposer;
    import com.sulake.habbo.communication.messages.incoming.nux.SelectInitialRoomEvent;
    
    public class RoomPicker implements IDisposable
@@ -88,7 +88,7 @@ package com.sulake.habbo.friendbar.onBoardingHcSteps
          }
          if(_loc2_.roomId > 0)
          {
-            _newUserFlow.communicationManager.connection.send(new class_991(_loc2_.roomId));
+            _newUserFlow.communicationManager.connection.send(new UpdateHomeRoomMessageComposer(_loc2_.roomId));
          }
          _newUserFlow.roomPickingCompleted();
       }
@@ -198,7 +198,7 @@ package com.sulake.habbo.friendbar.onBoardingHcSteps
       private function onButtonSelect(param1:DisplayObject) : void
       {
          var _loc2_:String = String(var_3187[var_3111 - 1]);
-         _newUserFlow.communicationManager.connection.send(new class_873(_loc2_));
+         _newUserFlow.communicationManager.connection.send(new SelectInitialRoomComposer(_loc2_));
       }
       
       private function onRoomClick(param1:Event) : void

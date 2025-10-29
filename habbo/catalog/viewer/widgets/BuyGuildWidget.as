@@ -4,7 +4,7 @@ package com.sulake.habbo.catalog.viewer.widgets
    import com.sulake.core.window.components.class_3357;
    import com.sulake.core.window.events.WindowMouseEvent;
    import com.sulake.habbo.tracking.HabboTracking;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_793;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetGuildCreationInfoMessageComposer;
    
    public class BuyGuildWidget extends CatalogWidget implements class_3558
    {
@@ -38,7 +38,7 @@ package com.sulake.habbo.catalog.viewer.widgets
          {
             HabboTracking.getInstance().trackGoogle("groupPurchase","catalogBuyClicked");
          }
-         page.viewer.catalog.connection.send(new class_793());
+         page.viewer.catalog.connection.send(new GetGuildCreationInfoMessageComposer());
          page.viewer.catalog.toggleCatalog("NORMAL");
       }
    }

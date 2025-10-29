@@ -7,54 +7,54 @@ package com.sulake.habbo.session
    import com.sulake.core.utils.Map;
    import com.sulake.habbo.tracking.IHabboTracking;
    import flash.utils.getTimer;
-   import com.sulake.habbo.communication.messages.outgoing.room.chat.class_698;
-   import com.sulake.habbo.communication.messages.outgoing.room.chat.class_817;
-   import com.sulake.habbo.communication.messages.outgoing.room.chat.class_838;
-   import com.sulake.habbo.communication.messages.outgoing.room.chat.class_847;
-   import com.sulake.habbo.communication.messages.outgoing.room.chat.class_993;
-   import com.sulake.habbo.communication.messages.outgoing.room.engine.class_1028;
-   import com.sulake.habbo.communication.messages.outgoing.room.engine.class_1047;
+   import com.sulake.habbo.communication.messages.outgoing.room.chat.ChatMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.chat.ShoutMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.chat.CancelTypingMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.chat.WhisperMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.chat.StartTypingMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.engine.TogglePetRidingPermissionMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.engine.MountPetMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.engine.HarvestPetMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.room.engine.class_146;
-   import com.sulake.habbo.communication.messages.outgoing.room.engine.class_191;
-   import com.sulake.habbo.communication.messages.outgoing.room.engine.class_417;
-   import com.sulake.habbo.communication.messages.outgoing.room.engine.class_508;
-   import com.sulake.habbo.communication.messages.outgoing.room.engine.class_513;
+   import com.sulake.habbo.communication.messages.outgoing.room.engine.RemovePetFromFlatMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.engine.CompostPlantMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.engine.TogglePetBreedingPermissionMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.engine.SetClothingChangeDataMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.engine.RemoveSaddleFromPetMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.engine.UseFurnitureMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.room.engine.class_956;
-   import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_1059;
-   import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_383;
-   import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_571;
-   import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_665;
-   import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_768;
+   import com.sulake.habbo.communication.messages.outgoing.room.engine.GetPetCommandsMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.furniture.CreditFurniRedeemMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.furniture.OpenPetPackageMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.furniture.RoomDimmerChangeStateMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.furniture.RoomDimmerGetPresetsMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.furniture.PresentOpenMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.furniture.RoomDimmerSavePresetMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.room.session.class_155;
-   import com.sulake.habbo.communication.messages.outgoing.room.session.class_325;
-   import com.sulake.habbo.communication.messages.outgoing.room.session.class_974;
-   import com.sulake.habbo.communication.messages.outgoing.poll.class_163;
+   import com.sulake.habbo.communication.messages.outgoing.room.session.ChangeQueueMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.session.QuitMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.session.OpenFlatConnectionMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.poll.PollAnswerComposer;
    import com.sulake.habbo.communication.messages.outgoing.poll.PollStartComposer;
-   import com.sulake.habbo.communication.messages.outgoing.poll.class_753;
+   import com.sulake.habbo.communication.messages.outgoing.poll.PollRejectComposer;
    import com.sulake.habbo.communication.messages.outgoing.friendlist.VisitUserMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.room.avatar.class_1053;
-   import com.sulake.habbo.communication.messages.outgoing.room.avatar.class_582;
-   import com.sulake.habbo.communication.messages.outgoing.room.avatar.class_724;
-   import com.sulake.habbo.communication.messages.outgoing.room.avatar.class_739;
+   import com.sulake.habbo.communication.messages.outgoing.room.avatar.AvatarExpressionMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.avatar.SignMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.avatar.DanceMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.avatar.ChangeMottoMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.avatar.ChangePostureMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.nux.class_805;
+   import com.sulake.habbo.communication.messages.outgoing.nux.NewUserExperienceScriptProceedComposer;
    import com.sulake.habbo.communication.messages.outgoing.game.arena.Game2GameChatMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.room.action.class_1041;
-   import com.sulake.habbo.communication.messages.outgoing.room.action.class_234;
+   import com.sulake.habbo.communication.messages.outgoing.room.action.KickUserMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.action.MuteUserMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.action.LetUserInMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.room.action.class_482;
+   import com.sulake.habbo.communication.messages.outgoing.room.action.AmbassadorAlertMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.action.UnmuteUserMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.action.RemoveRightsMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.room.action.class_595;
+   import com.sulake.habbo.communication.messages.outgoing.room.action.AssignRightsMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.action.BanUserWithDurationMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.pets.CustomizePetWithFurniComposer;
    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_1731;
-   import com.sulake.habbo.communication.messages.outgoing.userclassification.class_368;
-   import com.sulake.habbo.communication.messages.outgoing.userclassification.class_942;
+   import com.sulake.habbo.communication.messages.outgoing.userclassification.RoomUsersClassificationMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.userclassification.PeerUsersClassificationMessageComposer;
    
    public class RoomSession implements IRoomSession
    {
@@ -274,7 +274,7 @@ package com.sulake.habbo.session
          {
             return false;
          }
-         var_26.send(new class_974(var_369,var_937));
+         var_26.send(new OpenFlatConnectionMessageComposer(var_369,var_937));
          return true;
       }
       
@@ -298,7 +298,7 @@ package com.sulake.habbo.session
          else
          {
             param1 = param1.replace(/&#[0-9]+;/g,"");
-            var_26.send(new class_698(param1,param2,var_1291));
+            var_26.send(new ChatMessageComposer(param1,param2,var_1291));
             var_2870.add(var_1291,getTimer());
             var_1291++;
          }
@@ -306,7 +306,7 @@ package com.sulake.habbo.session
       
       public function sendChangeMottoMessage(param1:String) : void
       {
-         var_26.send(new class_739(param1));
+         var_26.send(new ChangeMottoMessageComposer(param1));
       }
       
       public function receivedChatWithTrackingId(param1:int) : void
@@ -328,42 +328,42 @@ package com.sulake.habbo.session
       
       public function sendShoutMessage(param1:String, param2:int = 0) : void
       {
-         var_26.send(new class_817(param1,param2));
+         var_26.send(new ShoutMessageComposer(param1,param2));
       }
       
       public function sendWhisperMessage(param1:String, param2:String, param3:int = 0) : void
       {
-         var_26.send(new class_847(param1,param2,param3));
+         var_26.send(new WhisperMessageComposer(param1,param2,param3));
       }
       
       public function sendChatTypingMessage(param1:Boolean) : void
       {
          if(param1)
          {
-            var_26.send(new class_993());
+            var_26.send(new StartTypingMessageComposer());
          }
          else
          {
-            var_26.send(new class_838());
+            var_26.send(new CancelTypingMessageComposer());
          }
       }
       
       public function sendAvatarExpressionMessage(param1:int) : void
       {
-         var_26.send(new class_1053(param1));
+         var_26.send(new AvatarExpressionMessageComposer(param1));
       }
       
       public function sendSignMessage(param1:int) : void
       {
          if(param1 >= 0 && param1 <= 17)
          {
-            var_26.send(new class_582(param1));
+            var_26.send(new SignMessageComposer(param1));
          }
       }
       
       public function sendDanceMessage(param1:int) : void
       {
-         var_26.send(new class_724(param1));
+         var_26.send(new DanceMessageComposer(param1));
       }
       
       public function sendChangePostureMessage(param1:int) : void
@@ -373,22 +373,22 @@ package com.sulake.habbo.session
       
       public function sendCreditFurniRedeemMessage(param1:int) : void
       {
-         var_26.send(new class_1059(param1));
+         var_26.send(new CreditFurniRedeemMessageComposer(param1));
       }
       
       public function sendPresentOpenMessage(param1:int) : void
       {
-         var_26.send(new class_768(param1));
+         var_26.send(new PresentOpenMessageComposer(param1));
       }
       
       public function sendOpenPetPackageMessage(param1:int, param2:String) : void
       {
-         var_26.send(new class_383(param1,param2));
+         var_26.send(new OpenPetPackageMessageComposer(param1,param2));
       }
       
       public function sendRoomDimmerGetPresetsMessage(param1:int) : void
       {
-         var_26.send(new class_665(param1));
+         var_26.send(new RoomDimmerGetPresetsMessageComposer(param1));
       }
       
       public function sendRoomDimmerSavePresetMessage(param1:int, param2:int, param3:uint, param4:int, param5:Boolean, param6:int) : void
@@ -400,7 +400,7 @@ package com.sulake.habbo.session
       
       public function sendRoomDimmerChangeStateMessage(param1:int) : void
       {
-         var_26.send(new class_571(param1));
+         var_26.send(new RoomDimmerChangeStateMessageComposer(param1));
       }
       
       public function sendConversionPoint(param1:String, param2:String, param3:String, param4:String = null, param5:int = 0) : void
@@ -415,27 +415,27 @@ package com.sulake.habbo.session
       
       public function sendPollRejectMessage(param1:int) : void
       {
-         var_26.send(new class_753(param1));
+         var_26.send(new PollRejectComposer(param1));
       }
       
       public function sendPollAnswerMessage(param1:int, param2:int, param3:Array) : void
       {
-         var_26.send(new class_163(param1,param2,param3));
+         var_26.send(new PollAnswerComposer(param1,param2,param3));
       }
       
       public function sendPeerUsersClassificationMessage(param1:String) : void
       {
-         var_26.send(new class_942(param1));
+         var_26.send(new PeerUsersClassificationMessageComposer(param1));
       }
       
       public function sendRoomUsersClassificationMessage(param1:String) : void
       {
-         var_26.send(new class_368(param1));
+         var_26.send(new RoomUsersClassificationMessageComposer(param1));
       }
       
       public function sendVisitFlatMessage(param1:int) : void
       {
-         var_26.send(new class_974(param1));
+         var_26.send(new OpenFlatConnectionMessageComposer(param1));
       }
       
       public function sendVisitUserMessage(param1:String) : void
@@ -445,12 +445,12 @@ package com.sulake.habbo.session
       
       public function ambassadorAlert(param1:int) : void
       {
-         var_26.send(new class_482(param1));
+         var_26.send(new AmbassadorAlertMessageComposer(param1));
       }
       
       public function kickUser(param1:int) : void
       {
-         var_26.send(new class_1041(param1));
+         var_26.send(new KickUserMessageComposer(param1));
       }
       
       public function banUserWithDuration(param1:int, param2:String) : void
@@ -460,7 +460,7 @@ package com.sulake.habbo.session
       
       public function muteUser(param1:int, param2:int) : void
       {
-         var_26.send(new class_234(param1,param2,roomId));
+         var_26.send(new MuteUserMessageComposer(param1,param2,roomId));
       }
       
       public function unmuteUser(param1:int) : void
@@ -470,7 +470,7 @@ package com.sulake.habbo.session
       
       public function assignRights(param1:int) : void
       {
-         var_26.send(new class_595(param1));
+         var_26.send(new AssignRightsMessageComposer(param1));
       }
       
       public function removeRights(param1:int) : void
@@ -488,32 +488,32 @@ package com.sulake.habbo.session
       
       public function pickUpPet(param1:int) : void
       {
-         var_26.send(new class_146(param1));
+         var_26.send(new RemovePetFromFlatMessageComposer(param1));
       }
       
       public function mountPet(param1:int) : void
       {
-         var_26.send(new class_1047(param1,true));
+         var_26.send(new MountPetMessageComposer(param1,true));
       }
       
       public function togglePetRidingPermission(param1:int) : void
       {
-         var_26.send(new class_1028(param1));
+         var_26.send(new TogglePetRidingPermissionMessageComposer(param1));
       }
       
       public function togglePetBreedingPermission(param1:int) : void
       {
-         var_26.send(new class_417(param1));
+         var_26.send(new TogglePetBreedingPermissionMessageComposer(param1));
       }
       
       public function dismountPet(param1:int) : void
       {
-         var_26.send(new class_1047(param1,false));
+         var_26.send(new MountPetMessageComposer(param1,false));
       }
       
       public function removeSaddleFromPet(param1:int) : void
       {
-         var_26.send(new class_513(param1));
+         var_26.send(new RemoveSaddleFromPetMessageComposer(param1));
       }
       
       public function harvestPet(param1:int) : void
@@ -523,12 +523,12 @@ package com.sulake.habbo.session
       
       public function compostPlant(param1:int) : void
       {
-         var_26.send(new class_191(param1));
+         var_26.send(new CompostPlantMessageComposer(param1));
       }
       
       public function requestPetCommands(param1:int) : void
       {
-         var_26.send(new class_956(param1));
+         var_26.send(new GetPetCommandsMessageComposer(param1));
       }
       
       public function useProductForPet(param1:int, param2:int) : void
@@ -543,14 +543,14 @@ package com.sulake.habbo.session
       
       public function sendScriptProceed() : void
       {
-         var_26.send(new class_805());
+         var_26.send(new NewUserExperienceScriptProceedComposer());
       }
       
       public function quit() : void
       {
          if(var_26 != null)
          {
-            var_26.send(new class_325());
+            var_26.send(new QuitMessageComposer());
          }
       }
       
@@ -560,7 +560,7 @@ package com.sulake.habbo.session
          {
             return;
          }
-         var_26.send(new class_155(param1));
+         var_26.send(new ChangeQueueMessageComposer(param1));
       }
       
       public function sendUpdateClothingChangeFurniture(param1:int, param2:String, param3:String) : void
@@ -569,7 +569,7 @@ package com.sulake.habbo.session
          {
             return;
          }
-         var _loc4_:class_508 = new class_508(param1,param2,param3);
+         var _loc4_:SetClothingChangeDataMessageComposer = new SetClothingChangeDataMessageComposer(param1,param2,param3);
          var_26.send(_loc4_);
          _loc4_.dispose();
          _loc4_ = null;

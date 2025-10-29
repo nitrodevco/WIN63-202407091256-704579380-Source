@@ -32,7 +32,7 @@ package com.sulake.habbo.ui.widget.infostand
    import flash.geom.Rectangle;
    import flash.utils.getTimer;
    import com.sulake.habbo.communication.messages.incoming.users.class_1758;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_322;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileMessageComposer;
    
    public class InfoStandUserView
    {
@@ -661,7 +661,7 @@ package com.sulake.habbo.ui.widget.infostand
       {
          if(param1.type == "WME_CLICK" && param2 is ITextLinkWindow)
          {
-            var_1629.handler.container.connection.send(new class_322(param2.id));
+            var_1629.handler.container.connection.send(new GetExtendedProfileMessageComposer(param2.id));
          }
       }
    }

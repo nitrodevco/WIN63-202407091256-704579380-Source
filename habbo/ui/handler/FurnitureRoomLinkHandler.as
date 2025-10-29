@@ -17,7 +17,7 @@ package com.sulake.habbo.ui.handler
    import com.sulake.habbo.communication.messages.incoming.navigator.class_1675;
    import com.sulake.habbo.communication.messages.incoming.navigator.GetGuestRoomResultEvent;
    import com.sulake.habbo.communication.messages.parser.navigator.RoomSettingsDataEvent;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_553;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.GetGuestRoomMessageComposer;
    
    public class FurnitureRoomLinkHandler implements IRoomWidgetHandler
    {
@@ -147,7 +147,7 @@ package com.sulake.habbo.ui.handler
 
                   var_445 = internalLink;
                   var_1199 = parseInt(internalLink, 10);
-                  _communicationManager.connection.send(new class_553(var_1199, false, false));
+                  _communicationManager.connection.send(new GetGuestRoomMessageComposer(var_1199, false, false));
                } else {
                   (_container.roomEngine as Component).context.createLinkEvent("navigator/goto/" + internalLink);
                }

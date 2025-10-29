@@ -9,8 +9,8 @@ package com.sulake.habbo.navigator.inroom
    import com.sulake.habbo.navigator.IHabboTransitionalNavigator;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_1680;
    import com.sulake.habbo.communication.messages.parser.advertisement.class_1118;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_139;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_937;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.EditEventMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.CancelEventMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.advertisement.RoomAdErrorEvent;
    
    public class RoomEventViewCtrl implements IDisposable
@@ -103,12 +103,12 @@ package com.sulake.habbo.navigator.inroom
          {
             return;
          }
-         _navigator.send(new class_139(_loc1_,_loc3_,_loc2_));
+         _navigator.send(new EditEventMessageComposer(_loc1_,_loc3_,_loc2_));
       }
       
       private function onEndButtonClick(param1:WindowEvent) : void
       {
-         _navigator.send(new class_937(_navigator.data.roomEventData.adId));
+         _navigator.send(new CancelEventMessageComposer(_navigator.data.roomEventData.adId));
          close();
       }
       

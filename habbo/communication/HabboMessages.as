@@ -522,56 +522,56 @@ package com.sulake.habbo.communication {
     import com.sulake.habbo.communication.messages.incoming.vault.CreditVaultStatusMessageEvent
     import com.sulake.habbo.communication.messages.incoming.vault.IncomeRewardClaimResponseMessageEvent
     import com.sulake.habbo.communication.messages.incoming.vault.IncomeRewardStatusMessageEvent
-    import com.sulake.habbo.communication.messages.outgoing.camera.class_1004
+    import com.sulake.habbo.communication.messages.outgoing.camera.PurchasePhotoMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.camera.PublishPhotoMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.camera.class_728
+    import com.sulake.habbo.communication.messages.outgoing.camera.RenderRoomMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.camera.RenderRoomThumbnailMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.camera.class_914
+    import com.sulake.habbo.communication.messages.outgoing.camera.RequestCameraConfigurationMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.camera.PhotoCompetitionMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.campaign.class_375
-    import com.sulake.habbo.communication.messages.outgoing.campaign.class_631
+    import com.sulake.habbo.communication.messages.outgoing.campaign.OpenCampaignCalendarDoorAsStaffComposer
+    import com.sulake.habbo.communication.messages.outgoing.campaign.OpenCampaignCalendarDoorComposer
     import com.sulake.habbo.communication.messages.outgoing.catalog.GetRoomAdPurchaseInfoComposer
     import com.sulake.habbo.communication.messages.outgoing.catalog.GetSnowWarGameTokensOfferComposer
     import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseSnowWarGameTokensOfferComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_1099
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_156
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetClubOffersMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.catalog.BuildersClubQueryFurniCountMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.catalog.GetCatalogPageWithEarliestExpiryComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_270
+    import com.sulake.habbo.communication.messages.outgoing.catalog.BuildersClubPlaceRoomItemMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.catalog.class_272
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_282
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetSeasonalCalendarDailyComposer
     import com.sulake.habbo.communication.messages.outgoing.catalog.class_367
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_421
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_428
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetLimitedOfferAppearingNextComposer
+    import com.sulake.habbo.communication.messages.outgoing.catalog.RedeemVoucherMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.catalog.GetSellablePetPalettesComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_496
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_503
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_512
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_520
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_521
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_594
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_600
+    import com.sulake.habbo.communication.messages.outgoing.catalog.ShopTargetedOfferViewedComposer
+    import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseRoomAdMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetIsOfferGiftableComposer
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetBundleDiscountRulesetComposer
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetCatalogIndexComposer
+    import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseBasicMembershipExtensionComposer
+    import com.sulake.habbo.communication.messages.outgoing.catalog.SelectClubGiftComposer
     import com.sulake.habbo.communication.messages.outgoing.catalog.GetBonusRareInfoMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.catalog.SetTargetedOfferStateComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_752
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_801
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetClubGiftMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.catalog.RoomAdPurchaseInitiatedComposer
     import com.sulake.habbo.communication.messages.outgoing.catalog.class_807
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_852
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_855
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_881
+    import com.sulake.habbo.communication.messages.outgoing.catalog.BuildersClubPlaceWallItemMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseFromCatalogComposer
+    import com.sulake.habbo.communication.messages.outgoing.catalog.MarkCatalogNewAdditionsPageOpenedComposer
     import com.sulake.habbo.communication.messages.outgoing.catalog.GetProductOfferComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_887
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_902
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_909
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_930
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_933
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_939
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetGiftWrappingConfigurationComposer
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetNextTargetedOfferComposer
+    import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseTargetedOfferComposer
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetHabboClubExtendOfferMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseFromCatalogAsGiftComposer
+    import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseVipMembershipExtensionComposer
     import com.sulake.habbo.communication.messages.outgoing.catalog.class_951
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_976
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetCatalogPageComposer
     import com.sulake.habbo.communication.messages.outgoing.crafting.CraftComposer
     import com.sulake.habbo.communication.messages.outgoing.crafting.GetCraftableProductsComposer
-    import com.sulake.habbo.communication.messages.outgoing.crafting.class_890
-    import com.sulake.habbo.communication.messages.outgoing.crafting.class_891
-    import com.sulake.habbo.communication.messages.outgoing.crafting.class_972
+    import com.sulake.habbo.communication.messages.outgoing.crafting.CraftSecretComposer
+    import com.sulake.habbo.communication.messages.outgoing.crafting.GetCraftingRecipesAvailableComposer
+    import com.sulake.habbo.communication.messages.outgoing.crafting.GetCraftingRecipeComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.SetRelationshipStatusMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.SendRoomInviteMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.DeclineFriendMessageComposer
@@ -585,311 +585,311 @@ package com.sulake.habbo.communication {
     import com.sulake.habbo.communication.messages.outgoing.friendlist.MessengerInitMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.HabboSearchMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.VisitUserMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.RequestFriendMessageEvent
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.AcceptFriendMessageEvent
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.RequestFriendMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.AcceptFriendMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.handshake.DisconnectMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.handshake.PongMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.handshake.class_385
-    import com.sulake.habbo.communication.messages.outgoing.handshake.class_489
+    import com.sulake.habbo.communication.messages.outgoing.handshake.CompleteDiffieHandshakeMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.handshake.VersionCheckMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.handshake.ClientHelloMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.handshake.UniqueIDMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.handshake.class_622
-    import com.sulake.habbo.communication.messages.outgoing.handshake.class_840
-    import com.sulake.habbo.communication.messages.outgoing.handshake.class_941
-    import com.sulake.habbo.communication.messages.outgoing.help.class_1015
+    import com.sulake.habbo.communication.messages.outgoing.handshake.InitDiffieHandshakeMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.handshake.InfoRetrieveMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.handshake.SSOTicketMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.help.ChatReviewGuideDetachedMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.help.class_1035
-    import com.sulake.habbo.communication.messages.outgoing.help.class_1046
+    import com.sulake.habbo.communication.messages.outgoing.help.GetQuizQuestionsComposer
     import com.sulake.habbo.communication.messages.outgoing.help.class_1050
     import com.sulake.habbo.communication.messages.outgoing.help.class_1054
-    import com.sulake.habbo.communication.messages.outgoing.help.class_1091
+    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionRequesterCancelsMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromSelfieMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.class_275
-    import com.sulake.habbo.communication.messages.outgoing.help.class_279
-    import com.sulake.habbo.communication.messages.outgoing.help.class_291
-    import com.sulake.habbo.communication.messages.outgoing.help.class_294
-    import com.sulake.habbo.communication.messages.outgoing.help.class_300
+    import com.sulake.habbo.communication.messages.outgoing.help.GetCfhStatusMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.help.PostQuizAnswersComposer
+    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionResolvedMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionInviteRequesterMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.help.ChatReviewSessionCreateMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.help.class_303
     import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionReportMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.class_328
-    import com.sulake.habbo.communication.messages.outgoing.help.class_354
+    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionOnDutyUpdateMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.help.ChatReviewGuideDecidesOnOfferMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.class_371
+    import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromForumThreadMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromForumMessageMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.class_397
-    import com.sulake.habbo.communication.messages.outgoing.help.class_424
-    import com.sulake.habbo.communication.messages.outgoing.help.class_436
-    import com.sulake.habbo.communication.messages.outgoing.help.class_475
-    import com.sulake.habbo.communication.messages.outgoing.help.class_531
-    import com.sulake.habbo.communication.messages.outgoing.help.class_561
+    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionGuideDecidesMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.help.ChatReviewGuideVoteMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.help.DeletePendingCallsForHelpMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromPhotoMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.help.GetPendingCallsForHelpMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.help.GetGuideReportingStatusMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.help.class_580
     import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionCreateMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.class_658
-    import com.sulake.habbo.communication.messages.outgoing.help.class_678
-    import com.sulake.habbo.communication.messages.outgoing.help.class_773
-    import com.sulake.habbo.communication.messages.outgoing.help.class_813
-    import com.sulake.habbo.communication.messages.outgoing.help.class_874
-    import com.sulake.habbo.communication.messages.outgoing.inventory.achievements.class_1095
+    import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromIMMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionGetRequesterRoomMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionFeedbackMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionMessageMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionIsTypingMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.inventory.achievements.GetAchievementsComposer
     import com.sulake.habbo.communication.messages.outgoing.inventory.avatareffect.AvatarEffectSelectedComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.avatareffect.class_206
+    import com.sulake.habbo.communication.messages.outgoing.inventory.avatareffect.AvatarEffectActivatedComposer
     import com.sulake.habbo.communication.messages.outgoing.inventory.badges.GetBadgePointLimitsComposer
     import com.sulake.habbo.communication.messages.outgoing.inventory.badges.GetBadgesComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.badges.class_1062
+    import com.sulake.habbo.communication.messages.outgoing.inventory.badges.RequestABadgeComposer
     import com.sulake.habbo.communication.messages.outgoing.inventory.badges.SetActivatedBadgesComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.badges.class_441
+    import com.sulake.habbo.communication.messages.outgoing.inventory.badges.GetIsBadgeRequestFulfilledComposer
     import com.sulake.habbo.communication.messages.outgoing.inventory.furni.RequestFurniInventoryComposer
     import com.sulake.habbo.communication.messages.outgoing.inventory.furni.RequestFurniInventoryWhenNotInRoomComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.furni.class_984
-    import com.sulake.habbo.communication.messages.outgoing.inventory.purse.class_1045
+    import com.sulake.habbo.communication.messages.outgoing.inventory.furni.RequestRoomPropertySet
+    import com.sulake.habbo.communication.messages.outgoing.inventory.purse.GetCreditsInfoComposer
     import com.sulake.habbo.communication.messages.outgoing.inventory.trading.SilverFeeMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.class_376
-    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.class_409
-    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.class_511
-    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.class_519
-    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.class_669
-    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.class_720
-    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.class_791
-    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.class_822
-    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.class_845
-    import com.sulake.habbo.communication.messages.outgoing.landingview.class_816
-    import com.sulake.habbo.communication.messages.outgoing.moderator.class_1033
-    import com.sulake.habbo.communication.messages.outgoing.moderator.class_1063
-    import com.sulake.habbo.communication.messages.outgoing.moderator.class_1089
-    import com.sulake.habbo.communication.messages.outgoing.moderator.class_229
+    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.AddItemsToTradeComposer
+    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.OpenTradingComposer
+    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.ConfirmAcceptTradingComposer
+    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.CloseTradingComposer
+    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.RemoveItemFromTradeComposer
+    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.ConfirmDeclineTradingComposer
+    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.UnacceptTradingComposer
+    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.AddItemToTradeComposer
+    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.AcceptTradingComposer
+    import com.sulake.habbo.communication.messages.outgoing.landingview.GetPromoArticlesMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.moderator.GetCfhChatlogMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.moderator.PickIssuesMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.moderator.ModKickMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.moderator.ModMessageMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.moderator.ModBanMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.moderator.ModMuteMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.moderator.class_344
-    import com.sulake.habbo.communication.messages.outgoing.moderator.class_360
-    import com.sulake.habbo.communication.messages.outgoing.moderator.class_363
-    import com.sulake.habbo.communication.messages.outgoing.moderator.class_389
-    import com.sulake.habbo.communication.messages.outgoing.moderator.class_502
-    import com.sulake.habbo.communication.messages.outgoing.moderator.class_570
-    import com.sulake.habbo.communication.messages.outgoing.moderator.class_672
-    import com.sulake.habbo.communication.messages.outgoing.moderator.class_734
-    import com.sulake.habbo.communication.messages.outgoing.moderator.class_780
-    import com.sulake.habbo.communication.messages.outgoing.moderator.class_781
-    import com.sulake.habbo.communication.messages.outgoing.moderator.class_824
-    import com.sulake.habbo.communication.messages.outgoing.moderator.class_834
-    import com.sulake.habbo.communication.messages.outgoing.moderator.class_912
-    import com.sulake.habbo.communication.messages.outgoing.moderator.class_925
+    import com.sulake.habbo.communication.messages.outgoing.moderator.ReleaseIssuesMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.moderator.GetModeratorUserInfoMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.moderator.DefaultSanctionMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.moderator.ModTradingLockMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.moderator.CloseIssuesMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.moderator.ModToolPreferencesComposer
+    import com.sulake.habbo.communication.messages.outgoing.moderator.GetModeratorRoomInfoMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.moderator.GetRoomChatlogMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.moderator.GetUserChatlogMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.moderator.ModToolSanctionComposer
+    import com.sulake.habbo.communication.messages.outgoing.moderator.ModeratorActionMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.moderator.CloseIssueDefaultActionMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.moderator.ModerateRoomMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.moderator.ModAlertMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.moderator.GetRoomVisitsMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.navigator.ConvertGlobalRoomIdMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_1061
+    import com.sulake.habbo.communication.messages.outgoing.navigator.DeleteFavouriteRoomMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.navigator.class_1081
     import com.sulake.habbo.communication.messages.outgoing.navigator.RoomAdEventTabViewedComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_130
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_136
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_139
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_194
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_202
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_244
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_260
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_305
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_359
+    import com.sulake.habbo.communication.messages.outgoing.navigator.RateFlatMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.GetPopularRoomTagsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.EditEventMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.RoomsWithHighestScoreSearchMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.CompetitionRoomsSearchMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.MyRoomRightsSearchMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.MyRecommendedRoomsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.GuildBaseSearchMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.GetOfficialRoomsMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.navigator.ToggleStaffPickMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_387
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_413
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_458
+    import com.sulake.habbo.communication.messages.outgoing.navigator.ForwardToSomeRoomMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.RoomAdSearchMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.MyFavouriteRoomsSearchMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.navigator.ForwardToARandomPromotedRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_517
+    import com.sulake.habbo.communication.messages.outgoing.navigator.CreateFlatMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.navigator.RemoveOwnRoomRightsRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_546
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_550
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_553
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_560
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_646
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_648
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_764
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_771
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_804
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_831
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_864
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_868
+    import com.sulake.habbo.communication.messages.outgoing.navigator.PopularRoomsSearchMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.CanCreateRoomMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.GetGuestRoomMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.MyRoomHistorySearchMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.MyRoomsSearchMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.RoomTextSearchMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.MyGuildBasesSearchMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.AddFavouriteRoomMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.MyFriendsRoomsSearchMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.GetUserFlatCatsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.MyFrequentRoomHistorySearchMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.SetRoomSessionTagsMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.navigator.RoomsWhereMyFriendsAreSearchMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_937
+    import com.sulake.habbo.communication.messages.outgoing.navigator.CancelEventMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.navigator.class_977
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_991
+    import com.sulake.habbo.communication.messages.outgoing.navigator.UpdateHomeRoomMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.navigator.RoomAdEventTabAdClickedComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_998
+    import com.sulake.habbo.communication.messages.outgoing.navigator.GetUserEventCatsMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.poll.PollStartComposer
-    import com.sulake.habbo.communication.messages.outgoing.poll.class_163
-    import com.sulake.habbo.communication.messages.outgoing.poll.class_753
+    import com.sulake.habbo.communication.messages.outgoing.poll.PollAnswerComposer
+    import com.sulake.habbo.communication.messages.outgoing.poll.PollRejectComposer
     import com.sulake.habbo.communication.messages.outgoing.room.action.BanUserWithDurationMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.action.class_1041
-    import com.sulake.habbo.communication.messages.outgoing.room.action.class_234
+    import com.sulake.habbo.communication.messages.outgoing.room.action.KickUserMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.action.MuteUserMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.room.action.LetUserInMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.action.class_482
+    import com.sulake.habbo.communication.messages.outgoing.room.action.AmbassadorAlertMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.room.action.UnmuteUserMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.room.action.RemoveRightsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.action.class_595
-    import com.sulake.habbo.communication.messages.outgoing.room.action.class_814
-    import com.sulake.habbo.communication.messages.outgoing.room.action.class_938
-    import com.sulake.habbo.communication.messages.outgoing.room.action.class_999
-    import com.sulake.habbo.communication.messages.outgoing.room.avatar.class_1053
+    import com.sulake.habbo.communication.messages.outgoing.room.action.AssignRightsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.action.RemoveAllRightsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.action.MuteAllInRoomComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.action.UnbanUserFromRoomMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.avatar.AvatarExpressionMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.room.avatar.CustomizeAvatarWithFurniMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.avatar.class_331
+    import com.sulake.habbo.communication.messages.outgoing.room.avatar.DropCarryItemMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.room.avatar.PassCarryItemToPetMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.avatar.class_582
-    import com.sulake.habbo.communication.messages.outgoing.room.avatar.class_656
-    import com.sulake.habbo.communication.messages.outgoing.room.avatar.class_724
-    import com.sulake.habbo.communication.messages.outgoing.room.avatar.class_739
-    import com.sulake.habbo.communication.messages.outgoing.room.avatar.class_742
+    import com.sulake.habbo.communication.messages.outgoing.room.avatar.SignMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.avatar.LookToMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.avatar.DanceMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.avatar.ChangeMottoMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.avatar.PassCarryItemMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.room.avatar.ChangePostureMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.chat.class_698
-    import com.sulake.habbo.communication.messages.outgoing.room.chat.class_817
-    import com.sulake.habbo.communication.messages.outgoing.room.chat.class_838
-    import com.sulake.habbo.communication.messages.outgoing.room.chat.class_847
-    import com.sulake.habbo.communication.messages.outgoing.room.chat.class_993
+    import com.sulake.habbo.communication.messages.outgoing.room.chat.ChatMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.chat.ShoutMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.chat.CancelTypingMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.chat.WhisperMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.chat.StartTypingMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.room.engine.ClickFurniMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_1023
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_1028
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_1047
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_1101
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.RemoveItemMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.TogglePetRidingPermissionMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.MountPetMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.PlaceBotMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.room.engine.HarvestPetMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_146
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.RemovePetFromFlatMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.room.engine.SetItemDataMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_191
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_216
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_218
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_230
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_290
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_417
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_452
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_508
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_513
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.CompostPlantMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.PickupObjectMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.MoveAvatarMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.GetItemDataMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.RemoveBotFromFlatMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.TogglePetBreedingPermissionMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.MovePetMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.SetClothingChangeDataMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.RemoveSaddleFromPetMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.room.engine.UseFurnitureMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_617
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_645
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_661
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_663
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_740
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_755
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_788
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_842
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_865
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.class_956
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_1003
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_1059
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_1070
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_154
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_203
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_213
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_273
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_287
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_383
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_400
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_420
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_443
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_530
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_555
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_565
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_571
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_584
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_598
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.MoveObjectMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.GetFurnitureAliasesMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.SetObjectDataMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.PlaceObjectMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.GiveSupplementToPetMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.PlacePetMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.MoveWallItemMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.UseWallItemMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.GetHeightMapMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.GetPetCommandsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.ExtendRentOrBuyoutFurniMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.CreditFurniRedeemMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.ThrowDiceMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetYoutubeDisplayPlaylistMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.EnterOneWayDoorMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.RentableSpaceCancelRentMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.RentableSpaceRentMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.GetRentOrBuyoutOfferMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.OpenPetPackageMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.DiceOffMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SpinWheelOfFortuneMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.ControlYoutubeDisplayPlaybackMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.AddSpamWallPostItMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.OpenMysteryTrophyMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetAreaHideDataComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.RoomDimmerChangeStateMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.ExtendRentOrBuyoutStripItemMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.GetYoutubeDisplayStatusMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.room.furniture.RentableSpaceStatusMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_665
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_704
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_731
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_768
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.RoomDimmerGetPresetsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetRandomStateMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.PlacePostItMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.PresentOpenMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.room.furniture.RoomDimmerSavePresetMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_820
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_825
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_870
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_966
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_967
-    import com.sulake.habbo.communication.messages.outgoing.room.session.class_155
-    import com.sulake.habbo.communication.messages.outgoing.room.session.class_325
-    import com.sulake.habbo.communication.messages.outgoing.room.session.class_974
-    import com.sulake.habbo.communication.messages.outgoing.roomsettings.class_1007
-    import com.sulake.habbo.communication.messages.outgoing.roomsettings.class_1025
-    import com.sulake.habbo.communication.messages.outgoing.roomsettings.class_1094
-    import com.sulake.habbo.communication.messages.outgoing.roomsettings.class_166
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetMannequinFigureComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetRoomBackgroundColorDataComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetCustomStackingHeightComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.GetGuildFurniContextMenuInfoMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetMannequinNameComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.session.ChangeQueueMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.session.QuitMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.session.OpenFlatConnectionMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.roomsettings.GetBannedUsersFromRoomMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.roomsettings.UpdateRoomCategoryAndTradeSettingsComposer
+    import com.sulake.habbo.communication.messages.outgoing.roomsettings.GetRoomSettingsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.roomsettings.UpdateRoomFilterMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.roomsettings.GetCustomRoomFilterMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.roomsettings.SaveRoomSettingsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.roomsettings.class_862
-    import com.sulake.habbo.communication.messages.outgoing.roomsettings.class_876
+    import com.sulake.habbo.communication.messages.outgoing.roomsettings.DeleteRoomMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.roomsettings.GetFlatControllersMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateSelectorMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.class_1086
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.class_227
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateConditionMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateTriggerMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateAddonMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateActionMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.class_599
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.class_833
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.class_995
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.ApplySnapshotMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.OpenMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateVariableMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.users.AddAdminRightsToMemberMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.class_1010
-    import com.sulake.habbo.communication.messages.outgoing.users.class_1017
-    import com.sulake.habbo.communication.messages.outgoing.users.class_1037
+    import com.sulake.habbo.communication.messages.outgoing.users.UpdateGuildColorsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.GetUserNftChatStylesMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.DeactivateGuildMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.users.RejectMembershipRequestMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileByNameMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.class_1056
+    import com.sulake.habbo.communication.messages.outgoing.users.GetEmailStatusComposer
     import com.sulake.habbo.communication.messages.outgoing.users.GetGuildMembersMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.class_131
-    import com.sulake.habbo.communication.messages.outgoing.users.class_142
-    import com.sulake.habbo.communication.messages.outgoing.users.class_197
-    import com.sulake.habbo.communication.messages.outgoing.users.class_201
-    import com.sulake.habbo.communication.messages.outgoing.users.class_224
-    import com.sulake.habbo.communication.messages.outgoing.users.class_251
-    import com.sulake.habbo.communication.messages.outgoing.users.class_304
-    import com.sulake.habbo.communication.messages.outgoing.users.class_312
-    import com.sulake.habbo.communication.messages.outgoing.users.class_320
-    import com.sulake.habbo.communication.messages.outgoing.users.class_322
-    import com.sulake.habbo.communication.messages.outgoing.users.class_342
-    import com.sulake.habbo.communication.messages.outgoing.users.class_346
+    import com.sulake.habbo.communication.messages.outgoing.users.GetGuildEditInfoMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.GetGuildEditorDataMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.SelectFavouriteHabboGroupMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.GetHabboGroupDetailsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.ApproveMembershipRequestMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.CreateGuildMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.ApproveNameMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.ApproveAllMembershipRequestsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.JoinHabboGroupMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.UnignoreUserMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.ScrGetKickbackInfoMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.users.GetMOTDMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.class_352
-    import com.sulake.habbo.communication.messages.outgoing.users.class_575
-    import com.sulake.habbo.communication.messages.outgoing.users.class_585
+    import com.sulake.habbo.communication.messages.outgoing.users.IgnoreUserMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.GetHabboGroupBadgesMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.RemoveAdminRightsFromMemberMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.users.class_606
-    import com.sulake.habbo.communication.messages.outgoing.users.class_607
-    import com.sulake.habbo.communication.messages.outgoing.users.class_664
-    import com.sulake.habbo.communication.messages.outgoing.users.class_715
+    import com.sulake.habbo.communication.messages.outgoing.users.ChangeEmailComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.GiveStarGemToUserMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.GetIgnoredUsersMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.users.GetRelationshipStatusInfoMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.class_737
-    import com.sulake.habbo.communication.messages.outgoing.users.class_779
-    import com.sulake.habbo.communication.messages.outgoing.users.class_793
-    import com.sulake.habbo.communication.messages.outgoing.users.class_806
+    import com.sulake.habbo.communication.messages.outgoing.users.ScrGetUserInfoMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.GetGuildMembershipsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.GetGuildCreationInfoMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.DeselectFavouriteHabboGroupMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.users.UpdateGuildBadgeMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.class_896
-    import com.sulake.habbo.communication.messages.outgoing.users.class_906
-    import com.sulake.habbo.communication.messages.outgoing.users.class_911
-    import com.sulake.habbo.communication.messages.outgoing.users.class_915
-    import com.sulake.habbo.communication.messages.outgoing.users.class_935
+    import com.sulake.habbo.communication.messages.outgoing.users.GetSelectedBadgesMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.UpdateGuildSettingsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.KickMemberMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.UnblockGroupMemberMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.UpdateGuildIdentityMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.users.GetMemberGuildItemCountMessageComposer
 
     import package_1.*
 
     import com.sulake.habbo.communication.messages.outgoing.marketplace.RedeemMarketplaceOfferCreditsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.marketplace.class_127
+    import com.sulake.habbo.communication.messages.outgoing.marketplace.GetMarketplaceOffersMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.marketplace.GetMarketplaceConfigurationMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.marketplace.class_268
-    import com.sulake.habbo.communication.messages.outgoing.marketplace.class_370
-    import com.sulake.habbo.communication.messages.outgoing.marketplace.class_403
-    import com.sulake.habbo.communication.messages.outgoing.marketplace.class_406
-    import com.sulake.habbo.communication.messages.outgoing.marketplace.class_505
-    import com.sulake.habbo.communication.messages.outgoing.marketplace.class_802
-    import com.sulake.habbo.communication.messages.outgoing.marketplace.class_928
+    import com.sulake.habbo.communication.messages.outgoing.marketplace.BuyMarketplaceTokensMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.marketplace.CancelMarketplaceOfferMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.marketplace.GetMarketplaceItemStatsComposer
+    import com.sulake.habbo.communication.messages.outgoing.marketplace.GetMarketplaceOwnOffersMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.marketplace.GetMarketplaceCanMakeOfferMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.marketplace.BuyMarketplaceOfferMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.marketplace.MakeOfferMessageComposer
 
-    import com.sulake.habbo.communication.messages.outgoing.inventory.pets.class_445
-    import com.sulake.habbo.communication.messages.outgoing.inventory.pets.class_964
-    import com.sulake.habbo.communication.messages.outgoing.inventory.pets.class_989
+    import com.sulake.habbo.communication.messages.outgoing.inventory.pets.ConfirmPetBreedingComposer
+    import com.sulake.habbo.communication.messages.outgoing.inventory.pets.GetPetInventoryComposer
+    import com.sulake.habbo.communication.messages.outgoing.inventory.pets.CancelPetBreedingComposer
 
-    import com.sulake.habbo.communication.messages.outgoing.room.layout.class_563
-    import com.sulake.habbo.communication.messages.outgoing.room.layout.class_821
-    import com.sulake.habbo.communication.messages.outgoing.room.layout.class_932
+    import com.sulake.habbo.communication.messages.outgoing.room.layout.GetRoomEntryTileMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.layout.GetOccupiedTilesMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.layout.UpdateFloorPropertiesMessageComposer
 
-    import com.sulake.habbo.communication.messages.outgoing.roomdirectory.class_589
+    import com.sulake.habbo.communication.messages.outgoing.roomdirectory.RoomNetworkOpenConnectionMessageComposer
 
-    import com.sulake.habbo.communication.messages.outgoing.hotlooks.class_632
+    import com.sulake.habbo.communication.messages.outgoing.hotlooks.GetHotLooksMessageComposer
 
-    import com.sulake.habbo.communication.messages.outgoing.register.class_675
+    import com.sulake.habbo.communication.messages.outgoing.register.UpdateFigureDataMessageComposer
 
     import package_113.*
 
-    import com.sulake.habbo.communication.messages.outgoing.mysterybox.class_711
+    import com.sulake.habbo.communication.messages.outgoing.mysterybox.MysteryBoxWaitingCanceledMessageComposer
 
     import com.sulake.habbo.communication.messages.outgoing.landingview.votes.CommunityGoalVoteMessageComposer
 
-    import com.sulake.habbo.communication.messages.outgoing.inventory.bots.class_1022
+    import com.sulake.habbo.communication.messages.outgoing.inventory.bots.GetBotInventoryComposer
 
     import package_120.*
 
@@ -897,38 +897,38 @@ package com.sulake.habbo.communication {
 
     import package_14.*
 
-    import com.sulake.habbo.communication.messages.outgoing.sound.class_1009
+    import com.sulake.habbo.communication.messages.outgoing.sound.GetUserSongDisksMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.sound.AddJukeboxDiskComposer
-    import com.sulake.habbo.communication.messages.outgoing.sound.class_183
-    import com.sulake.habbo.communication.messages.outgoing.sound.class_188
-    import com.sulake.habbo.communication.messages.outgoing.sound.class_667
+    import com.sulake.habbo.communication.messages.outgoing.sound.GetNowPlayingMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.sound.GetOfficialSongIdMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.sound.GetJukeboxPlayListMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.sound.GetSoundMachinePlayListMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.sound.class_700
-    import com.sulake.habbo.communication.messages.outgoing.sound.class_775
-    import com.sulake.habbo.communication.messages.outgoing.sound.class_934
+    import com.sulake.habbo.communication.messages.outgoing.sound.GetSoundSettingsComposer
+    import com.sulake.habbo.communication.messages.outgoing.sound.GetSongInfoMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.sound.RemoveJukeboxDiskComposer
 
     import package_2.*
 
-    import com.sulake.habbo.communication.messages.outgoing.preferences.class_152
+    import com.sulake.habbo.communication.messages.outgoing.preferences.SetChatStylePreferenceComposer
     import com.sulake.habbo.communication.messages.outgoing.preferences.SetChatPreferencesMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.preferences.class_433
-    import com.sulake.habbo.communication.messages.outgoing.preferences.class_435
-    import com.sulake.habbo.communication.messages.outgoing.preferences.class_525
-    import com.sulake.habbo.communication.messages.outgoing.preferences.class_542
-    import com.sulake.habbo.communication.messages.outgoing.preferences.class_856
+    import com.sulake.habbo.communication.messages.outgoing.preferences.SetUIFlagsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.preferences.SetNewNavigatorWindowPreferencesMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.preferences.SetSoundSettingsComposer
+    import com.sulake.habbo.communication.messages.outgoing.preferences.SetRoomCameraPreferencesMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.preferences.SetIgnoreRoomInvitesMessageComposer
 
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.class_1002
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.class_1013
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.class_1036
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.class_153
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.class_171
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.class_472
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.class_539
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.class_569
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.class_614
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.class_650
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.GetForumStatsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.GetMessagesMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.ModerateThreadMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.GetThreadsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.GetUnreadForumsCountMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.PostMessageMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.GetForumsListMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.UpdateThreadMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.UpdateForumReadMarkerMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.ModerateMessageMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.groupforums.UpdateForumSettingsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.class_917
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.GetThreadMessageComposer
 
     import package_22.*
 
@@ -942,9 +942,9 @@ package com.sulake.habbo.communication {
 
     import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2CheckGameDirectoryStatusMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2GetAccountGameStatusMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.directory.class_365
+    import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2StartSnowWarMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2QuickJoinGameMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.directory.class_647
+    import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2LeaveGameMessageComposer
 
     import com.sulake.habbo.communication.messages.outgoing.game.lobby.GetUserGameAchievementsMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.game.lobby.class_165
@@ -952,8 +952,8 @@ package com.sulake.habbo.communication {
 
     import package_34.*
 
-    import com.sulake.habbo.communication.messages.outgoing.advertisement.class_168
-    import com.sulake.habbo.communication.messages.outgoing.advertisement.class_703
+    import com.sulake.habbo.communication.messages.outgoing.advertisement.InterstitialShownMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.advertisement.GetInterstitialMessageComposer
 
     import package_36.*
 
@@ -972,39 +972,39 @@ package com.sulake.habbo.communication {
 
     import com.sulake.habbo.communication.messages.outgoing.competition.class_1011
     import com.sulake.habbo.communication.messages.outgoing.competition.ForwardToASubmittableRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.competition.class_157
+    import com.sulake.habbo.communication.messages.outgoing.competition.VoteForRoomMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.competition.ForwardToACompetitionRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.competition.class_180
-    import com.sulake.habbo.communication.messages.outgoing.competition.class_463
-    import com.sulake.habbo.communication.messages.outgoing.competition.class_490
-    import com.sulake.habbo.communication.messages.outgoing.competition.class_749
-    import com.sulake.habbo.communication.messages.outgoing.competition.class_913
+    import com.sulake.habbo.communication.messages.outgoing.competition.GetSecondsUntilMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.competition.GetIsUserPartOfCompetitionMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.competition.ForwardToRandomCompetitionRoomMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.competition.SubmitRoomToCompetitionMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.competition.RoomCompetitionInitMessageComposer
 
     import com.sulake.habbo.communication.messages.outgoing.newnavigator.NavigatorRemoveCollapsedCategoryMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.newnavigator.NavigatorSetSearchCodeViewModeMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.newnavigator.class_179
-    import com.sulake.habbo.communication.messages.outgoing.newnavigator.class_225
-    import com.sulake.habbo.communication.messages.outgoing.newnavigator.class_687
-    import com.sulake.habbo.communication.messages.outgoing.newnavigator.class_901
-    import com.sulake.habbo.communication.messages.outgoing.newnavigator.class_990
+    import com.sulake.habbo.communication.messages.outgoing.newnavigator.NavigatorAddSavedSearchComposer
+    import com.sulake.habbo.communication.messages.outgoing.newnavigator.NavigatorDeleteSavedSearchComposer
+    import com.sulake.habbo.communication.messages.outgoing.newnavigator.NavigatorAddCollapsedCategoryMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.newnavigator.NewNavigatorSearchComposer
+    import com.sulake.habbo.communication.messages.outgoing.newnavigator.NewNavigatorInitComposer
 
-    import com.sulake.habbo.communication.messages.outgoing.vault.class_186
+    import com.sulake.habbo.communication.messages.outgoing.vault.CreditVaultStatusMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.vault.WithdrawCreditVaultMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.vault.class_763
-    import com.sulake.habbo.communication.messages.outgoing.vault.class_982
+    import com.sulake.habbo.communication.messages.outgoing.vault.IncomeRewardStatusMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.vault.IncomeRewardClaimMessageComposer
 
     import com.sulake.habbo.communication.messages.outgoing.nux.NewUserExperienceGetGiftsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.nux.class_805
-    import com.sulake.habbo.communication.messages.outgoing.nux.class_873
+    import com.sulake.habbo.communication.messages.outgoing.nux.NewUserExperienceScriptProceedComposer
+    import com.sulake.habbo.communication.messages.outgoing.nux.SelectInitialRoomComposer
 
     import com.sulake.habbo.communication.messages.outgoing.gifts.class_200
-    import com.sulake.habbo.communication.messages.outgoing.gifts.class_457
-    import com.sulake.habbo.communication.messages.outgoing.gifts.class_478
-    import com.sulake.habbo.communication.messages.outgoing.gifts.class_706
-    import com.sulake.habbo.communication.messages.outgoing.gifts.class_859
+    import com.sulake.habbo.communication.messages.outgoing.gifts.SetPhoneNumberVerificationStatusMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.gifts.VerifyCodeMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.gifts.ResetPhoneNumberStateMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.gifts.TryPhoneNumberMessageComposer
 
-    import com.sulake.habbo.communication.messages.outgoing.notifications.class_204
-    import com.sulake.habbo.communication.messages.outgoing.notifications.class_554
+    import com.sulake.habbo.communication.messages.outgoing.notifications.ResetUnseenItemIdsComposer
+    import com.sulake.habbo.communication.messages.outgoing.notifications.ResetUnseenItemsComposer
 
     import com.sulake.habbo.communication.messages.outgoing.game.arena.Game2ExitGameMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.game.arena.Game2GameChatMessageComposer
@@ -1013,52 +1013,52 @@ package com.sulake.habbo.communication {
 
     import package_51.*
 
-    import com.sulake.habbo.communication.messages.outgoing.tracking.class_207
-    import com.sulake.habbo.communication.messages.outgoing.tracking.class_253
-    import com.sulake.habbo.communication.messages.outgoing.tracking.class_448
+    import com.sulake.habbo.communication.messages.outgoing.tracking.PerformanceLogMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.tracking.LagWarningReportMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.tracking.LatencyPingRequestMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.tracking.LatencyPingReportMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer
 
     import com.sulake.habbo.communication.messages.outgoing.quest.GetConcurrentUsersGoalProgressMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.quest.class_1052
-    import com.sulake.habbo.communication.messages.outgoing.quest.class_214
-    import com.sulake.habbo.communication.messages.outgoing.quest.class_391
-    import com.sulake.habbo.communication.messages.outgoing.quest.class_429
-    import com.sulake.habbo.communication.messages.outgoing.quest.class_461
-    import com.sulake.habbo.communication.messages.outgoing.quest.class_471
-    import com.sulake.habbo.communication.messages.outgoing.quest.class_479
+    import com.sulake.habbo.communication.messages.outgoing.quest.GetDailyQuestMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.quest.GetConcurrentUsersRewardMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.quest.GetCommunityGoalHallOfFameMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.quest.ActivateQuestMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.quest.OpenQuestTrackerMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.quest.AcceptQuestMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.quest.GetSeasonalQuestsOnlyMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.quest.class_493
-    import com.sulake.habbo.communication.messages.outgoing.quest.class_577
-    import com.sulake.habbo.communication.messages.outgoing.quest.FriendRequestQuestCompleteMessageEvent
+    import com.sulake.habbo.communication.messages.outgoing.quest.GetQuestsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.quest.FriendRequestQuestCompleteMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.quest.class_735
-    import com.sulake.habbo.communication.messages.outgoing.quest.class_748
+    import com.sulake.habbo.communication.messages.outgoing.quest.StartCampaignMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.quest.GetCommunityGoalProgressMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.quest.class_823
-    import com.sulake.habbo.communication.messages.outgoing.quest.class_978
+    import com.sulake.habbo.communication.messages.outgoing.quest.CancelQuestMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.quest.RejectQuestMessageComposer
 
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.class_215
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.class_405
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.class_425
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.class_562
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetNftTransferFeeMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetCollectibleWalletAddressesMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetCollectibleMintableItemTypesMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetCollectibleMintTokensMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.collectibles.NftTransferAssetsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.class_626
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.class_643
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.class_727
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.class_815
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.class_827
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.MintItemMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetCollectorScoreMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetCollectibleMintingEnabledMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetMintTokenOffersMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.NftCollectiblesClaimBonusItemMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.collectibles.NftCollectiblesClaimRewardItemMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.class_969
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.class_985
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetNftCollectionsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.PurchaseMintTokenMessageComposer
 
     import package_62.*
 
     import package_65.*
 
-    import com.sulake.habbo.communication.messages.outgoing.avatar.class_242
-    import com.sulake.habbo.communication.messages.outgoing.avatar.class_249
-    import com.sulake.habbo.communication.messages.outgoing.avatar.class_390
+    import com.sulake.habbo.communication.messages.outgoing.avatar.CheckUserNameMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.avatar.ChangeUserNameInRoomMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.avatar.ChangeUserNameMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.avatar.SaveWardrobeOutfitMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.avatar.class_798
+    import com.sulake.habbo.communication.messages.outgoing.avatar.GetWardrobeMessageComposer
 
     import package_72.*
 
@@ -1070,50 +1070,50 @@ package com.sulake.habbo.communication {
     import com.sulake.habbo.communication.messages.outgoing.game.ingame.Game2ThrowSnowballAtHumanMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.game.ingame.Game2ThrowSnowballAtPositionMessageComposer
 
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_1040
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_286
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_412
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_437
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetAllVariableHoldersMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetErrorLogsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetRoomSettingsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredClearErrorLogsMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetAllVariablesHashMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_488
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetVariablesForObjectMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredSetPreferencesMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_736
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_759
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_777
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredSetRoomSettingsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredSetObjectVariableValueMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetRoomStatsMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetAllVariablesDiffsMessageComposer
 
-    import com.sulake.habbo.communication.messages.outgoing.room.pets.class_308
-    import com.sulake.habbo.communication.messages.outgoing.room.pets.class_666
-    import com.sulake.habbo.communication.messages.outgoing.room.pets.class_717
+    import com.sulake.habbo.communication.messages.outgoing.room.pets.PetSelectedMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.pets.GetPetInfoMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.pets.BreedPetsMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.room.pets.CustomizePetWithFurniComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.pets.class_850
+    import com.sulake.habbo.communication.messages.outgoing.room.pets.RespectPetMessageComposer
 
     import com.sulake.habbo.communication.messages.outgoing.nft.GetNftCreditsMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.nft.GetSilverMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.nft.GetUserNftWardrobeMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.nft.SaveUserNftWardrobeMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.nft.class_757
+    import com.sulake.habbo.communication.messages.outgoing.nft.GetSelectedNftWardrobeOutfitMessageComposer
 
-    import com.sulake.habbo.communication.messages.outgoing.talent.class_1018
-    import com.sulake.habbo.communication.messages.outgoing.talent.class_330
-    import com.sulake.habbo.communication.messages.outgoing.talent.class_639
+    import com.sulake.habbo.communication.messages.outgoing.talent.GetTalentTrackMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.talent.GetTalentTrackLevelMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.talent.GuideAdvertisementReadMessageComposer
 
     import package_84.*
 
     import com.sulake.habbo.communication.messages.incoming.advertisement.InterstitialMessageEvent
     import com.sulake.habbo.communication.messages.incoming.advertisement.RoomAdErrorEvent
 
-    import com.sulake.habbo.communication.messages.outgoing.userclassification.class_368
-    import com.sulake.habbo.communication.messages.outgoing.userclassification.class_942
+    import com.sulake.habbo.communication.messages.outgoing.userclassification.RoomUsersClassificationMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.userclassification.PeerUsersClassificationMessageComposer
 
     import package_91.*
 
     import package_92.*
 
-    import com.sulake.habbo.communication.messages.outgoing.friendfurni.class_395
+    import com.sulake.habbo.communication.messages.outgoing.friendfurni.FriendFurniConfirmLockMessageComposer
 
     import com.sulake.habbo.communication.messages.outgoing.room.bots.GetBotCommandConfigurationDataComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.bots.class_904
+    import com.sulake.habbo.communication.messages.outgoing.room.bots.CommandBotComposer
 
     [SecureSWF(rename="true")]
     public class HabboMessages implements IMessageConfiguration {
@@ -1194,347 +1194,347 @@ package com.sulake.habbo.communication {
             _composers[1472] = RoomAdEventTabViewedComposer;
             _composers[1477] = GetSoundMachinePlayListMessageComposer;
             _composers[1487] = NftCollectiblesClaimRewardItemMessageComposer;
-            _composers[1503] = class_914;
-            _composers[1511] = class_490;
+            _composers[1503] = RequestCameraConfigurationMessageComposer;
+            _composers[1511] = ForwardToRandomCompetitionRoomMessageComposer;
             _composers[1521] = ForwardToARandomPromotedRoomMessageComposer;
-            _composers[1526] = class_413;
-            _composers[1538] = class_976;
-            _composers[1539] = class_275;
-            _composers[1554] = class_1059;
-            _composers[1560] = class_229;
-            _composers[1561] = class_553;
-            _composers[1565] = class_344;
-            _composers[157] = class_330;
+            _composers[1526] = RoomAdSearchMessageComposer;
+            _composers[1538] = GetCatalogPageComposer;
+            _composers[1539] = GetCfhStatusMessageComposer;
+            _composers[1554] = CreditFurniRedeemMessageComposer;
+            _composers[1560] = ModMessageMessageComposer;
+            _composers[1561] = GetGuestRoomMessageComposer;
+            _composers[1565] = ReleaseIssuesMessageComposer;
+            _composers[157] = GetTalentTrackLevelMessageComposer;
             _composers[1575] = SilverFeeMessageComposer;
-            _composers[1598] = class_827;
-            _composers[16] = class_821;
-            _composers[1601] = class_715;
-            _composers[161] = class_595;
-            _composers[1614] = class_801;
-            _composers[1616] = class_989;
-            _composers[1617] = class_403;
-            _composers[1622] = class_312;
-            _composers[1626] = class_720;
-            _composers[1630] = class_201;
-            _composers[1633] = class_902;
-            _composers[1637] = class_328;
-            _composers[1645] = RequestFriendMessageEvent;
+            _composers[1598] = NftCollectiblesClaimBonusItemMessageComposer;
+            _composers[16] = GetOccupiedTilesMessageComposer;
+            _composers[1601] = GetIgnoredUsersMessageComposer;
+            _composers[161] = AssignRightsMessageComposer;
+            _composers[1614] = RoomAdPurchaseInitiatedComposer;
+            _composers[1616] = CancelPetBreedingComposer;
+            _composers[1617] = GetMarketplaceItemStatsComposer;
+            _composers[1622] = ApproveAllMembershipRequestsMessageComposer;
+            _composers[1626] = ConfirmDeclineTradingComposer;
+            _composers[1630] = GetHabboGroupDetailsMessageComposer;
+            _composers[1633] = GetNextTargetedOfferComposer;
+            _composers[1637] = GuideSessionOnDutyUpdateMessageComposer;
+            _composers[1645] = RequestFriendMessageComposer;
             _composers[1666] = SetRelationshipStatusMessageComposer;
-            _composers[1670] = class_870;
-            _composers[1679] = class_998;
-            _composers[1684] = class_937;
-            _composers[1686] = class_260;
-            _composers[17] = class_1052;
-            _composers[1704] = class_391;
-            _composers[1709] = class_669;
-            _composers[171] = class_663;
+            _composers[1670] = SetCustomStackingHeightComposer;
+            _composers[1679] = GetUserEventCatsMessageComposer;
+            _composers[1684] = CancelEventMessageComposer;
+            _composers[1686] = MyRecommendedRoomsMessageComposer;
+            _composers[17] = GetDailyQuestMessageComposer;
+            _composers[1704] = GetCommunityGoalHallOfFameMessageComposer;
+            _composers[1709] = RemoveItemFromTradeComposer;
+            _composers[171] = PlaceObjectMessageComposer;
             _composers[172] = class_200;
-            _composers[1732] = class_938;
+            _composers[1732] = MuteAllInRoomComposer;
             _composers[1733] = class_272;
             _composers[1739] = Game2ThrowSnowballAtPositionMessageComposer;
-            _composers[1746] = class_845;
-            _composers[1753] = class_183;
+            _composers[1746] = AcceptTradingComposer;
+            _composers[1753] = GetNowPlayingMessageComposer;
             _composers[1773] = class_1081;
-            _composers[1779] = class_791;
-            _composers[1781] = class_519;
-            _composers[1783] = class_678;
-            _composers[180] = class_1101;
-            _composers[1807] = FriendRequestQuestCompleteMessageEvent;
-            _composers[1814] = class_127;
+            _composers[1779] = UnacceptTradingComposer;
+            _composers[1781] = CloseTradingComposer;
+            _composers[1783] = GuideSessionGetRequesterRoomMessageComposer;
+            _composers[180] = PlaceBotMessageComposer;
+            _composers[1807] = FriendRequestQuestCompleteMessageComposer;
+            _composers[1814] = GetMarketplaceOffersMessageComposer;
             _composers[1819] = class_580;
-            _composers[1833] = class_664;
-            _composers[1843] = class_203;
-            _composers[1847] = class_166;
-            _composers[1852] = class_855;
-            _composers[1865] = class_731;
-            _composers[1880] = class_555;
-            _composers[1881] = class_584;
-            _composers[1883] = class_389;
-            _composers[1890] = class_194;
-            _composers[1897] = class_935;
-            _composers[1898] = class_153;
-            _composers[1909] = class_737;
-            _composers[1912] = class_435;
-            _composers[1914] = class_906;
-            _composers[1918] = class_511;
-            _composers[1923] = class_508;
-            _composers[193] = class_881;
-            _composers[1931] = class_982;
-            _composers[1935] = class_865;
-            _composers[1947] = class_1009;
-            _composers[1948] = class_643;
-            _composers[195] = class_1037;
-            _composers[1951] = class_814;
-            _composers[1952] = class_188;
+            _composers[1833] = GiveStarGemToUserMessageComposer;
+            _composers[1843] = EnterOneWayDoorMessageComposer;
+            _composers[1847] = UpdateRoomFilterMessageComposer;
+            _composers[1852] = PurchaseFromCatalogComposer;
+            _composers[1865] = PlacePostItMessageComposer;
+            _composers[1880] = OpenMysteryTrophyMessageComposer;
+            _composers[1881] = ExtendRentOrBuyoutStripItemMessageComposer;
+            _composers[1883] = ModTradingLockMessageComposer;
+            _composers[1890] = RoomsWithHighestScoreSearchMessageComposer;
+            _composers[1897] = UpdateGuildIdentityMessageComposer;
+            _composers[1898] = GetThreadsMessageComposer;
+            _composers[1909] = ScrGetUserInfoMessageComposer;
+            _composers[1912] = SetNewNavigatorWindowPreferencesMessageComposer;
+            _composers[1914] = UpdateGuildSettingsMessageComposer;
+            _composers[1918] = ConfirmAcceptTradingComposer;
+            _composers[1923] = SetClothingChangeDataMessageComposer;
+            _composers[193] = MarkCatalogNewAdditionsPageOpenedComposer;
+            _composers[1931] = IncomeRewardClaimMessageComposer;
+            _composers[1935] = GetHeightMapMessageComposer;
+            _composers[1947] = GetUserSongDisksMessageComposer;
+            _composers[1948] = GetCollectorScoreMessageComposer;
+            _composers[195] = DeactivateGuildMessageComposer;
+            _composers[1951] = RemoveAllRightsMessageComposer;
+            _composers[1952] = GetOfficialSongIdMessageComposer;
             _composers[1956] = GetCraftableProductsComposer;
             _composers[1959] = Game2GetFriendsLeaderboardComposer;
-            _composers[1967] = class_964;
-            _composers[1976] = class_1036;
+            _composers[1967] = GetPetInventoryComposer;
+            _composers[1976] = ModerateThreadMessageComposer;
             _composers[1990] = GetSilverMessageComposer;
-            _composers[20] = class_383;
-            _composers[2007] = class_734;
-            _composers[201] = class_1025;
-            _composers[2011] = class_749;
-            _composers[2020] = class_215;
-            _composers[2046] = class_1041;
+            _composers[20] = OpenPetPackageMessageComposer;
+            _composers[2007] = GetRoomChatlogMessageComposer;
+            _composers[201] = UpdateRoomCategoryAndTradeSettingsComposer;
+            _composers[2011] = SubmitRoomToCompetitionMessageComposer;
+            _composers[2020] = GetNftTransferFeeMessageComposer;
+            _composers[2046] = KickUserMessageComposer;
             _composers[2049] = Game2GetWeeklyLeaderboardComposer;
-            _composers[2057] = class_698;
-            _composers[2064] = class_645;
-            _composers[2065] = class_847;
-            _composers[2068] = class_214;
-            _composers[2077] = class_859;
-            _composers[2080] = class_130;
-            _composers[2085] = class_216;
-            _composers[2087] = class_437;
-            _composers[2089] = class_359;
-            _composers[2109] = class_242;
-            _composers[2114] = class_287;
-            _composers[2123] = class_505;
-            _composers[2131] = class_806;
-            _composers[2137] = class_441;
-            _composers[2141] = class_876;
+            _composers[2057] = ChatMessageComposer;
+            _composers[2064] = GetFurnitureAliasesMessageComposer;
+            _composers[2065] = WhisperMessageComposer;
+            _composers[2068] = GetConcurrentUsersRewardMessageComposer;
+            _composers[2077] = TryPhoneNumberMessageComposer;
+            _composers[2080] = RateFlatMessageComposer;
+            _composers[2085] = PickupObjectMessageComposer;
+            _composers[2087] = WiredClearErrorLogsMessageComposer;
+            _composers[2089] = GetOfficialRoomsMessageComposer;
+            _composers[2109] = CheckUserNameMessageComposer;
+            _composers[2114] = GetRentOrBuyoutOfferMessageComposer;
+            _composers[2123] = GetMarketplaceCanMakeOfferMessageComposer;
+            _composers[2131] = DeselectFavouriteHabboGroupMessageComposer;
+            _composers[2137] = GetIsBadgeRequestFulfilledComposer;
+            _composers[2141] = GetFlatControllersMessageComposer;
             _composers[2159] = UpdateSelectorMessageComposer;
-            _composers[2162] = class_585;
-            _composers[2168] = class_753;
-            _composers[2171] = class_804;
-            _composers[2182] = class_667;
-            _composers[2185] = class_724;
-            _composers[2188] = class_991;
-            _composers[2197] = class_825;
+            _composers[2162] = RemoveAdminRightsFromMemberMessageComposer;
+            _composers[2168] = PollRejectComposer;
+            _composers[2171] = MyFriendsRoomsSearchMessageComposer;
+            _composers[2182] = GetJukeboxPlayListMessageComposer;
+            _composers[2185] = DanceMessageComposer;
+            _composers[2188] = UpdateHomeRoomMessageComposer;
+            _composers[2197] = SetRoomBackgroundColorDataComposer;
             _composers[2200] = Game2RequestFullStatusUpdateMessageComposer;
-            _composers[2205] = class_626;
-            _composers[2209] = class_433;
-            _composers[222] = class_932;
-            _composers[2244] = class_820;
-            _composers[2249] = class_352;
-            _composers[2250] = class_1046;
-            _composers[2253] = class_472;
+            _composers[2205] = MintItemMessageComposer;
+            _composers[2209] = SetUIFlagsMessageComposer;
+            _composers[222] = UpdateFloorPropertiesMessageComposer;
+            _composers[2244] = SetMannequinFigureComposer;
+            _composers[2249] = IgnoreUserMessageComposer;
+            _composers[2250] = GetQuizQuestionsComposer;
+            _composers[2253] = PostMessageMessageComposer;
             _composers[2265] = Game2GameChatMessageComposer;
-            _composers[2269] = class_768;
-            _composers[2270] = class_740;
+            _composers[2269] = PresentOpenMessageComposer;
+            _composers[2270] = GiveSupplementToPetMessageComposer;
             _composers[2290] = class_367;
-            _composers[2293] = class_513;
+            _composers[2293] = RemoveSaddleFromPetMessageComposer;
             _composers[2297] = EventLogMessageComposer;
-            _composers[2302] = class_146;
-            _composers[2304] = class_253;
-            _composers[2305] = class_802;
-            _composers[2307] = class_428;
-            _composers[2317] = class_575;
-            _composers[2321] = class_213;
-            _composers[2325] = class_479;
-            _composers[2327] = class_230;
+            _composers[2302] = RemovePetFromFlatMessageComposer;
+            _composers[2304] = LagWarningReportMessageComposer;
+            _composers[2305] = BuyMarketplaceOfferMessageComposer;
+            _composers[2307] = RedeemVoucherMessageComposer;
+            _composers[2317] = GetHabboGroupBadgesMessageComposer;
+            _composers[2321] = RentableSpaceCancelRentMessageComposer;
+            _composers[2325] = GetSeasonalQuestsOnlyMessageComposer;
+            _composers[2327] = GetItemDataMessageComposer;
             _composers[2331] = PongMessageComposer;
-            _composers[2338] = class_424;
-            _composers[2339] = class_755;
-            _composers[2346] = class_157;
-            _composers[2348] = class_1070;
-            _composers[2351] = class_617;
-            _composers[2362] = class_598;
-            _composers[2363] = class_218;
-            _composers[2370] = class_577;
-            _composers[2374] = class_570;
-            _composers[2404] = class_739;
-            _composers[2418] = class_887;
-            _composers[2428] = class_833;
-            _composers[2443] = class_728;
+            _composers[2338] = ChatReviewGuideVoteMessageComposer;
+            _composers[2339] = PlacePetMessageComposer;
+            _composers[2346] = VoteForRoomMessageComposer;
+            _composers[2348] = ThrowDiceMessageComposer;
+            _composers[2351] = MoveObjectMessageComposer;
+            _composers[2362] = GetYoutubeDisplayStatusMessageComposer;
+            _composers[2363] = MoveAvatarMessageComposer;
+            _composers[2370] = GetQuestsMessageComposer;
+            _composers[2374] = ModToolPreferencesComposer;
+            _composers[2404] = ChangeMottoMessageComposer;
+            _composers[2418] = GetGiftWrappingConfigurationComposer;
+            _composers[2428] = OpenMessageComposer;
+            _composers[2443] = RenderRoomMessageComposer;
             _composers[2446] = FollowFriendMessageComposer;
-            _composers[245] = class_840;
-            _composers[2460] = class_607;
+            _composers[245] = InfoRetrieveMessageComposer;
+            _composers[2460] = ChangeEmailComposer;
             _composers[2470] = Game2SetUserMoveTargetMessageComposer;
-            _composers[2473] = class_395;
-            _composers[2476] = class_563;
-            _composers[2477] = class_763;
+            _composers[2473] = FriendFurniConfirmLockMessageComposer;
+            _composers[2476] = GetRoomEntryTileMessageComposer;
+            _composers[2477] = IncomeRewardStatusMessageComposer;
             _composers[2481] = class_1011;
-            _composers[2496] = class_346;
-            _composers[250] = class_405;
-            _composers[2508] = class_599;
-            _composers[2513] = class_925;
-            _composers[2534] = class_956;
-            _composers[2549] = class_368;
+            _composers[2496] = ScrGetKickbackInfoMessageComposer;
+            _composers[250] = GetCollectibleWalletAddressesMessageComposer;
+            _composers[2508] = ApplySnapshotMessageComposer;
+            _composers[2513] = ModAlertMessageComposer;
+            _composers[2534] = GetPetCommandsMessageComposer;
+            _composers[2549] = RoomUsersClassificationMessageComposer;
             _composers[255] = class_1035;
-            _composers[2558] = class_1095;
+            _composers[2558] = GetAchievementsComposer;
             _composers[2578] = VisitUserMessageComposer;
-            _composers[2582] = class_561;
-            _composers[2593] = class_775;
-            _composers[2595] = class_904;
-            _composers[2602] = class_489;
-            _composers[2603] = class_913;
-            _composers[2611] = class_917;
-            _composers[2616] = class_385;
-            _composers[2619] = class_658;
-            _composers[2624] = class_569;
-            _composers[2631] = class_850;
-            _composers[2636] = class_308;
-            _composers[2639] = class_1023;
-            _composers[264] = class_525;
-            _composers[2641] = class_1086;
-            _composers[2663] = class_142;
-            _composers[2666] = class_1003;
-            _composers[2673] = class_458;
-            _composers[2678] = class_993;
-            _composers[268] = class_282;
+            _composers[2582] = GetGuideReportingStatusMessageComposer;
+            _composers[2593] = GetSongInfoMessageComposer;
+            _composers[2595] = CommandBotComposer;
+            _composers[2602] = VersionCheckMessageComposer;
+            _composers[2603] = RoomCompetitionInitMessageComposer;
+            _composers[2611] = GetThreadMessageComposer;
+            _composers[2616] = CompleteDiffieHandshakeMessageComposer;
+            _composers[2619] = CallForHelpFromIMMessageComposer;
+            _composers[2624] = UpdateThreadMessageComposer;
+            _composers[2631] = RespectPetMessageComposer;
+            _composers[2636] = PetSelectedMessageComposer;
+            _composers[2639] = RemoveItemMessageComposer;
+            _composers[264] = SetSoundSettingsComposer;
+            _composers[2641] = UpdateConditionMessageComposer;
+            _composers[2663] = GetGuildEditorDataMessageComposer;
+            _composers[2666] = ExtendRentOrBuyoutFurniMessageComposer;
+            _composers[2673] = MyFavouriteRoomsSearchMessageComposer;
+            _composers[2678] = StartTypingMessageComposer;
+            _composers[268] = GetSeasonalCalendarDailyComposer;
             _composers[2681] = CraftComposer;
-            _composers[2703] = class_365;
-            _composers[2708] = class_471;
+            _composers[2703] = Game2StartSnowWarMessageComposer;
+            _composers[2708] = AcceptQuestMessageComposer;
             _composers[271] = class_977;
-            _composers[2714] = class_156;
-            _composers[2718] = class_461;
-            _composers[2722] = class_325;
-            _composers[2729] = class_974;
-            _composers[2749] = class_406;
-            _composers[2760] = class_268;
-            _composers[2765] = class_706;
-            _composers[2775] = class_503;
+            _composers[2714] = BuildersClubQueryFurniCountMessageComposer;
+            _composers[2718] = OpenQuestTrackerMessageComposer;
+            _composers[2722] = QuitMessageComposer;
+            _composers[2729] = OpenFlatConnectionMessageComposer;
+            _composers[2749] = GetMarketplaceOwnOffersMessageComposer;
+            _composers[2760] = BuyMarketplaceTokensMessageComposer;
+            _composers[2765] = ResetPhoneNumberStateMessageComposer;
+            _composers[2775] = PurchaseRoomAdMessageComposer;
             _composers[2781] = GetUserGameAchievementsMessageComposer;
-            _composers[2798] = class_171;
+            _composers[2798] = GetUnreadForumsCountMessageComposer;
             _composers[2800] = SendMsgMessageComposer;
-            _composers[2806] = class_305;
-            _composers[2809] = class_967;
-            _composers[283] = class_244;
-            _composers[2837] = class_614;
-            _composers[2839] = class_376;
-            _composers[2841] = class_780;
-            _composers[2844] = class_873;
-            _composers[2845] = class_322;
-            _composers[2847] = class_443;
-            _composers[2862] = class_757;
-            _composers[2863] = class_759;
-            _composers[2877] = class_1047;
+            _composers[2806] = GuildBaseSearchMessageComposer;
+            _composers[2809] = SetMannequinNameComposer;
+            _composers[283] = MyRoomRightsSearchMessageComposer;
+            _composers[2837] = UpdateForumReadMarkerMessageComposer;
+            _composers[2839] = AddItemsToTradeComposer;
+            _composers[2841] = GetUserChatlogMessageComposer;
+            _composers[2844] = SelectInitialRoomComposer;
+            _composers[2845] = GetExtendedProfileMessageComposer;
+            _composers[2847] = ControlYoutubeDisplayPlaybackMessageComposer;
+            _composers[2862] = GetSelectedNftWardrobeOutfitMessageComposer;
+            _composers[2863] = WiredSetObjectVariableValueMessageComposer;
+            _composers[2877] = MountPetMessageComposer;
             _composers[2889] = ConvertGlobalRoomIdMessageComposer;
-            _composers[2897] = class_550;
-            _composers[2899] = class_452;
-            _composers[2901] = class_227;
+            _composers[2897] = CanCreateRoomMessageComposer;
+            _composers[2899] = MovePetMessageComposer;
+            _composers[2901] = UpdateTriggerMessageComposer;
             _composers[2905] = class_1050;
-            _composers[2959] = class_412;
-            _composers[296] = class_234;
-            _composers[2972] = class_417;
-            _composers[2982] = class_984;
-            _composers[2998] = class_639;
-            _composers[300] = class_656;
-            _composers[3007] = class_966;
-            _composers[3013] = class_999;
-            _composers[3032] = class_990;
-            _composers[3040] = class_409;
+            _composers[2959] = WiredGetRoomSettingsMessageComposer;
+            _composers[296] = MuteUserMessageComposer;
+            _composers[2972] = TogglePetBreedingPermissionMessageComposer;
+            _composers[2982] = RequestRoomPropertySet;
+            _composers[2998] = GuideAdvertisementReadMessageComposer;
+            _composers[300] = LookToMessageComposer;
+            _composers[3007] = GetGuildFurniContextMenuInfoMessageComposer;
+            _composers[3013] = UnbanUserFromRoomMessageComposer;
+            _composers[3032] = NewNavigatorInitComposer;
+            _composers[3040] = OpenTradingComposer;
             _composers[3041] = Game2PlayAgainMessageComposer;
-            _composers[3046] = class_445;
-            _composers[306] = class_249;
-            _composers[3066] = class_805;
-            _composers[3074] = class_154;
-            _composers[3082] = class_204;
-            _composers[311] = class_582;
-            _composers[3118] = class_131;
-            _composers[3130] = class_700;
-            _composers[315] = class_831;
-            _composers[3154] = class_520;
-            _composers[3162] = class_225;
-            _composers[3165] = class_631;
-            _composers[3171] = class_823;
-            _composers[3172] = class_834;
-            _composers[3173] = class_155;
-            _composers[3175] = class_390;
-            _composers[3177] = class_397;
+            _composers[3046] = ConfirmPetBreedingComposer;
+            _composers[306] = ChangeUserNameInRoomMessageComposer;
+            _composers[3066] = NewUserExperienceScriptProceedComposer;
+            _composers[3074] = SetYoutubeDisplayPlaylistMessageComposer;
+            _composers[3082] = ResetUnseenItemIdsComposer;
+            _composers[311] = SignMessageComposer;
+            _composers[3118] = GetGuildEditInfoMessageComposer;
+            _composers[3130] = GetSoundSettingsComposer;
+            _composers[315] = GetUserFlatCatsMessageComposer;
+            _composers[3154] = GetBundleDiscountRulesetComposer;
+            _composers[3162] = NavigatorDeleteSavedSearchComposer;
+            _composers[3165] = OpenCampaignCalendarDoorComposer;
+            _composers[3171] = CancelQuestMessageComposer;
+            _composers[3172] = CloseIssueDefaultActionMessageComposer;
+            _composers[3173] = ChangeQueueMessageComposer;
+            _composers[3175] = ChangeUserNameMessageComposer;
+            _composers[3177] = GuideSessionGuideDecidesMessageComposer;
             _composers[3181] = RequestFurniInventoryComposer;
-            _composers[3186] = class_565;
-            _composers[3188] = class_1045;
+            _composers[3186] = SetAreaHideDataComposer;
+            _composers[3188] = GetCreditsInfoComposer;
             _composers[320] = GetNftCreditsMessageComposer;
-            _composers[3207] = class_457;
-            _composers[3210] = class_752;
-            _composers[3216] = class_711;
-            _composers[3236] = class_648;
-            _composers[324] = class_546;
-            _composers[3240] = class_371;
-            _composers[3241] = class_939;
-            _composers[3266] = class_1040;
-            _composers[3271] = class_647;
-            _composers[3274] = class_650;
-            _composers[3280] = class_375;
-            _composers[3282] = class_1033;
-            _composers[3288] = class_488;
+            _composers[3207] = SetPhoneNumberVerificationStatusMessageComposer;
+            _composers[3210] = GetClubGiftMessageComposer;
+            _composers[3216] = MysteryBoxWaitingCanceledMessageComposer;
+            _composers[3236] = RoomTextSearchMessageComposer;
+            _composers[324] = PopularRoomsSearchMessageComposer;
+            _composers[3240] = CallForHelpFromForumThreadMessageComposer;
+            _composers[3241] = PurchaseVipMembershipExtensionComposer;
+            _composers[3266] = WiredGetAllVariableHoldersMessageComposer;
+            _composers[3271] = Game2LeaveGameMessageComposer;
+            _composers[3274] = ModerateMessageMessageComposer;
+            _composers[3280] = OpenCampaignCalendarDoorAsStaffComposer;
+            _composers[3282] = GetCfhChatlogMessageComposer;
+            _composers[3288] = WiredGetVariablesForObjectMessageComposer;
             _composers[3308] = DeclineFriendMessageComposer;
             _composers[3312] = Game2GetWeeklyGroupLeaderboardComposer;
-            _composers[3335] = class_1089;
-            _composers[3340] = class_911;
-            _composers[3343] = class_554;
-            _composers[3351] = class_463;
-            _composers[3357] = class_915;
-            _composers[3363] = class_475;
-            _composers[3373] = class_420;
-            _composers[3392] = class_560;
-            _composers[3401] = class_594;
-            _composers[3404] = class_436;
-            _composers[3452] = class_777;
+            _composers[3335] = ModKickMessageComposer;
+            _composers[3340] = KickMemberMessageComposer;
+            _composers[3343] = ResetUnseenItemsComposer;
+            _composers[3351] = GetIsUserPartOfCompetitionMessageComposer;
+            _composers[3357] = UnblockGroupMemberMessageComposer;
+            _composers[3363] = CallForHelpFromPhotoMessageComposer;
+            _composers[3373] = SpinWheelOfFortuneMessageComposer;
+            _composers[3392] = MyRoomHistorySearchMessageComposer;
+            _composers[3401] = PurchaseBasicMembershipExtensionComposer;
+            _composers[3404] = DeletePendingCallsForHelpMessageComposer;
+            _composers[3452] = WiredGetRoomStatsMessageComposer;
             _composers[346] = class_165;
             _composers[3468] = RequestFurniInventoryWhenNotInRoomComposer;
-            _composers[3472] = class_822;
+            _composers[3472] = AddItemToTradeComposer;
             _composers[3473] = FindNewFriendsMessageComposer; //FindNewFriendsMessageComposer
-            _composers[3477] = class_736;
-            _composers[3478] = class_224;
-            _composers[3484] = class_934;
-            _composers[3487] = class_425; //GetCollectibleMintableItemTypesMessageComposer
-            _composers[3492] = class_1017;
-            _composers[3507] = class_1013;
-            _composers[3510] = class_294;
-            _composers[3519] = class_816;
-            _composers[3523] = class_1002;
-            _composers[3526] = class_517;
-            _composers[3530] = class_764;
-            _composers[3534] = class_985;
-            _composers[3540] = class_646;
-            _composers[355] = class_815;
-            _composers[3560] = class_969;
-            _composers[3566] = class_197;
-            _composers[3575] = class_1028;
-            _composers[3578] = class_202;
-            _composers[3580] = class_852;
-            _composers[3596] = class_1056;
-            _composers[3600] = class_286;
-            _composers[3623] = class_909;
-            _composers[3625] = class_300;
-            _composers[3632] = class_429;
-            _composers[3638] = class_448;
-            _composers[3651] = class_496;
+            _composers[3477] = WiredSetRoomSettingsMessageComposer;
+            _composers[3478] = ApproveMembershipRequestMessageComposer;
+            _composers[3484] = RemoveJukeboxDiskComposer;
+            _composers[3487] = GetCollectibleMintableItemTypesMessageComposer; //GetCollectibleMintableItemTypesMessageComposer
+            _composers[3492] = GetUserNftChatStylesMessageComposer;
+            _composers[3507] = GetMessagesMessageComposer;
+            _composers[3510] = GuideSessionInviteRequesterMessageComposer;
+            _composers[3519] = GetPromoArticlesMessageComposer;
+            _composers[3523] = GetForumStatsMessageComposer;
+            _composers[3526] = CreateFlatMessageComposer;
+            _composers[3530] = MyGuildBasesSearchMessageComposer;
+            _composers[3534] = PurchaseMintTokenMessageComposer;
+            _composers[3540] = MyRoomsSearchMessageComposer;
+            _composers[355] = GetMintTokenOffersMessageComposer;
+            _composers[3560] = GetNftCollectionsMessageComposer;
+            _composers[3566] = SelectFavouriteHabboGroupMessageComposer;
+            _composers[3575] = TogglePetRidingPermissionMessageComposer;
+            _composers[3578] = CompetitionRoomsSearchMessageComposer;
+            _composers[3580] = BuildersClubPlaceWallItemMessageComposer;
+            _composers[3596] = GetEmailStatusComposer;
+            _composers[3600] = WiredGetErrorLogsMessageComposer;
+            _composers[3623] = PurchaseTargetedOfferComposer;
+            _composers[3625] = ChatReviewSessionCreateMessageComposer;
+            _composers[3632] = ActivateQuestMessageComposer;
+            _composers[3638] = LatencyPingRequestMessageComposer;
+            _composers[3651] = ShopTargetedOfferViewedComposer;
             _composers[3654] = Game2GetTotalLeaderboardComposer;
-            _composers[3657] = class_291;
+            _composers[3657] = GuideSessionResolvedMessageComposer;
             _composers[366] = SendRoomInviteMessageComposer;
-            _composers[3681] = class_1007;
-            _composers[3692] = class_251;
+            _composers[3681] = GetBannedUsersFromRoomMessageComposer;
+            _composers[3692] = CreateGuildMessageComposer;
             _composers[3695] = GetUserNftWardrobeMessageComposer;
-            _composers[3698] = class_703;
-            _composers[3706] = class_363;
-            _composers[372] = class_995;
+            _composers[3698] = GetInterstitialMessageComposer;
+            _composers[3706] = DefaultSanctionMessageComposer;
+            _composers[372] = UpdateVariableMessageComposer;
             _composers[3727] = AddAdminRightsToMemberMessageComposer;
             _composers[3734] = Game2GetWeeklyFriendsLeaderboardComposer;
-            _composers[3736] = class_1091;
-            _composers[3746] = class_856;
-            _composers[3747] = class_672;
-            _composers[3750] = class_773;
+            _composers[3736] = GuideSessionRequesterCancelsMessageComposer;
+            _composers[3746] = SetIgnoreRoomInvitesMessageComposer;
+            _composers[3747] = GetModeratorRoomInfoMessageComposer;
+            _composers[3750] = GuideSessionFeedbackMessageComposer;
             _composers[3755] = Game2ExitGameMessageComposer;
-            _composers[3758] = class_290;
-            _composers[3760] = class_862;
-            _composers[3768] = class_928;
-            _composers[3783] = class_864;
-            _composers[3785] = class_360;
+            _composers[3758] = RemoveBotFromFlatMessageComposer;
+            _composers[3760] = DeleteRoomMessageComposer;
+            _composers[3768] = MakeOfferMessageComposer;
+            _composers[3783] = MyFrequentRoomHistorySearchMessageComposer;
+            _composers[3785] = GetModeratorUserInfoMessageComposer;
             _composers[3789] = GetFriendsWeeklyCompetitiveLeaderboardComposer;
-            _composers[3794] = class_1053;
-            _composers[380] = class_817;
-            _composers[3806] = class_666;
-            _composers[3809] = class_370;
-            _composers[381] = class_1015;
-            _composers[3814] = class_562;
-            _composers[3833] = class_531;
+            _composers[3794] = AvatarExpressionMessageComposer;
+            _composers[380] = ShoutMessageComposer;
+            _composers[3806] = GetPetInfoMessageComposer;
+            _composers[3809] = CancelMarketplaceOfferMessageComposer;
+            _composers[381] = ChatReviewGuideDetachedMessageComposer;
+            _composers[3814] = GetCollectibleMintTokensMessageComposer;
+            _composers[3833] = GetPendingCallsForHelpMessageComposer;
             _composers[3835] = LatencyPingReportMessageComposer;
-            _composers[3852] = class_912;
-            _composers[386] = class_793;
-            _composers[3878] = class_838;
-            _composers[3881] = class_342;
+            _composers[3852] = ModerateRoomMessageComposer;
+            _composers[386] = GetGuildCreationInfoMessageComposer;
+            _composers[3878] = CancelTypingMessageComposer;
+            _composers[3881] = UnignoreUserMessageComposer;
             _composers[3894] = GetWeeklyCompetitiveLeaderboardComposer;
             _composers[3899] = class_493;
-            _composers[3900] = class_136;
-            _composers[3914] = class_482;
-            _composers[3915] = class_600;
-            _composers[3919] = class_1063;
-            _composers[3920] = class_521;
-            _composers[3933] = class_1010;
+            _composers[3900] = GetPopularRoomTagsMessageComposer;
+            _composers[3914] = AmbassadorAlertMessageComposer;
+            _composers[3915] = SelectClubGiftComposer;
+            _composers[3919] = PickIssuesMessageComposer;
+            _composers[3920] = GetCatalogIndexComposer;
+            _composers[3933] = UpdateGuildColorsMessageComposer;
             _composers[3942] = class_951;
             _composers[3948] = GuideSessionReportMessageComposer;
             _composers[3949] = GetSnowWarGameTokensOfferComposer;
@@ -1544,87 +1544,87 @@ package com.sulake.habbo.communication {
             _composers[3967] = Game2GetAccountGameStatusMessageComposer;
             _composers[3975] = WiredSetPreferencesMessageComposer;
             _composers[4000] = ClientHelloMessageComposer;
-            _composers[403] = class_179;
+            _composers[403] = NavigatorAddSavedSearchComposer;
             _composers[406] = GetFriendRequestsMessageComposer;
-            _composers[411] = class_1099;
+            _composers[411] = GetClubOffersMessageComposer;
             _composers[417] = RemoveFriendMessageComposer;
-            _composers[421] = class_502;
+            _composers[421] = CloseIssuesMessageComposer;
             _composers[422] = class_807;
-            _composers[43] = class_788;
-            _composers[433] = class_717;
-            _composers[459] = class_972;
-            _composers[463] = class_180;
+            _composers[43] = MoveWallItemMessageComposer;
+            _composers[433] = BreedPetsMessageComposer;
+            _composers[459] = GetCraftingRecipeComposer;
+            _composers[463] = GetSecondsUntilMessageComposer;
             _composers[472] = MessengerInitMessageComposer;
-            _composers[478] = class_270;
-            _composers[483] = class_675;
+            _composers[478] = BuildersClubPlaceRoomItemMessageComposer;
+            _composers[483] = UpdateFigureDataMessageComposer;
             _composers[485] = class_606;
-            _composers[494] = class_687;
-            _composers[505] = class_400;
-            _composers[506] = class_539;
-            _composers[509] = class_168;
-            _composers[51] = class_320;
+            _composers[494] = NavigatorAddCollapsedCategoryMessageComposer;
+            _composers[505] = DiceOffMessageComposer;
+            _composers[506] = GetForumsListMessageComposer;
+            _composers[509] = InterstitialShownMessageComposer;
+            _composers[51] = JoinHabboGroupMessageComposer;
             _composers[511] = class_303;
-            _composers[520] = class_1062;
-            _composers[521] = class_273;
-            _composers[524] = class_387;
-            _composers[526] = class_890;
-            _composers[53] = class_941;
-            _composers[541] = class_1022;
-            _composers[573] = class_978;
+            _composers[520] = RequestABadgeComposer;
+            _composers[521] = RentableSpaceRentMessageComposer;
+            _composers[524] = ForwardToSomeRoomMessageComposer;
+            _composers[526] = CraftSecretComposer;
+            _composers[53] = SSOTicketMessageComposer;
+            _composers[541] = GetBotInventoryComposer;
+            _composers[573] = RejectQuestMessageComposer;
             _composers[583] = Game2MakeSnowballMessageComposer;
-            _composers[584] = class_1094;
-            _composers[586] = class_622;
-            _composers[599] = class_742;
-            _composers[604] = class_354;
+            _composers[584] = GetRoomSettingsMessageComposer;
+            _composers[586] = InitDiffieHandshakeMessageComposer;
+            _composers[599] = PassCarryItemMessageComposer;
+            _composers[604] = ChatReviewGuideDecidesOnOfferMessageComposer;
             _composers[613] = SaveUserNftWardrobeMessageComposer;
-            _composers[616] = class_331;
-            _composers[625] = class_589;
-            _composers[626] = class_704;
-            _composers[630] = class_930;
-            _composers[644] = class_933;
-            _composers[657] = class_901;
-            _composers[661] = class_571;
-            _composers[663] = class_942;
-            _composers[672] = class_478;
-            _composers[68] = class_896;
-            _composers[683] = class_530;
-            _composers[692] = class_139;
+            _composers[616] = DropCarryItemMessageComposer;
+            _composers[625] = RoomNetworkOpenConnectionMessageComposer;
+            _composers[626] = SetRandomStateMessageComposer;
+            _composers[630] = GetHabboClubExtendOfferMessageComposer;
+            _composers[644] = PurchaseFromCatalogAsGiftComposer;
+            _composers[657] = NewNavigatorSearchComposer;
+            _composers[661] = RoomDimmerChangeStateMessageComposer;
+            _composers[663] = PeerUsersClassificationMessageComposer;
+            _composers[672] = VerifyCodeMessageComposer;
+            _composers[68] = GetSelectedBadgesMessageComposer;
+            _composers[683] = AddSpamWallPostItMessageComposer;
+            _composers[692] = EditEventMessageComposer;
             _composers[700] = Game2CheckGameDirectoryStatusMessageComposer;
-            _composers[701] = class_813;
+            _composers[701] = GuideSessionMessageMessageComposer;
             _composers[710] = GetWeeklyGameRewardWinnersComposer;
-            _composers[712] = class_891;
-            _composers[726] = class_279;
-            _composers[737] = class_304;
+            _composers[712] = GetCraftingRecipesAvailableComposer;
+            _composers[726] = PostQuizAnswersComposer;
+            _composers[737] = ApproveNameMessageComposer;
             _composers[740] = Game2ThrowSnowballAtHumanMessageComposer;
-            _composers[747] = class_207;
-            _composers[754] = class_748;
+            _composers[747] = PerformanceLogMessageComposer;
+            _composers[754] = StartCampaignMessageComposer;
             _composers[757] = ClickFurniMessageComposer;
-            _composers[758] = class_186;
-            _composers[76] = AcceptFriendMessageEvent;
-            _composers[766] = class_152;
-            _composers[768] = class_421;
-            _composers[772] = class_798;
-            _composers[79] = class_1061;
-            _composers[790] = class_868;
-            _composers[795] = class_1004;
+            _composers[758] = CreditVaultStatusMessageComposer;
+            _composers[76] = AcceptFriendMessageComposer;
+            _composers[766] = SetChatStylePreferenceComposer;
+            _composers[768] = GetLimitedOfferAppearingNextComposer;
+            _composers[772] = GetWardrobeMessageComposer;
+            _composers[79] = DeleteFavouriteRoomMessageComposer;
+            _composers[790] = SetRoomSessionTagsMessageComposer;
+            _composers[795] = PurchasePhotoMessageComposer;
             _composers[799] = GetMessengerHistoryComposer;
-            _composers[805] = class_512;
-            _composers[813] = class_779;
+            _composers[805] = GetIsOfferGiftableComposer;
+            _composers[813] = GetGuildMembershipsMessageComposer;
             _composers[818] = GetWeeklyGameRewardComposer;
-            _composers[833] = class_163;
-            _composers[842] = class_665;
-            _composers[843] = class_842;
-            _composers[850] = class_727; //GetCollectibleMintingEnabledMessageComposer
-            _composers[852] = class_781;
-            _composers[856] = class_191;
-            _composers[864] = class_824;
-            _composers[872] = class_632;
-            _composers[874] = class_542;
-            _composers[885] = class_661;
-            _composers[90] = class_206;
-            _composers[905] = class_1018;
-            _composers[91] = class_874;
-            _composers[915] = class_771;
+            _composers[833] = PollAnswerComposer;
+            _composers[842] = RoomDimmerGetPresetsMessageComposer;
+            _composers[843] = UseWallItemMessageComposer;
+            _composers[850] = GetCollectibleMintingEnabledMessageComposer; //GetCollectibleMintingEnabledMessageComposer
+            _composers[852] = ModToolSanctionComposer;
+            _composers[856] = CompostPlantMessageComposer;
+            _composers[864] = ModeratorActionMessageComposer;
+            _composers[872] = GetHotLooksMessageComposer;
+            _composers[874] = SetRoomCameraPreferencesMessageComposer;
+            _composers[885] = SetObjectDataMessageComposer;
+            _composers[90] = AvatarEffectActivatedComposer;
+            _composers[905] = GetTalentTrackMessageComposer;
+            _composers[91] = GuideSessionIsTypingMessageComposer;
+            _composers[915] = AddFavouriteRoomMessageComposer;
             _composers[917] = ChangePostureMessageComposer;
             _composers[920] = CustomizeAvatarWithFurniMessageComposer;
             _composers[935] = GuideSessionCreateMessageComposer;

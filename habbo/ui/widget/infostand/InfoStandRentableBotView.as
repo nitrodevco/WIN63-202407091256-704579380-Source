@@ -17,7 +17,7 @@ package com.sulake.habbo.ui.widget.infostand
    import com.sulake.habbo.window.widgets.IBadgeImageWidget;
    import flash.display.BitmapData;
    import flash.geom.Rectangle;
-   import com.sulake.habbo.communication.messages.outgoing.room.engine.class_290;
+   import com.sulake.habbo.communication.messages.outgoing.room.engine.RemoveBotFromFlatMessageComposer;
    
    public class InfoStandRentableBotView
    {
@@ -295,7 +295,7 @@ package com.sulake.habbo.ui.widget.infostand
       {
          if(param1.target.name == "pick")
          {
-            var_1629.handler.container.connection.send(new class_290(var_536));
+            var_1629.handler.container.connection.send(new RemoveBotFromFlatMessageComposer(var_536));
          }
       }
       

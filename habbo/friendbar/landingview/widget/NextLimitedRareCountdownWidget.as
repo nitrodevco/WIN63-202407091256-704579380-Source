@@ -13,7 +13,7 @@ package com.sulake.habbo.friendbar.landingview.widget
    import com.sulake.habbo.window.widgets.class_3570;
    import flash.events.TimerEvent;
    import flash.utils.Timer;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_421;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.GetLimitedOfferAppearingNextComposer;
    import com.sulake.habbo.communication.messages.incoming.catalog.LimitedOfferAppearingNextMessageEvent;
    
    public class NextLimitedRareCountdownWidget implements ILandingViewWidget, class_1812, ISettingsAwareWidget
@@ -77,7 +77,7 @@ package com.sulake.habbo.friendbar.landingview.widget
       {
          if(!_landingView.getBoolean("next.limited.rare.countdown.widget.disabled"))
          {
-            _landingView.communicationManager.connection.send(new class_421());
+            _landingView.communicationManager.connection.send(new GetLimitedOfferAppearingNextComposer());
          }
       }
       

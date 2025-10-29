@@ -8,7 +8,7 @@ package com.sulake.habbo.ui.widget.furniture.mysterytrophy
    import com.sulake.core.window.events.WindowMouseEvent;
    import com.sulake.habbo.ui.widget.furniture.contextmenu.FurnitureContextMenuWidget;
    import com.sulake.habbo.window.IHabboWindowManager;
-   import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_555;
+   import com.sulake.habbo.communication.messages.outgoing.room.furniture.OpenMysteryTrophyMessageComposer;
    
    public class MysteryTrophyOpenDialogView implements IDisposable
    {
@@ -104,7 +104,7 @@ package com.sulake.habbo.ui.widget.furniture.mysterytrophy
                break;
             case "ok":
                _loc2_ = getTrophyInscription();
-               connection.send(new class_555(var_3307,_loc2_));
+               connection.send(new OpenMysteryTrophyMessageComposer(var_3307,_loc2_));
                close();
          }
       }

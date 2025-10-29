@@ -22,7 +22,7 @@ package com.sulake.habbo.catalog.collectibles.widget
    import com.sulake.habbo.communication.messages.incoming.collectibles.NftCollectionsMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.collectibles.NftRewardItemClaimResultMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.collectibles.NftBonusItemClaimResultMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.collectibles.class_969;
+   import com.sulake.habbo.communication.messages.outgoing.collectibles.GetNftCollectionsMessageComposer;
    
    public class CollectionsWidget implements IUpdateReceiver
    {
@@ -281,7 +281,7 @@ package com.sulake.habbo.catalog.collectibles.widget
       {
          clearNavigationList();
          var_3841 = true;
-         var_1754.send(new class_969(param1 == null ? "" : param1));
+         var_1754.send(new GetNftCollectionsMessageComposer(param1 == null ? "" : param1));
       }
       
       public function get navigationItemTemplate() : IWindow

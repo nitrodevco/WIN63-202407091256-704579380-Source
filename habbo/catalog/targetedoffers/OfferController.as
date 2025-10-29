@@ -9,10 +9,10 @@ package com.sulake.habbo.catalog.targetedoffers
    import com.sulake.habbo.catalog.targetedoffers.util.MallOfferExternalInterfaceHelper;
    import com.sulake.habbo.session.product.class_1812;
    import com.sulake.habbo.communication.messages.parser.catalog.class_1402;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_496;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.ShopTargetedOfferViewedComposer;
    import com.sulake.habbo.communication.messages.outgoing.catalog.SetTargetedOfferStateComposer;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_902;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_909;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.GetNextTargetedOfferComposer;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseTargetedOfferComposer;
    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.catalog.TargetedOfferEvent;
    import com.sulake.habbo.communication.messages.incoming.catalog.TargetedOfferNotFoundEvent;
@@ -67,7 +67,7 @@ package com.sulake.habbo.catalog.targetedoffers
       
       public function productDataReady() : void
       {
-         _catalog.connection.send(new class_902());
+         _catalog.connection.send(new GetNextTargetedOfferComposer());
       }
       
       private function onTargetedOffer(param1:TargetedOfferEvent) : void
@@ -117,7 +117,7 @@ package com.sulake.habbo.catalog.targetedoffers
          }
          destroyView();
          var_3134 = new MallOfferDialogView(this,param1);
-         _catalog.connection.send(new class_496(param1.targetedOfferId,6));
+         _catalog.connection.send(new ShopTargetedOfferViewedComposer(param1.targetedOfferId,6));
       }
       
       public function minimizeMallOffer(param1:HabboMallOffer, param2:Boolean = false) : void
@@ -128,14 +128,14 @@ package com.sulake.habbo.catalog.targetedoffers
       
       public function onHabboMallOfferOpened(param1:HabboMallOffer) : void
       {
-         _catalog.connection.send(new class_496(param1.targetedOfferId,1));
+         _catalog.connection.send(new ShopTargetedOfferViewedComposer(param1.targetedOfferId,1));
          _catalog.openCreditsHabblet();
          minimizeMallOffer(param1);
       }
       
       public function onHabboMallOfferClosed(param1:HabboMallOffer) : void
       {
-         _catalog.connection.send(new class_496(param1.targetedOfferId,4));
+         _catalog.connection.send(new ShopTargetedOfferViewedComposer(param1.targetedOfferId,4));
          minimizeMallOffer(param1);
       }
       
@@ -172,7 +172,7 @@ package com.sulake.habbo.catalog.targetedoffers
       
       public function purchaseTargetedOffer(param1:TargetedOffer, param2:int) : void
       {
-         _catalog.connection.send(new class_909(param1.id,param2));
+         _catalog.connection.send(new PurchaseTargetedOfferComposer(param1.id,param2));
          param1.purchased(param2);
          if(param1.purchaseLimit > 0)
          {

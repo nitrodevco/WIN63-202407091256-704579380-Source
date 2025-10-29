@@ -15,7 +15,7 @@ package com.sulake.habbo.window.widgets
    import flash.geom.Point;
    import com.sulake.habbo.communication.messages.incoming.users.GroupDetailsChangedMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.users.HabboGroupBadgesMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_201;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetHabboGroupDetailsMessageComposer;
    
    public class BadgeImageWidget implements IBadgeImageWidget
    {
@@ -298,7 +298,7 @@ package com.sulake.habbo.window.widgets
       {
          if(_groupId > 0)
          {
-            _windowManager.communication.connection.send(new class_201(_groupId,true));
+            _windowManager.communication.connection.send(new GetHabboGroupDetailsMessageComposer(_groupId,true));
          }
       }
       

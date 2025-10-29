@@ -11,9 +11,9 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
    import com.sulake.habbo.friendbar.landingview.interfaces.elements.class_3863;
    import com.sulake.habbo.friendbar.landingview.widget.GenericWidget;
    import com.sulake.habbo.communication.messages.parser.quest.class_1363;
-   import com.sulake.habbo.communication.messages.outgoing.quest.class_1052;
-   import com.sulake.habbo.communication.messages.outgoing.quest.class_429;
-   import com.sulake.habbo.communication.messages.outgoing.quest.class_823;
+   import com.sulake.habbo.communication.messages.outgoing.quest.GetDailyQuestMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.quest.ActivateQuestMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.quest.CancelQuestMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.quest.class_1715;
    import com.sulake.habbo.communication.messages.incoming.quest.QuestDailyMessageEvent;
    
@@ -113,7 +113,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
       public function refresh() : void
       {
          _index = 0;
-         _landingView.send(new class_1052(true,0));
+         _landingView.send(new GetDailyQuestMessageComposer(true,0));
       }
       
       public function get disposed() : Boolean
@@ -211,7 +211,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
       {
          if(param1.type == "WME_CLICK")
          {
-            _landingView.send(new class_429(var_47.id));
+            _landingView.send(new ActivateQuestMessageComposer(var_47.id));
          }
       }
       
@@ -228,13 +228,13 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
       {
          if(param1.type == "WME_CLICK")
          {
-            _landingView.send(new class_823());
+            _landingView.send(new CancelQuestMessageComposer());
          }
       }
       
       private function sendGetDailyQuest(param1:Boolean) : void
       {
-         _landingView.send(new class_1052(param1,_index));
+         _landingView.send(new GetDailyQuestMessageComposer(param1,_index));
       }
    }
 }

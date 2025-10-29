@@ -17,7 +17,7 @@ package com.sulake.habbo.communication.demo {
     import com.sulake.habbo.communication.messages.outgoing.handshake.ClientHelloMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.handshake.UniqueIDMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.handshake.class_3383
-    import com.sulake.habbo.communication.messages.outgoing.handshake.class_941
+    import com.sulake.habbo.communication.messages.outgoing.handshake.SSOTicketMessageComposer
     import com.sulake.habbo.configuration.enum.HabboComponentFlags
     import com.sulake.habbo.localization.IHabboLocalizationManager
     import com.sulake.habbo.utils.CommunicationUtils
@@ -178,14 +178,14 @@ package com.sulake.habbo.communication.demo {
         }
 
         public function sendConnectionParameters(param1: IConnection): void {
-            var _loc2_: class_941 = null;
+            var _loc2_: SSOTicketMessageComposer = null;
             param1.send(new ClientHelloMessageComposer());
             var _loc3_: String = CommunicationUtils.readSOLString("machineid");
             var _loc4_: String = CommunicationUtils.generateFingerprint();
             var _loc5_: Array = Capabilities.version.split(" ");
             param1.send(new UniqueIDMessageComposer(_loc3_, _loc4_, _loc5_.join("/")));
             if (var_1998 && var_1998.length > 0) {
-                _loc2_ = new class_941(var_1998);
+                _loc2_ = new SSOTicketMessageComposer(var_1998);
                 param1.send(_loc2_);
             }
         }

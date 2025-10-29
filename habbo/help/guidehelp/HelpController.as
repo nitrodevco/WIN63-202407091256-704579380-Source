@@ -14,7 +14,7 @@ package com.sulake.habbo.help.guidehelp
    import com.sulake.habbo.window.widgets.class_3614;
    import flash.utils.getTimer;
    import com.sulake.habbo.communication.messages.parser.help.data.class_1698;
-   import com.sulake.habbo.communication.messages.outgoing.room.session.class_325;
+   import com.sulake.habbo.communication.messages.outgoing.room.session.QuitMessageComposer;
    
    public class HelpController implements IDisposable
    {
@@ -130,7 +130,7 @@ package com.sulake.habbo.help.guidehelp
                _loc3_ = IWindowContainer(var_2198.rootWindow).findChildByName("leave_room") as class_3398;
                if(_loc3_ != null && Boolean(_loc3_.isSelected))
                {
-                  _habboHelp.sendMessage(new class_325());
+                  _habboHelp.sendMessage(new QuitMessageComposer());
                }
                closeWindow();
                _habboHelp.startEmergencyRequest();

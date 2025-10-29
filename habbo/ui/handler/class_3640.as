@@ -9,7 +9,7 @@ package com.sulake.habbo.ui.handler
    import com.sulake.habbo.ui.widget.messages.RoomWidgetMessage;
    import com.sulake.room.object.IRoomObject;
    import flash.events.Event;
-   import com.sulake.habbo.communication.messages.outgoing.room.engine.class_661;
+   import com.sulake.habbo.communication.messages.outgoing.room.engine.SetObjectDataMessageComposer;
    
    public class class_3640 implements IRoomWidgetHandler
    {
@@ -107,7 +107,7 @@ package com.sulake.habbo.ui.handler
       {
          var _loc3_:Map = new Map();
          _loc3_.add("videoId",param2.toString());
-         _container.connection.send(new class_661(param1.getId(),_loc3_));
+         _container.connection.send(new SetObjectDataMessageComposer(param1.getId(),_loc3_));
       }
    }
 }

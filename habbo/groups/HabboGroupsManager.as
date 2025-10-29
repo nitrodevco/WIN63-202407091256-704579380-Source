@@ -76,10 +76,10 @@ package com.sulake.habbo.groups
    import com.sulake.habbo.communication.messages.incoming.users.GroupMembershipRequestedMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.users.ExtendedProfileMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.handshake.UserObjectEvent;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_142;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_201;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_322;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_911;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetGuildEditorDataMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetHabboGroupDetailsMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.KickMemberMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.users.GetMemberGuildItemCountMessageComposer;
    
    public class HabboGroupsManager extends Component implements class_1880, ILinkEventTracker
@@ -294,7 +294,7 @@ package com.sulake.habbo.groups
       
       public function openGroupInfo(param1:int) : void
       {
-         send(new class_201(param1,true));
+         send(new GetHabboGroupDetailsMessageComposer(param1,true));
       }
       
       public function send(param1:IMessageComposer) : void
@@ -372,7 +372,7 @@ package com.sulake.habbo.groups
          var _loc2_:int = int(GroupDetailsChangedMessageEvent(param1).groupId);
          if(var_2315.isDisplayingGroup(_loc2_) || var_2050.isDisplayingGroup(_loc2_))
          {
-            send(new class_201(_loc2_,false));
+            send(new GetHabboGroupDetailsMessageComposer(_loc2_,false));
          }
       }
       
@@ -517,7 +517,7 @@ package com.sulake.habbo.groups
          param1.dispose();
          if(param2.type == "WE_OK")
          {
-            send(new class_911(var_2104.kickGuildId,var_2104.kickTargetId,var_2104.targetBlocked));
+            send(new KickMemberMessageComposer(var_2104.kickGuildId,var_2104.kickTargetId,var_2104.targetBlocked));
          }
          var_2104 = null;
       }
@@ -553,7 +553,7 @@ package com.sulake.habbo.groups
       {
          if(var_4245 == null)
          {
-            send(new class_142());
+            send(new GetGuildEditorDataMessageComposer());
          }
       }
       
@@ -657,7 +657,7 @@ package com.sulake.habbo.groups
       
       public function showExtendedProfile(param1:int) : void
       {
-         send(new class_322(param1));
+         send(new GetExtendedProfileMessageComposer(param1));
       }
       
       public function openCatalog(param1:String) : void

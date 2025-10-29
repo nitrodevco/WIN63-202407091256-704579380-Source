@@ -5,7 +5,7 @@ package com.sulake.habbo.catalog.guilds
     import com.sulake.habbo.catalog.HabboCatalog;
    import com.sulake.habbo.catalog.viewer.widgets.GuildSelectorCatalogWidget;
    import com.sulake.habbo.communication.messages.incoming.users.GuildMembershipsMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_779;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetGuildMembershipsMessageComposer;
    
    public class GuildMembershipsController
    {
@@ -35,7 +35,7 @@ package com.sulake.habbo.catalog.guilds
       public function registerGuildSelectorWidget(param1:GuildSelectorCatalogWidget) : void
       {
          var_2259 = param1;
-         _catalog.connection.send(new class_779());
+         _catalog.connection.send(new GetGuildMembershipsMessageComposer());
       }
       
       public function unregisterGuildSelectorWidget(param1:GuildSelectorCatalogWidget) : void
@@ -64,7 +64,7 @@ package com.sulake.habbo.catalog.guilds
       {
          if(var_2259 != null)
          {
-            _catalog.connection.send(new class_779());
+            _catalog.connection.send(new GetGuildMembershipsMessageComposer());
          }
       }
    }

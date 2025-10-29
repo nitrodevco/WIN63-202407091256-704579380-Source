@@ -8,7 +8,7 @@ package com.sulake.habbo.session {
     import com.sulake.habbo.avatar.IAvatarRenderManager
     import com.sulake.habbo.communication.IHabboCommunicationManager
     import com.sulake.habbo.communication.messages.incoming.room.engine.RoomVisualizationSettingsEvent
-    import com.sulake.habbo.communication.messages.outgoing.roomdirectory.class_589
+    import com.sulake.habbo.communication.messages.outgoing.roomdirectory.RoomNetworkOpenConnectionMessageComposer
     import com.sulake.habbo.freeflowchat.class_1809
     import com.sulake.habbo.room.IRoomEngine
     import com.sulake.habbo.room.events.RoomEngineEvent
@@ -241,7 +241,7 @@ package com.sulake.habbo.session {
             _loc3_.roomId = 1;
             _loc3_.roomPassword = "";
             _loc3_.habboTracking = _habboTracking;
-            _loc3_.openConnectionComposer = new class_589(param1, param2);
+            _loc3_.openConnectionComposer = new RoomNetworkOpenConnectionMessageComposer(param1, param2);
             return createSession(_loc3_);
         }
 

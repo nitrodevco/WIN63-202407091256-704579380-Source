@@ -7,7 +7,7 @@ package com.sulake.habbo.ui.widget.camera
    import com.sulake.core.utils.ErrorReportStorage;
    import com.sulake.core.window.IWindow;
    import com.sulake.habbo.catalog.IHabboCatalog;
-   import com.sulake.habbo.communication.messages.outgoing.camera.class_728;
+   import com.sulake.habbo.communication.messages.outgoing.camera.RenderRoomMessageComposer;
    import com.sulake.habbo.localization.IHabboLocalizationManager;
    import com.sulake.habbo.quest.class_2197;
    import com.sulake.habbo.room.IRoomEngine;
@@ -235,7 +235,7 @@ package com.sulake.habbo.ui.widget.camera
       
       public function sendPhotoData() : Boolean
       {
-         var _loc1_:class_728 = var_2251.getRenderRoomMessage();
+         var _loc1_:RenderRoomMessageComposer = var_2251.getRenderRoomMessage();
          if(var_1737)
          {
             _loc1_.addEffectData(var_1737.getEffectDataJson());

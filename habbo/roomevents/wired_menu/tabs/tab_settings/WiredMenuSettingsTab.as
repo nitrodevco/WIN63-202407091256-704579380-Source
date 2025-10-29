@@ -8,9 +8,9 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_settings
    import com.sulake.habbo.roomevents.wired_menu.tabs.WiredMenuDefaultTab;
    import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.wiredmenu.class_1257;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredRoomSettingsEvent;
-   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_412;
+   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetRoomSettingsMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredSetPreferencesMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_736;
+   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredSetRoomSettingsMessageComposer;
    
    public class WiredMenuSettingsTab extends WiredMenuDefaultTab
    {
@@ -73,7 +73,7 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_settings
       
       private function requestData() : void
       {
-         controller.send(new class_412());
+         controller.send(new WiredGetRoomSettingsMessageComposer());
       }
       
       override protected function initializeInterface() : void
@@ -112,7 +112,7 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_settings
             var_492 &= ~(1 << _loc2_);
          }
          updatePermissionsUI();
-         controller.send(new class_736(var_649,var_492));
+         controller.send(new WiredSetRoomSettingsMessageComposer(var_649,var_492));
       }
       
       private function updatePermissionsUI() : void

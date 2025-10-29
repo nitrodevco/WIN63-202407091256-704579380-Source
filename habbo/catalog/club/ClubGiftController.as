@@ -10,8 +10,8 @@ package com.sulake.habbo.catalog.club
    import com.sulake.habbo.room.IRoomEngine;
    import com.sulake.habbo.session.product.class_3423;
    import com.sulake.habbo.window.IHabboWindowManager;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_600;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_752;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.SelectClubGiftComposer;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.GetClubGiftMessageComposer;
    
    public class ClubGiftController
    {
@@ -50,7 +50,7 @@ package com.sulake.habbo.catalog.club
       public function set widget(param1:ClubGiftWidget) : void
       {
          var_1629 = param1;
-         _catalog.connection.send(new class_752());
+         _catalog.connection.send(new GetClubGiftMessageComposer());
       }
       
       public function get daysUntilNextGift() : int
@@ -87,7 +87,7 @@ package com.sulake.habbo.catalog.club
          {
             return;
          }
-         _catalog.connection.send(new class_600(param1));
+         _catalog.connection.send(new SelectClubGiftComposer(param1));
          var_1388--;
          var_1629.update();
          closeConfirmation();

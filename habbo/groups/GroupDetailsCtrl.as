@@ -12,9 +12,9 @@ package com.sulake.habbo.groups
    import com.sulake.habbo.window.widgets.IBadgeImageWidget;
    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.users.class_1199;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_1037;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_131;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_320;
+   import com.sulake.habbo.communication.messages.outgoing.users.DeactivateGuildMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetGuildEditInfoMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.JoinHabboGroupMessageComposer;
    
    public class GroupDetailsCtrl implements IDisposable
    {
@@ -174,7 +174,7 @@ package com.sulake.habbo.groups
          }
          var_480.trackGoogle("groupDetails","joinGroup");
          _window.findChildByName("join_button").disable();
-         var_480.send(new class_320(_selectedGroup.groupId));
+         var_480.send(new JoinHabboGroupMessageComposer(_selectedGroup.groupId));
          var_480.send(new EventLogMessageComposer("HabboGroups","" + _selectedGroup.groupId,"join"));
       }
       
@@ -219,7 +219,7 @@ package com.sulake.habbo.groups
             return;
          }
          var_480.trackGoogle("groupDetails","groupManage");
-         var_480.send(new class_131(_selectedGroup.groupId));
+         var_480.send(new GetGuildEditInfoMessageComposer(_selectedGroup.groupId));
       }
       
       private function onDeleteGuild(param1:WindowEvent, param2:IWindow) : void
@@ -237,7 +237,7 @@ package com.sulake.habbo.groups
          if(param2.type == "WE_OK")
          {
             var_480.trackGoogle("groupDetails","groupDelete");
-            var_480.send(new class_1037(_selectedGroup.groupId));
+            var_480.send(new DeactivateGuildMessageComposer(_selectedGroup.groupId));
          }
       }
       

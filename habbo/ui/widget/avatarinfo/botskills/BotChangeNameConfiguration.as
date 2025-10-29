@@ -5,7 +5,7 @@ package com.sulake.habbo.ui.widget.avatarinfo.botskills
    import com.sulake.core.window.events.WindowEvent;
    import com.sulake.habbo.ui.widget.avatarinfo.AvatarInfoWidget;
    import flash.geom.Point;
-   import com.sulake.habbo.communication.messages.outgoing.room.bots.class_904;
+   import com.sulake.habbo.communication.messages.outgoing.room.bots.CommandBotComposer;
    
    public class BotChangeNameConfiguration extends BotSkillConfigurationViewBase
    {
@@ -65,7 +65,7 @@ package com.sulake.habbo.ui.widget.avatarinfo.botskills
             switch(param2.name)
             {
                case "save_button":
-                  var_1629.handler.container.connection.send(new class_904(var_536,5,_newName));
+                  var_1629.handler.container.connection.send(new CommandBotComposer(var_536,5,_newName));
                   close();
                   break;
                case "cancel_button":

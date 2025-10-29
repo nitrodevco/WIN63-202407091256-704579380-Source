@@ -19,7 +19,7 @@ package com.sulake.habbo.room {
    import com.sulake.habbo.catalog.IHabboCatalog
    import com.sulake.habbo.communication.IHabboCommunicationManager
    import com.sulake.habbo.communication.messages.outgoing.camera.RenderRoomThumbnailMessageComposer
-   import com.sulake.habbo.communication.messages.outgoing.camera.class_728
+   import com.sulake.habbo.communication.messages.outgoing.camera.RenderRoomMessageComposer
    import com.sulake.habbo.game.class_1805
    import com.sulake.habbo.room.events.RoomEngineAreaHideStateWidgetEvent
    import com.sulake.habbo.room.events.RoomEngineDragWithMouseEvent
@@ -2545,7 +2545,7 @@ package com.sulake.habbo.room {
             if (param3) {
                 return new RenderRoomThumbnailMessageComposer(_loc7_, _loc10_, _loc9_, var_1669, _sessionDataManager.topSecurityLevel);
             }
-            return new class_728(_loc7_, _loc10_, _loc9_, var_1669, _sessionDataManager.topSecurityLevel);
+            return new RenderRoomMessageComposer(_loc7_, _loc10_, _loc9_, var_1669, _sessionDataManager.topSecurityLevel);
         }
 
         public function isWhereYouClickWhereYouGo(): Boolean {

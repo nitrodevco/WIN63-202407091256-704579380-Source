@@ -10,8 +10,8 @@ package com.sulake.habbo.ui.handler
    import flash.events.Event;
    import com.sulake.habbo.communication.messages.parser.room.furniture.class_1396;
    import com.sulake.habbo.communication.messages.parser.room.furniture.class_1449;
-   import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_213;
-   import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_273;
+   import com.sulake.habbo.communication.messages.outgoing.room.furniture.RentableSpaceCancelRentMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.furniture.RentableSpaceRentMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.furniture.RentableSpaceStatusMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.room.furniture.RentableSpaceRentOkMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.room.furniture.RentableSpaceRentFailedMessageEvent;
@@ -154,12 +154,12 @@ package com.sulake.habbo.ui.handler
       
       public function cancelRent(param1:int) : void
       {
-         _container.connection.send(new class_213(param1));
+         _container.connection.send(new RentableSpaceCancelRentMessageComposer(param1));
       }
       
       public function rentSpace(param1:int) : void
       {
-         _container.connection.send(new class_273(param1));
+         _container.connection.send(new RentableSpaceRentMessageComposer(param1));
       }
       
       public function getUsersClubLevel() : int

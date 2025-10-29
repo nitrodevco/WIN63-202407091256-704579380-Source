@@ -13,7 +13,7 @@ package com.sulake.habbo.catalog.viewer.widgets
    import com.sulake.habbo.sound.ISongInfo;
    import com.sulake.habbo.sound.class_2240;
    import com.sulake.habbo.sound.events.SongInfoReceivedEvent;
-   import com.sulake.habbo.communication.messages.outgoing.sound.class_188;
+   import com.sulake.habbo.communication.messages.outgoing.sound.GetOfficialSongIdMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.sound.OfficialSongIdMessageEvent;
    
    public class SongDiskProductViewCatalogWidget extends ProductViewCatalogWidget
@@ -152,7 +152,7 @@ package com.sulake.habbo.catalog.viewer.widgets
                _officialSongId = _loc2_.extraParam;
                if(var_26)
                {
-                  var_26.send(new class_188(_officialSongId));
+                  var_26.send(new GetOfficialSongIdMessageComposer(_officialSongId));
                }
             }
             if(_playPreviewContainer != null)

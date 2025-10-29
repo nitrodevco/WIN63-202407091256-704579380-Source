@@ -54,10 +54,10 @@ package com.sulake.habbo.navigator {
     import com.sulake.habbo.communication.messages.incoming.roomsettings.MuteAllInRoomEvent
     import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsSaveErrorEvent
     import com.sulake.habbo.communication.messages.incoming.users.HabboGroupDetailsMessageEvent
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_553
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_831
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_998
-    import com.sulake.habbo.communication.messages.outgoing.room.session.class_325
+    import com.sulake.habbo.communication.messages.outgoing.navigator.GetGuestRoomMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.GetUserFlatCatsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.navigator.GetUserEventCatsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.room.session.QuitMessageComposer
     import com.sulake.habbo.communication.messages.parser.handshake.class_1267
     import com.sulake.habbo.communication.messages.parser.navigator.class_1129
     import com.sulake.habbo.communication.messages.parser.navigator.class_1157
@@ -209,8 +209,8 @@ package com.sulake.habbo.navigator {
         private function onUserObject(param1: IMessageEvent): void {
             var _loc2_: class_1267 = UserObjectEvent(param1).getParser();
             _navigator.data.avatarId = _loc2_.id;
-            LegacyNavigator(_navigator.legacyNavigator).send(new class_831());
-            LegacyNavigator(_navigator.legacyNavigator).send(new class_998());
+            LegacyNavigator(_navigator.legacyNavigator).send(new GetUserFlatCatsMessageComposer());
+            LegacyNavigator(_navigator.legacyNavigator).send(new GetUserEventCatsMessageComposer());
         }
 
         private function onUserRights(param1: IMessageEvent): void {
@@ -357,7 +357,7 @@ package com.sulake.habbo.navigator {
 
         private function onRoomInfoUpdated(param1: IMessageEvent): void {
             var _loc2_: class_1468 = (param1 as RoomInfoUpdatedEvent).getParser();
-            LegacyNavigator(_navigator.legacyNavigator).send(new class_553(_loc2_.flatId, false, false));
+            LegacyNavigator(_navigator.legacyNavigator).send(new GetGuestRoomMessageComposer(_loc2_.flatId, false, false));
         }
 
         private function onFavourites(param1: IMessageEvent): void {
@@ -450,7 +450,7 @@ package com.sulake.habbo.navigator {
         }
 
         private function forwardToRoom(param1: int): void {
-            LegacyNavigator(_navigator.legacyNavigator).send(new class_553(param1, false, true));
+            LegacyNavigator(_navigator.legacyNavigator).send(new GetGuestRoomMessageComposer(param1, false, true));
             LegacyNavigator(_navigator.legacyNavigator).trackNavigationDataPoint("Room Forward", "go.roomforward", "", param1);
         }
 
@@ -507,7 +507,7 @@ package com.sulake.habbo.navigator {
                     _loc2_ = new SimpleAlertView(LegacyNavigator(_navigator.legacyNavigator), "${room.queue.error.title}", "${room.queue.error.title}");
                     _loc2_.show();
             }
-            LegacyNavigator(_navigator.legacyNavigator).send(new class_325());
+            LegacyNavigator(_navigator.legacyNavigator).send(new QuitMessageComposer());
             var _loc4_: HabboToolbarEvent;
             (_loc4_ = new HabboToolbarEvent("HTE_TOOLBAR_CLICK")).iconId = "HTIE_ICON_RECEPTION";
             LegacyNavigator(_navigator.legacyNavigator).toolbar.events.dispatchEvent(_loc4_);

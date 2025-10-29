@@ -28,7 +28,7 @@ package com.sulake.habbo.ui.widget.memenu
    import flash.utils.Dictionary;
    import com.sulake.habbo.communication.messages.parser.perk.class_1448;
    import com.sulake.habbo.communication.messages.incoming.perk.PerkAllowancesMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.talent.class_1018;
+   import com.sulake.habbo.communication.messages.outgoing.talent.GetTalentTrackMessageComposer;
    
    public class MeMenuMainView implements IMeMenuView
    {
@@ -373,7 +373,7 @@ package com.sulake.habbo.ui.widget.memenu
             case "talents":
                _loc5_ = var_1629.handler.container.sessionDataManager.currentTalentTrack;
                var_1629.handler.container.habboTracking.trackTalentTrackOpen(_loc5_,"memenu");
-               var_1629.handler.container.connection.send(new class_1018(_loc5_));
+               var_1629.handler.container.connection.send(new GetTalentTrackMessageComposer(_loc5_));
                break;
             default:
                class_14.log("Me Menu Main View: unknown button: " + _loc3_);

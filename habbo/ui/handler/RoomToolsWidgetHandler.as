@@ -14,7 +14,7 @@ package com.sulake.habbo.ui.handler
    import com.sulake.habbo.communication.messages.incoming.navigator.class_1675;
    import com.sulake.habbo.communication.messages.incoming.navigator.GetGuestRoomResultEvent;
    import com.sulake.habbo.communication.messages.parser.navigator.RoomSettingsDataEvent;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_130;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.RateFlatMessageComposer;
    
    public class RoomToolsWidgetHandler implements IRoomWidgetHandler
    {
@@ -165,7 +165,7 @@ package com.sulake.habbo.ui.handler
       
       public function rateRoom() : void
       {
-         _container.connection.send(new class_130(1));
+         _container.connection.send(new RateFlatMessageComposer(1));
       }
       
       public function get canRate() : Boolean

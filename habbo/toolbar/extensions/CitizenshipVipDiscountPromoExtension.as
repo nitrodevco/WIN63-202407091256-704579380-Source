@@ -4,7 +4,7 @@ package com.sulake.habbo.toolbar.extensions {
    import com.sulake.core.window.components.class_3357
    import com.sulake.core.window.components.class_3437
    import com.sulake.core.window.events.WindowMouseEvent
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_930
+   import com.sulake.habbo.communication.messages.outgoing.catalog.GetHabboClubExtendOfferMessageComposer
    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer
    import com.sulake.habbo.inventory.events.HabboInventoryHabboClubEvent
    import com.sulake.habbo.toolbar.HabboToolbar
@@ -71,7 +71,7 @@ package com.sulake.habbo.toolbar.extensions {
         private function onButtonClicked(param1: WindowMouseEvent): void {
             if (_toolbar.inventory.clubLevel == 2) {
                 _toolbar.connection.send(new EventLogMessageComposer("DiscountPromo", "citizenshipdiscount", "client.club.extend.discount.clicked"));
-                _toolbar.connection.send(new class_930());
+                _toolbar.connection.send(new GetHabboClubExtendOfferMessageComposer());
             }
         }
 

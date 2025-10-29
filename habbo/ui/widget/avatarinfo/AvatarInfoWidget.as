@@ -52,9 +52,9 @@ package com.sulake.habbo.ui.widget.avatarinfo
    import flash.events.TimerEvent;
    import flash.geom.Point;
    import flash.utils.Timer;
-   import com.sulake.habbo.communication.messages.outgoing.inventory.pets.class_445;
-   import com.sulake.habbo.communication.messages.outgoing.inventory.pets.class_989;
-   import com.sulake.habbo.communication.messages.outgoing.room.pets.class_717;
+   import com.sulake.habbo.communication.messages.outgoing.inventory.pets.ConfirmPetBreedingComposer;
+   import com.sulake.habbo.communication.messages.outgoing.inventory.pets.CancelPetBreedingComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.pets.BreedPetsMessageComposer;
    
    public class AvatarInfoWidget extends RoomWidgetBase implements IUpdateReceiver, class_3386
    {
@@ -1650,7 +1650,7 @@ package com.sulake.habbo.ui.widget.avatarinfo
          var _loc4_:class_3490 = handler.container.roomSession.userDataManager.getUserDataByIndex(param2);
          if(_loc3_ && _loc4_)
          {
-            handler.container.connection.send(new class_717(1,_loc3_.webID,_loc4_.webID));
+            handler.container.connection.send(new BreedPetsMessageComposer(1,_loc3_.webID,_loc4_.webID));
          }
       }
       
@@ -1660,7 +1660,7 @@ package com.sulake.habbo.ui.widget.avatarinfo
          var _loc4_:class_3490 = handler.container.roomSession.userDataManager.getUserDataByIndex(param2);
          if(_loc3_ && _loc4_)
          {
-            handler.container.connection.send(new class_717(2,_loc3_.webID,_loc4_.webID));
+            handler.container.connection.send(new BreedPetsMessageComposer(2,_loc3_.webID,_loc4_.webID));
          }
       }
       
@@ -1670,7 +1670,7 @@ package com.sulake.habbo.ui.widget.avatarinfo
          var _loc4_:class_3490 = handler.container.roomSession.userDataManager.getUserDataByIndex(param2);
          if(_loc3_ && _loc4_)
          {
-            handler.container.connection.send(new class_717(0,_loc3_.webID,_loc4_.webID));
+            handler.container.connection.send(new BreedPetsMessageComposer(0,_loc3_.webID,_loc4_.webID));
          }
       }
       
@@ -1696,12 +1696,12 @@ package com.sulake.habbo.ui.widget.avatarinfo
       
       public function cancelPetBreeding(param1:int) : void
       {
-         handler.container.connection.send(new class_989(param1));
+         handler.container.connection.send(new CancelPetBreedingComposer(param1));
       }
       
       public function confirmPetBreeding(param1:int, param2:String, param3:int, param4:int) : void
       {
-         handler.container.connection.send(new class_445(param1,param2,param3,param4));
+         handler.container.connection.send(new ConfirmPetBreedingComposer(param1,param2,param3,param4));
       }
       
       public function showNestBreedingSuccess(param1:int, param2:int) : void

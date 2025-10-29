@@ -11,7 +11,7 @@ package com.sulake.habbo.ui.handler
    import com.sulake.habbo.communication.messages.incoming.friendfurni.FriendFurniOtherLockConfirmedMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.friendfurni.FriendFurniStartConfirmationMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.friendfurni.FriendFurniCancelLockMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.friendfurni.class_395;
+   import com.sulake.habbo.communication.messages.outgoing.friendfurni.FriendFurniConfirmLockMessageComposer;
    
    public class class_3642 implements IRoomWidgetHandler
    {
@@ -84,7 +84,7 @@ package com.sulake.habbo.ui.handler
       
       public function sendLockConfirm(param1:int, param2:Boolean) : void
       {
-         var_26.send(new class_395(param1,param2));
+         var_26.send(new FriendFurniConfirmLockMessageComposer(param1,param2));
       }
       
       private function onStartConfirmation(param1:FriendFurniStartConfirmationMessageEvent) : void

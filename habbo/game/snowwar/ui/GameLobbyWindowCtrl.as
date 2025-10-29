@@ -21,7 +21,7 @@ package com.sulake.habbo.game.snowwar.ui
    import flash.events.TimerEvent;
    import flash.geom.Point;
    import flash.utils.Timer;
-   import com.sulake.habbo.communication.messages.outgoing.game.directory.class_647;
+   import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2LeaveGameMessageComposer;
    
    public class GameLobbyWindowCtrl implements IDisposable, IAvatarImageListener
    {
@@ -112,7 +112,7 @@ package com.sulake.habbo.game.snowwar.ui
       {
          if(param1)
          {
-            var_1655.communication.connection.send(new class_647());
+            var_1655.communication.connection.send(new Game2LeaveGameMessageComposer());
          }
          disposeCountdownTimer();
          var_2629 = -1;

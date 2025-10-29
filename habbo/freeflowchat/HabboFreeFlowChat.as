@@ -54,7 +54,7 @@ package com.sulake.habbo.freeflowchat
    import flash.geom.Rectangle;
    import com.sulake.habbo.communication.messages.incoming.navigator.GetGuestRoomResultEvent;
    import com.sulake.habbo.communication.messages.incoming.room.engine.RoomEntryInfoMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.preferences.class_152;
+   import com.sulake.habbo.communication.messages.outgoing.preferences.SetChatStylePreferenceComposer;
    import com.sulake.habbo.communication.messages.outgoing.preferences.SetChatPreferencesMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.room.chat.RoomChatSettingsMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.preferences.AccountPreferencesEvent;
@@ -533,7 +533,7 @@ package com.sulake.habbo.freeflowchat
       public function set preferedChatStyle(param1:int) : void
       {
          var_650 = param1;
-         _communication.connection.send(new class_152(var_650));
+         _communication.connection.send(new SetChatStylePreferenceComposer(var_650));
       }
       
       public function clear() : void

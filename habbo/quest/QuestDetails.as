@@ -11,9 +11,9 @@ package com.sulake.habbo.quest
    import com.sulake.core.window.events.WindowEvent;
    import com.sulake.habbo.utils.HabboWebTools;
    import flash.geom.Point;
-   import com.sulake.habbo.communication.messages.outgoing.quest.class_429;
-   import com.sulake.habbo.communication.messages.outgoing.quest.class_471;
-   import com.sulake.habbo.communication.messages.outgoing.quest.class_978;
+   import com.sulake.habbo.communication.messages.outgoing.quest.ActivateQuestMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.quest.AcceptQuestMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.quest.RejectQuestMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.quest.class_1715;
    
    public class QuestDetails implements IDisposable
@@ -270,11 +270,11 @@ package com.sulake.habbo.quest
          {
             if(_questEngine.currentlyInRoom)
             {
-               _questEngine.send(new class_471(var_523.id));
+               _questEngine.send(new AcceptQuestMessageComposer(var_523.id));
             }
             else
             {
-               _questEngine.send(new class_429(var_523.id));
+               _questEngine.send(new ActivateQuestMessageComposer(var_523.id));
             }
             _window.visible = false;
             _questEngine.questController.seasonalCalendarWindow.close();
@@ -293,7 +293,7 @@ package com.sulake.habbo.quest
             {
                return;
             }
-            _questEngine.send(new class_978(var_523.id));
+            _questEngine.send(new RejectQuestMessageComposer(var_523.id));
          }
       }
    }

@@ -10,9 +10,9 @@ package com.sulake.habbo.groups
    import com.sulake.habbo.communication.messages.incoming.navigator.class_1675;
    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.users.class_1199;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_131;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_201;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_320;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetGuildEditInfoMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetHabboGroupDetailsMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.JoinHabboGroupMessageComposer;
    
    public class GroupRoomInfoCtrl implements IDisposable
    {
@@ -64,7 +64,7 @@ package com.sulake.habbo.groups
          if(param1.habboGroupId > 0)
          {
             var_2536 = param1.habboGroupId;
-            var_480.send(new class_201(param1.habboGroupId,false));
+            var_480.send(new GetHabboGroupDetailsMessageComposer(param1.habboGroupId,false));
          }
          else
          {
@@ -173,7 +173,7 @@ package com.sulake.habbo.groups
          if(param1.type == "WME_CLICK")
          {
             var_480.trackGoogle("groupRoomInfo","groupInfo");
-            var_480.send(new class_201(_group.groupId,true));
+            var_480.send(new GetHabboGroupDetailsMessageComposer(_group.groupId,true));
             var_480.toolbar.events.dispatchEvent(new HabboToolbarEvent("HTE_GROUP_ROOM_INFO_CLICK"));
          }
       }
@@ -183,7 +183,7 @@ package com.sulake.habbo.groups
          if(param1.type == "WME_CLICK")
          {
             var_480.trackGoogle("groupRoomInfo","manageGroup");
-            var_480.send(new class_131(_group.groupId));
+            var_480.send(new GetGuildEditInfoMessageComposer(_group.groupId));
             var_480.toolbar.events.dispatchEvent(new HabboToolbarEvent("HTE_GROUP_ROOM_INFO_CLICK"));
          }
       }
@@ -194,7 +194,7 @@ package com.sulake.habbo.groups
          {
             var_480.trackGoogle("groupRoomInfo","joinGroup");
             _window.findChildByName("join_button").disable();
-            var_480.send(new class_320(_group.groupId));
+            var_480.send(new JoinHabboGroupMessageComposer(_group.groupId));
             var_480.send(new EventLogMessageComposer("HabboGroups","" + _group.groupId,"join"));
             var_480.toolbar.events.dispatchEvent(new HabboToolbarEvent("HTE_GROUP_ROOM_INFO_CLICK"));
          }

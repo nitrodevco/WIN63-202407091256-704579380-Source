@@ -8,7 +8,7 @@ package com.sulake.habbo.ui.widget.camera
    import com.sulake.core.window.components.IStaticBitmapWrapperWindow;
    import com.sulake.core.window.components.IBitmapWrapperWindow;
    import com.sulake.core.window.events.WindowEvent;
-   import com.sulake.habbo.communication.messages.outgoing.camera.class_728;
+   import com.sulake.habbo.communication.messages.outgoing.camera.RenderRoomMessageComposer;
    import com.sulake.habbo.tracking.HabboTracking;
    import flash.display.BitmapData;
    import flash.display.Loader;
@@ -31,7 +31,7 @@ package com.sulake.habbo.ui.widget.camera
       
       private static var var_1856:Vector.<CameraSlotData> = new Vector.<CameraSlotData>(5);
       
-      private static var var_4193:Vector.<class_728> = new Vector.<class_728>(5);
+      private static var var_4193:Vector.<RenderRoomMessageComposer> = new Vector.<RenderRoomMessageComposer>(5);
        
       
       private var var_1629:CameraWidget;
@@ -193,7 +193,7 @@ package com.sulake.habbo.ui.widget.camera
       private function windowProcedure(param1:WindowEvent, param2:IWindow) : void
       {
          var _loc5_:IStaticBitmapWrapperWindow = null;
-         var _loc4_:class_728 = null;
+         var _loc4_:RenderRoomMessageComposer = null;
          var _loc3_:IWindow = null;
          var _loc6_:String = null;
          var _loc7_:CameraSlotData = null;
@@ -480,7 +480,7 @@ package com.sulake.habbo.ui.widget.camera
          }
       }
       
-      public function getRenderRoomMessage() : class_728
+      public function getRenderRoomMessage() : RenderRoomMessageComposer
       {
          return var_4193[var_1732];
       }

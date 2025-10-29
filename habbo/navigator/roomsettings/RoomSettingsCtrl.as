@@ -27,14 +27,14 @@ package com.sulake.habbo.navigator.roomsettings
    import flash.utils.Dictionary;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_1735;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_1742;
-   import com.sulake.habbo.communication.messages.outgoing.roomsettings.class_1007;
-   import com.sulake.habbo.communication.messages.outgoing.roomsettings.class_1094;
+   import com.sulake.habbo.communication.messages.outgoing.roomsettings.GetBannedUsersFromRoomMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.roomsettings.GetRoomSettingsMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.roomsettings.class_1455;
    import com.sulake.habbo.communication.messages.outgoing.roomsettings.SaveRoomSettingsMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.roomsettings.class_862;
-   import com.sulake.habbo.communication.messages.outgoing.roomsettings.class_876;
-   import com.sulake.habbo.communication.messages.outgoing.room.action.class_814;
-   import com.sulake.habbo.communication.messages.outgoing.room.action.class_999;
+   import com.sulake.habbo.communication.messages.outgoing.roomsettings.DeleteRoomMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.roomsettings.GetFlatControllersMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.action.RemoveAllRightsMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.action.UnbanUserFromRoomMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_1658;
    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_1733;
    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_1734;
@@ -235,7 +235,7 @@ package com.sulake.habbo.navigator.roomsettings
          close();
          this._flatId = param1;
          this._groupId = _navigator.data.enteredGuestRoom.habboGroupId;
-         _navigator.send(new class_1094(_flatId));
+         _navigator.send(new GetRoomSettingsMessageComposer(_flatId));
          _navigator.tracking.trackEventLogOncePerSession("Tutorial","interaction","viewed.room.settings");
          _navigator.events.dispatchEvent(new Event("HABBO_ROOM_SETTINGS_TRACKING_EVENT_DEFAULT"));
       }
@@ -245,7 +245,7 @@ package com.sulake.habbo.navigator.roomsettings
          close();
          this._flatId = param1;
          this._groupId = param2;
-         _navigator.send(new class_1094(_flatId));
+         _navigator.send(new GetRoomSettingsMessageComposer(_flatId));
          _navigator.tracking.trackEventLogOncePerSession("Tutorial","interaction","viewed.room.settings");
          _navigator.events.dispatchEvent(new Event("HABBO_ROOM_SETTINGS_TRACKING_EVENT_DEFAULT"));
       }
@@ -1120,7 +1120,7 @@ package com.sulake.habbo.navigator.roomsettings
       private function onConfirmRoomDelete() : void
       {
          var _loc1_:class_1742 = null;
-         _navigator.send(new class_862(_originalData.roomId));
+         _navigator.send(new DeleteRoomMessageComposer(_originalData.roomId));
          close();
          if(_navigator.data.guestRoomSearchResults != null)
          {
@@ -1172,7 +1172,7 @@ package com.sulake.habbo.navigator.roomsettings
          if(_originalData.controllersById == null)
          {
             _originalData.controllersById = new Dictionary();
-            _navigator.send(new class_876(_originalData.roomId));
+            _navigator.send(new GetFlatControllersMessageComposer(_originalData.roomId));
             _loc2_ = [];
          }
          else
@@ -1198,7 +1198,7 @@ package com.sulake.habbo.navigator.roomsettings
          }
          if(_originalData.bannedUsersById == null)
          {
-            _navigator.send(new class_1007(_originalData.roomId));
+            _navigator.send(new GetBannedUsersFromRoomMessageComposer(_originalData.roomId));
             _loc1_ = [];
          }
          else
@@ -1238,7 +1238,7 @@ package com.sulake.habbo.navigator.roomsettings
       
       private function onRemoveAllFlatCtrlsConfirm() : void
       {
-         _navigator.send(new class_814(this._flatId));
+         _navigator.send(new RemoveAllRightsMessageComposer(this._flatId));
       }
       
       private function onTab(param1:WindowEvent, param2:IWindow) : void
@@ -1269,7 +1269,7 @@ package com.sulake.habbo.navigator.roomsettings
          var _loc3_:IItemListWindow = _window.findChildByName("moderation_banned_users") as IItemListWindow;
          var _loc2_:IWindow = IWindowContainer(_loc3_.getListItemAt(_bannedUsersListCtrl.selectedRow)).findChildByName("user_info_region");
          var _loc4_:int = _loc2_.id;
-         _navigator.send(new class_999(_loc4_,_flatId));
+         _navigator.send(new UnbanUserFromRoomMessageComposer(_loc4_,_flatId));
       }
       
       private function getHelpPageWithTab(param1:int) : String

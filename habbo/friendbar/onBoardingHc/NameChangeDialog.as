@@ -24,8 +24,8 @@ package com.sulake.habbo.friendbar.onBoardingHc
    import com.sulake.habbo.communication.messages.parser.avatar.class_1164;
    import com.sulake.habbo.communication.messages.incoming.avatar.ChangeUserNameResultMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.avatar.CheckUserNameResultMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.avatar.class_242;
-   import com.sulake.habbo.communication.messages.outgoing.avatar.class_390;
+   import com.sulake.habbo.communication.messages.outgoing.avatar.CheckUserNameMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.avatar.ChangeUserNameMessageComposer;
    
    public class NameChangeDialog implements IDisposable
    {
@@ -306,7 +306,7 @@ package com.sulake.habbo.friendbar.onBoardingHc
          {
             _context.nameChangeCompleted();
          }
-         _context.communicationManager.connection.send(new class_390(param1));
+         _context.communicationManager.connection.send(new ChangeUserNameMessageComposer(param1));
          _context.nameChangeCompleted();
       }
       
@@ -356,7 +356,7 @@ package com.sulake.habbo.friendbar.onBoardingHc
          {
             return;
          }
-         _context.communicationManager.connection.send(new class_242(param1));
+         _context.communicationManager.connection.send(new CheckUserNameMessageComposer(param1));
          if(var_1806 != null)
          {
             var_1806.visible = true;

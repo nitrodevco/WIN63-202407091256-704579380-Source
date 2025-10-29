@@ -42,9 +42,9 @@ package com.sulake.habbo.quest
    import com.sulake.iid.IIDHabboWindowManager;
    import com.sulake.iid.IIDRoomEngine;
    import com.sulake.iid.IIDSessionDataManager;
-   import com.sulake.habbo.communication.messages.outgoing.quest.class_429;
-   import com.sulake.habbo.communication.messages.outgoing.quest.class_479;
-   import com.sulake.habbo.communication.messages.outgoing.quest.class_577;
+   import com.sulake.habbo.communication.messages.outgoing.quest.ActivateQuestMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.quest.GetSeasonalQuestsOnlyMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.quest.GetQuestsMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.quest.class_1715;
    
    public class HabboQuestEngine extends Component implements class_2197, IUpdateReceiver, ILinkEventTracker
@@ -701,17 +701,17 @@ package com.sulake.habbo.quest
       
       public function requestSeasonalQuests() : void
       {
-         send(new class_479());
+         send(new GetSeasonalQuestsOnlyMessageComposer());
       }
       
       public function requestQuests() : void
       {
-         send(new class_577());
+         send(new GetQuestsMessageComposer());
       }
       
       public function activateQuest(param1:int) : void
       {
-         send(new class_429(param1));
+         send(new ActivateQuestMessageComposer(param1));
       }
       
       public function get linkPattern() : String

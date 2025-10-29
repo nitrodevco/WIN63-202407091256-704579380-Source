@@ -28,9 +28,9 @@ package com.sulake.habbo.game.snowwar.ui
    import flash.geom.Point;
    import flash.utils.Dictionary;
    import flash.utils.Timer;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_553;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.GetGuestRoomMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2GetAccountGameStatusMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.game.directory.class_647;
+   import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2LeaveGameMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.game.arena.Game2ExitGameMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    
@@ -245,17 +245,17 @@ package com.sulake.habbo.game.snowwar.ui
             var_1655.gameCancelled(true);
             if(var_149 == 3 || var_149 == 2)
             {
-               var_1655.communication.connection.send(new class_647());
+               var_1655.communication.connection.send(new Game2LeaveGameMessageComposer());
                if(var_1655.roomBeforeGame > -1)
                {
-                  var_1655.communication.connection.send(new class_553(var_1655.roomBeforeGame,false,true));
+                  var_1655.communication.connection.send(new GetGuestRoomMessageComposer(var_1655.roomBeforeGame,false,true));
                }
             }
             else if(var_149 == 5)
             {
                if(var_1655.roomBeforeGame > -1)
                {
-                  var_1655.communication.connection.send(new class_553(var_1655.roomBeforeGame,false,true));
+                  var_1655.communication.connection.send(new GetGuestRoomMessageComposer(var_1655.roomBeforeGame,false,true));
                }
                else
                {

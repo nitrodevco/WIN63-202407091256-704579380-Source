@@ -2,7 +2,7 @@ package com.sulake.habbo.tracking {
    import assets.class_14
 
    import com.sulake.core.utils.debug.GarbageMonitor
-   import com.sulake.habbo.communication.messages.outgoing.tracking.class_207
+   import com.sulake.habbo.communication.messages.outgoing.tracking.PerformanceLogMessageComposer
 
    import flash.external.ExternalInterface
    import flash.system.Capabilities
@@ -136,7 +136,7 @@ package com.sulake.habbo.tracking {
             var _loc4_: int = param1 / 1000;
             var _loc3_: int = -1;
             var _loc2_: int = System.totalMemory / 1024;
-            _habboTracking.send(new class_207(_loc4_, _userAgent, _version, _os, var_4961, _isDebugger, _loc2_, _loc3_, var_3385, var_2182, var_3340));
+            _habboTracking.send(new PerformanceLogMessageComposer(_loc4_, _userAgent, _version, _os, var_4961, _isDebugger, _loc2_, _loc3_, var_3385, var_2182, var_3340));
             var_3385 = 0;
             var_2182 = 0;
             var_1461 = 0;

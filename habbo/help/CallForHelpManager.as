@@ -20,14 +20,14 @@ package com.sulake.habbo.help
    import com.sulake.habbo.communication.messages.incoming.help.IssueCloseNotificationMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.help.CallForHelpResultMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromSelfieMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_300;
+   import com.sulake.habbo.communication.messages.outgoing.help.ChatReviewSessionCreateMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_371;
+   import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromForumThreadMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromForumMessageMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_436;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_475;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_658;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_352;
+   import com.sulake.habbo.communication.messages.outgoing.help.DeletePendingCallsForHelpMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromPhotoMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromIMMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.IgnoreUserMessageComposer;
    
    public class CallForHelpManager implements IDisposable
    {
@@ -259,7 +259,7 @@ package com.sulake.habbo.help
       
       public function reportPhoto(param1:String, param2:int, param3:int, param4:int, param5:int) : void
       {
-         _habboHelp.setReportMessage(new class_475(param1,param3,param4,param2,param5));
+         _habboHelp.setReportMessage(new CallForHelpFromPhotoMessageComposer(param1,param3,param4,param2,param5));
          _habboHelp.queryForPendingCallsForHelp(9);
       }
       
@@ -464,8 +464,8 @@ package com.sulake.habbo.help
                case "submit_button":
                   if(var_874 > 0)
                   {
-                     _habboHelp.sendMessage(new class_352(var_874));
-                     _habboHelp.sendMessage(new class_300(var_874,var_1902));
+                     _habboHelp.sendMessage(new IgnoreUserMessageComposer(var_874));
+                     _habboHelp.sendMessage(new ChatReviewSessionCreateMessageComposer(var_874,var_1902));
                      closeWindow();
                   }
                   else
@@ -620,10 +620,10 @@ package com.sulake.habbo.help
                _habboHelp.sendMessage(new CallForHelpMessageComposer(var_368,var_2736,var_874,_loc1_,var_1964.collectSelectedEntries(var_1864,-1)));
                break;
             case 2:
-               _habboHelp.sendMessage(new class_658(var_368,var_2736,var_874,var_1964.collectSelectedEntries(3,-1)));
+               _habboHelp.sendMessage(new CallForHelpFromIMMessageComposer(var_368,var_2736,var_874,var_1964.collectSelectedEntries(3,-1)));
                break;
             case 6:
-               _habboHelp.sendMessage(new class_371(var_2621,var_2568,var_2736,var_368));
+               _habboHelp.sendMessage(new CallForHelpFromForumThreadMessageComposer(var_2621,var_2568,var_2736,var_368));
                break;
             case 7:
                _habboHelp.sendMessage(new CallForHelpFromForumMessageMessageComposer(var_2621,var_2568,var_3427,var_2736,var_368));
@@ -698,7 +698,7 @@ package com.sulake.habbo.help
       
       private function deletePendingCallsForHelp() : void
       {
-         _habboHelp.sendMessage(new class_436());
+         _habboHelp.sendMessage(new DeletePendingCallsForHelpMessageComposer());
       }
       
       public function get chatReportController() : ChatReportController

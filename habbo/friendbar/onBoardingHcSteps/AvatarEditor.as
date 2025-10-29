@@ -39,7 +39,7 @@ package com.sulake.habbo.friendbar.onBoardingHcSteps
    import onBoardingHcUi.RadioButtonGroup;
    import onBoardingHcUi.RoundButton;
    import onBoardingHcUi.randomizeButton;
-   import com.sulake.habbo.communication.messages.outgoing.register.class_675;
+   import com.sulake.habbo.communication.messages.outgoing.register.UpdateFigureDataMessageComposer;
    
    public class AvatarEditor extends Sprite implements IAvatarImageListener
    {
@@ -925,7 +925,7 @@ package com.sulake.habbo.friendbar.onBoardingHcSteps
       
       private function saveOutfit(param1:Button) : void
       {
-         _context.communicationManager.connection.send(new class_675(getFigure(),var_129.toLowerCase()));
+         _context.communicationManager.connection.send(new UpdateFigureDataMessageComposer(getFigure(),var_129.toLowerCase()));
          _context.submitName();
       }
       

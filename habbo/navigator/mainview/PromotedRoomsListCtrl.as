@@ -9,7 +9,7 @@ package com.sulake.habbo.navigator.mainview
    import com.sulake.habbo.navigator.domain.RoomSessionTags;
    import com.sulake.habbo.window.widgets.IAvatarImageWidget;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_1784;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_322;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileMessageComposer;
    
    public class PromotedRoomsListCtrl implements IDisposable
    {
@@ -152,7 +152,7 @@ package com.sulake.habbo.navigator.mainview
          {
             _loc3_ = findCategory(param2);
             _navigator.trackGoogle("extendedProfile","navigator_promotedRoom");
-            _navigator.send(new class_322(_loc3_.bestRoom.ownerId));
+            _navigator.send(new GetExtendedProfileMessageComposer(_loc3_.bestRoom.ownerId));
          }
       }
       

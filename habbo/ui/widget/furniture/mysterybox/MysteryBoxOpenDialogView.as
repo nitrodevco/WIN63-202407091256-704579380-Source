@@ -18,7 +18,7 @@ package com.sulake.habbo.ui.widget.furniture.mysterybox
    import com.sulake.habbo.communication.messages.incoming.mysterybox.ShowMysteryBoxWaitMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.mysterybox.CancelMysteryBoxWaitMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.mysterybox.GotMysteryBoxPrizeMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.mysterybox.class_711;
+   import com.sulake.habbo.communication.messages.outgoing.mysterybox.MysteryBoxWaitingCanceledMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.engine.UseFurnitureMessageComposer;
    import com.sulake.habbo.communication.messages.parser.mysterybox.class_1408;
    
@@ -111,7 +111,7 @@ package com.sulake.habbo.ui.widget.furniture.mysterybox
             case "header_button_close":
             case "cancel_button":
                closeWindow();
-               connection.send(new class_711(var_1629.handler.container.getFurnitureOwnerId(var_2060)));
+               connection.send(new MysteryBoxWaitingCanceledMessageComposer(var_1629.handler.container.getFurnitureOwnerId(var_2060)));
          }
       }
       

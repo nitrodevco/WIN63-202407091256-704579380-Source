@@ -18,8 +18,8 @@ package com.sulake.habbo.quest
    import com.sulake.habbo.utils.FriendlyTime;
    import com.sulake.habbo.utils.WindowToggle;
    import flash.display.BitmapData;
-   import com.sulake.habbo.communication.messages.outgoing.quest.class_471;
-   import com.sulake.habbo.communication.messages.outgoing.quest.class_978;
+   import com.sulake.habbo.communication.messages.outgoing.quest.AcceptQuestMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.quest.RejectQuestMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.quest.class_1715;
    
    public class QuestsList implements IDisposable
@@ -231,7 +231,7 @@ package com.sulake.habbo.quest
             {
                if(!(_loc5_ = refreshTimeLeft(_loc6_,param3)) && param3.accepted)
                {
-                  _questEngine.send(new class_978(param3.id));
+                  _questEngine.send(new RejectQuestMessageComposer(param3.id));
                }
                _loc6_.visible = _loc5_;
             }
@@ -411,7 +411,7 @@ package com.sulake.habbo.quest
          }
          var _loc3_:int = param2.id;
          class_14.log("Accept quest: " + _loc3_);
-         _questEngine.send(new class_471(_loc3_));
+         _questEngine.send(new AcceptQuestMessageComposer(_loc3_));
       }
       
       private function onCancelQuest(param1:WindowEvent, param2:IWindow) : void
@@ -422,7 +422,7 @@ package com.sulake.habbo.quest
          }
          var _loc3_:int = param2.id;
          class_14.log("Reject quest: " + _loc3_);
-         _questEngine.send(new class_978(_loc3_));
+         _questEngine.send(new RejectQuestMessageComposer(_loc3_));
       }
       
       private function setColor(param1:IWindowContainer, param2:String, param3:Boolean, param4:uint, param5:uint) : void

@@ -25,9 +25,9 @@ package com.sulake.habbo.window.utils.floorplaneditor
    import flash.geom.Rectangle;
    import flash.utils.ByteArray;
    import flash.utils.Timer;
-   import com.sulake.habbo.communication.messages.outgoing.room.layout.class_563;
-   import com.sulake.habbo.communication.messages.outgoing.room.layout.class_821;
-   import com.sulake.habbo.communication.messages.outgoing.room.layout.class_932;
+   import com.sulake.habbo.communication.messages.outgoing.room.layout.GetRoomEntryTileMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.layout.GetOccupiedTilesMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.layout.UpdateFloorPropertiesMessageComposer;
    import com.sulake.habbo.communication.messages.parser.catalog.class_1565;
    import com.sulake.habbo.communication.messages.parser.room.layout.class_1609;
    import com.sulake.habbo.communication.messages.parser.room.engine.class_1304;
@@ -212,8 +212,8 @@ package com.sulake.habbo.window.utils.floorplaneditor
          _editorWindow.visible = param1;
          if(param1)
          {
-            _windowManager.communication.connection.send(new class_563());
-            _windowManager.communication.connection.send(new class_821());
+            _windowManager.communication.connection.send(new GetRoomEntryTileMessageComposer());
+            _windowManager.communication.connection.send(new GetOccupiedTilesMessageComposer());
             updateThicknessSelection();
             centerScrollableViews();
             updateWallHeight(_fixedWallsHeight);
@@ -299,7 +299,7 @@ package com.sulake.habbo.window.utils.floorplaneditor
                case "save":
                   _floorThickness = class_3520(_editorWindow.findChildByName("floor_thickness_drop")).selection;
                   _wallThickness = class_3520(_editorWindow.findChildByName("wall_thickness_drop")).selection;
-                  _windowManager.communication.connection.send(new class_932(_floorPlanCache.getData(),_floorPlanCache.entryPoint.x,_floorPlanCache.entryPoint.y,_floorPlanCache.entryPointDir,getThicknessSettingBySelectionIndex(_wallThickness),getThicknessSettingBySelectionIndex(_floorThickness),isWallHeightSettingSelected ? _fixedWallsHeight : -1));
+                  _windowManager.communication.connection.send(new UpdateFloorPropertiesMessageComposer(_floorPlanCache.getData(),_floorPlanCache.entryPoint.x,_floorPlanCache.entryPoint.y,_floorPlanCache.entryPointDir,getThicknessSettingBySelectionIndex(_wallThickness),getThicknessSettingBySelectionIndex(_floorThickness),isWallHeightSettingSelected ? _fixedWallsHeight : -1));
                   break;
                case "reload":
                   _floorPlanCache.onFloorHeightMap(_lastReceivedMapEvent);
@@ -311,8 +311,8 @@ package com.sulake.habbo.window.utils.floorplaneditor
                   {
                      _heightMapEditor.refreshFromCache();
                   }
-                  _windowManager.communication.connection.send(new class_821());
-                  _windowManager.communication.connection.send(new class_563());
+                  _windowManager.communication.connection.send(new GetOccupiedTilesMessageComposer());
+                  _windowManager.communication.connection.send(new GetRoomEntryTileMessageComposer());
                   break;
                case "import_export":
                   _importExportDialog.visible = !_importExportDialog.visible;

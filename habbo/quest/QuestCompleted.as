@@ -5,8 +5,8 @@ package com.sulake.habbo.quest
    import com.sulake.core.window.components.ITextWindow;
    import com.sulake.core.window.components.class_3514;
    import com.sulake.core.window.events.WindowEvent;
-   import com.sulake.habbo.communication.messages.outgoing.quest.class_461;
-   import com.sulake.habbo.communication.messages.outgoing.quest.class_577;
+   import com.sulake.habbo.communication.messages.outgoing.quest.OpenQuestTrackerMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.quest.GetQuestsMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.quest.class_1715;
    
    public class QuestCompleted implements IDisposable
@@ -91,7 +91,7 @@ package com.sulake.habbo.quest
          }
          _window.visible = false;
          _questEngine.questController.questDetails.openForNextQuest = _questEngine.getBoolean("questing.showDetailsForNextQuest");
-         _questEngine.send(new class_461());
+         _questEngine.send(new OpenQuestTrackerMessageComposer());
       }
       
       private function onMoreQuests(param1:WindowEvent, param2:IWindow) : void
@@ -100,7 +100,7 @@ package com.sulake.habbo.quest
          {
             _window.visible = false;
             _questEngine.questController.questsList.setOpenOnQuestsEvent();
-            _questEngine.send(new class_577());
+            _questEngine.send(new GetQuestsMessageComposer());
          }
       }
       

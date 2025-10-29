@@ -39,7 +39,7 @@ package com.sulake.habbo.game
    import com.sulake.iid.IIDSessionDataManager;
    import com.sulake.habbo.communication.messages.outgoing.catalog.GetSnowWarGameTokensOfferComposer;
    import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2CheckGameDirectoryStatusMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.game.directory.class_365;
+   import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2StartSnowWarMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2QuickJoinGameMessageComposer;
    
    public class HabboGameManager extends Component implements class_1805
@@ -333,7 +333,7 @@ package com.sulake.habbo.game
       public function startSnowWarGame(param1:String) : void
       {
          initGameDirectoryConnection();
-         send(new class_365(param1));
+         send(new Game2StartSnowWarMessageComposer(param1));
       }
       
       public function startQuickSnowWarGame() : void

@@ -51,19 +51,19 @@ package com.sulake.habbo.navigator
    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_1706;
    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_1770;
    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_3439;
-   import com.sulake.habbo.communication.messages.outgoing.preferences.class_435;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_387;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_553;
+   import com.sulake.habbo.communication.messages.outgoing.preferences.SetNewNavigatorWindowPreferencesMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.ForwardToSomeRoomMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.GetGuestRoomMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.newnavigator.NavigatorRemoveCollapsedCategoryMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.newnavigator.NavigatorSetSearchCodeViewModeMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.newnavigator.class_179;
-   import com.sulake.habbo.communication.messages.outgoing.newnavigator.class_225;
-   import com.sulake.habbo.communication.messages.outgoing.newnavigator.class_687;
-   import com.sulake.habbo.communication.messages.outgoing.newnavigator.class_901;
-   import com.sulake.habbo.communication.messages.outgoing.newnavigator.class_990;
+   import com.sulake.habbo.communication.messages.outgoing.newnavigator.NavigatorAddSavedSearchComposer;
+   import com.sulake.habbo.communication.messages.outgoing.newnavigator.NavigatorDeleteSavedSearchComposer;
+   import com.sulake.habbo.communication.messages.outgoing.newnavigator.NavigatorAddCollapsedCategoryMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.newnavigator.NewNavigatorSearchComposer;
+   import com.sulake.habbo.communication.messages.outgoing.newnavigator.NewNavigatorInitComposer;
    import com.sulake.habbo.communication.messages.incoming.users.class_1199;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_201;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_322;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetHabboGroupDetailsMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileMessageComposer;
    
    public class HabboNewNavigator extends Component implements IHabboNewNavigator, ILinkEventTracker
    {
@@ -224,7 +224,7 @@ package com.sulake.habbo.navigator
          var_3469 = new SearchContextHistoryManager(this);
          var_4081 = new LiftDataContainer(this);
          _navigatorCache = new NavigatorCache();
-         _communication.connection.send(new class_990());
+         _communication.connection.send(new NewNavigatorInitComposer());
          var_78 = true;
       }
       
@@ -358,7 +358,7 @@ package com.sulake.habbo.navigator
          {
             var_3900 = param1;
             var_3744 = param2;
-            _communication.connection.send(new class_901(param1,param2));
+            _communication.connection.send(new NewNavigatorSearchComposer(param1,param2));
             trackEventLog("search","Search",getEventLogExtraStringFromSearch(param1,param2));
          }
          open();
@@ -373,7 +373,7 @@ package com.sulake.habbo.navigator
       {
          if(_currentResults != null)
          {
-            _communication.connection.send(new class_179(param1,param2));
+            _communication.connection.send(new NavigatorAddSavedSearchComposer(param1,param2));
          }
          trackEventLog("savedsearch.add","SavedSearch",getEventLogExtraStringFromSearch(param1,param2));
          var_1760.setLeftPaneVisibility(true);
@@ -381,7 +381,7 @@ package com.sulake.habbo.navigator
       
       public function deleteSavedSearch(param1:int) : void
       {
-         _communication.connection.send(new class_225(param1));
+         _communication.connection.send(new NavigatorDeleteSavedSearchComposer(param1));
          trackEventLog("savedsearch.delete","SavedSearch");
       }
       
@@ -435,7 +435,7 @@ package com.sulake.habbo.navigator
                      }
                      else
                      {
-                        communication.connection.send(new class_387(_loc2_[2]));
+                        communication.connection.send(new ForwardToSomeRoomMessageComposer(_loc2_[2]));
                      }
                   }
                   else
@@ -512,7 +512,7 @@ package com.sulake.habbo.navigator
       
       public function goToRoom(param1:int, param2:String = "mainview") : void
       {
-         communication.connection.send(new class_553(param1,false,true));
+         communication.connection.send(new GetGuestRoomMessageComposer(param1,false,true));
          var_1760.visible = false;
          var _loc3_:String = var_3525.getValue(param1);
          trackEventLog("go",param2,!_loc3_ ? "" : _loc3_,param1);
@@ -520,7 +520,7 @@ package com.sulake.habbo.navigator
       
       public function getExtendedProfile(param1:int) : void
       {
-         communication.connection.send(new class_322(param1));
+         communication.connection.send(new GetExtendedProfileMessageComposer(param1));
       }
       
       public function get imageLibraryBaseUrl() : String
@@ -596,17 +596,17 @@ package com.sulake.habbo.navigator
       
       public function sendWindowPreferences(param1:int, param2:int, param3:int, param4:int, param5:Boolean, param6:int) : void
       {
-         _communication.connection.send(new class_435(param1,param2,param3,param4,param5,param6));
+         _communication.connection.send(new SetNewNavigatorWindowPreferencesMessageComposer(param1,param2,param3,param4,param5,param6));
       }
       
       public function getGuildInfo(param1:int, param2:Boolean = true) : void
       {
-         _communication.connection.send(new class_201(param1,param2));
+         _communication.connection.send(new GetHabboGroupDetailsMessageComposer(param1,param2));
       }
       
       public function sendAddCollapsedCategory(param1:String) : void
       {
-         _communication.connection.send(new class_687(param1));
+         _communication.connection.send(new NavigatorAddCollapsedCategoryMessageComposer(param1));
       }
       
       public function sendRemoveCollapsedCategory(param1:String) : void

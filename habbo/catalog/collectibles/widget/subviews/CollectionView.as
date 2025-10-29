@@ -20,7 +20,7 @@ package com.sulake.habbo.catalog.collectibles.widget.subviews
    import com.sulake.habbo.utils.FriendlyTime;
    import com.sulake.habbo.communication.messages.parser.collectibles.class_1692;
    import com.sulake.habbo.communication.messages.parser.collectibles.class_1786;
-   import com.sulake.habbo.communication.messages.outgoing.collectibles.class_827;
+   import com.sulake.habbo.communication.messages.outgoing.collectibles.NftCollectiblesClaimBonusItemMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.collectibles.NftCollectiblesClaimRewardItemMessageComposer;
    
    public class CollectionView implements IDisposable
@@ -169,7 +169,7 @@ package com.sulake.habbo.catalog.collectibles.widget.subviews
          if(_previewStatus == PREVIEW_STATUS_BONUS)
          {
             var_1734.claimBonusAwaiting();
-            var_1900.controller.send(new class_827(nftCollection.collectionId,var_1900.activeWallet));
+            var_1900.controller.send(new NftCollectiblesClaimBonusItemMessageComposer(nftCollection.collectionId,var_1900.activeWallet));
             var_1900.sendClaimWaitNotification();
          }
          else

@@ -3,7 +3,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
    import com.sulake.core.window.IWindow;
    import com.sulake.habbo.friendbar.landingview.HabboLandingView;
    import com.sulake.habbo.friendbar.landingview.widget.GenericWidget;
-   import com.sulake.habbo.communication.messages.outgoing.competition.class_180;
+   import com.sulake.habbo.communication.messages.outgoing.competition.GetSecondsUntilMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.competition.SecondsUntilMessageEvent;
    
    public class class_3887 extends class_3886
@@ -26,7 +26,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
       
       override public function refresh() : void
       {
-         landingView.send(new class_180(var_1191));
+         landingView.send(new GetSecondsUntilMessageComposer(var_1191));
       }
       
       private function onTime(param1:SecondsUntilMessageEvent) : void

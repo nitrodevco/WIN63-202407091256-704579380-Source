@@ -1,6 +1,6 @@
 package com.sulake.habbo.navigator.domain
 {
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_868;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.SetRoomSessionTagsMessageComposer;
    
    public class RoomSessionTags
    {
@@ -17,9 +17,9 @@ package com.sulake.habbo.navigator.domain
          _tag2 = param2;
       }
       
-      public function getMsg() : class_868
+      public function getMsg() : SetRoomSessionTagsMessageComposer
       {
-         return new class_868(_tag1,_tag2);
+         return new SetRoomSessionTagsMessageComposer(_tag1,_tag2);
       }
    }
 }

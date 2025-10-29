@@ -15,10 +15,10 @@ package com.sulake.habbo.inventory.marketplace
    import com.sulake.habbo.room.IRoomEngine;
    import com.sulake.habbo.window.IHabboWindowManager;
    import com.sulake.habbo.communication.messages.outgoing.marketplace.GetMarketplaceConfigurationMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.marketplace.class_268;
-   import com.sulake.habbo.communication.messages.outgoing.marketplace.class_403;
-   import com.sulake.habbo.communication.messages.outgoing.marketplace.class_505;
-   import com.sulake.habbo.communication.messages.outgoing.marketplace.class_928;
+   import com.sulake.habbo.communication.messages.outgoing.marketplace.BuyMarketplaceTokensMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.marketplace.GetMarketplaceItemStatsComposer;
+   import com.sulake.habbo.communication.messages.outgoing.marketplace.GetMarketplaceCanMakeOfferMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.marketplace.MakeOfferMessageComposer;
    
    public class MarketplaceModel implements IInventoryModel
    {
@@ -234,12 +234,12 @@ package com.sulake.habbo.inventory.marketplace
          }
          var_325 = param1;
          _loc2_.addLockTo(param1.id);
-         send(new class_505());
+         send(new GetMarketplaceCanMakeOfferMessageComposer());
       }
       
       public function buyMarketplaceTokens() : void
       {
-         send(new class_268());
+         send(new BuyMarketplaceTokensMessageComposer());
          var_3225 = true;
       }
       
@@ -250,7 +250,7 @@ package com.sulake.habbo.inventory.marketplace
             return;
          }
          var _loc2_:int = var_325.isWallItem ? 2 : 1;
-         send(new class_928(param1,_loc2_,var_325.ref));
+         send(new MakeOfferMessageComposer(param1,_loc2_,var_325.ref));
          releaseItem();
       }
       
@@ -263,7 +263,7 @@ package com.sulake.habbo.inventory.marketplace
          var _loc1_:int = var_325.isWallItem ? 2 : 1;
          var_4411 = _loc1_;
          var_4695 = var_325.type;
-         send(new class_403(_loc1_,var_325.type));
+         send(new GetMarketplaceItemStatsComposer(_loc1_,var_325.type));
       }
       
       public function proceedOfferMaking(param1:int, param2:int) : void

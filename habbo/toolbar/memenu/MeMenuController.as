@@ -15,8 +15,8 @@ package com.sulake.habbo.toolbar.memenu
    import com.sulake.habbo.toolbar.ToolbarView;
    import com.sulake.habbo.toolbar.events.HabboToolbarEvent;
    import com.sulake.habbo.utils.HabboWebTools;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_322;
-   import com.sulake.habbo.communication.messages.outgoing.talent.class_1018;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.talent.GetTalentTrackMessageComposer;
    
    public class MeMenuController implements IDisposable
    {
@@ -82,7 +82,7 @@ package com.sulake.habbo.toolbar.memenu
                   switch(param2.name)
                   {
                      case "profile":
-                        _toolbar.connection.send(new class_322(_toolbar.sessionDataManager.userId));
+                        _toolbar.connection.send(new GetExtendedProfileMessageComposer(_toolbar.sessionDataManager.userId));
                         break;
                      case "minimail":
                         HabboWebTools.openMinimail("#mail/inbox/");
@@ -95,7 +95,7 @@ package com.sulake.habbo.toolbar.memenu
                         break;
                      case "talents":
                         _loc6_ = _toolbar.sessionDataManager.currentTalentTrack;
-                        _toolbar.connection.send(new class_1018(_loc6_));
+                        _toolbar.connection.send(new GetTalentTrackMessageComposer(_loc6_));
                         break;
                      case "settings":
                         var_2010 = new MeMenuSettingsMenuView();

@@ -15,7 +15,7 @@ package com.sulake.habbo.toolbar.extensions
    import com.sulake.habbo.toolbar.IExtensionView;
    import com.sulake.habbo.window.IHabboWindowManager;
    import flash.events.IEventDispatcher;
-   import com.sulake.habbo.communication.messages.outgoing.quest.class_748;
+   import com.sulake.habbo.communication.messages.outgoing.quest.StartCampaignMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.perk.CitizenshipVipOfferPromoEnabledEvent;
    
    public class CitizenshipVipQuestsPromoExtension
@@ -116,7 +116,7 @@ package com.sulake.habbo.toolbar.extensions
       {
          if(var_26)
          {
-            var_26.send(new class_748(_vipQuestsCampaignName));
+            var_26.send(new StartCampaignMessageComposer(_vipQuestsCampaignName));
          }
          destroyWindow();
       }

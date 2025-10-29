@@ -13,7 +13,7 @@ package com.sulake.habbo.window.widgets
    import com.sulake.core.window.utils.IIterator;
    import com.sulake.core.window.utils.PropertyStruct;
    import com.sulake.habbo.window.HabboWindowManagerComponent;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_322;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileMessageComposer;
    
    public class IlluminaChatBubbleWidget implements IIlluminaChatBubbleWidget
    {
@@ -301,7 +301,7 @@ package com.sulake.habbo.window.widgets
             case "WME_CLICK":
                if(userId > 0 && param2.name == "user_name_region")
                {
-                  _windowManager.communication.connection.send(new class_322(userId));
+                  _windowManager.communication.connection.send(new GetExtendedProfileMessageComposer(userId));
                }
          }
       }

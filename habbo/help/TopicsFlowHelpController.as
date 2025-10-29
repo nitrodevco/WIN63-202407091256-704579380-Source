@@ -20,12 +20,12 @@ package com.sulake.habbo.help
    import com.sulake.habbo.window.widgets.IAvatarImageWidget;
    import com.sulake.habbo.communication.messages.incoming.callforhelp.class_1746;
    import com.sulake.habbo.communication.messages.incoming.callforhelp.class_1785;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_300;
+   import com.sulake.habbo.communication.messages.outgoing.help.ChatReviewSessionCreateMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_371;
+   import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromForumThreadMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromForumMessageMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_475;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_658;
+   import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromPhotoMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromIMMessageComposer;
    
    public class TopicsFlowHelpController implements IDisposable
    {
@@ -442,24 +442,24 @@ package com.sulake.habbo.help
          switch(var_2257 - 3)
          {
             case 0:
-               _habboHelp.sendMessage(new class_658(var_368,var_2040.id,_habboHelp.reportedUserId,_habboHelp.callForHelpManager.chatReportController.collectSelectedEntries(3,_habboHelp.reportedUserId)));
+               _habboHelp.sendMessage(new CallForHelpFromIMMessageComposer(var_368,var_2040.id,_habboHelp.reportedUserId,_habboHelp.callForHelpManager.chatReportController.collectSelectedEntries(3,_habboHelp.reportedUserId)));
                break;
             case 1:
                _habboHelp.sendMessage(new CallForHelpMessageComposer(var_368,var_2040.id,-1,_habboHelp.reportedRoomId,[]));
                break;
             case 4:
-               _habboHelp.sendMessage(new class_371(_habboHelp.callForHelpManager.reportedGroupId,_habboHelp.callForHelpManager.reportedThreadId,var_2040.id,var_368));
+               _habboHelp.sendMessage(new CallForHelpFromForumThreadMessageComposer(_habboHelp.callForHelpManager.reportedGroupId,_habboHelp.callForHelpManager.reportedThreadId,var_2040.id,var_368));
                break;
             case 5:
                _habboHelp.sendMessage(new CallForHelpFromForumMessageMessageComposer(_habboHelp.callForHelpManager.reportedGroupId,_habboHelp.callForHelpManager.reportedThreadId,_habboHelp.callForHelpManager.reportedMessageId,var_2040.id,var_368));
                break;
             case 6:
-               _habboHelp.sendMessage(new class_475(_habboHelp.reportedExtraDataId,_habboHelp.reportedRoomId,_habboHelp.reportedUserId,var_2040.id,_habboHelp.reportedRoomObjectId));
+               _habboHelp.sendMessage(new CallForHelpFromPhotoMessageComposer(_habboHelp.reportedExtraDataId,_habboHelp.reportedRoomId,_habboHelp.reportedUserId,var_2040.id,_habboHelp.reportedRoomObjectId));
                break;
             default:
                if(param1 && var_2040.name == "bullying" && _habboHelp.getBoolean("guides.enabled") && _habboHelp.guardiansEnabled)
                {
-                  _habboHelp.sendMessage(new class_300(_habboHelp.reportedUserId,_habboHelp.reportedRoomId));
+                  _habboHelp.sendMessage(new ChatReviewSessionCreateMessageComposer(_habboHelp.reportedUserId,_habboHelp.reportedRoomId));
                   break;
                }
                _habboHelp.sendMessage(new CallForHelpMessageComposer(var_368,var_2040.id,_habboHelp.reportedUserId,_habboHelp.reportedRoomId,_habboHelp.callForHelpManager.chatReportController.collectSelectedEntries(1,-1)));

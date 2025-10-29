@@ -39,8 +39,8 @@ package com.sulake.habbo.friendlist {
     import com.sulake.habbo.communication.messages.outgoing.friendlist.MessengerInitMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.SetRelationshipStatusMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.GetFriendRequestsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.RequestFriendMessageEvent
-    import com.sulake.habbo.communication.messages.outgoing.quest.FriendRequestQuestCompleteMessageEvent
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.RequestFriendMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.quest.FriendRequestQuestCompleteMessageComposer
     import com.sulake.habbo.communication.messages.parser.friendlist.AcceptFriendResultMessageParser
     import com.sulake.habbo.communication.messages.parser.friendlist.FollowFriendFailedMessageParser
     import com.sulake.habbo.communication.messages.parser.friendlist.FriendRequestsMessageParser
@@ -238,9 +238,9 @@ package com.sulake.habbo.friendlist {
             if (!canBeAskedForAFriend(param1)) {
                 return false;
             }
-            send(new RequestFriendMessageEvent(param2));
+            send(new RequestFriendMessageComposer(param2));
             searchResults.setFriendRequestSent(param1);
-            send(new FriendRequestQuestCompleteMessageEvent());
+            send(new FriendRequestQuestCompleteMessageComposer());
             return true;
         }
 

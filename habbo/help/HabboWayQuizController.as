@@ -13,8 +13,8 @@ package com.sulake.habbo.help
    import com.sulake.habbo.window.utils.IModalDialog;
    import com.sulake.habbo.communication.messages.incoming.help.QuizDataMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.help.QuizResultsMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_1046;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_279;
+   import com.sulake.habbo.communication.messages.outgoing.help.GetQuizQuestionsComposer;
+   import com.sulake.habbo.communication.messages.outgoing.help.PostQuizAnswersComposer;
    
    public class HabboWayQuizController implements IDisposable
    {
@@ -99,12 +99,12 @@ package com.sulake.habbo.help
       
       public function showHabboWayQuiz() : void
       {
-         _habboHelp.sendMessage(new class_1046("HabboWay1"));
+         _habboHelp.sendMessage(new GetQuizQuestionsComposer("HabboWay1"));
       }
       
       public function showSafetyQuiz() : void
       {
-         _habboHelp.sendMessage(new class_1046("SafetyQuiz1"));
+         _habboHelp.sendMessage(new GetQuizQuestionsComposer("SafetyQuiz1"));
       }
       
       private function onQuizData(param1:QuizDataMessageEvent) : void
@@ -282,7 +282,7 @@ package com.sulake.habbo.help
          var _loc9_:ISelectableWindow = null;
          if(param1 >= questionCount)
          {
-            _habboHelp.sendMessage(new class_279(var_561,var_3003));
+            _habboHelp.sendMessage(new PostQuizAnswersComposer(var_561,var_3003));
          }
          else if(param1 >= 0)
          {

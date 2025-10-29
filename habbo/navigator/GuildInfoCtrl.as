@@ -6,7 +6,7 @@ package com.sulake.habbo.navigator
    import com.sulake.core.window.events.WindowEvent;
    import com.sulake.habbo.window.widgets.IBadgeImageWidget;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_1675;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_201;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetHabboGroupDetailsMessageComposer;
    
    public class GuildInfoCtrl implements IDisposable
    {
@@ -59,7 +59,7 @@ package com.sulake.habbo.navigator
       
       private function onGuildInfo(param1:WindowEvent) : void
       {
-         _navigator.send(new class_201(_groupId,true));
+         _navigator.send(new GetHabboGroupDetailsMessageComposer(_groupId,true));
       }
    }
 }

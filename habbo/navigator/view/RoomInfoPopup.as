@@ -16,9 +16,9 @@ package com.sulake.habbo.navigator.view
    import flash.geom.Point;
    import flash.geom.Rectangle;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_1675;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_1061;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_771;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_991;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.DeleteFavouriteRoomMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.AddFavouriteRoomMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.UpdateHomeRoomMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.users.class_1199;
    
    public class RoomInfoPopup
@@ -353,12 +353,12 @@ package com.sulake.habbo.navigator.view
          {
             if(!roomIsFavorite)
             {
-               _navigator.communication.connection.send(new class_771(var_242.flatId));
+               _navigator.communication.connection.send(new AddFavouriteRoomMessageComposer(var_242.flatId));
                roomIsFavorite = true;
             }
             else
             {
-               _navigator.communication.connection.send(new class_1061(var_242.flatId));
+               _navigator.communication.connection.send(new DeleteFavouriteRoomMessageComposer(var_242.flatId));
                roomIsFavorite = false;
             }
             IStaticBitmapWrapperWindow(_window.findChildByName("favorite_icon")).assetUri = "newnavigator_icon_fav_" + (roomIsFavorite ? "yes" : "no");
@@ -371,7 +371,7 @@ package com.sulake.habbo.navigator.view
          {
             if(!roomIsHome)
             {
-               _navigator.communication.connection.send(new class_991(var_242.flatId));
+               _navigator.communication.connection.send(new UpdateHomeRoomMessageComposer(var_242.flatId));
                roomIsHome = true;
             }
             IStaticBitmapWrapperWindow(_window.findChildByName("home_icon")).assetUri = "newnavigator_icon_home_" + (roomIsHome ? "yes" : "no");

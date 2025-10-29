@@ -5,7 +5,7 @@ package com.sulake.habbo.navigator.mainview.tabpagedecorators
    import com.sulake.core.window.components.class_3520;
    import com.sulake.core.window.events.*;
    import com.sulake.habbo.navigator.HabboNavigator;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_550;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.CanCreateRoomMessageComposer;
    
    public class MyRoomsTabPageDecorator implements ITabPageDecorator
    {
@@ -65,7 +65,7 @@ package com.sulake.habbo.navigator.mainview.tabpagedecorators
       
       private function onCreateRoomClick(param1:WindowEvent) : void
       {
-         _navigator.send(new class_550());
+         _navigator.send(new CanCreateRoomMessageComposer());
       }
       
       private function prepareSubNavi() : void

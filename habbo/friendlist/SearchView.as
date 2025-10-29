@@ -12,7 +12,7 @@ package com.sulake.habbo.friendlist
    import com.sulake.habbo.utils.class_3527;
    import com.sulake.habbo.communication.messages.incoming.friendlist.class_1712;
    import com.sulake.habbo.communication.messages.outgoing.friendlist.HabboSearchMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_322;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileMessageComposer;
    
    public class SearchView implements ITabView, ISearchView
    {
@@ -222,7 +222,7 @@ package com.sulake.habbo.friendlist
          else if(param1.type == "WME_CLICK")
          {
             _friendList.trackGoogle("extendedProfile","friendList_friendsSearch");
-            _friendList.send(new class_322(param2.id));
+            _friendList.send(new GetExtendedProfileMessageComposer(param2.id));
          }
       }
       

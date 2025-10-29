@@ -39,8 +39,8 @@ package com.sulake.habbo.inventory
    import flash.events.Event;
    import flash.events.TimerEvent;
    import flash.utils.Timer;
-   import com.sulake.habbo.communication.messages.outgoing.inventory.purse.class_1045;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_737;
+   import com.sulake.habbo.communication.messages.outgoing.inventory.purse.GetCreditsInfoComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.ScrGetUserInfoMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.nft.GetNftCreditsMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.nft.GetSilverMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.inventory.badges.GetBadgePointLimitsComposer;
@@ -188,10 +188,10 @@ package com.sulake.habbo.inventory
          context.addLinkEventTracker(this);
          var_2193 = new UnseenItemTracker(_communication,events,this);
          _inventoryMainView = new InventoryMainView(this,_windowManager,assets);
-         _communication.connection.send(new class_1045());
+         _communication.connection.send(new GetCreditsInfoComposer());
          _communication.connection.send(new GetNftCreditsMessageComposer());
          _communication.connection.send(new GetSilverMessageComposer());
-         _communication.connection.send(new class_737("habbo_club"));
+         _communication.connection.send(new ScrGetUserInfoMessageComposer("habbo_club"));
          _communication.connection.send(new GetBadgePointLimitsComposer());
       }
       
@@ -401,7 +401,7 @@ package com.sulake.habbo.inventory
       
       private function onPurseTimer(param1:TimerEvent) : void
       {
-         _communication.connection.send(new class_737("habbo_club"));
+         _communication.connection.send(new ScrGetUserInfoMessageComposer("habbo_club"));
       }
       
       private function roomSessionEventHandler(param1:RoomSessionEvent) : void

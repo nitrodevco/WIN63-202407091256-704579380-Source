@@ -6,9 +6,9 @@ package com.sulake.habbo.toolbar.extensions.settings
    import com.sulake.core.window.components.class_3398;
    import com.sulake.core.window.events.WindowMouseEvent;
    import com.sulake.habbo.toolbar.HabboToolbar;
-   import com.sulake.habbo.communication.messages.outgoing.preferences.class_542;
-   import com.sulake.habbo.communication.messages.outgoing.preferences.class_856;
-   import com.sulake.habbo.communication.messages.outgoing.gifts.class_706;
+   import com.sulake.habbo.communication.messages.outgoing.preferences.SetRoomCameraPreferencesMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.preferences.SetIgnoreRoomInvitesMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.gifts.ResetPhoneNumberStateMessageComposer;
    
    public class OtherSettingsView
    {
@@ -91,16 +91,16 @@ package com.sulake.habbo.toolbar.extensions.settings
                break;
             case "ignore_room_invites_checkbox":
                _toolbar.messenger.setRoomInvitesIgnored(class_3398(_window.findChildByName("ignore_room_invites_checkbox")).isSelected);
-               _toolbar.connection.send(new class_856(_toolbar.messenger.getRoomInvitesIgnored()));
+               _toolbar.connection.send(new SetIgnoreRoomInvitesMessageComposer(_toolbar.messenger.getRoomInvitesIgnored()));
                break;
             case "disable_room_camera_follow_checkbox":
                _loc4_ = Boolean(class_3398(_window.findChildByName("disable_room_camera_follow_checkbox")).isSelected);
-               _toolbar.connection.send(new class_542(_loc4_));
+               _toolbar.connection.send(new SetRoomCameraPreferencesMessageComposer(_loc4_));
                _toolbar.sessionDataManager.setRoomCameraFollowDisabled(_loc4_);
                break;
             case "btn_reset_phone_number_collection":
                _window.findChildByName("btn_reset_phone_number_collection").visible = false;
-               _toolbar.connection.send(new class_706());
+               _toolbar.connection.send(new ResetPhoneNumberStateMessageComposer());
          }
       }
       

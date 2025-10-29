@@ -10,8 +10,8 @@ package com.sulake.habbo.friendlist {
     import com.sulake.habbo.friendlist.events.FriendRequestEvent;
     import com.sulake.habbo.utils.class_3527;
     import com.sulake.habbo.communication.messages.outgoing.friendlist.DeclineFriendMessageComposer;
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.AcceptFriendMessageEvent;
-    import com.sulake.habbo.communication.messages.outgoing.users.class_322;
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.AcceptFriendMessageComposer;
+    import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileMessageComposer;
 
     public class FriendRequestsView implements ITabView, IFriendRequestsView {
 
@@ -147,7 +147,7 @@ package com.sulake.habbo.friendlist {
                 _friendList.showLimitReachedAlert();
                 return;
             }
-            var _loc2_: AcceptFriendMessageEvent = new AcceptFriendMessageEvent();
+            var _loc2_: AcceptFriendMessageComposer = new AcceptFriendMessageComposer();
             _loc2_.addAcceptedRequest(_loc3_.requestId);
             _friendList.send(_loc2_);
             refreshRequestEntry(_loc3_);
@@ -162,7 +162,7 @@ package com.sulake.habbo.friendlist {
                 _friendList.showLimitReachedAlert();
                 return;
             }
-            var _loc1_: AcceptFriendMessageEvent = new AcceptFriendMessageEvent();
+            var _loc1_: AcceptFriendMessageComposer = new AcceptFriendMessageComposer();
             for each(var _loc2_ in _friendList.friendRequests.requests) {
                 if (_loc2_.state != 2 && _loc2_.state != 3) {
                     _loc1_.addAcceptedRequest(_loc2_.requestId);
@@ -223,7 +223,7 @@ package com.sulake.habbo.friendlist {
             class_3527.onEntry(param1, param2);
             if (param1.type == "WME_CLICK") {
                 _friendList.trackGoogle("extendedProfile", "friendList_friendRequests");
-                _friendList.send(new class_322(param2.id));
+                _friendList.send(new GetExtendedProfileMessageComposer(param2.id));
             }
         }
 

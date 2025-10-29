@@ -11,7 +11,7 @@ package com.sulake.habbo.friendbar.talent
    import com.sulake.habbo.communication.messages.parser.talent.class_1158;
    import com.sulake.habbo.communication.messages.parser.talent.class_1700;
    import com.sulake.habbo.communication.messages.parser.talent.class_1756;
-   import com.sulake.habbo.communication.messages.outgoing.talent.class_1018;
+   import com.sulake.habbo.communication.messages.outgoing.talent.GetTalentTrackMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.talent.TalentLevelUpMessageEvent;
    
    public class TalentLevelUpController implements IDisposable
@@ -173,7 +173,7 @@ package com.sulake.habbo.friendbar.talent
             case "talent_button":
                closeWindow();
                _habboTalent.tracking.trackTalentTrackOpen(var_3966,"levelup");
-               _habboTalent.send(new class_1018(var_3966));
+               _habboTalent.send(new GetTalentTrackMessageComposer(var_3966));
          }
       }
    }

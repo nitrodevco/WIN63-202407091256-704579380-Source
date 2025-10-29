@@ -26,22 +26,22 @@ package com.sulake.habbo.navigator.mainview
    import flash.utils.Timer;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_1665;
    import com.sulake.habbo.communication.messages.outgoing.navigator.RoomAdEventTabViewedComposer;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_136;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_194;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_202;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_244;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_260;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_305;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_359;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_413;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_458;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_546;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_560;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_646;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_648;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_764;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_804;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_864;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.GetPopularRoomTagsMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.RoomsWithHighestScoreSearchMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.CompetitionRoomsSearchMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.MyRoomRightsSearchMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.MyRecommendedRoomsMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.GuildBaseSearchMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.GetOfficialRoomsMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.RoomAdSearchMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.MyFavouriteRoomsSearchMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.PopularRoomsSearchMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.MyRoomHistorySearchMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.MyRoomsSearchMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.RoomTextSearchMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.MyGuildBasesSearchMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.MyFriendsRoomsSearchMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.MyFrequentRoomHistorySearchMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.navigator.RoomsWhereMyFriendsAreSearchMessageComposer;
    
    public class MainViewCtrl implements ITransitionalMainViewCtrl, IUpdateReceiver, IDisposable
@@ -548,11 +548,11 @@ package com.sulake.habbo.navigator.mainview
          }
          else if(param4 == 2)
          {
-            _navigator.send(new class_136());
+            _navigator.send(new GetPopularRoomTagsMessageComposer());
          }
          else if(param4 != 5)
          {
-            _navigator.send(new class_359(_navigator.data.adIndex));
+            _navigator.send(new GetOfficialRoomsMessageComposer(_navigator.data.adIndex));
          }
          if(!isOpen())
          {
@@ -630,50 +630,50 @@ package com.sulake.habbo.navigator.mainview
          switch(param1)
          {
             case 6:
-               return new class_458();
+               return new MyFavouriteRoomsSearchMessageComposer();
             case 3:
-               return new class_804();
+               return new MyFriendsRoomsSearchMessageComposer();
             case 7:
-               return new class_560();
+               return new MyRoomHistorySearchMessageComposer();
             case 5:
-               return new class_646();
+               return new MyRoomsSearchMessageComposer();
             case 1:
-               return new class_546(param2,_navigator.data.adIndex);
+               return new PopularRoomsSearchMessageComposer(param2,_navigator.data.adIndex);
             case 4:
                return new RoomsWhereMyFriendsAreSearchMessageComposer();
             case 2:
-               return new class_194(_navigator.data.adIndex);
+               return new RoomsWithHighestScoreSearchMessageComposer(_navigator.data.adIndex);
             case 9:
-               return new class_648("tag:" + param2);
+               return new RoomTextSearchMessageComposer("tag:" + param2);
             case 8:
-               return new class_648(param2);
+               return new RoomTextSearchMessageComposer(param2);
             case 13:
-               return new class_648("group:" + param2);
+               return new RoomTextSearchMessageComposer("group:" + param2);
             case 10:
-               return new class_648("roomname:" + param2);
+               return new RoomTextSearchMessageComposer("roomname:" + param2);
             case 14:
-               return new class_305(_navigator.data.adIndex);
+               return new GuildBaseSearchMessageComposer(_navigator.data.adIndex);
             case 15:
                _loc3_ = _navigator.data.competitionRoomsData;
-               return new class_202(_loc3_.goalId,_loc3_.pageIndex);
+               return new CompetitionRoomsSearchMessageComposer(_loc3_.goalId,_loc3_.pageIndex);
             case 16:
             case 17:
                break;
             case 18:
-               return new class_244();
+               return new MyRoomRightsSearchMessageComposer();
             case 19:
-               return new class_764();
+               return new MyGuildBasesSearchMessageComposer();
             case 20:
-               return new class_648("owner:" + param2);
+               return new RoomTextSearchMessageComposer("owner:" + param2);
             case 22:
-               return new class_260();
+               return new MyRecommendedRoomsMessageComposer();
             case 23:
-               return new class_864();
+               return new MyFrequentRoomHistorySearchMessageComposer();
             default:
                class_14.log("No message for searchType: " + param1);
                return null;
          }
-         return new class_413(_navigator.data.adIndex,param1);
+         return new RoomAdSearchMessageComposer(_navigator.data.adIndex,param1);
       }
       
       public function update(param1:uint) : void

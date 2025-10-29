@@ -66,11 +66,11 @@ package com.sulake.habbo.room {
    import com.sulake.habbo.communication.messages.incoming.room.session.YouArePlayingGameMessageEvent
    import com.sulake.habbo.communication.messages.incoming.room.session.RoomReadyMessageEvent
    import com.sulake.habbo.communication.messages.incoming.users.IgnoreResultMessageEvent
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_270
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_852
-   import com.sulake.habbo.communication.messages.outgoing.room.engine.class_216
-   import com.sulake.habbo.communication.messages.outgoing.room.engine.class_645
-   import com.sulake.habbo.communication.messages.outgoing.room.engine.class_865
+   import com.sulake.habbo.communication.messages.outgoing.catalog.BuildersClubPlaceRoomItemMessageComposer
+   import com.sulake.habbo.communication.messages.outgoing.catalog.BuildersClubPlaceWallItemMessageComposer
+   import com.sulake.habbo.communication.messages.outgoing.room.engine.PickupObjectMessageComposer
+   import com.sulake.habbo.communication.messages.outgoing.room.engine.GetFurnitureAliasesMessageComposer
+   import com.sulake.habbo.communication.messages.outgoing.room.engine.GetHeightMapMessageComposer
    import com.sulake.habbo.communication.messages.parser.handshake.class_1267
    import com.sulake.habbo.communication.messages.parser.help.class_1464
    import com.sulake.habbo.communication.messages.parser.room.action.class_1140
@@ -336,7 +336,7 @@ package com.sulake.habbo.room {
             if (parser == null) {
                 return;
             }
-            composer = new class_216(parser.id, parser.category, true);
+            composer = new PickupObjectMessageComposer(parser.id, parser.category, true);
             var_1630.windowManager.confirm("${" + parser.confirmTitle + "}", "${" + parser.confirmBody + "}", 0, function (param1: class_3441, param2: WindowEvent): void {
                 param1.dispose();
                 if (param2.type == "WE_OK") {
@@ -358,9 +358,9 @@ package com.sulake.habbo.room {
                 return;
             }
             if (parser.typeCode == class_1391.var_1593) {
-                composer = new class_270(parser.pageId, parser.offerId, parser.extraParam, parser.x, parser.y, parser.direction, true);
+                composer = new BuildersClubPlaceRoomItemMessageComposer(parser.pageId, parser.offerId, parser.extraParam, parser.x, parser.y, parser.direction, true);
             } else {
-                composer = new class_852(parser.pageId, parser.offerId, parser.extraParam, parser.wallLocation, true);
+                composer = new BuildersClubPlaceWallItemMessageComposer(parser.pageId, parser.offerId, parser.extraParam, parser.wallLocation, true);
             }
             var_1630.windowManager.confirm("${generic.alert.title}", "${room.confirm.hide_room}", 0, function (param1: class_3441, param2: WindowEvent): void {
                 param1.dispose();
@@ -395,10 +395,10 @@ package com.sulake.habbo.room {
                 var_1630.setWorldType(_loc2_.roomId, _loc3_);
             }
             if (_initialConnection) {
-                param1.connection.send(new class_645());
+                param1.connection.send(new GetFurnitureAliasesMessageComposer());
                 _initialConnection = false;
             } else {
-                param1.connection.send(new class_865());
+                param1.connection.send(new GetHeightMapMessageComposer());
             }
         }
 
@@ -425,7 +425,7 @@ package com.sulake.habbo.room {
                     }
                 }
             }
-            param1.connection.send(new class_865());
+            param1.connection.send(new GetHeightMapMessageComposer());
         }
 
         private function onHeightMap(param1: IMessageEvent): void {

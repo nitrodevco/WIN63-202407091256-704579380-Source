@@ -23,8 +23,8 @@ package com.sulake.habbo.catalog.collectibles
    import com.sulake.habbo.communication.messages.parser.collectibles.class_1484;
    import com.sulake.habbo.communication.messages.incoming.collectibles.NftCollectionsScoreMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectibleWalletAddressesMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.collectibles.class_405;
-   import com.sulake.habbo.communication.messages.outgoing.collectibles.class_643;
+   import com.sulake.habbo.communication.messages.outgoing.collectibles.GetCollectibleWalletAddressesMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.collectibles.GetCollectorScoreMessageComposer;
    
    public class CollectiblesView implements IDisposable
    {
@@ -278,7 +278,7 @@ package com.sulake.habbo.catalog.collectibles
          }
          if(var_2778 != null)
          {
-            var_319.send(new class_643(var_2778));
+            var_319.send(new GetCollectorScoreMessageComposer(var_2778));
          }
       }
       
@@ -289,7 +289,7 @@ package com.sulake.habbo.catalog.collectibles
             return;
          }
          var_3829 = true;
-         var_319.send(new class_405());
+         var_319.send(new GetCollectibleWalletAddressesMessageComposer());
       }
       
       public function get walletAddresses() : Array

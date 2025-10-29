@@ -21,7 +21,7 @@ package com.sulake.habbo.quest.seasonalcalendar
    import flash.display.BitmapData;
    import flash.geom.Point;
    import flash.geom.Rectangle;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_282;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.GetSeasonalCalendarDailyComposer;
    import com.sulake.habbo.communication.messages.incoming.catalog.class_1718;
    import com.sulake.habbo.communication.messages.incoming.catalog.SeasonalCalendarDailyOfferMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.catalog.CatalogPublishedMessageEvent;
@@ -111,7 +111,7 @@ package com.sulake.habbo.quest.seasonalcalendar
             var_3151 = new CatalogPublishedMessageEvent(onCatalogPublished);
             var_26.addMessageEvent(var_3251);
             var_26.addMessageEvent(var_3151);
-            var_26.send(new class_282());
+            var_26.send(new GetSeasonalCalendarDailyComposer());
          }
       }
       
@@ -227,7 +227,7 @@ package com.sulake.habbo.quest.seasonalcalendar
       {
          if(var_26 != null)
          {
-            var_26.send(new class_282());
+            var_26.send(new GetSeasonalCalendarDailyComposer());
          }
       }
    }

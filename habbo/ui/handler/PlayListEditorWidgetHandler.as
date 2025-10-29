@@ -17,7 +17,7 @@ package com.sulake.habbo.ui.handler
    import flash.events.Event;
    import com.sulake.habbo.communication.messages.outgoing.room.engine.UseFurnitureMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.sound.AddJukeboxDiskComposer;
-   import com.sulake.habbo.communication.messages.outgoing.sound.class_934;
+   import com.sulake.habbo.communication.messages.outgoing.sound.RemoveJukeboxDiskComposer;
    import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListEvent;
    import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListAddOrUpdateEvent;
    import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListRemoveEvent;
@@ -158,7 +158,7 @@ package com.sulake.habbo.ui.handler
                _loc9_ = param1 as RoomWidgetPlayListModificationMessage;
                if(var_26 != null)
                {
-                  var_26.send(new class_934(_loc9_.slotNumber));
+                  var_26.send(new RemoveJukeboxDiskComposer(_loc9_.slotNumber));
                }
                break;
             case "RWPLPS_TOGGLE_PLAY_PAUSE":

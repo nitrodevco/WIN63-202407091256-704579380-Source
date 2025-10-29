@@ -14,7 +14,7 @@ package com.sulake.habbo.ui.widget.furniture.backgroundcolor
    import com.sulake.room.utils.ColorConverter;
    import flash.display.BitmapData;
    import com.sulake.habbo.communication.messages.outgoing.room.engine.UseFurnitureMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_825;
+   import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetRoomBackgroundColorDataComposer;
    
    public class BackgroundColorFurniWidget extends RoomWidgetBase
    {
@@ -128,7 +128,7 @@ package com.sulake.habbo.ui.widget.furniture.backgroundcolor
             switch(param2.name)
             {
                case "apply_button":
-                  handler.container.connection.send(new class_825(var_603,var_1235,var_1010,var_1227));
+                  handler.container.connection.send(new SetRoomBackgroundColorDataComposer(var_603,var_1235,var_1010,var_1227));
                   break;
                case "on_off_button":
                   handler.container.connection.send(new UseFurnitureMessageComposer(var_603));

@@ -16,9 +16,9 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_monitor
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredRoomStatsEvent;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.class_1708;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredErrorLogsEvent;
-   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_286;
-   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_437;
-   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_777;
+   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetErrorLogsMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredClearErrorLogsMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetRoomStatsMessageComposer;
    
    public class WiredMenuMonitorTab extends WiredMenuDefaultTab implements IUpdateReceiver
    {
@@ -110,8 +110,8 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_monitor
       private function requestData() : void
       {
          var_4677 = getTimer();
-         controller.send(new class_777());
-         controller.send(new class_286());
+         controller.send(new WiredGetRoomStatsMessageComposer());
+         controller.send(new WiredGetErrorLogsMessageComposer());
       }
       
       private function onRoomStatsEvent(param1:WiredRoomStatsEvent) : void
@@ -146,7 +146,7 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_monitor
       private function onClearButtonClicked(param1:WindowMouseEvent) : void
       {
          clearButton.disable();
-         controller.send(new class_437());
+         controller.send(new WiredClearErrorLogsMessageComposer());
       }
       
       override protected function initializeInterface() : void

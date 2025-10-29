@@ -11,8 +11,8 @@ package com.sulake.habbo.quest
    import flash.events.TimerEvent;
    import flash.geom.Point;
    import flash.utils.Timer;
-   import com.sulake.habbo.communication.messages.outgoing.quest.class_461;
-   import com.sulake.habbo.communication.messages.outgoing.quest.class_748;
+   import com.sulake.habbo.communication.messages.outgoing.quest.OpenQuestTrackerMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.quest.StartCampaignMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.quest.class_1715;
    
    public class QuestTracker implements IDisposable
@@ -413,7 +413,7 @@ package com.sulake.habbo.quest
                   _trackerAnimationStatus = 0;
                   if(var_4728 && !var_3217)
                   {
-                     _questEngine.send(new class_461());
+                     _questEngine.send(new OpenQuestTrackerMessageComposer());
                   }
                   else
                   {
@@ -466,7 +466,7 @@ package com.sulake.habbo.quest
          else
          {
             _questEngine.questController.questDetails.openForNextQuest = _questEngine.getBoolean("questing.showDetailsForNextQuest");
-            _questEngine.send(new class_748(_questEngine.questController.getDefaultCampaign()));
+            _questEngine.send(new StartCampaignMessageComposer(_questEngine.questController.getDefaultCampaign()));
          }
       }
       

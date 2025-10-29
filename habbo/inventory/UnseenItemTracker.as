@@ -7,8 +7,8 @@ package com.sulake.habbo.inventory
    import flash.utils.Dictionary;
    import com.sulake.habbo.communication.messages.parser.notifications.class_1592;
    import com.sulake.habbo.communication.messages.incoming.notifications.UnseenItemsEvent;
-   import com.sulake.habbo.communication.messages.outgoing.notifications.class_204;
-   import com.sulake.habbo.communication.messages.outgoing.notifications.class_554;
+   import com.sulake.habbo.communication.messages.outgoing.notifications.ResetUnseenItemIdsComposer;
+   import com.sulake.habbo.communication.messages.outgoing.notifications.ResetUnseenItemsComposer;
    
    public class UnseenItemTracker implements class_3425
    {
@@ -190,12 +190,12 @@ package com.sulake.habbo.inventory
       
       private function sendResetCategoryMessage(param1:int) : void
       {
-         _communication.connection.send(new class_554(param1));
+         _communication.connection.send(new ResetUnseenItemsComposer(param1));
       }
       
       private function sendResetItemsMessage(param1:int, param2:Array) : void
       {
-         _communication.connection.send(new class_204(param1,param2));
+         _communication.connection.send(new ResetUnseenItemIdsComposer(param1,param2));
       }
    }
 }

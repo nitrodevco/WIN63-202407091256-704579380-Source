@@ -11,7 +11,7 @@ package com.sulake.habbo.ui.handler
    import com.sulake.habbo.ui.widget.messages.RoomWidgetSpamWallPostItFinishEditingMessage;
    import flash.events.Event;
    import com.sulake.habbo.communication.messages.parser.room.furniture.class_1279;
-   import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_530;
+   import com.sulake.habbo.communication.messages.outgoing.room.furniture.AddSpamWallPostItMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.room.furniture.RequestSpamWallPostItMessageEvent;
    
    public class SpamWallPostItWidgetHandler implements IRoomWidgetHandler
@@ -103,7 +103,7 @@ package com.sulake.habbo.ui.handler
       public function processWidgetMessage(param1:RoomWidgetMessage) : RoomWidgetUpdateEvent
       {
          var _loc2_:RoomWidgetSpamWallPostItFinishEditingMessage = null;
-         var _loc3_:class_530 = null;
+         var _loc3_:AddSpamWallPostItMessageComposer = null;
          var _loc4_:* = param1.type;
          if("RWSWPFEE_SEND_POSTIT_DATA" === _loc4_)
          {
@@ -112,7 +112,7 @@ package com.sulake.habbo.ui.handler
             {
                if(var_26 != null)
                {
-                  _loc3_ = new class_530(_loc2_.objectId,_loc2_.location,_loc2_.colorHex,_loc2_.text);
+                  _loc3_ = new AddSpamWallPostItMessageComposer(_loc2_.objectId,_loc2_.location,_loc2_.colorHex,_loc2_.text);
                   var_26.send(_loc3_);
                }
             }

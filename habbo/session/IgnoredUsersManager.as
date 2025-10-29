@@ -4,9 +4,9 @@ package com.sulake.habbo.session
    import com.sulake.core.runtime.IDisposable;
    import com.sulake.habbo.communication.messages.incoming.users.IgnoreResultMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.users.IgnoredUsersMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_342;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_352;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_715;
+   import com.sulake.habbo.communication.messages.outgoing.users.UnignoreUserMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.IgnoreUserMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetIgnoredUsersMessageComposer;
    
    public class IgnoredUsersManager implements IDisposable
    {
@@ -50,7 +50,7 @@ package com.sulake.habbo.session
       
       public function initIgnoreList() : void
       {
-         _sessionDataManager.send(new class_715());
+         _sessionDataManager.send(new GetIgnoredUsersMessageComposer());
       }
       
       private function onIgnoreList(param1:IgnoredUsersMessageEvent) : void
@@ -96,12 +96,12 @@ package com.sulake.habbo.session
       
       public function ignoreUser(param1:int) : void
       {
-         _sessionDataManager.send(new class_352(param1));
+         _sessionDataManager.send(new IgnoreUserMessageComposer(param1));
       }
       
       public function unignoreUser(param1:int) : void
       {
-         _sessionDataManager.send(new class_342(param1));
+         _sessionDataManager.send(new UnignoreUserMessageComposer(param1));
       }
       
       public function isIgnored(param1:int) : Boolean

@@ -24,7 +24,7 @@ package com.sulake.habbo.advertisement
    import flash.net.URLRequest;
    import flash.system.Security;
    import com.sulake.habbo.communication.messages.parser.advertisement.class_1485;
-   import com.sulake.habbo.communication.messages.outgoing.advertisement.class_703;
+   import com.sulake.habbo.communication.messages.outgoing.advertisement.GetInterstitialMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.advertisement.InterstitialMessageEvent;
    
    public class AdManager extends Component implements class_1811
@@ -133,7 +133,7 @@ package com.sulake.habbo.advertisement
             noInterstitialAvailable();
             return;
          }
-         _communicationManager.connection.send(new class_703());
+         _communicationManager.connection.send(new GetInterstitialMessageComposer());
       }
       
       private function onInterstitial(param1:InterstitialMessageEvent) : void

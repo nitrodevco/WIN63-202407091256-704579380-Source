@@ -12,8 +12,8 @@ package com.sulake.habbo.inventory.pets
    import com.sulake.habbo.session.IRoomSession;
    import com.sulake.habbo.window.IHabboWindowManager;
    import flash.events.Event;
-   import com.sulake.habbo.communication.messages.outgoing.inventory.pets.class_964;
-   import com.sulake.habbo.communication.messages.outgoing.room.engine.class_755;
+   import com.sulake.habbo.communication.messages.outgoing.inventory.pets.GetPetInventoryComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.engine.PlacePetMessageComposer;
    import com.sulake.habbo.communication.messages.parser.inventory.pets.class_1679;
    
    public class PetsModel implements IInventoryModel
@@ -115,7 +115,7 @@ package com.sulake.habbo.inventory.pets
          {
             return;
          }
-         _loc1_.send(new class_964());
+         _loc1_.send(new GetPetInventoryComposer());
       }
       
       public function get pets() : Map
@@ -227,7 +227,7 @@ package com.sulake.habbo.inventory.pets
          }
          if(!param2)
          {
-            _communication.connection.send(new class_755(_loc5_.id,0,0));
+            _communication.connection.send(new PlacePetMessageComposer(_loc5_.id,0,0));
          }
          return true;
       }

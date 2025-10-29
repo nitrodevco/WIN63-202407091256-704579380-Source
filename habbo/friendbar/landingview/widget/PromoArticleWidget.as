@@ -7,7 +7,7 @@ package com.sulake.habbo.friendbar.landingview.widget
    import com.sulake.core.window.components.IRegionWindow;
    import com.sulake.core.window.components.IStaticBitmapWrapperWindow;
    import com.sulake.core.window.events.WindowEvent;
-   import com.sulake.habbo.communication.messages.outgoing.landingview.class_816;
+   import com.sulake.habbo.communication.messages.outgoing.landingview.GetPromoArticlesMessageComposer;
    import com.sulake.habbo.friendbar.landingview.HabboLandingView;
    import com.sulake.habbo.friendbar.landingview.interfaces.ILandingViewWidget;
    import com.sulake.habbo.friendbar.landingview.interfaces.ISettingsAwareWidget;
@@ -60,7 +60,7 @@ package com.sulake.habbo.friendbar.landingview.widget
       {
          if(_lastRequestTime == null || _lastRequestTime.time + 600000 < new Date().time)
          {
-            _landingView.send(new class_816());
+            _landingView.send(new GetPromoArticlesMessageComposer());
             _lastRequestTime = new Date();
          }
          else

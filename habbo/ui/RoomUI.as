@@ -60,7 +60,7 @@ package com.sulake.habbo.ui
    import flash.events.MouseEvent;
    import flash.events.TimerEvent;
    import flash.utils.Timer;
-   import com.sulake.habbo.communication.messages.outgoing.advertisement.class_168;
+   import com.sulake.habbo.communication.messages.outgoing.advertisement.InterstitialShownMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.perk.PerkAllowancesMessageEvent;
    
    public class RoomUI extends Component implements IRoomUI, IUpdateReceiver
@@ -769,7 +769,7 @@ package com.sulake.habbo.ui
          var_1988 = false;
          if(param1.status == "complete")
          {
-            _communication.connection.send(new class_168());
+            _communication.connection.send(new InterstitialShownMessageComposer());
          }
          var _loc2_:String = getRoomIdentifier(var_3319);
          var _loc3_:RoomDesktop = getDesktop(_loc2_) as RoomDesktop;

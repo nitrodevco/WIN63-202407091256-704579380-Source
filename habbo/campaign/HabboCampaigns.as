@@ -27,8 +27,8 @@ package com.sulake.habbo.campaign
    import com.sulake.habbo.communication.messages.parser.campaign.class_1115;
    import com.sulake.habbo.communication.messages.parser.campaign.class_1499;
    import com.sulake.habbo.communication.messages.parser.campaign.class_1641;
-   import com.sulake.habbo.communication.messages.outgoing.campaign.class_375;
-   import com.sulake.habbo.communication.messages.outgoing.campaign.class_631;
+   import com.sulake.habbo.communication.messages.outgoing.campaign.OpenCampaignCalendarDoorAsStaffComposer;
+   import com.sulake.habbo.communication.messages.outgoing.campaign.OpenCampaignCalendarDoorComposer;
    
    public class HabboCampaigns extends Component implements ILinkEventTracker
    {
@@ -127,7 +127,7 @@ package com.sulake.habbo.campaign
          }
          else
          {
-            _communicationManager.connection.send(new class_631(var_2067.campaignName,param1));
+            _communicationManager.connection.send(new OpenCampaignCalendarDoorComposer(var_2067.campaignName,param1));
          }
       }
       
@@ -140,7 +140,7 @@ package com.sulake.habbo.campaign
          }
          else
          {
-            _communicationManager.connection.send(new class_375(var_2067.campaignName,param1));
+            _communicationManager.connection.send(new OpenCampaignCalendarDoorAsStaffComposer(var_2067.campaignName,param1));
          }
       }
       

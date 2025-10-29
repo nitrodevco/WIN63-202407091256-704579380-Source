@@ -27,9 +27,9 @@ package com.sulake.habbo.sound
    import com.sulake.iid.IIDRoomEngine;
    import flash.events.Event;
    import flash.media.Sound;
-   import com.sulake.habbo.communication.messages.outgoing.sound.class_700;
+   import com.sulake.habbo.communication.messages.outgoing.sound.GetSoundSettingsComposer;
    import com.sulake.habbo.communication.messages.parser.preferences.class_1413;
-   import com.sulake.habbo.communication.messages.outgoing.preferences.class_525;
+   import com.sulake.habbo.communication.messages.outgoing.preferences.SetSoundSettingsComposer;
    import com.sulake.habbo.communication.messages.incoming.preferences.AccountPreferencesEvent;
    
    public class HabboSoundManagerFlash10 extends Component implements class_2240, IUpdateReceiver
@@ -409,7 +409,7 @@ package com.sulake.habbo.sound
          _roomEngine.events.addEventListener("REPSE_PLAY_SOUND",onRoomEngineObjectPlaySound);
          _roomEngine.events.addEventListener("REPSE_PLAY_SOUND_AT_PITCH",onRoomEngineObjectPlaySound);
          var_26.addMessageEvent(new AccountPreferencesEvent(onSoundSettingsEvent));
-         var_26.send(new class_700());
+         var_26.send(new GetSoundSettingsComposer());
       }
       
       protected function setMusicController(param1:class_3410) : void
@@ -442,7 +442,7 @@ package com.sulake.habbo.sound
       {
          if(var_26 != null)
          {
-            var_26.send(new class_525(int(_traxVolume * 100),int(_furniVolume * 100),int(_genericVolume * 100)));
+            var_26.send(new SetSoundSettingsComposer(int(_traxVolume * 100),int(_furniVolume * 100),int(_genericVolume * 100)));
          }
       }
       

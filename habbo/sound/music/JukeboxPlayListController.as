@@ -15,7 +15,7 @@ package com.sulake.habbo.sound.music
    import flash.events.IEventDispatcher;
    import com.sulake.habbo.communication.messages.parser.sound.class_1379;
    import com.sulake.habbo.communication.messages.parser.sound.class_1400;
-   import com.sulake.habbo.communication.messages.outgoing.sound.class_667;
+   import com.sulake.habbo.communication.messages.outgoing.sound.GetJukeboxPlayListMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.sound.JukeboxSongDisksMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.sound.NowPlayingMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.sound.JukeboxPlayListFullMessageEvent;
@@ -145,7 +145,7 @@ package com.sulake.habbo.sound.music
          {
             return;
          }
-         var_26.send(new class_667());
+         var_26.send(new GetJukeboxPlayListMessageComposer());
       }
       
       public function getEntry(param1:int) : ISongInfo

@@ -45,7 +45,7 @@ package com.sulake.habbo.moderation
    import com.sulake.habbo.communication.messages.incoming.callforhelp.CfhTopicsInitMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.callforhelp.CfhSanctionMessageEvent;
    import package_53.*;
-   import com.sulake.habbo.communication.messages.outgoing.moderator.class_360;
+   import com.sulake.habbo.communication.messages.outgoing.moderator.GetModeratorUserInfoMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.userclassification.UserClassificationMessageEvent;
    
    public class ModerationMessageHandler
@@ -331,7 +331,7 @@ package com.sulake.habbo.moderation
          class_14.log("GOT MOD ACTION RESULT: " + _loc2_.userId + ", " + _loc2_.success);
          if(_loc2_.success)
          {
-            _moderationManager.connection.send(new class_360(_loc2_.userId));
+            _moderationManager.connection.send(new GetModeratorUserInfoMessageComposer(_loc2_.userId));
          }
          else
          {

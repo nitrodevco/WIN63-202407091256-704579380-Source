@@ -17,7 +17,7 @@ package com.sulake.habbo.roomevents
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredFurniAddonEvent;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredValidationErrorEvent;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredFurniVariableEvent;
-   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.class_833;
+   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.OpenMessageComposer;
    import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.class_1148;
    import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.class_1150;
    import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.class_1196;
@@ -73,7 +73,7 @@ package com.sulake.habbo.roomevents
       private function onOpen(param1:IMessageEvent) : void
       {
          var _loc2_:class_1150 = (param1 as OpenEvent).getParser();
-         _roomEvents.send(new class_833(_loc2_.stuffId));
+         _roomEvents.send(new OpenMessageComposer(_loc2_.stuffId));
       }
       
       private function onTrigger(param1:IMessageEvent) : void

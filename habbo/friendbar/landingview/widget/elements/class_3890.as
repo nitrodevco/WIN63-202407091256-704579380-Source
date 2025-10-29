@@ -3,7 +3,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
    import com.sulake.core.window.IWindow;
    import com.sulake.habbo.friendbar.landingview.HabboLandingView;
    import com.sulake.habbo.friendbar.landingview.widget.GenericWidget;
-   import com.sulake.habbo.communication.messages.outgoing.competition.class_490;
+   import com.sulake.habbo.communication.messages.outgoing.competition.ForwardToRandomCompetitionRoomMessageComposer;
    
    public class class_3890 extends class_3879
    {
@@ -25,7 +25,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
       override protected function onClick() : void
       {
          landingView.questEngine.reenableRoomCompetitionWindow();
-         landingView.send(new class_490(var_891));
+         landingView.send(new ForwardToRandomCompetitionRoomMessageComposer(var_891));
          landingView.tracking.trackGoogle("landingView","click_gotocompetitionroom");
       }
    }

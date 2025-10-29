@@ -12,9 +12,9 @@ package com.sulake.habbo.ui.handler
    import com.sulake.habbo.communication.messages.parser.room.furniture.class_1314;
    import com.sulake.habbo.communication.messages.parser.room.furniture.class_1383;
    import com.sulake.habbo.communication.messages.parser.room.furniture.class_1596;
-   import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_154;
-   import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_443;
-   import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_598;
+   import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetYoutubeDisplayPlaylistMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.furniture.ControlYoutubeDisplayPlaybackMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.furniture.GetYoutubeDisplayStatusMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.room.furniture.YoutubeControlVideoMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.room.furniture.YoutubeDisplayVideoMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.room.furniture.YoutubeDisplayPlaylistsMessageEvent;
@@ -132,7 +132,7 @@ package com.sulake.habbo.ui.handler
                {
                   _loc3_ = _container.isOwnerOfFurniture(_loc2_) || _container.sessionDataManager.hasSecurity(4);
                   var_1629.show(_loc2_,_loc3_);
-                  _container.connection.send(new class_598(_loc2_.getId()));
+                  _container.connection.send(new GetYoutubeDisplayStatusMessageComposer(_loc2_.getId()));
                }
                break;
             case "RETWE_CLOSE_WIDGET":
@@ -161,27 +161,27 @@ package com.sulake.habbo.ui.handler
       
       public function selectPlaylist(param1:int, param2:String) : void
       {
-         _container.connection.send(new class_154(param1,param2));
+         _container.connection.send(new SetYoutubeDisplayPlaylistMessageComposer(param1,param2));
       }
       
       public function switchToPreviousVideo(param1:int) : void
       {
-         _container.connection.send(new class_443(param1,0));
+         _container.connection.send(new ControlYoutubeDisplayPlaybackMessageComposer(param1,0));
       }
       
       public function switchToNextVideo(param1:int) : void
       {
-         _container.connection.send(new class_443(param1,1));
+         _container.connection.send(new ControlYoutubeDisplayPlaybackMessageComposer(param1,1));
       }
       
       public function pauseVideo(param1:int) : void
       {
-         _container.connection.send(new class_443(param1,2));
+         _container.connection.send(new ControlYoutubeDisplayPlaybackMessageComposer(param1,2));
       }
       
       public function continueVideo(param1:int) : void
       {
-         _container.connection.send(new class_443(param1,3));
+         _container.connection.send(new ControlYoutubeDisplayPlaybackMessageComposer(param1,3));
       }
    }
 }

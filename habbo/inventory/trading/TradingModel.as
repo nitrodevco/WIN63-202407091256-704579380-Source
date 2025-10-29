@@ -38,15 +38,15 @@ package com.sulake.habbo.inventory.trading
    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradeOpenFailedEvent;
    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingItemListEvent;
    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.SilverFeeMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.inventory.trading.class_376;
-   import com.sulake.habbo.communication.messages.outgoing.inventory.trading.class_409;
-   import com.sulake.habbo.communication.messages.outgoing.inventory.trading.class_511;
-   import com.sulake.habbo.communication.messages.outgoing.inventory.trading.class_519;
-   import com.sulake.habbo.communication.messages.outgoing.inventory.trading.class_669;
-   import com.sulake.habbo.communication.messages.outgoing.inventory.trading.class_720;
-   import com.sulake.habbo.communication.messages.outgoing.inventory.trading.class_791;
-   import com.sulake.habbo.communication.messages.outgoing.inventory.trading.class_822;
-   import com.sulake.habbo.communication.messages.outgoing.inventory.trading.class_845;
+   import com.sulake.habbo.communication.messages.outgoing.inventory.trading.AddItemsToTradeComposer;
+   import com.sulake.habbo.communication.messages.outgoing.inventory.trading.OpenTradingComposer;
+   import com.sulake.habbo.communication.messages.outgoing.inventory.trading.ConfirmAcceptTradingComposer;
+   import com.sulake.habbo.communication.messages.outgoing.inventory.trading.CloseTradingComposer;
+   import com.sulake.habbo.communication.messages.outgoing.inventory.trading.RemoveItemFromTradeComposer;
+   import com.sulake.habbo.communication.messages.outgoing.inventory.trading.ConfirmDeclineTradingComposer;
+   import com.sulake.habbo.communication.messages.outgoing.inventory.trading.UnacceptTradingComposer;
+   import com.sulake.habbo.communication.messages.outgoing.inventory.trading.AddItemToTradeComposer;
+   import com.sulake.habbo.communication.messages.outgoing.inventory.trading.AcceptTradingComposer;
    
    public class TradingModel implements IInventoryModel, IGetImageListener
    {
@@ -698,7 +698,7 @@ package com.sulake.habbo.inventory.trading
       
       public function requestOpenTrading(param1:int) : void
       {
-         _communication.connection.send(new class_409(param1));
+         _communication.connection.send(new OpenTradingComposer(param1));
       }
       
       public function requestAddItemsToTrading(param1:Vector.<int>, param2:Boolean, param3:int, param4:int, param5:Boolean, param6:IStuffData) : void
@@ -706,7 +706,7 @@ package com.sulake.habbo.inventory.trading
          var _loc8_:* = undefined;
          if(!param5 && param1.length > 0)
          {
-            _communication.connection.send(new class_822(param1.pop()));
+            _communication.connection.send(new AddItemToTradeComposer(param1.pop()));
          }
          else
          {
@@ -722,11 +722,11 @@ package com.sulake.habbo.inventory.trading
             {
                if(_loc8_.length == 1)
                {
-                  _communication.connection.send(new class_822(_loc8_.pop()));
+                  _communication.connection.send(new AddItemToTradeComposer(_loc8_.pop()));
                }
                else
                {
-                  _communication.connection.send(new class_376(_loc8_));
+                  _communication.connection.send(new AddItemsToTradeComposer(_loc8_));
                }
             }
          }
@@ -780,37 +780,37 @@ package com.sulake.habbo.inventory.trading
             _loc2_ = _loc3_.peek();
             if(_loc2_)
             {
-               _communication.connection.send(new class_669(_loc2_.id));
+               _communication.connection.send(new RemoveItemFromTradeComposer(_loc2_.id));
             }
          }
       }
       
       public function requestAcceptTrading() : void
       {
-         _communication.connection.send(new class_845());
+         _communication.connection.send(new AcceptTradingComposer());
       }
       
       public function requestUnacceptTrading() : void
       {
-         _communication.connection.send(new class_791());
+         _communication.connection.send(new UnacceptTradingComposer());
       }
       
       public function requestConfirmAcceptTrading() : void
       {
          state = 4;
-         _communication.connection.send(new class_511());
+         _communication.connection.send(new ConfirmAcceptTradingComposer());
       }
       
       public function requestConfirmDeclineTrading() : void
       {
-         _communication.connection.send(new class_720());
+         _communication.connection.send(new ConfirmDeclineTradingComposer());
       }
       
       public function requestCancelTrading() : void
       {
          if(!isConfirmingWeb3Trade())
          {
-            _communication.connection.send(new class_519());
+            _communication.connection.send(new CloseTradingComposer());
          }
       }
       

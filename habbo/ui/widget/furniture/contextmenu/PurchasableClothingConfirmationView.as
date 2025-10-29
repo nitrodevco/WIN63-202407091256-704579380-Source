@@ -13,7 +13,7 @@ package com.sulake.habbo.ui.widget.furniture.contextmenu
    import com.sulake.habbo.window.IHabboWindowManager;
    import com.sulake.habbo.window.widgets.IAvatarImageWidget;
    import com.sulake.room.object.IRoomObject;
-   import com.sulake.habbo.communication.messages.outgoing.register.class_675;
+   import com.sulake.habbo.communication.messages.outgoing.register.UpdateFigureDataMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.avatar.CustomizeAvatarWithFurniMessageComposer;
    
    public class PurchasableClothingConfirmationView implements IDisposable
@@ -98,7 +98,7 @@ package com.sulake.habbo.ui.widget.furniture.contextmenu
             _newFigureString = var_1629.handler.container.avatarRenderManager.getFigureStringWithFigureIds(var_1629.handler.container.sessionDataManager.figure,var_1629.handler.container.sessionDataManager.gender,_loc2_);
             if(var_1629.handler.container.inventory.hasBoundFigureSetFurniture(var_2047.className))
             {
-               var_1629.handler.container.connection.send(new class_675(_newFigureString,var_1629.handler.container.sessionDataManager.gender));
+               var_1629.handler.container.connection.send(new UpdateFigureDataMessageComposer(_newFigureString,var_1629.handler.container.sessionDataManager.gender));
             }
             else
             {
@@ -184,7 +184,7 @@ package com.sulake.habbo.ui.widget.furniture.contextmenu
                break;
             case "save_button":
                var_1629.handler.container.connection.send(new CustomizeAvatarWithFurniMessageComposer(var_3490));
-               var_1629.handler.container.connection.send(new class_675(_newFigureString,var_1629.handler.container.sessionDataManager.gender));
+               var_1629.handler.container.connection.send(new UpdateFigureDataMessageComposer(_newFigureString,var_1629.handler.container.sessionDataManager.gender));
                close();
          }
       }

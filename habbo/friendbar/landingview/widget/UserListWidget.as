@@ -7,7 +7,7 @@ package com.sulake.habbo.friendbar.landingview.widget
    import com.sulake.habbo.friendbar.landingview.*;
    import com.sulake.habbo.friendbar.landingview.interfaces.ILandingViewWidget;
    import com.sulake.habbo.window.widgets.IAvatarImageWidget;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_322;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.quest.class_1772;
    
    public class UserListWidget implements ILandingViewWidget
@@ -159,7 +159,7 @@ package com.sulake.habbo.friendbar.landingview.widget
          }
          if(param1.type == "WME_CLICK")
          {
-            _landingView.send(new class_322(_loc3_.userId));
+            _landingView.send(new GetExtendedProfileMessageComposer(_loc3_.userId));
          }
          else if(param1.type == "WME_OVER")
          {

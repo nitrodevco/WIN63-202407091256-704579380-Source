@@ -21,7 +21,7 @@ package com.sulake.habbo.game.snowwar
    import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2CheckGameDirectoryStatusMessageComposer
    import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2GetAccountGameStatusMessageComposer
    import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2QuickJoinGameMessageComposer
-   import com.sulake.habbo.communication.messages.outgoing.game.directory.class_365
+   import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2StartSnowWarMessageComposer
    import com.sulake.habbo.communication.messages.outgoing.game.ingame.Game2MakeSnowballMessageComposer
    import com.sulake.habbo.communication.messages.outgoing.game.ingame.Game2RequestFullStatusUpdateMessageComposer
    import com.sulake.habbo.communication.messages.outgoing.game.ingame.Game2SetUserMoveTargetMessageComposer
@@ -595,7 +595,7 @@ package com.sulake.habbo.game.snowwar
       public function startServerGame(param1:String) : void
       {
          initGameDirectoryConnection();
-         send(new class_365(param1));
+         send(new Game2StartSnowWarMessageComposer(param1));
       }
       
       public function initGameDirectoryConnection() : void

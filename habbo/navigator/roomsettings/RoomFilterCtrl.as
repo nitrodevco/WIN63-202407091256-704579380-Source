@@ -9,7 +9,7 @@ package com.sulake.habbo.navigator.roomsettings
    import com.sulake.core.window.events.WindowMouseEvent;
    import com.sulake.core.window.events.WindowEvent;
    import com.sulake.habbo.navigator.IHabboTransitionalNavigator;
-   import com.sulake.habbo.communication.messages.outgoing.roomsettings.class_166;
+   import com.sulake.habbo.communication.messages.outgoing.roomsettings.UpdateRoomFilterMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.roomsettings.GetCustomRoomFilterMessageComposer;
    
    public class RoomFilterCtrl implements IDisposable
@@ -147,7 +147,7 @@ package com.sulake.habbo.navigator.roomsettings
       {
          if(var_2452 != null && var_2452.text.length > 0)
          {
-            _navigator.send(new class_166(_flatId,class_166.var_1615,param1));
+            _navigator.send(new UpdateRoomFilterMessageComposer(_flatId,UpdateRoomFilterMessageComposer.var_1615,param1));
             _navigator.send(new GetCustomRoomFilterMessageComposer(_flatId));
             var_2452.text = "bobba";
          }
@@ -172,7 +172,7 @@ package com.sulake.habbo.navigator.roomsettings
          {
             var_744.splice(var_744.indexOf(_loc3_),1);
          }
-         _navigator.send(new class_166(_flatId,class_166.var_1610,_loc3_));
+         _navigator.send(new UpdateRoomFilterMessageComposer(_flatId,UpdateRoomFilterMessageComposer.var_1610,_loc3_));
       }
       
       private function refreshColorsAfterClick(param1:IItemListWindow) : void

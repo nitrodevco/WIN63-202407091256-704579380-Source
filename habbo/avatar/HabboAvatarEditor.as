@@ -28,10 +28,10 @@ package com.sulake.habbo.avatar
    import com.sulake.habbo.avatar.wardrobe.WardrobeModel;
    import flash.display.BitmapData;
    import flash.utils.Dictionary;
-   import com.sulake.habbo.communication.messages.outgoing.register.class_675;
+   import com.sulake.habbo.communication.messages.outgoing.register.UpdateFigureDataMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.nft.UserNftWardrobeSelectionMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.nft.SaveUserNftWardrobeMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.nft.class_757;
+   import com.sulake.habbo.communication.messages.outgoing.nft.GetSelectedNftWardrobeOutfitMessageComposer;
    
    public class HabboAvatarEditor
    {
@@ -171,7 +171,7 @@ package com.sulake.habbo.avatar
       {
          if(var_480.communication)
          {
-            var_480.communication.connection.send(new class_757());
+            var_480.communication.connection.send(new GetSelectedNftWardrobeOutfitMessageComposer());
          }
       }
       
@@ -378,7 +378,7 @@ package com.sulake.habbo.avatar
                }
                else
                {
-                  var_480.communication.connection.send(new class_675(_loc1_,_loc2_));
+                  var_480.communication.connection.send(new UpdateFigureDataMessageComposer(_loc1_,_loc2_));
                }
             }
             if(hasNftOutfit())

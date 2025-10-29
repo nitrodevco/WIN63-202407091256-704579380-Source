@@ -22,9 +22,9 @@ package com.sulake.habbo.ui.handler
    import com.sulake.habbo.communication.messages.outgoing.inventory.furni.RequestFurniInventoryComposer;
    import com.sulake.habbo.communication.messages.outgoing.crafting.CraftComposer;
    import com.sulake.habbo.communication.messages.outgoing.crafting.GetCraftableProductsComposer;
-   import com.sulake.habbo.communication.messages.outgoing.crafting.class_890;
-   import com.sulake.habbo.communication.messages.outgoing.crafting.class_891;
-   import com.sulake.habbo.communication.messages.outgoing.crafting.class_972;
+   import com.sulake.habbo.communication.messages.outgoing.crafting.CraftSecretComposer;
+   import com.sulake.habbo.communication.messages.outgoing.crafting.GetCraftingRecipesAvailableComposer;
+   import com.sulake.habbo.communication.messages.outgoing.crafting.GetCraftingRecipeComposer;
    
    public class CraftingWidgetHandler implements IRoomWidgetHandler
    {
@@ -154,7 +154,7 @@ package com.sulake.habbo.ui.handler
       {
          var_3717 = _container.sessionDataManager.getProductData(param2);
          var_3413 = param1;
-         _container.connection.send(new class_972(param1));
+         _container.connection.send(new GetCraftingRecipeComposer(param1));
       }
       
       private function onCraftingRecipeMessage(param1:CraftingRecipeMessageEvent) : void
@@ -164,7 +164,7 @@ package com.sulake.habbo.ui.handler
       
       public function getCraftingRecipesAvailable(param1:Vector.<int>) : void
       {
-         _container.connection.send(new class_891(var_2516,param1));
+         _container.connection.send(new GetCraftingRecipesAvailableComposer(var_2516,param1));
       }
       
       private function onCraftingRecipesAvailableMessage(param1:CraftingRecipesAvailableMessageEvent) : void
@@ -188,7 +188,7 @@ package com.sulake.habbo.ui.handler
          var_1629.infoCtrl.setState(1000);
          var _loc1_:Vector.<int> = var_1629.getSelectedIngredients();
          registerForFurniListInvalidate();
-         _container.connection.send(new class_890(var_2516,_loc1_));
+         _container.connection.send(new CraftSecretComposer(var_2516,_loc1_));
       }
       
       private function onCraftingResultMessage(param1:CraftingResultMessageEvent) : void

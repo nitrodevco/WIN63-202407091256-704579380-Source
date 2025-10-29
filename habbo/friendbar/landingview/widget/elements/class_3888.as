@@ -6,7 +6,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
    import com.sulake.habbo.friendbar.landingview.interfaces.elements.class_3863;
    import com.sulake.habbo.friendbar.landingview.widget.GenericWidget;
    import com.sulake.habbo.communication.messages.incoming.inventory.badges.IsBadgeRequestFulfilledEvent;
-   import com.sulake.habbo.communication.messages.outgoing.inventory.badges.class_441;
+   import com.sulake.habbo.communication.messages.outgoing.inventory.badges.GetIsBadgeRequestFulfilledComposer;
    
    public class class_3888 extends class_3879 implements class_3863
    {
@@ -44,7 +44,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
       override public function refresh() : void
       {
          super.refresh();
-         landingView.send(new class_441(var_3083));
+         landingView.send(new GetIsBadgeRequestFulfilledComposer(var_3083));
       }
       
       public function isFloating(param1:Boolean) : Boolean
@@ -64,7 +64,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
       {
          if(window)
          {
-            landingView.send(new class_441(var_3083));
+            landingView.send(new GetIsBadgeRequestFulfilledComposer(var_3083));
          }
       }
    }

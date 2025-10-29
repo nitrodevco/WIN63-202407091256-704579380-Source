@@ -31,10 +31,10 @@ package com.sulake.habbo.catalog.clubcenter
    import com.sulake.habbo.communication.messages.incoming.inventory.badges.BadgesEvent;
    import com.sulake.habbo.communication.messages.parser.users.class_1537;
    import com.sulake.habbo.communication.messages.parser.inventory.badges.class_1181;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_752;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.GetClubGiftMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.users.class_1739;
    import com.sulake.habbo.communication.messages.incoming.users.ScrSendKickbackInfoMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_346;
+   import com.sulake.habbo.communication.messages.outgoing.users.ScrGetKickbackInfoMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.catalog.ClubGiftInfoEvent;
    import com.sulake.habbo.communication.messages.outgoing.inventory.badges.GetBadgesComposer;
    
@@ -273,10 +273,10 @@ package com.sulake.habbo.catalog.clubcenter
       {
          var_3230 = true;
          _communicationManager.connection.send(new GetBadgesComposer());
-         _communicationManager.connection.send(new class_752());
+         _communicationManager.connection.send(new GetClubGiftMessageComposer());
          if(true)
          {
-            _communicationManager.connection.send(new class_346());
+            _communicationManager.connection.send(new ScrGetKickbackInfoMessageComposer());
          }
          else
          {

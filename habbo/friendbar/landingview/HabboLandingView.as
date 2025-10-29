@@ -50,9 +50,9 @@ package com.sulake.habbo.friendbar.landingview
    import flash.events.Event;
    import com.sulake.habbo.communication.messages.outgoing.landingview.votes.CommunityGoalVoteMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_491;
-   import com.sulake.habbo.communication.messages.outgoing.room.session.class_325;
+   import com.sulake.habbo.communication.messages.outgoing.room.session.QuitMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.navigator.ForwardToARandomPromotedRoomMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.inventory.badges.class_1062;
+   import com.sulake.habbo.communication.messages.outgoing.inventory.badges.RequestABadgeComposer;
    
    public class HabboLandingView extends AbstractView implements IHabboLandingView
    {
@@ -329,7 +329,7 @@ package com.sulake.habbo.friendbar.landingview
             case "HTIE_ICON_RECEPTION":
                if(_roomSessionManager.getSession(-1))
                {
-                  send(new class_325());
+                  send(new QuitMessageComposer());
                   _roomSessionManager.disposeSession(-1);
                }
                break;
@@ -448,7 +448,7 @@ package com.sulake.habbo.friendbar.landingview
       
       public function requestBadge(param1:String) : void
       {
-         send(new class_1062(param1));
+         send(new RequestABadgeComposer(param1));
       }
       
       public function communityGoalVote(param1:int) : void

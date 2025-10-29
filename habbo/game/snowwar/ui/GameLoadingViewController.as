@@ -19,7 +19,7 @@ package com.sulake.habbo.game.snowwar.ui
    import com.sulake.habbo.game.snowwar.utils.WindowUtils;
    import flash.display.BitmapData;
    import flash.geom.Point;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_553;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.GetGuestRoomMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.game.arena.Game2ExitGameMessageComposer;
    
    public class GameLoadingViewController implements IDisposable, IAvatarImageListener
@@ -117,7 +117,7 @@ package com.sulake.habbo.game.snowwar.ui
             var_1655.send(new Game2ExitGameMessageComposer());
             if(var_1655.roomBeforeGame > -1)
             {
-               var_1655.send(new class_553(var_1655.roomBeforeGame,false,true));
+               var_1655.send(new GetGuestRoomMessageComposer(var_1655.roomBeforeGame,false,true));
             }
             var_1655.disposeLoadingView();
          }

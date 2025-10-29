@@ -22,11 +22,11 @@ package com.sulake.habbo.groups
    import com.sulake.habbo.communication.messages.incoming.users.class_1197;
    import com.sulake.habbo.communication.messages.incoming.users.class_1677;
    import com.sulake.habbo.communication.messages.incoming.users.class_1688;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_1010;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_251;
+   import com.sulake.habbo.communication.messages.outgoing.users.UpdateGuildColorsMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.CreateGuildMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.users.UpdateGuildBadgeMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_906;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_935;
+   import com.sulake.habbo.communication.messages.outgoing.users.UpdateGuildSettingsMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.UpdateGuildIdentityMessageComposer;
    
    public class GuildManagementWindowCtrl implements IDisposable
    {
@@ -619,7 +619,7 @@ package com.sulake.habbo.groups
                _loc5_ = String(ITextFieldWindow(_window.findChildByName("desc_txt")).text);
                if(var_47.isOwner)
                {
-                  var_480.send(new class_935(var_47.groupId,_loc3_,_loc5_));
+                  var_480.send(new UpdateGuildIdentityMessageComposer(var_47.groupId,_loc3_,_loc5_));
                }
                var_480.events.dispatchEvent(new GuildSettingsChangedInManageEvent("GSCIME_GUILD_VISUAL_SETTINGS_CHANGED",var_47.groupId));
                return;
@@ -636,14 +636,14 @@ package com.sulake.habbo.groups
                _loc4_ = var_1814.isInitialized ? var_1814.getSelectedColorId() : int(var_47.secondaryColorId);
                if(var_47.isOwner)
                {
-                  var_480.send(new class_1010(var_47.groupId,_loc2_,_loc4_));
+                  var_480.send(new UpdateGuildColorsMessageComposer(var_47.groupId,_loc2_,_loc4_));
                }
                var_480.events.dispatchEvent(new GuildSettingsChangedInManageEvent("GSCIME_GUILD_VISUAL_SETTINGS_CHANGED",var_47.groupId));
                break;
             case 4:
                if(var_47.isOwner)
                {
-                  var_480.send(new class_906(var_47.groupId,var_2741.guildType,var_2741.rightsLevel));
+                  var_480.send(new UpdateGuildSettingsMessageComposer(var_47.groupId,var_2741.guildType,var_2741.rightsLevel));
                }
                var_2741.resetModified();
          }
@@ -658,7 +658,7 @@ package com.sulake.habbo.groups
          var _loc2_:int = var_1809.isInitialized ? var_1809.getSelectedColorId() : int(var_47.primaryColorId);
          var _loc4_:int = var_1814.isInitialized ? var_1814.getSelectedColorId() : int(var_47.secondaryColorId);
          var_2600 = 0;
-         var_480.send(new class_251(_loc3_,_loc5_,_loc6_.roomId,_loc2_,_loc4_,_loc1_));
+         var_480.send(new CreateGuildMessageComposer(_loc3_,_loc5_,_loc6_.roomId,_loc2_,_loc4_,_loc1_));
       }
       
       private function hasPreviousStep() : Boolean

@@ -6,7 +6,7 @@ package com.sulake.habbo.avatar.hotlooks
    import com.sulake.habbo.avatar.common.class_3554;
    import com.sulake.habbo.avatar.wardrobe.*;
    import flash.utils.Dictionary;
-   import com.sulake.habbo.communication.messages.outgoing.hotlooks.class_632;
+   import com.sulake.habbo.communication.messages.outgoing.hotlooks.GetHotLooksMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.hotlooks.HotLooksMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.hotlooks.class_1636;
    
@@ -41,7 +41,7 @@ package com.sulake.habbo.avatar.hotlooks
          {
             var_3164 = new HotLooksMessageEvent(onHotLooksMessage);
             param1.manager.communication.addHabboConnectionMessageEvent(var_3164);
-            param1.manager.communication.connection.send(new class_632(20));
+            param1.manager.communication.connection.send(new GetHotLooksMessageComposer(20));
          }
       }
       

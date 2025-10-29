@@ -6,8 +6,8 @@ package com.sulake.habbo.navigator.mainview
    import com.sulake.habbo.navigator.*;
    import flash.geom.Point;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_1675;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_1061;
-   import com.sulake.habbo.communication.messages.outgoing.navigator.class_771;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.DeleteFavouriteRoomMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.navigator.AddFavouriteRoomMessageComposer;
    
    public class GuestRoomListCtrl implements IViewCtrl
    {
@@ -346,7 +346,7 @@ package com.sulake.habbo.navigator.mainview
          {
             return;
          }
-         _navigator.send(new class_1061(_loc2_.flatId));
+         _navigator.send(new DeleteFavouriteRoomMessageComposer(_loc2_.flatId));
       }
       
       private function onAddFavouriteClick(param1:WindowMouseEvent) : void
@@ -361,7 +361,7 @@ package com.sulake.habbo.navigator.mainview
          {
             return;
          }
-         _navigator.send(new class_771(_loc2_.flatId));
+         _navigator.send(new AddFavouriteRoomMessageComposer(_loc2_.flatId));
       }
       
       private function hilite(param1:IWindowContainer) : void

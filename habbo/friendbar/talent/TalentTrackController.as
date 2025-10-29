@@ -30,11 +30,11 @@ package com.sulake.habbo.friendbar.talent
    import com.sulake.habbo.communication.messages.incoming.users.EmailStatusResultEvent;
    import com.sulake.habbo.communication.messages.incoming.users.ChangeEmailResultEvent;
    import com.sulake.habbo.communication.messages.incoming.users.HabboGroupDetailsMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_1056;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_201;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_607;
-   import com.sulake.habbo.communication.messages.outgoing.talent.class_1018;
-   import com.sulake.habbo.communication.messages.outgoing.talent.class_639;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetEmailStatusComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetHabboGroupDetailsMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.ChangeEmailComposer;
+   import com.sulake.habbo.communication.messages.outgoing.talent.GetTalentTrackMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.talent.GuideAdvertisementReadMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.talent.TalentTrackMessageEvent;
    
    public class TalentTrackController implements IDisposable
@@ -640,7 +640,7 @@ package com.sulake.habbo.friendbar.talent
                break;
             case "citizenship_button":
                _habboTalent.tracking.trackTalentTrackOpen("citizenship","talentrack");
-               _habboTalent.send(new class_1018("citizenship"));
+               _habboTalent.send(new GetTalentTrackMessageComposer("citizenship"));
                break;
             case "button_track_citizenship":
             case "button_track_helper":
@@ -721,7 +721,7 @@ package com.sulake.habbo.friendbar.talent
                getEmailContainer().visible = true;
                getEmailContainer().findChildByName("change_email_region").procedure = onChangeEmail;
                getEmailText().procedure = onEmailTxt;
-               _habboTalent.send(new class_1056());
+               _habboTalent.send(new GetEmailStatusComposer());
                setEmailErrorStatus(false);
             }
          }
@@ -810,7 +810,7 @@ package com.sulake.habbo.friendbar.talent
                if(_loc3_ > 0)
                {
                   var_3940 = _loc3_;
-                  _habboTalent.send(new class_201(_loc3_,false));
+                  _habboTalent.send(new GetHabboGroupDetailsMessageComposer(_loc3_,false));
                }
                break;
             case "ACH_SafetyQuizGraduate1":
@@ -850,7 +850,7 @@ package com.sulake.habbo.friendbar.talent
          {
             destroyWindow();
             destroyTaskProgressDialog();
-            _habboTalent.send(new class_639());
+            _habboTalent.send(new GuideAdvertisementReadMessageComposer());
             _habboTalent.habboHelp.requestGuide();
             _habboTalent.tracking.trackEventLog("Help","","tour.new_user.accept");
             _habboTalent.tracking.trackGoogle("newbieTourWindow","click_acceptTour");
@@ -871,7 +871,7 @@ package com.sulake.habbo.friendbar.talent
          {
             destroyWindow();
             destroyTaskProgressDialog();
-            _habboTalent.send(new class_639());
+            _habboTalent.send(new GuideAdvertisementReadMessageComposer());
             _habboTalent.tracking.trackEventLog("Help","","tour.new_user.cancel");
             _habboTalent.tracking.trackGoogle("newbieTourWindow","click_refuseTour");
          }
@@ -883,7 +883,7 @@ package com.sulake.habbo.friendbar.talent
          if(param1.type == "WME_CLICK")
          {
             _loc3_ = String(getEmailText().text);
-            _habboTalent.send(new class_607(_loc3_));
+            _habboTalent.send(new ChangeEmailComposer(_loc3_));
          }
       }
       

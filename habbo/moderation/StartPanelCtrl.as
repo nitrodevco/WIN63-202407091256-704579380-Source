@@ -6,7 +6,7 @@ package com.sulake.habbo.moderation
    import com.sulake.core.window.components.class_3514;
    import com.sulake.core.window.events.WindowEvent;
    import com.sulake.habbo.communication.messages.parser.room.engine.class_1339;
-   import com.sulake.habbo.communication.messages.outgoing.moderator.class_734;
+   import com.sulake.habbo.communication.messages.outgoing.moderator.GetRoomChatlogMessageComposer;
    
    public class StartPanelCtrl implements IDisposable
    {
@@ -142,7 +142,7 @@ package com.sulake.habbo.moderation
       
       private function onChatlogButton(param1:WindowEvent) : void
       {
-         _main.windowTracker.show(new ChatlogCtrl(new class_734(_isGuestRoom ? 0 : 1,var_369),_main,4,var_369),_frame,false,false,true);
+         _main.windowTracker.show(new ChatlogCtrl(new GetRoomChatlogMessageComposer(_isGuestRoom ? 0 : 1,var_369),_main,4,var_369),_frame,false,false,true);
       }
       
       private function onUserinfoButton(param1:WindowEvent) : void

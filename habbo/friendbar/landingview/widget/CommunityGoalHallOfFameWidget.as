@@ -4,7 +4,7 @@ package com.sulake.habbo.friendbar.landingview.widget
    import com.sulake.habbo.friendbar.landingview.*;
    import com.sulake.habbo.communication.messages.outgoing.competition.class_1011;
    import com.sulake.habbo.communication.messages.outgoing.competition.ForwardToACompetitionRoomMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.quest.class_391;
+   import com.sulake.habbo.communication.messages.outgoing.quest.GetCommunityGoalHallOfFameMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.competition.CurrentTimingCodeMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.quest.class_1673;
    import com.sulake.habbo.communication.messages.incoming.quest.class_1772;
@@ -83,7 +83,7 @@ package com.sulake.habbo.friendbar.landingview.widget
          if(param1.getParser().schedulingStr == var_1372 && _loc2_ != "" && !disposed)
          {
             loadConfigurationOverrides(_loc2_);
-            landingView.send(new class_391(param1.getParser().code));
+            landingView.send(new GetCommunityGoalHallOfFameMessageComposer(param1.getParser().code));
          }
       }
       

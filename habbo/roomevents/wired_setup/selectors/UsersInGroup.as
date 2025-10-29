@@ -9,7 +9,7 @@ package com.sulake.habbo.roomevents.wired_setup.selectors
    import com.sulake.habbo.roomevents.HabboUserDefinedRoomEvents;
    import com.sulake.habbo.communication.messages.incoming.users.class_1745;
    import com.sulake.habbo.communication.messages.incoming.users.GuildMembershipsMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_779;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetGuildMembershipsMessageComposer;
    
    public class UsersInGroup extends DefaultSelectorType
    {
@@ -86,7 +86,7 @@ package com.sulake.habbo.roomevents.wired_setup.selectors
          if(_loc1_ > var_4716 + 1000 * REQUEST_TIMEOUT)
          {
             var_4716 = _loc1_;
-            var_1660.send(new class_779());
+            var_1660.send(new GetGuildMembershipsMessageComposer());
          }
       }
       

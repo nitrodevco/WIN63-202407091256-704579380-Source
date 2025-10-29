@@ -21,12 +21,12 @@ package com.sulake.habbo.roomevents.wired_setup
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.class_1747;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.class_3620;
    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateSelectorMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.class_1086;
-   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.class_227;
+   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateConditionMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateTriggerMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateAddonMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateActionMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.class_599;
-   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.class_995;
+   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.ApplySnapshotMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateVariableMessageComposer;
    import com.sulake.habbo.roomevents.HabboUserDefinedRoomEvents;
    import com.sulake.habbo.roomevents.Util;
    import com.sulake.habbo.roomevents.WiredVariablesSynchronizer;
@@ -469,7 +469,7 @@ package com.sulake.habbo.roomevents.wired_setup
          }
          if(var_1645 as class_1701 != null)
          {
-            _roomEvents.send(new class_227(var_1645.id,resolveIntParams(),resolveVariableIds(),resolveStringParam(),getStuffIds(),resolveFurniSources(),resolveUserSources()));
+            _roomEvents.send(new UpdateTriggerMessageComposer(var_1645.id,resolveIntParams(),resolveVariableIds(),resolveStringParam(),getStuffIds(),resolveFurniSources(),resolveUserSources()));
          }
          else if(var_1645 as class_1702 != null)
          {
@@ -477,7 +477,7 @@ package com.sulake.habbo.roomevents.wired_setup
          }
          else if(var_1645 as class_1660 != null)
          {
-            _roomEvents.send(new class_1086(var_1645.id,resolveIntParams(),resolveVariableIds(),resolveStringParam(),getStuffIds(),resolveQuantifier(),resolveFurniSources(),resolveUserSources()));
+            _roomEvents.send(new UpdateConditionMessageComposer(var_1645.id,resolveIntParams(),resolveVariableIds(),resolveStringParam(),getStuffIds(),resolveQuantifier(),resolveFurniSources(),resolveUserSources()));
          }
          else if(var_1645 as class_1747 != null)
          {
@@ -489,7 +489,7 @@ package com.sulake.habbo.roomevents.wired_setup
          }
          else if(var_1645 as class_1737 != null)
          {
-            _roomEvents.send(new class_995(var_1645.id,resolveIntParams(),resolveVariableIds(),resolveStringParam(),getStuffIds(),resolveFurniSources(),resolveUserSources()));
+            _roomEvents.send(new UpdateVariableMessageComposer(var_1645.id,resolveIntParams(),resolveVariableIds(),resolveStringParam(),getStuffIds(),resolveFurniSources(),resolveUserSources()));
          }
       }
       
@@ -514,7 +514,7 @@ package com.sulake.habbo.roomevents.wired_setup
          {
             return;
          }
-         _roomEvents.send(new class_599(var_1645.id));
+         _roomEvents.send(new ApplySnapshotMessageComposer(var_1645.id));
       }
       
       private function onViewInMenu(param1:WindowEvent, param2:IWindow) : void

@@ -10,7 +10,7 @@ package com.sulake.habbo.moderation
    import com.sulake.core.window.events.WindowEvent;
    import com.sulake.core.window.utils.class_3348;
    import com.sulake.habbo.communication.messages.parser.moderation.class_1722;
-   import com.sulake.habbo.communication.messages.outgoing.moderator.class_229;
+   import com.sulake.habbo.communication.messages.outgoing.moderator.ModMessageMessageComposer;
    
    public class SendMsgsCtrl implements IDisposable, ITrackedWindow
    {
@@ -112,7 +112,7 @@ package com.sulake.habbo.moderation
             return;
          }
          class_14.log("Sending message...");
-         _main.connection.send(new class_229(var_2109,var_2195.text,-999,var_3769 != null ? var_3769.issueId : -1));
+         _main.connection.send(new ModMessageMessageComposer(var_2109,var_2195.text,-999,var_3769 != null ? var_3769.issueId : -1));
          this.dispose();
       }
       

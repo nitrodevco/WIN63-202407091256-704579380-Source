@@ -8,8 +8,8 @@ package com.sulake.habbo.friendbar.talent
    import com.sulake.habbo.communication.messages.parser.talent.class_1158;
    import com.sulake.habbo.communication.messages.parser.talent.class_1313;
    import com.sulake.habbo.communication.messages.incoming.handshake.UserObjectEvent;
-   import com.sulake.habbo.communication.messages.outgoing.talent.class_1018;
-   import com.sulake.habbo.communication.messages.outgoing.talent.class_330;
+   import com.sulake.habbo.communication.messages.outgoing.talent.GetTalentTrackMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.talent.GetTalentTrackLevelMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.talent.TalentTrackLevelMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.talent.TalentLevelUpMessageEvent;
    
@@ -69,7 +69,7 @@ package com.sulake.habbo.friendbar.talent
       
       private function onUserObject(param1:UserObjectEvent) : void
       {
-         var_480.send(new class_330(promotedTalentTrack));
+         var_480.send(new GetTalentTrackLevelMessageComposer(promotedTalentTrack));
       }
       
       private function onTalentTrackLevel(param1:TalentTrackLevelMessageEvent) : void
@@ -144,7 +144,7 @@ package com.sulake.habbo.friendbar.talent
          if(param1.type == "WME_CLICK" && enabled)
          {
             var_480.tracking.trackTalentTrackOpen(promotedTalentTrack,"talentpromo");
-            var_480.send(new class_1018(promotedTalentTrack));
+            var_480.send(new GetTalentTrackMessageComposer(promotedTalentTrack));
          }
       }
       

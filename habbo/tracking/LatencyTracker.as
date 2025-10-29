@@ -4,7 +4,7 @@ package com.sulake.habbo.tracking {
     import flash.utils.getTimer;
     import com.sulake.habbo.communication.messages.incoming.tracking.LatencyPingResponseMessageEvent;
     import com.sulake.habbo.communication.messages.parser.tracking.LatencyPingResponseMessageParser;
-    import com.sulake.habbo.communication.messages.outgoing.tracking.class_448;
+    import com.sulake.habbo.communication.messages.outgoing.tracking.LatencyPingRequestMessageComposer;
     import com.sulake.habbo.communication.messages.outgoing.tracking.LatencyPingReportMessageComposer;
 
     public class LatencyTracker implements IDisposable {
@@ -62,7 +62,7 @@ package com.sulake.habbo.tracking {
         private function testLatency(): void {
             lastTestTime = getTimer();
             latencyMap.add(currentTestId, lastTestTime);
-            habboTracking.send(new class_448(currentTestId));
+            habboTracking.send(new LatencyPingRequestMessageComposer(currentTestId));
             currentTestId++;
         }
 

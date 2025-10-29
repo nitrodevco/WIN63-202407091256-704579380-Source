@@ -11,7 +11,7 @@ package com.sulake.habbo.ui.widget.furniture
    import com.sulake.habbo.ui.handler.class_3586;
    import com.sulake.habbo.ui.widget.RoomWidgetBase;
    import com.sulake.habbo.window.IHabboWindowManager;
-   import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_870;
+   import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetCustomStackingHeightComposer;
    
    public class CustomStackHeightWidget extends RoomWidgetBase
    {
@@ -101,7 +101,7 @@ package com.sulake.habbo.ui.widget.furniture
                   sendCurrentHeight();
                   break;
                case "button_above_stack":
-                  handler.container.connection.send(new class_870(var_603));
+                  handler.container.connection.send(new SetCustomStackingHeightComposer(var_603));
                   break;
                case "header_button_close":
                   destroyWindow();
@@ -152,7 +152,7 @@ package com.sulake.habbo.ui.widget.furniture
       private function sendCurrentHeight() : void
       {
          var _loc1_:int = parseFloat(_window.findChildByName("input_height").caption) * 100;
-         handler.container.connection.send(new class_870(var_603,_loc1_));
+         handler.container.connection.send(new SetCustomStackingHeightComposer(var_603,_loc1_));
       }
       
       private function updateSlider() : void

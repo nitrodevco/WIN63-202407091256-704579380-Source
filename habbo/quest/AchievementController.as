@@ -18,7 +18,7 @@ package com.sulake.habbo.quest
    import flash.utils.Dictionary;
    import flash.utils.Timer;
    import com.sulake.habbo.communication.messages.incoming.inventory.achievements.class_1724;
-   import com.sulake.habbo.communication.messages.outgoing.inventory.achievements.class_1095;
+   import com.sulake.habbo.communication.messages.outgoing.inventory.achievements.GetAchievementsComposer;
    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    
    public class AchievementController implements IDisposable, IUpdateReceiver
@@ -239,7 +239,7 @@ package com.sulake.habbo.quest
       {
          if(var_1357 == null)
          {
-            _questEngine.send(new class_1095());
+            _questEngine.send(new GetAchievementsComposer());
          }
       }
       
@@ -247,7 +247,7 @@ package com.sulake.habbo.quest
       {
          if(var_1357 == null)
          {
-            _questEngine.send(new class_1095());
+            _questEngine.send(new GetAchievementsComposer());
             var_3778 = true;
          }
          else

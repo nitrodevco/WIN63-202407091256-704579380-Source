@@ -22,7 +22,7 @@ package com.sulake.habbo.friendlist
    import flash.utils.getTimer;
    import com.sulake.habbo.communication.messages.outgoing.friendlist.FollowFriendMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_322;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileMessageComposer;
    
    public class FriendsView implements ITabView, IFriendsView
    {
@@ -489,7 +489,7 @@ package com.sulake.habbo.friendlist
          else if(param1.type == "WME_CLICK")
          {
             _friendList.trackGoogle("extendedProfile","friendList_friendsView");
-            _friendList.send(new class_322(param2.parent.id));
+            _friendList.send(new GetExtendedProfileMessageComposer(param2.parent.id));
          }
       }
       

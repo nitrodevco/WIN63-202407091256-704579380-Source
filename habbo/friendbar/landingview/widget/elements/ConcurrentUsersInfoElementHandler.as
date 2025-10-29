@@ -11,7 +11,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
    import flash.events.TimerEvent;
    import flash.utils.Timer;
    import com.sulake.habbo.communication.messages.outgoing.quest.GetConcurrentUsersGoalProgressMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.quest.class_214;
+   import com.sulake.habbo.communication.messages.outgoing.quest.GetConcurrentUsersRewardMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.quest.ConcurrentUsersGoalProgressMessageEvent;
    
    public class ConcurrentUsersInfoElementHandler implements IElementHandler, IDisposable
@@ -171,7 +171,7 @@ package com.sulake.habbo.friendbar.landingview.widget.elements
       
       protected function onClick() : void
       {
-         _landingView.send(new class_214());
+         _landingView.send(new GetConcurrentUsersRewardMessageComposer());
          _landingView.send(new GetConcurrentUsersGoalProgressMessageComposer());
          _window.findChildByName("state.active").disable();
       }

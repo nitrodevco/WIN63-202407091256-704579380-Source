@@ -21,7 +21,7 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_variable_overview
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredcontext.variables.ObjectIdAndValuePair;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredcontext.variables.WiredVariable;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredAllVariableHoldersEvent;
-   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_1040;
+   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetAllVariableHoldersMessageComposer;
    
    public class WiredMenuOverviewTab extends WiredMenuDefaultTab implements IUpdateReceiver
    {
@@ -126,7 +126,7 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_variable_overview
       private function requestHolders() : void
       {
          var_4803 = getTimer();
-         controller.send(new class_1040(new Long(selectedVariableId)));
+         controller.send(new WiredGetAllVariableHoldersMessageComposer(new Long(selectedVariableId)));
       }
       
       private function onAllVariables(param1:Vector.<WiredVariable>) : void

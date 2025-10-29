@@ -129,11 +129,11 @@ package com.sulake.habbo.catalog
    import flash.utils.Timer;
    import flash.utils.getTimer;
    import com.sulake.habbo.communication.messages.outgoing.marketplace.RedeemMarketplaceOfferCreditsMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.marketplace.class_127;
-   import com.sulake.habbo.communication.messages.outgoing.marketplace.class_370;
-   import com.sulake.habbo.communication.messages.outgoing.marketplace.class_403;
-   import com.sulake.habbo.communication.messages.outgoing.marketplace.class_406;
-   import com.sulake.habbo.communication.messages.outgoing.marketplace.class_802;
+   import com.sulake.habbo.communication.messages.outgoing.marketplace.GetMarketplaceOffersMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.marketplace.CancelMarketplaceOfferMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.marketplace.GetMarketplaceItemStatsComposer;
+   import com.sulake.habbo.communication.messages.outgoing.marketplace.GetMarketplaceOwnOffersMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.marketplace.BuyMarketplaceOfferMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.inventory.purse.CreditBalanceEvent;
    import com.sulake.habbo.communication.messages.incoming.room.session.CloseConnectionMessageEvent;
    import com.sulake.habbo.communication.messages.parser.marketplace.class_1121;
@@ -154,37 +154,37 @@ package com.sulake.habbo.catalog
    import com.sulake.habbo.communication.messages.parser.catalog.class_1586;
    import com.sulake.habbo.communication.messages.parser.users.class_1328;
    import com.sulake.habbo.communication.messages.parser.users.class_1359;
-   import com.sulake.habbo.communication.messages.outgoing.room.engine.class_663;
+   import com.sulake.habbo.communication.messages.outgoing.room.engine.PlaceObjectMessageComposer;
    import com.sulake.habbo.communication.messages.parser.collectibles.class_1502;
    import com.sulake.habbo.communication.messages.parser.collectibles.class_1520;
    import com.sulake.habbo.communication.messages.parser.inventory.purse.class_1192;
    import com.sulake.habbo.communication.messages.outgoing.catalog.GetSnowWarGameTokensOfferComposer;
    import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseSnowWarGameTokensOfferComposer;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_1099;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_156;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_270;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.GetClubOffersMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.BuildersClubQueryFurniCountMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.BuildersClubPlaceRoomItemMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.catalog.GetRoomAdPurchaseInfoComposer;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_428;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.RedeemVoucherMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.catalog.GetSellablePetPalettesComposer;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_503;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_512;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_520;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_521;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_594;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_801;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_852;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_855;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_881;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseRoomAdMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.GetIsOfferGiftableComposer;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.GetBundleDiscountRulesetComposer;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.GetCatalogIndexComposer;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseBasicMembershipExtensionComposer;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.RoomAdPurchaseInitiatedComposer;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.BuildersClubPlaceWallItemMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseFromCatalogComposer;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.MarkCatalogNewAdditionsPageOpenedComposer;
    import com.sulake.habbo.communication.messages.outgoing.catalog.GetProductOfferComposer;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_887;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_933;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_939;
-   import com.sulake.habbo.communication.messages.outgoing.catalog.class_976;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.GetGiftWrappingConfigurationComposer;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseFromCatalogAsGiftComposer;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseVipMembershipExtensionComposer;
+   import com.sulake.habbo.communication.messages.outgoing.catalog.GetCatalogPageComposer;
    import com.sulake.habbo.communication.messages.incoming.collectibles.EmeraldBalanceMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.collectibles.SilverBalanceMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.notifications.ActivityPointsMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.notifications.HabboActivityPointNotificationMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.collectibles.class_985;
+   import com.sulake.habbo.communication.messages.outgoing.collectibles.PurchaseMintTokenMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.users.ScrSendUserInfoEvent;
    import com.sulake.habbo.communication.messages.incoming.users.ApproveNameMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.users.GuildMembershipsMessageEvent;
@@ -195,8 +195,8 @@ package com.sulake.habbo.catalog
    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketPlaceOffersEvent;
    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceMakeOfferResult;
    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceCancelOfferResultEvent;
-   import com.sulake.habbo.communication.messages.outgoing.inventory.furni.class_984;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_304;
+   import com.sulake.habbo.communication.messages.outgoing.inventory.furni.RequestRoomPropertySet;
+   import com.sulake.habbo.communication.messages.outgoing.users.ApproveNameMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.catalog.SnowWarGameTokensMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.catalog.CatalogPageMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.catalog.class_149;
@@ -771,7 +771,7 @@ package com.sulake.habbo.catalog
             createGroupMembershipsController();
             initBundleDiscounts();
             events.dispatchEvent(new CatalogEvent("CATALOG_INITIALIZED"));
-            send(new class_156());
+            send(new BuildersClubQueryFurniCountMessageComposer());
             return true;
          }
          return false;
@@ -827,7 +827,7 @@ package com.sulake.habbo.catalog
       {
          isBusy = true;
          var_4238 = param1;
-         send(new class_976(param1,param2,param3));
+         send(new GetCatalogPageComposer(param1,param2,param3));
       }
       
       public function purchaseGameTokensOffer(param1:String) : void
@@ -848,7 +848,7 @@ package com.sulake.habbo.catalog
       
       public function purchaseMintTokens(param1:int, param2:String) : void
       {
-         send(new class_985(param1,param2));
+         send(new PurchaseMintTokenMessageComposer(param1,param2));
       }
       
       public function purchaseOffer(param1:int, param2:String = "", param3:int = 1) : void
@@ -868,7 +868,7 @@ package com.sulake.habbo.catalog
       {
          if(roomAdPurchaseData == null || roomAdPurchaseData.offerId != param2)
          {
-            send(new class_855(param1,param2,param3,param4));
+            send(new PurchaseFromCatalogComposer(param1,param2,param3,param4));
          }
          else
          {
@@ -876,23 +876,23 @@ package com.sulake.habbo.catalog
             {
                var_1946.extended = false;
             }
-            send(new class_503(param1,param2,roomAdPurchaseData.flatId,roomAdPurchaseData.name,roomAdPurchaseData.extended,roomAdPurchaseData.description,roomAdPurchaseData.categoryId));
+            send(new PurchaseRoomAdMessageComposer(param1,param2,roomAdPurchaseData.flatId,roomAdPurchaseData.name,roomAdPurchaseData.extended,roomAdPurchaseData.description,roomAdPurchaseData.categoryId));
          }
       }
       
       public function purchaseVipMembershipExtension(param1:int) : void
       {
-         send(new class_939(param1));
+         send(new PurchaseVipMembershipExtensionComposer(param1));
       }
       
       public function purchaseBasicMembershipExtension(param1:int) : void
       {
-         send(new class_594(param1));
+         send(new PurchaseBasicMembershipExtensionComposer(param1));
       }
       
       public function purchaseProductAsGift(param1:int, param2:int, param3:String, param4:String, param5:String, param6:int, param7:int, param8:int, param9:Boolean = false) : void
       {
-         send(new class_933(param1,param2,param3,param4,param5,param6,param7,param8,param9));
+         send(new PurchaseFromCatalogAsGiftComposer(param1,param2,param3,param4,param5,param6,param7,param8,param9));
       }
       
       public function get roomAdPurchaseData() : RoomAdPurchaseData
@@ -907,7 +907,7 @@ package com.sulake.habbo.catalog
       
       public function approveName(param1:String, param2:int) : void
       {
-         send(new class_304(param1,param2));
+         send(new ApproveNameMessageComposer(param1,param2));
       }
       
       public function set giftReceiver(param1:String) : void
@@ -1166,7 +1166,7 @@ package com.sulake.habbo.catalog
       
       public function getPublicMarketPlaceOffers(param1:int, param2:int, param3:String, param4:int) : void
       {
-         send(new class_127(param1,param2,param3,param4));
+         send(new GetMarketplaceOffersMessageComposer(param1,param2,param3,param4));
       }
       
       public function getRoomAdsPurchaseInfo() : void
@@ -1176,17 +1176,17 @@ package com.sulake.habbo.catalog
       
       public function sendRoomAdPurchaseInitiatedEvent() : void
       {
-         send(new class_801());
+         send(new RoomAdPurchaseInitiatedComposer());
       }
       
       public function getOwnMarketPlaceOffers() : void
       {
-         send(new class_406());
+         send(new GetMarketplaceOwnOffersMessageComposer());
       }
       
       public function buyMarketPlaceOffer(param1:int) : void
       {
-         send(new class_802(param1));
+         send(new BuyMarketplaceOfferMessageComposer(param1));
       }
       
       public function redeemSoldMarketPlaceOffers() : void
@@ -1196,7 +1196,7 @@ package com.sulake.habbo.catalog
       
       public function redeemExpiredMarketPlaceOffer(param1:int) : void
       {
-         send(new class_370(param1));
+         send(new CancelMarketplaceOfferMessageComposer(param1));
       }
       
       public function getMarketplaceItemStats(param1:int, param2:int) : void
@@ -1205,7 +1205,7 @@ package com.sulake.habbo.catalog
          {
             return;
          }
-         send(new class_403(param1,param2));
+         send(new GetMarketplaceItemStatsComposer(param1,param2));
       }
       
       public function getGroupMembershipsController() : GuildMembershipsController
@@ -1424,12 +1424,12 @@ package com.sulake.habbo.catalog
       
       private function refreshCatalogIndex(param1:String) : void
       {
-         send(new class_521(param1));
+         send(new GetCatalogIndexComposer(param1));
       }
       
       private function markNewAdditionPageOpened() : void
       {
-         send(new class_881());
+         send(new MarkCatalogNewAdditionsPageOpenedComposer());
       }
       
       private function createCatalogNavigators() : void
@@ -1697,12 +1697,12 @@ package com.sulake.habbo.catalog
       
       private function getGiftWrappingConfiguration() : void
       {
-         send(new class_887());
+         send(new GetGiftWrappingConfigurationComposer());
       }
       
       public function getHabboClubOffers(param1:int) : void
       {
-         send(new class_1099(param1));
+         send(new GetClubOffersMessageComposer(param1));
       }
       
       private function onWindowClose(param1:WindowEvent, param2:IWindow) : void
@@ -2304,7 +2304,7 @@ package com.sulake.habbo.catalog
       
       public function redeemVoucher(param1:String) : void
       {
-         var _loc2_:IMessageComposer = new class_428(param1);
+         var _loc2_:IMessageComposer = new RedeemVoucherMessageComposer(param1);
          send(_loc2_);
          _loc2_.dispose();
          _loc2_ = null;
@@ -2590,10 +2590,10 @@ package com.sulake.habbo.catalog
                   switch(_loc7_ - 10)
                   {
                      case 0:
-                        send(new class_270(_loc8_,_offerInFurniPlacing.offerId,_loc2_.extraParam,param1.x,param1.y,param1.direction));
+                        send(new BuildersClubPlaceRoomItemMessageComposer(_loc8_,_offerInFurniPlacing.offerId,_loc2_.extraParam,param1.x,param1.y,param1.direction));
                         break;
                      case 10:
-                        send(new class_852(_loc8_,_offerInFurniPlacing.offerId,_loc2_.extraParam,param1.wallLocation));
+                        send(new BuildersClubPlaceWallItemMessageComposer(_loc8_,_offerInFurniPlacing.offerId,_loc2_.extraParam,param1.wallLocation));
                   }
                   if(var_4817)
                   {
@@ -2703,25 +2703,25 @@ package com.sulake.habbo.catalog
                      _loc9_ = _roomEngine.getRoomStringValue(_roomEngine.activeRoomId,"room_wall_type");
                      if(var_1725.extraParameter != _loc9_)
                      {
-                        send(new class_984(_loc8_));
+                        send(new RequestRoomPropertySet(_loc8_));
                      }
                      break;
                   case 1:
                      _loc11_ = _roomEngine.getRoomStringValue(_roomEngine.activeRoomId,"room_floor_type");
                      if(var_1725.extraParameter != _loc11_)
                      {
-                        send(new class_984(_loc8_));
+                        send(new RequestRoomPropertySet(_loc8_));
                      }
                      break;
                   case 2:
                      _loc4_ = _roomEngine.getRoomStringValue(_roomEngine.activeRoomId,"room_landscape_type");
                      if(var_1725.extraParameter != _loc4_)
                      {
-                        send(new class_984(_loc8_));
+                        send(new RequestRoomPropertySet(_loc8_));
                      }
                      break;
                   default:
-                     send(new class_663(_loc8_,param3,_loc6_,_loc5_,_loc7_,_loc10_));
+                     send(new PlaceObjectMessageComposer(_loc8_,param3,_loc6_,_loc5_,_loc7_,_loc10_));
                }
                resetPlacedOfferData();
             }
@@ -2909,7 +2909,7 @@ package com.sulake.habbo.catalog
       
       public function checkGiftable(param1:class_3377) : void
       {
-         send(new class_512(param1.offerId));
+         send(new GetIsOfferGiftableComposer(param1.offerId));
       }
       
       public function rememberPageDuringVipPurchase(param1:int) : void
@@ -2943,7 +2943,7 @@ package com.sulake.habbo.catalog
       
       private function sendGetBundleDiscountRuleset() : void
       {
-         send(new class_520());
+         send(new GetBundleDiscountRulesetComposer());
       }
       
       public function sendGetProductOffer(param1:int) : void

@@ -49,7 +49,7 @@ package com.sulake.habbo.ui.widget.furniture.externalimage
    import flash.net.navigateToURL;
    import flash.text.TextField;
    import adobe.serialization.json.JSONDecoder;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_322;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileMessageComposer;
    
    public class ExternalImageWidget extends RoomWidgetBase
    {
@@ -597,7 +597,7 @@ package com.sulake.habbo.ui.widget.furniture.externalimage
                HabboTracking.getInstance().trackEventLog("Stories","facebook","stories.share.clicked",var_2432);
                break;
             case "senderNameButton":
-               ownHandler.sendMessage(new class_322(var_779));
+               ownHandler.sendMessage(new GetExtendedProfileMessageComposer(var_779));
                break;
             case "urlField":
                (_loc5_ = _window.findChildByName("urlField") as ITextFieldWindow).setSelection(0,_loc5_.length);

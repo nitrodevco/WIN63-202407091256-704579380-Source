@@ -20,7 +20,7 @@ package com.sulake.habbo.ui.handler
    import flash.geom.Rectangle;
    import com.sulake.habbo.communication.messages.parser.room.furniture.class_1236;
    import com.sulake.habbo.communication.messages.incoming.room.furniture.GuildFurniContextMenuInfoMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_320;
+   import com.sulake.habbo.communication.messages.outgoing.users.JoinHabboGroupMessageComposer;
    
    public class FurnitureContextMenuWidgetHandler implements IRoomWidgetHandler
    {
@@ -242,7 +242,7 @@ package com.sulake.habbo.ui.handler
       
       public function sendJoinToGroupMessage(param1:int) : void
       {
-         var_26.send(new class_320(param1));
+         var_26.send(new JoinHabboGroupMessageComposer(param1));
       }
       
       private function getRoomObject(param1:int) : IRoomObject

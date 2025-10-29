@@ -15,9 +15,9 @@ package com.sulake.habbo.catalog.purchase
    import com.sulake.room.utils.Vector3d;
    import flash.display.BitmapData;
    import com.sulake.habbo.communication.messages.parser.room.furniture.class_1381;
-   import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_1003;
-   import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_287;
-   import com.sulake.habbo.communication.messages.outgoing.room.furniture.class_584;
+   import com.sulake.habbo.communication.messages.outgoing.room.furniture.ExtendRentOrBuyoutFurniMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.furniture.GetRentOrBuyoutOfferMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.room.furniture.ExtendRentOrBuyoutStripItemMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.room.furniture.FurniRentOrBuyoutOfferMessageEvent;
    
    public class RentConfirmationWindow implements IDisposable, IGetImageListener
@@ -152,7 +152,7 @@ package com.sulake.habbo.catalog.purchase
             var_1263 = 2;
          }
          var _loc6_:* = param1.type == "i";
-         _catalog.connection.send(new class_287(_loc6_,param1.fullName,param2));
+         _catalog.connection.send(new GetRentOrBuyoutOfferMessageComposer(_loc6_,param1.fullName,param2));
       }
       
       private function get roomEngine() : IRoomEngine
@@ -176,10 +176,10 @@ package com.sulake.habbo.catalog.purchase
                switch(var_1263 - 1)
                {
                   case 0:
-                     _catalog.connection.send(new class_1003(var_1691.type == "i",var_4077,_isBuyout));
+                     _catalog.connection.send(new ExtendRentOrBuyoutFurniMessageComposer(var_1691.type == "i",var_4077,_isBuyout));
                      break;
                   case 1:
-                     _catalog.connection.send(new class_584(var_1495,_isBuyout));
+                     _catalog.connection.send(new ExtendRentOrBuyoutStripItemMessageComposer(var_1495,_isBuyout));
                      break;
                   case 2:
                      _catalog.purchaseOffer(var_1691.rentOfferId);

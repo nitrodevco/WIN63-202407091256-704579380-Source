@@ -12,8 +12,8 @@ package com.sulake.habbo.messenger {
     import com.sulake.habbo.communication.messages.outgoing.friendlist.FollowFriendMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.friendlist.GetMessengerHistoryComposer
     import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.class_201
-    import com.sulake.habbo.communication.messages.outgoing.users.class_322
+    import com.sulake.habbo.communication.messages.outgoing.users.GetHabboGroupDetailsMessageComposer
+    import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileMessageComposer
     import com.sulake.habbo.friendlist.IFriend
     import com.sulake.habbo.window.widgets.IIlluminaChatBubbleWidget
     import com.sulake.habbo.window.widgets.IIlluminaInputHandler
@@ -820,15 +820,15 @@ package com.sulake.habbo.messenger {
                                 _messenger.send(new EventLogMessageComposer("Navigation", "IM", "go.im"));
                             } else {
                                 _messenger.followingToGroupRoom = true;
-                                _messenger.send(new class_201(Math.abs(_currentConversationId), false));
+                                _messenger.send(new GetHabboGroupDetailsMessageComposer(Math.abs(_currentConversationId), false));
                             }
                             break;
                         case "profile_button":
                             if (_currentConversationId > 0) {
-                                _messenger.send(new class_322(_currentConversationId));
+                                _messenger.send(new GetExtendedProfileMessageComposer(_currentConversationId));
                                 _messenger.trackGoogle("extendedProfile", "messenger_conversation");
                             } else {
-                                _messenger.send(new class_201(Math.abs(_currentConversationId), true));
+                                _messenger.send(new GetHabboGroupDetailsMessageComposer(Math.abs(_currentConversationId), true));
                                 _messenger.trackGoogle("extendedProfile", "messenger_conversation");
                             }
                             break;

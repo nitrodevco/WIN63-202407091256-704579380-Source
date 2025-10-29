@@ -2,7 +2,7 @@ package com.sulake.habbo.moderation
 {
    import com.sulake.core.window.IWindow;
    import com.sulake.core.window.events.WindowEvent;
-   import com.sulake.habbo.communication.messages.outgoing.groupforums.class_650;
+   import com.sulake.habbo.communication.messages.outgoing.groupforums.ModerateMessageMessageComposer;
    
    public class HideDiscussionMessage
    {
@@ -36,7 +36,7 @@ package com.sulake.habbo.moderation
             return;
          }
          _popup.dispose();
-         _main.connection.send(new class_650(_groupId,var_345,var_494,20));
+         _main.connection.send(new ModerateMessageMessageComposer(_groupId,var_345,var_494,20));
       }
    }
 }

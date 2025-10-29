@@ -11,7 +11,7 @@ package com.sulake.habbo.inventory.effects
    import com.sulake.habbo.window.IHabboWindowManager;
    import flash.display.BitmapData;
    import com.sulake.habbo.communication.messages.outgoing.inventory.avatareffect.AvatarEffectSelectedComposer;
-   import com.sulake.habbo.communication.messages.outgoing.inventory.avatareffect.class_206;
+   import com.sulake.habbo.communication.messages.outgoing.inventory.avatareffect.AvatarEffectActivatedComposer;
    
    public class EffectsModel implements IInventoryModel
    {
@@ -161,7 +161,7 @@ package com.sulake.habbo.inventory.effects
       
       public function requestEffectActivated(param1:int) : void
       {
-         var_319.communication.connection.send(new class_206(param1));
+         var_319.communication.connection.send(new AvatarEffectActivatedComposer(param1));
       }
       
       public function setEffectActivated(param1:int) : void

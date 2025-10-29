@@ -18,8 +18,8 @@ package com.sulake.habbo.help.namechange
    import com.sulake.habbo.communication.messages.incoming.avatar.ChangeUserNameResultMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.avatar.CheckUserNameResultMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.users.UserNameChangedMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.avatar.class_242;
-   import com.sulake.habbo.communication.messages.outgoing.avatar.class_249;
+   import com.sulake.habbo.communication.messages.outgoing.avatar.CheckUserNameMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.avatar.ChangeUserNameInRoomMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.handshake.UserObjectEvent;
    
    public class NameChangeController implements INameChangeUI, IDisposable
@@ -165,13 +165,13 @@ package com.sulake.habbo.help.namechange
       public function changeName(param1:String) : void
       {
          disposeWindow();
-         _habboHelp.sendMessage(new class_249(param1));
+         _habboHelp.sendMessage(new ChangeUserNameInRoomMessageComposer(param1));
       }
       
       public function checkName(param1:String) : void
       {
          disposeWindow();
-         _habboHelp.sendMessage(new class_242(param1));
+         _habboHelp.sendMessage(new CheckUserNameMessageComposer(param1));
       }
       
       public function onUserNameChanged(param1:String) : void

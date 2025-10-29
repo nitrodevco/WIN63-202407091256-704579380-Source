@@ -65,11 +65,11 @@ package com.sulake.habbo.help
    import com.sulake.habbo.communication.messages.incoming.help.GuideReportingStatusMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.help.CallForHelpPendingCallsDeletedMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2StageStartingMessageEvent;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_275;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_531;
-   import com.sulake.habbo.communication.messages.outgoing.help.class_561;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_352;
-   import com.sulake.habbo.communication.messages.outgoing.talent.class_639;
+   import com.sulake.habbo.communication.messages.outgoing.help.GetCfhStatusMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.help.GetPendingCallsForHelpMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.help.GetGuideReportingStatusMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.IgnoreUserMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.talent.GuideAdvertisementReadMessageComposer;
    
    public class HabboHelp extends Component implements IHabboHelp, ILinkEventTracker
    {
@@ -643,14 +643,14 @@ package com.sulake.habbo.help
       public function queryForPendingCallsForHelp(param1:int) : void
       {
          var_1864 = param1;
-         sendMessage(new class_531());
+         sendMessage(new GetPendingCallsForHelpMessageComposer());
       }
       
       public function queryForGuideReportingStatus(param1:int) : void
       {
          var_2579 = param1;
-         sendMessage(new class_639());
-         sendMessage(new class_561());
+         sendMessage(new GuideAdvertisementReadMessageComposer());
+         sendMessage(new GetGuideReportingStatusMessageComposer());
       }
       
       private function onPendingCallsForHelp(param1:IMessageEvent) : void
@@ -740,7 +740,7 @@ package com.sulake.habbo.help
          var _loc1_:RemoveFriendMessageComposer = null;
          if(var_1649.reportedUserId > 0)
          {
-            sendMessage(new class_352(var_1649.reportedUserId));
+            sendMessage(new IgnoreUserMessageComposer(var_1649.reportedUserId));
             if(_friendList.getFriend(var_1649.reportedUserId) != null)
             {
                _loc1_ = new RemoveFriendMessageComposer();
@@ -918,7 +918,7 @@ package com.sulake.habbo.help
       
       public function requestSanctionInfo(param1:Boolean) : void
       {
-         sendMessage(new class_275(param1));
+         sendMessage(new GetCfhStatusMessageComposer(param1));
       }
       
       private function onSanctionStatusEvent(param1:SanctionStatusEvent) : void

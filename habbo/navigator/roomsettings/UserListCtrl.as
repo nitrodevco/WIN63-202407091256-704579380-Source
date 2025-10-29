@@ -9,8 +9,8 @@ package com.sulake.habbo.navigator.roomsettings
    import com.sulake.habbo.navigator.IHabboTransitionalNavigator;
    import com.sulake.habbo.utils.class_3527;
    import com.sulake.habbo.communication.messages.outgoing.room.action.RemoveRightsMessageComposer;
-   import com.sulake.habbo.communication.messages.outgoing.room.action.class_595;
-   import com.sulake.habbo.communication.messages.outgoing.users.class_322;
+   import com.sulake.habbo.communication.messages.outgoing.room.action.AssignRightsMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.roomsettings.class_1733;
    
    public class UserListCtrl implements IDisposable
@@ -133,7 +133,7 @@ package com.sulake.habbo.navigator.roomsettings
          var _loc3_:IWindowContainer = IWindowContainer(param1.target);
          if(var_4171)
          {
-            _navigator.send(new class_595(_loc3_.id));
+            _navigator.send(new AssignRightsMessageComposer(_loc3_.id));
          }
          else
          {
@@ -173,7 +173,7 @@ package com.sulake.habbo.navigator.roomsettings
       private function onUserInfoMouseClick(param1:WindowEvent) : void
       {
          _navigator.trackGoogle("extendedProfile","navigator_roomSettingsUsersList");
-         _navigator.send(new class_322(param1.target.id));
+         _navigator.send(new GetExtendedProfileMessageComposer(param1.target.id));
       }
    }
 }

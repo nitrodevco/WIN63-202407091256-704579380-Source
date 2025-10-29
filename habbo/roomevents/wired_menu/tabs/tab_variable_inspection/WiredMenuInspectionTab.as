@@ -21,8 +21,8 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_variable_inspection
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredHoldingVariablesData;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredVariablesForObjectEvent;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredMenuErrorEvent;
-   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_488;
-   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.class_759;
+   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetVariablesForObjectMessageComposer;
+   import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredSetObjectVariableValueMessageComposer;
    
    public class WiredMenuInspectionTab extends WiredMenuDefaultTab implements IUpdateReceiver
    {
@@ -141,7 +141,7 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_variable_inspection
          var _loc6_:int;
          if((_loc6_ = Util.getIntFromString(param3,-2147483648,true)) != -2147483648)
          {
-            controller.send(new class_759(_loc4_.variableType,getObjectIdForType(),new Long(_loc4_.variableId),_loc6_));
+            controller.send(new WiredSetObjectVariableValueMessageComposer(_loc4_.variableType,getObjectIdForType(),new Long(_loc4_.variableId),_loc6_));
          }
       }
       
@@ -313,7 +313,7 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_variable_inspection
       private function requestVariablesForObject(param1:int, param2:int) : void
       {
          var_4677 = getTimer();
-         controller.send(new class_488(param1,param2));
+         controller.send(new WiredGetVariablesForObjectMessageComposer(param1,param2));
       }
       
       public function inspectFurni(param1:int, param2:Boolean = false) : void
