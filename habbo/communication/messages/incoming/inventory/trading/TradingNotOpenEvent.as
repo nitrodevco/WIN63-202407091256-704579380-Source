@@ -1,20 +1,20 @@
 package com.sulake.habbo.communication.messages.incoming.inventory.trading
 {
-    import com.sulake.core.communication.messages.MessageEvent;
-    import com.sulake.habbo.communication.messages.parser.inventory.trading.class_1195;
+   import com.sulake.core.communication.messages.MessageEvent;
+   import com.sulake.habbo.communication.messages.parser.inventory.trading.TradingNotOpenEvent;
 
-    [SecureSWF(rename = "true")]
-        public class TradingNotOpenEvent extends MessageEvent
-        {
+   [SecureSWF(rename="true")]
+   public class TradingNotOpenEvent extends MessageEvent
+   {
 
-            public function TradingNotOpenEvent(param1:Function)
-            {
-                super(param1, class_1195);
-            }
+      public function TradingNotOpenEvent(param1:Function)
+      {
+         super(param1, TradingNotOpenEvent);
+      }
 
-            public function getParser():class_1195
-            {
-                return _parser as class_1195;
-            }
-        }
-    }
+      public function getParser():TradingNotOpenEvent
+      {
+         return _parser as TradingNotOpenEvent;
+      }
+   }
+}

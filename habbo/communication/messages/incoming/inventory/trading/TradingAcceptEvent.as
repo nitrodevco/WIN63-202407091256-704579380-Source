@@ -1,30 +1,30 @@
 package com.sulake.habbo.communication.messages.incoming.inventory.trading
 {
     import com.sulake.core.communication.messages.MessageEvent;
-    import com.sulake.habbo.communication.messages.parser.inventory.trading.class_1504;
+    import com.sulake.habbo.communication.messages.parser.inventory.trading.TradingAcceptEventParser;
 
-    [SecureSWF(rename = "true")]
-        public class TradingAcceptEvent extends MessageEvent
+    [SecureSWF(rename="true")]
+    public class TradingAcceptEvent extends MessageEvent
+    {
+
+        public function TradingAcceptEvent(param1:Function)
         {
+            super(param1, TradingAcceptEventParser);
+        }
 
-            public function TradingAcceptEvent(param1:Function)
-            {
-                super(param1, class_1504);
-            }
+        public function get userID():int
+        {
+            return getParser().userID;
+        }
 
-            public function get userID():int
-            {
-                return getParser().userID;
-            }
+        public function get userAccepts():Boolean
+        {
+            return getParser().userAccepts;
+        }
 
-            public function get userAccepts():Boolean
-            {
-                return getParser().userAccepts;
-            }
-
-            public function getParser():class_1504
-            {
-                return _parser as class_1504;
-            }
+        public function getParser():TradingAcceptEventParser
+        {
+            return _parser as TradingAcceptEventParser;
         }
     }
+}

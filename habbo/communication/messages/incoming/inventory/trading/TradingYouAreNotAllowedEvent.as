@@ -1,7 +1,7 @@
 package com.sulake.habbo.communication.messages.incoming.inventory.trading
 {
     import com.sulake.core.communication.messages.MessageEvent;
-    import com.sulake.habbo.communication.messages.parser.inventory.trading.class_1550;
+    import com.sulake.habbo.communication.messages.parser.inventory.trading.TradingYouAreNotAllowedEventParser;
 
     [SecureSWF(rename="true")]
     public class TradingYouAreNotAllowedEvent extends MessageEvent
@@ -9,12 +9,12 @@ package com.sulake.habbo.communication.messages.incoming.inventory.trading
 
         public function TradingYouAreNotAllowedEvent(param1:Function)
         {
-            super(param1, class_1550);
+            super(param1, TradingYouAreNotAllowedEventParser);
         }
 
-        public function getParser():class_1550
+        public function getParser():TradingYouAreNotAllowedEventParser
         {
-            return _parser as class_1550;
+            return _parser as TradingYouAreNotAllowedEventParser;
         }
     }
 }
