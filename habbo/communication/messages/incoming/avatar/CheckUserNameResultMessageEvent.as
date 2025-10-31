@@ -1,7 +1,7 @@
 package com.sulake.habbo.communication.messages.incoming.avatar {
     import com.sulake.core.communication.messages.IMessageEvent
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.avatar.class_1164
+    import com.sulake.habbo.communication.messages.parser.avatar.CheckUserNameResultMessageEventParser
 
     [SecureSWF(rename="true")]
     public class CheckUserNameResultMessageEvent extends MessageEvent implements IMessageEvent {
@@ -19,11 +19,11 @@ package com.sulake.habbo.communication.messages.incoming.avatar {
         public static var var_1590: int = 5;
 
         public function CheckUserNameResultMessageEvent(param1: Function) {
-            super(param1, class_1164);
+            super(param1, CheckUserNameResultMessageEventParser);
         }
 
-        public function getParser(): class_1164 {
-            return _parser as class_1164;
+        public function getParser(): CheckUserNameResultMessageEventParser {
+            return _parser as CheckUserNameResultMessageEventParser;
         }
     }
 }

@@ -10,8 +10,8 @@ package com.sulake.habbo.sound.music
    import com.sulake.habbo.sound.events.SoundCompleteEvent;
    import flash.events.Event;
    import flash.events.IEventDispatcher;
-   import com.sulake.habbo.communication.messages.parser.sound.class_1387;
-   import com.sulake.habbo.communication.messages.parser.sound.class_1395;
+   import com.sulake.habbo.communication.messages.parser.sound.PlayListMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.sound.PlayListSongAddedMessageEventParser;
    import com.sulake.habbo.communication.messages.outgoing.sound.GetSoundMachinePlayListMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.sound.class_1648;
    import com.sulake.habbo.communication.messages.incoming.sound.PlayListSongAddedMessageEvent;
@@ -341,9 +341,9 @@ package com.sulake.habbo.sound.music
       {
          var _loc2_:SongDataEntry = null;
          var _loc7_:int = 0;
-         var _loc4_:class_1387;
+         var _loc4_:PlayListMessageEventParser;
          var _loc5_:PlayListMessageEvent;
-         var _loc6_:int = (_loc4_ = (_loc5_ = param1 as PlayListMessageEvent).getParser() as class_1387).synchronizationCount;
+         var _loc6_:int = (_loc4_ = (_loc5_ = param1 as PlayListMessageEvent).getParser() as PlayListMessageEventParser).synchronizationCount;
          var _loc3_:Array = convertParserPlayList(_loc4_.playList);
          if(_loc3_ == null || _loc3_.length == 0)
          {
@@ -386,7 +386,7 @@ package com.sulake.habbo.sound.music
       private function onPlayListSongAddedMessage(param1:IMessageEvent) : void
       {
          var _loc4_:PlayListSongAddedMessageEvent;
-         var _loc3_:class_1395 = (_loc4_ = param1 as PlayListSongAddedMessageEvent).getParser() as class_1395;
+         var _loc3_:PlayListSongAddedMessageEventParser = (_loc4_ = param1 as PlayListSongAddedMessageEvent).getParser() as PlayListSongAddedMessageEventParser;
          var _loc2_:SongDataEntry = new SongDataEntry(_loc3_.entry.id,_loc3_.entry.length,_loc3_.entry.name,_loc3_.entry.creator,null);
          if(_loc2_ == null)
          {

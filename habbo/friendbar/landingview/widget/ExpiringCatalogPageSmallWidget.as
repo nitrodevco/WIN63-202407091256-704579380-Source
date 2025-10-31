@@ -12,7 +12,7 @@ package com.sulake.habbo.friendbar.landingview.widget
    import com.sulake.habbo.friendbar.landingview.layout.CommonWidgetSettings;
    import com.sulake.habbo.friendbar.landingview.layout.WidgetContainerLayout;
    import com.sulake.habbo.window.widgets.class_3570;
-   import com.sulake.habbo.communication.messages.parser.catalog.class_1621;
+   import com.sulake.habbo.communication.messages.parser.catalog.CatalogPageWithEarliestExpiryMessageEventParser;
    import com.sulake.habbo.communication.messages.outgoing.catalog.GetCatalogPageWithEarliestExpiryComposer;
    import com.sulake.habbo.communication.messages.incoming.catalog.CatalogPageWithEarliestExpiryMessageEvent;
    
@@ -109,7 +109,7 @@ package com.sulake.habbo.friendbar.landingview.widget
       
       private function onCatalogPage(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1621 = class_1621(param1.parser);
+         var _loc2_:CatalogPageWithEarliestExpiryMessageEventParser = CatalogPageWithEarliestExpiryMessageEventParser(param1.parser);
          _pageName = _loc2_.pageName;
          var_1270 = _loc2_.secondsToExpiry;
          refreshContent();

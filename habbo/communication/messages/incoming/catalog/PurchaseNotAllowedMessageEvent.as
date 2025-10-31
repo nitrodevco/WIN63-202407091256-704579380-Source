@@ -1,17 +1,17 @@
 package com.sulake.habbo.communication.messages.incoming.catalog {
     import com.sulake.core.communication.messages.IMessageEvent
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.catalog.class_1273
+    import com.sulake.habbo.communication.messages.parser.catalog.PurchaseNotAllowedMessageEventParser
 
     [SecureSWF(rename="true")]
     public class PurchaseNotAllowedMessageEvent extends MessageEvent implements IMessageEvent {
 
         public function PurchaseNotAllowedMessageEvent(param1: Function) {
-            super(param1, class_1273);
+            super(param1, PurchaseNotAllowedMessageEventParser);
         }
 
-        public function getParser(): class_1273 {
-            return this._parser as class_1273;
+        public function getParser(): PurchaseNotAllowedMessageEventParser {
+            return this._parser as PurchaseNotAllowedMessageEventParser;
         }
     }
 }

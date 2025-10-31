@@ -1,21 +1,21 @@
 package com.sulake.habbo.communication.messages.incoming.users {
     import com.sulake.core.communication.messages.IMessageEvent
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.users.class_1186
+    import com.sulake.habbo.communication.messages.parser.users.GuildMemberMgmtFailedMessageEventParser
 
     [SecureSWF(rename="true")]
     public class GuildMemberMgmtFailedMessageEvent extends MessageEvent implements IMessageEvent {
 
         public function GuildMemberMgmtFailedMessageEvent(param1: Function) {
-            super(param1, class_1186);
+            super(param1, GuildMemberMgmtFailedMessageEventParser);
         }
 
         public function get reason(): int {
-            return class_1186(_parser).reason;
+            return GuildMemberMgmtFailedMessageEventParser(_parser).reason;
         }
 
         public function get guildId(): int {
-            return class_1186(_parser).guildId;
+            return GuildMemberMgmtFailedMessageEventParser(_parser).guildId;
         }
     }
 }

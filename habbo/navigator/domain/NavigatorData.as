@@ -18,7 +18,7 @@ package com.sulake.habbo.navigator.domain
    import flash.utils.Dictionary;
    import package_12.*;
    import package_135.*;
-   import com.sulake.habbo.communication.messages.parser.room.engine.class_1339;
+   import com.sulake.habbo.communication.messages.parser.room.engine.RoomEntryInfoMessageEventParser;
    
    public class NavigatorData
    {
@@ -110,7 +110,7 @@ package com.sulake.habbo.navigator.domain
          return _enteredGuestRoom != null && (var_2586 || _navigator.sessionData.hasSecurity(5));
       }
       
-      public function onRoomEnter(param1:class_1339) : void
+      public function onRoomEnter(param1:RoomEntryInfoMessageEventParser) : void
       {
          _enteredGuestRoom = null;
          var_2586 = false;

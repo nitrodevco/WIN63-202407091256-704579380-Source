@@ -17,7 +17,7 @@ package com.sulake.habbo.quest
    import flash.geom.Point;
    import flash.geom.Rectangle;
    import flash.utils.Timer;
-   import com.sulake.habbo.communication.messages.parser.room.engine.class_1339;
+   import com.sulake.habbo.communication.messages.parser.room.engine.RoomEntryInfoMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.room.engine.RoomEntryInfoMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.competition.VoteForRoomMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.competition.SubmitRoomToCompetitionMessageComposer;
@@ -299,7 +299,7 @@ package com.sulake.habbo.quest
       public function onRoomEnter(param1:RoomEntryInfoMessageEvent) : void
       {
          close();
-         var _loc3_:class_1339 = param1.getParser();
+         var _loc3_:RoomEntryInfoMessageEventParser = param1.getParser();
          var _loc2_:Boolean = _questEngine.getInteger("new.identity",0) == 0 || !_questEngine.getBoolean("new.identity.hide.ui");
          if(!_dontShowAgain && _loc2_)
          {

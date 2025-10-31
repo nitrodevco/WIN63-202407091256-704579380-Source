@@ -28,7 +28,7 @@ package com.sulake.habbo.sound
    import flash.events.Event;
    import flash.media.Sound;
    import com.sulake.habbo.communication.messages.outgoing.sound.GetSoundSettingsComposer;
-   import com.sulake.habbo.communication.messages.parser.preferences.class_1413;
+   import com.sulake.habbo.communication.messages.parser.preferences.AccountPreferencesEventParser;
    import com.sulake.habbo.communication.messages.outgoing.preferences.SetSoundSettingsComposer;
    import com.sulake.habbo.communication.messages.incoming.preferences.AccountPreferencesEvent;
    
@@ -469,7 +469,7 @@ package com.sulake.habbo.sound
       private function onSoundSettingsEvent(param1:IMessageEvent) : void
       {
          var _loc3_:AccountPreferencesEvent = param1 as AccountPreferencesEvent;
-         var _loc2_:class_1413 = _loc3_.getParser() as class_1413;
+         var _loc2_:AccountPreferencesEventParser = _loc3_.getParser() as AccountPreferencesEventParser;
          var _loc4_:Number;
          if((_loc4_ = _loc2_.uiVolume) == 1)
          {

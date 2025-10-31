@@ -1,17 +1,17 @@
 package com.sulake.habbo.communication.messages.incoming.catalog {
     import com.sulake.core.communication.messages.IMessageEvent
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.catalog.class_1294
+    import com.sulake.habbo.communication.messages.parser.catalog.CatalogPageMessageEventParser
 
     [SecureSWF(rename="true")]
     public class CatalogPageMessageEvent extends MessageEvent implements IMessageEvent {
 
         public function CatalogPageMessageEvent(param1: Function) {
-            super(param1, class_1294);
+            super(param1, CatalogPageMessageEventParser);
         }
 
-        public function getParser(): class_1294 {
-            return this._parser as class_1294;
+        public function getParser(): CatalogPageMessageEventParser {
+            return this._parser as CatalogPageMessageEventParser;
         }
     }
 }

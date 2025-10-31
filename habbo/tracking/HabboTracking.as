@@ -18,8 +18,8 @@ package com.sulake.habbo.tracking {
     import com.sulake.habbo.communication.messages.incoming.room.engine.RoomEntryInfoMessageEvent
     import com.sulake.habbo.communication.messages.incoming.tracking.LatencyPingResponseMessageEvent
     import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer
-    import com.sulake.habbo.communication.messages.parser.notifications.class_1271
-    import com.sulake.habbo.communication.messages.parser.room.engine.class_1339
+    import com.sulake.habbo.communication.messages.parser.notifications.HabboAchievementNotificationMessageEventParser
+    import com.sulake.habbo.communication.messages.parser.room.engine.RoomEntryInfoMessageEventParser
     import com.sulake.habbo.localization.IHabboLocalizationManager
     import com.sulake.habbo.room.IRoomEngine
     import com.sulake.habbo.room.events.RoomEngineEvent
@@ -523,7 +523,7 @@ package com.sulake.habbo.tracking {
         }
 
         private function onAchievementNotification(param1: HabboAchievementNotificationMessageEvent): void {
-            var _loc2_: class_1271 = param1.getParser();
+            var _loc2_: HabboAchievementNotificationMessageEventParser = param1.getParser();
             legacyTrackGoogle("achievement", "achievement", [_loc2_.data.badgeCode]);
         }
 
@@ -585,7 +585,7 @@ package com.sulake.habbo.tracking {
                 trackLoginStep("client.init.room.enter");
                 var_4465 = true;
             }
-            var _loc2_: class_1339 = RoomEntryInfoMessageEvent(param1).getParser();
+            var _loc2_: RoomEntryInfoMessageEventParser = RoomEntryInfoMessageEvent(param1).getParser();
             ErrorReportStorage.setParameter("last_room", String(_loc2_.guestRoomId));
             ErrorReportStorage.setParameter("in_room", "true");
             legacyTrackGoogle("navigator", "private", [_loc2_.guestRoomId]);

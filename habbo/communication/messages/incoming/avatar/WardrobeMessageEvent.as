@@ -1,7 +1,7 @@
 package com.sulake.habbo.communication.messages.incoming.avatar {
     import com.sulake.core.communication.messages.IMessageEvent
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.avatar.class_1450
+    import com.sulake.habbo.communication.messages.parser.avatar.WardrobeMessageEventParser
 
     [SecureSWF(rename="true")]
     public class WardrobeMessageEvent extends MessageEvent implements IMessageEvent {
@@ -11,7 +11,7 @@ package com.sulake.habbo.communication.messages.incoming.avatar {
         public static const const_389: int = 1;
 
         public function WardrobeMessageEvent(param1: Function) {
-            super(param1, class_1450);
+            super(param1, WardrobeMessageEventParser);
         }
 
         public function get outfits(): Array {
@@ -22,8 +22,8 @@ package com.sulake.habbo.communication.messages.incoming.avatar {
             return getParser().state;
         }
 
-        private function getParser(): class_1450 {
-            return this._parser as class_1450;
+        private function getParser(): WardrobeMessageEventParser {
+            return this._parser as WardrobeMessageEventParser;
         }
     }
 }

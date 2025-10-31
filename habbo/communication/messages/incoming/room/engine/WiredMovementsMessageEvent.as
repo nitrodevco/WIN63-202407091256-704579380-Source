@@ -1,16 +1,16 @@
 package com.sulake.habbo.communication.messages.incoming.room.engine {
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.room.engine.class_1424
+    import com.sulake.habbo.communication.messages.parser.room.engine.WiredMovementsMessageEventParser
 
     [SecureSWF(rename="true")]
     public class WiredMovementsMessageEvent extends MessageEvent {
 
         public function WiredMovementsMessageEvent(param1: Function) {
-            super(param1, class_1424);
+            super(param1, WiredMovementsMessageEventParser);
         }
 
-        public function getParser(): class_1424 {
-            return _parser as class_1424;
+        public function getParser(): WiredMovementsMessageEventParser {
+            return _parser as WiredMovementsMessageEventParser;
         }
     }
 }

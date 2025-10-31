@@ -8,7 +8,7 @@ package com.sulake.habbo.catalog.targetedoffers
    import com.sulake.habbo.catalog.targetedoffers.data.TargetedOffer;
    import com.sulake.habbo.catalog.targetedoffers.util.MallOfferExternalInterfaceHelper;
    import com.sulake.habbo.session.product.class_1812;
-   import com.sulake.habbo.communication.messages.parser.catalog.class_1402;
+   import com.sulake.habbo.communication.messages.parser.catalog.TargetedOfferEventParser;
    import com.sulake.habbo.communication.messages.outgoing.catalog.ShopTargetedOfferViewedComposer;
    import com.sulake.habbo.communication.messages.outgoing.catalog.SetTargetedOfferStateComposer;
    import com.sulake.habbo.communication.messages.outgoing.catalog.GetNextTargetedOfferComposer;
@@ -72,7 +72,7 @@ package com.sulake.habbo.catalog.targetedoffers
       
       private function onTargetedOffer(param1:TargetedOfferEvent) : void
       {
-         var _loc3_:class_1402 = param1.getParser();
+         var _loc3_:TargetedOfferEventParser = param1.getParser();
          var _loc2_:TargetedOffer = new TargetedOffer(_loc3_.data);
          if(_loc2_.trackingState == 4)
          {

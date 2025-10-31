@@ -1,16 +1,16 @@
 package com.sulake.habbo.communication.messages.incoming.room.engine {
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.room.engine.class_1624
+    import com.sulake.habbo.communication.messages.parser.room.engine.ObjectRemoveConfirmMessageEventParser
 
     [SecureSWF(rename="true")]
     public class ObjectRemoveConfirmMessageEvent extends MessageEvent {
 
         public function ObjectRemoveConfirmMessageEvent(param1: Function) {
-            super(param1, class_1624);
+            super(param1, ObjectRemoveConfirmMessageEventParser);
         }
 
-        public function getParser(): class_1624 {
-            return _parser as class_1624;
+        public function getParser(): ObjectRemoveConfirmMessageEventParser {
+            return _parser as ObjectRemoveConfirmMessageEventParser;
         }
     }
 }

@@ -2,8 +2,8 @@ package com.sulake.habbo.help.cfh.registry.instantmessage
 {
    import com.sulake.core.runtime.IDisposable;
    import com.sulake.habbo.help.HabboHelp;
-   import com.sulake.habbo.communication.messages.parser.friendlist.class_1187;
-   import com.sulake.habbo.communication.messages.parser.friendlist.class_1500;
+   import com.sulake.habbo.communication.messages.parser.friendlist.RoomInviteEventParser;
+   import com.sulake.habbo.communication.messages.parser.friendlist.NewConsoleMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.friendlist.RoomInviteEvent;
    import com.sulake.habbo.communication.messages.incoming.friendlist.NewConsoleMessageEvent;
    
@@ -23,7 +23,7 @@ package com.sulake.habbo.help.cfh.registry.instantmessage
       
       public function onInstantMessage(param1:NewConsoleMessageEvent) : void
       {
-         var _loc2_:class_1500 = param1.getParser();
+         var _loc2_:NewConsoleMessageEventParser = param1.getParser();
          if(_loc2_.chatId < 0)
          {
             var_1660.instantMessageRegistry.addItem(_loc2_.chatId,_loc2_.senderName,_loc2_.messageText);
@@ -36,7 +36,7 @@ package com.sulake.habbo.help.cfh.registry.instantmessage
       
       public function onRoomInvite(param1:RoomInviteEvent) : void
       {
-         var _loc2_:class_1187 = param1.getParser();
+         var _loc2_:RoomInviteEventParser = param1.getParser();
          var_1660.instantMessageRegistry.addItem(_loc2_.senderId,"",_loc2_.messageText);
       }
       

@@ -16,8 +16,8 @@ package com.sulake.habbo.catalog.collectibles.widget
    import com.sulake.habbo.catalog.collectibles.renderer.collections.CollectionsNavigationNodeRenderer;
    import com.sulake.habbo.catalog.collectibles.widget.subviews.CollectionView;
    import com.sulake.habbo.catalog.event.CatalogEvent;
-   import com.sulake.habbo.communication.messages.parser.collectibles.class_1218;
-   import com.sulake.habbo.communication.messages.parser.collectibles.class_1521;
+   import com.sulake.habbo.communication.messages.parser.collectibles.NftBonusItemClaimResultMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.collectibles.NftRewardItemClaimResultMessageEventParser;
    import com.sulake.habbo.communication.messages.parser.collectibles.class_1692;
    import com.sulake.habbo.communication.messages.incoming.collectibles.NftCollectionsMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.collectibles.NftRewardItemClaimResultMessageEvent;
@@ -214,7 +214,7 @@ package com.sulake.habbo.catalog.collectibles.widget
       
       private function onBonusClaimResult(param1:NftBonusItemClaimResultMessageEvent) : void
       {
-         var _loc2_:class_1218 = param1.getParser();
+         var _loc2_:NftBonusItemClaimResultMessageEventParser = param1.getParser();
          sendClaimNotification(_loc2_.success);
          if(var_2396.activeWallet != _loc2_.walletAddress)
          {
@@ -234,7 +234,7 @@ package com.sulake.habbo.catalog.collectibles.widget
       
       private function onRewardClaimResult(param1:NftRewardItemClaimResultMessageEvent) : void
       {
-         var _loc2_:class_1521 = param1.getParser();
+         var _loc2_:NftRewardItemClaimResultMessageEventParser = param1.getParser();
          sendClaimNotification(_loc2_.success);
          if(var_2396.activeWallet != _loc2_.walletAddress)
          {

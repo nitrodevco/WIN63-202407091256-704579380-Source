@@ -28,25 +28,25 @@ package com.sulake.habbo.session.handler
    import com.sulake.room.utils.RoomShakingEffect;
    import com.sulake.habbo.communication.messages.incoming.navigator.DoorbellMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.room.action.DanceMessageEvent;
-   import com.sulake.habbo.communication.messages.parser.users.class_1297;
-   import com.sulake.habbo.communication.messages.parser.room.pets.class_1134;
-   import com.sulake.habbo.communication.messages.parser.room.pets.class_1225;
-   import com.sulake.habbo.communication.messages.parser.room.pets.class_1310;
-   import com.sulake.habbo.communication.messages.parser.room.pets.class_1384;
-   import com.sulake.habbo.communication.messages.parser.room.pets.class_1456;
-   import com.sulake.habbo.communication.messages.parser.room.pets.class_1496;
+   import com.sulake.habbo.communication.messages.parser.users.UserNameChangedMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.pets.PetBreedingResultEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.pets.PetInfoMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.pets.PetFigureUpdateEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.pets.PetStatusUpdateEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.pets.PetLevelUpdateEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.pets.PetCommandsMessageEventParser;
    import com.sulake.habbo.communication.messages.parser.friendlist.NewFriendRequestMessageParser;
-   import com.sulake.habbo.communication.messages.parser.room.action.class_1140;
-   import com.sulake.habbo.communication.messages.parser.inventory.pets.class_1272;
-   import com.sulake.habbo.communication.messages.parser.inventory.pets.class_1321;
-   import com.sulake.habbo.communication.messages.parser.inventory.pets.class_1421;
+   import com.sulake.habbo.communication.messages.parser.room.action.DanceMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.pets.ConfirmBreedingResultEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.pets.ConfirmBreedingRequestEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.pets.PetBreedingEventParser;
    import com.sulake.habbo.communication.messages.incoming.inventory.pets.ConfirmBreedingResultEvent;
    import com.sulake.habbo.communication.messages.incoming.inventory.pets.PetBreedingEvent;
    import com.sulake.habbo.communication.messages.incoming.inventory.pets.NestBreedingSuccessEvent;
    import com.sulake.habbo.communication.messages.incoming.inventory.pets.ConfirmBreedingRequestEvent;
-   import com.sulake.habbo.communication.messages.parser.room.engine.class_1226;
-   import com.sulake.habbo.communication.messages.parser.room.engine.class_1333;
-   import com.sulake.habbo.communication.messages.parser.room.engine.class_1626;
+   import com.sulake.habbo.communication.messages.parser.room.engine.UserRemoveMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.engine.UsersMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.engine.FavoriteMembershipUpdateMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.room.engine.class_1668;
    import com.sulake.habbo.communication.messages.incoming.room.engine.UserChangeMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.room.engine.FavoriteMembershipUpdateMessageEvent;
@@ -102,7 +102,7 @@ package com.sulake.habbo.session.handler
       private function onFavoriteMembershipUpdate(param1:IMessageEvent) : void
       {
          var _loc5_:RoomSessionFavouriteGroupUpdateEvent = null;
-         var _loc3_:class_1626 = FavoriteMembershipUpdateMessageEvent(param1).getParser();
+         var _loc3_:FavoriteMembershipUpdateMessageEventParser = FavoriteMembershipUpdateMessageEvent(param1).getParser();
          var _loc4_:IRoomSession;
          if((_loc4_ = listener.getSession(var_1662)) == null)
          {
@@ -132,7 +132,7 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         var _loc3_:class_1333 = _loc9_.getParser();
+         var _loc3_:UsersMessageEventParser = _loc9_.getParser();
          var _loc5_:IRoomSession;
          if((_loc5_ = listener.getSession(var_1662)) == null)
          {
@@ -198,7 +198,7 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         var _loc2_:int = (_loc4_.getParser() as class_1226).id;
+         var _loc2_:int = (_loc4_.getParser() as UserRemoveMessageEventParser).id;
          _loc3_.userDataManager.removeUserDataByRoomIndex(_loc2_);
       }
       
@@ -265,7 +265,7 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         var _loc3_:class_1297 = _loc2_.getParser();
+         var _loc3_:UserNameChangedMessageEventParser = _loc2_.getParser();
          var _loc4_:IRoomSession;
          if((_loc4_ = listener.getSession(var_1662)) == null)
          {
@@ -286,7 +286,7 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         var _loc2_:class_1225 = _loc3_.getParser();
+         var _loc2_:PetInfoMessageEventParser = _loc3_.getParser();
          var _loc4_:PetInfo;
          (_loc4_ = new PetInfo()).petId = _loc2_.petId;
          _loc4_.level = _loc2_.level;
@@ -324,7 +324,7 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         var _loc5_:class_1310 = _loc7_.getParser();
+         var _loc5_:PetFigureUpdateEventParser = _loc7_.getParser();
          var _loc6_:IRoomSession;
          if((_loc6_ = listener.getSession(var_1662)) == null)
          {
@@ -346,7 +346,7 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         var _loc3_:class_1134 = _loc2_.getParser();
+         var _loc3_:PetBreedingResultEventParser = _loc2_.getParser();
          var _loc4_:IRoomSession;
          if((_loc4_ = listener.getSession(var_1662)) == null)
          {
@@ -361,7 +361,7 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         var _loc2_:class_1321 = param1.parser as class_1321;
+         var _loc2_:ConfirmBreedingRequestEventParser = param1.parser as ConfirmBreedingRequestEventParser;
          var _loc3_:IRoomSession = listener.getSession(var_1662);
          if(_loc3_ == null)
          {
@@ -376,7 +376,7 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         var _loc2_:class_1272 = param1.parser as class_1272;
+         var _loc2_:ConfirmBreedingResultEventParser = param1.parser as ConfirmBreedingResultEventParser;
          var _loc3_:IRoomSession = listener.getSession(var_1662);
          if(_loc3_ == null)
          {
@@ -406,7 +406,7 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         var _loc2_:class_1421 = _loc4_.getParser();
+         var _loc2_:PetBreedingEventParser = _loc4_.getParser();
          var _loc3_:IRoomSession = listener.getSession(var_1662);
          if(_loc3_ == null)
          {
@@ -422,7 +422,7 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         var _loc4_:class_1384 = _loc8_.getParser();
+         var _loc4_:PetStatusUpdateEventParser = _loc8_.getParser();
          var _loc5_:IRoomSession;
          if((_loc5_ = listener.getSession(var_1662)) == null)
          {
@@ -445,7 +445,7 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         var _loc4_:class_1456 = _loc2_.getParser();
+         var _loc4_:PetLevelUpdateEventParser = _loc2_.getParser();
          var _loc6_:IRoomSession;
          if((_loc6_ = listener.getSession(var_1662)) == null)
          {
@@ -470,7 +470,7 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         var _loc3_:class_1496 = _loc2_.getParser();
+         var _loc3_:PetCommandsMessageEventParser = _loc2_.getParser();
          if(_loc3_ != null)
          {
             listener.events.dispatchEvent(new RoomSessionPetCommandsUpdateEvent(_loc4_,_loc3_.petId,_loc3_.allCommands,_loc3_.enabledCommands));
@@ -576,7 +576,7 @@ package com.sulake.habbo.session.handler
       
       private function onDance(param1:DanceMessageEvent) : void
       {
-         var _loc2_:class_1140 = param1.getParser();
+         var _loc2_:DanceMessageEventParser = param1.getParser();
          var _loc3_:IRoomSession = listener.getSession(var_1662);
          listener.events.dispatchEvent(new RoomSessionDanceEvent(_loc3_,_loc2_.userId,_loc2_.danceStyle));
       }

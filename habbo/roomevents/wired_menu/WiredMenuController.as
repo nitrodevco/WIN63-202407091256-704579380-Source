@@ -32,7 +32,7 @@ package com.sulake.habbo.roomevents.wired_menu
    import com.sulake.iid.IIDRoomEngine;
    import com.sulake.iid.IIDSessionDataManager;
    import com.sulake.habbo.communication.messages.incoming.room.permissions.YouAreControllerMessageEvent;
-   import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.wiredmenu.class_1577;
+   import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.wiredmenu.WiredPermissionsEventParser;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredPermissionsEvent;
    import com.sulake.habbo.communication.messages.incoming.preferences.AccountPreferencesEvent;
    
@@ -310,7 +310,7 @@ package com.sulake.habbo.roomevents.wired_menu
       
       private function onWiredPermissions(param1:WiredPermissionsEvent) : void
       {
-         var _loc2_:class_1577 = param1.getParser();
+         var _loc2_:WiredPermissionsEventParser = param1.getParser();
          var_646 = _loc2_.canModify;
          var_463 = _loc2_.canRead;
          if(var_1631 != null && !var_1631.disposed)

@@ -7,7 +7,7 @@ package com.sulake.habbo.help
    import com.sulake.core.window.components.ITextWindow;
    import com.sulake.core.window.events.WindowEvent;
    import com.sulake.habbo.utils.StringUtil;
-   import com.sulake.habbo.communication.messages.parser.callforhelp.class_1607;
+   import com.sulake.habbo.communication.messages.parser.callforhelp.SanctionStatusEventParser;
    import com.sulake.habbo.communication.messages.incoming.callforhelp.SanctionStatusEvent;
    
    public class SanctionInfo implements IDisposable
@@ -52,7 +52,7 @@ package com.sulake.habbo.help
          _window = _habboHelp.getXmlWindow("sanction_info") as IWindowContainer;
          _window.center();
          _window.procedure = windowEventHandler;
-         var _loc2_:class_1607 = param1.getParser();
+         var _loc2_:SanctionStatusEventParser = param1.getParser();
          if(_loc2_.sanctionReason == "cfh.reason.EMPTY")
          {
             _window.findChildByName("no_sanction_info").visible = true;

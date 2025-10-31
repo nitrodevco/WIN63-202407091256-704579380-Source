@@ -13,8 +13,8 @@ package com.sulake.habbo.sound.music
    import com.sulake.habbo.sound.events.SongInfoReceivedEvent;
    import com.sulake.habbo.sound.events.SoundCompleteEvent;
    import flash.events.IEventDispatcher;
-   import com.sulake.habbo.communication.messages.parser.sound.class_1379;
-   import com.sulake.habbo.communication.messages.parser.sound.class_1400;
+   import com.sulake.habbo.communication.messages.parser.sound.NowPlayingMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.sound.JukeboxSongDisksMessageEventParser;
    import com.sulake.habbo.communication.messages.outgoing.sound.GetJukeboxPlayListMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.sound.JukeboxSongDisksMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.sound.NowPlayingMessageEvent;
@@ -164,7 +164,7 @@ package com.sulake.habbo.sound.music
       private function onNowPlayingMessage(param1:IMessageEvent) : void
       {
          var _loc3_:NowPlayingMessageEvent = param1 as NowPlayingMessageEvent;
-         var _loc2_:class_1379 = _loc3_.getParser() as class_1379;
+         var _loc2_:NowPlayingMessageEventParser = _loc3_.getParser() as NowPlayingMessageEventParser;
          class_14.log("Received Now Playing message with: " + _loc2_.currentSongId + ", " + _loc2_.nextSongId + ", " + _loc2_.syncCount);
          var_521 = _loc2_.currentSongId != -1;
          if(_loc2_.currentSongId >= 0)
@@ -191,7 +191,7 @@ package com.sulake.habbo.sound.music
          var _loc6_:int = 0;
          var _loc3_:SongDataEntry = null;
          var _loc5_:JukeboxSongDisksMessageEvent;
-         var _loc2_:class_1400 = (_loc5_ = param1 as JukeboxSongDisksMessageEvent).getParser() as class_1400;
+         var _loc2_:JukeboxSongDisksMessageEventParser = (_loc5_ = param1 as JukeboxSongDisksMessageEvent).getParser() as JukeboxSongDisksMessageEventParser;
          class_14.log("Received Jukebox song disks (=playlist) message, length of playlist: " + _loc2_.songDisks.length);
          var_97 = [];
          _loc4_ = 0;

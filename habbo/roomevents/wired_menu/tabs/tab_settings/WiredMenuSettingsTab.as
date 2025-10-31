@@ -6,7 +6,7 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_settings
    import com.sulake.habbo.roomevents.Util;
    import com.sulake.habbo.roomevents.wired_menu.WiredMenuController;
    import com.sulake.habbo.roomevents.wired_menu.tabs.WiredMenuDefaultTab;
-   import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.wiredmenu.class_1257;
+   import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.wiredmenu.WiredRoomSettingsEventParser;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredRoomSettingsEvent;
    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetRoomSettingsMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredSetPreferencesMessageComposer;
@@ -60,7 +60,7 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_settings
       
       private function onWiredSettings(param1:WiredRoomSettingsEvent) : void
       {
-         var _loc2_:class_1257 = param1.getParser();
+         var _loc2_:WiredRoomSettingsEventParser = param1.getParser();
          var_649 = _loc2_.modifyPermissionMask;
          var_492 = _loc2_.readPermissionMask;
          updateLoadingState();

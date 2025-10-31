@@ -85,8 +85,8 @@ package com.sulake.habbo.ui
    import flash.geom.Rectangle;
    import flash.utils.Timer;
    import flash.utils.getTimer;
-   import com.sulake.habbo.communication.messages.parser.room.bots.class_1442;
-   import com.sulake.habbo.communication.messages.parser.room.bots.class_1493;
+   import com.sulake.habbo.communication.messages.parser.room.bots.BotSkillListUpdateEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.bots.BotForceOpenContextMenuEventParser;
    import com.sulake.habbo.communication.messages.incoming.room.bots.BotForceOpenContextMenuEvent;
    import com.sulake.habbo.communication.messages.incoming.room.bots.BotSkillListUpdateEvent;
    
@@ -659,7 +659,7 @@ package com.sulake.habbo.ui
       private function onBotSkillListUpdateEvent(param1:BotSkillListUpdateEvent) : void
       {
          var _loc2_:class_3490 = null;
-         var _loc3_:class_1442 = param1.getParser();
+         var _loc3_:BotSkillListUpdateEventParser = param1.getParser();
          if(var_52 != null)
          {
             _loc2_ = var_52.userDataManager.getRentableBotUserData(_loc3_.botId);
@@ -670,7 +670,7 @@ package com.sulake.habbo.ui
       
       private function onBotForceOpenContextMenuEvent(param1:BotForceOpenContextMenuEvent) : void
       {
-         var _loc2_:class_1493 = param1.getParser();
+         var _loc2_:BotForceOpenContextMenuEventParser = param1.getParser();
          events.dispatchEvent(new RoomWidgetRentableBotForceOpenContextMenuEvent(_loc2_.botId));
       }
       

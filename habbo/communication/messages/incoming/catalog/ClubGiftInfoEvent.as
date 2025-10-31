@@ -1,17 +1,17 @@
 package com.sulake.habbo.communication.messages.incoming.catalog {
     import com.sulake.core.communication.messages.IMessageEvent
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.catalog.class_1586
+    import com.sulake.habbo.communication.messages.parser.catalog.ClubGiftInfoEventParser
 
     [SecureSWF(rename="true")]
     public class ClubGiftInfoEvent extends MessageEvent implements IMessageEvent {
 
         public function ClubGiftInfoEvent(param1: Function) {
-            super(param1, class_1586);
+            super(param1, ClubGiftInfoEventParser);
         }
 
-        public function getParser(): class_1586 {
-            return this._parser as class_1586;
+        public function getParser(): ClubGiftInfoEventParser {
+            return this._parser as ClubGiftInfoEventParser;
         }
     }
 }

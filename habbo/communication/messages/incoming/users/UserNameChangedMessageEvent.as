@@ -1,17 +1,17 @@
 package com.sulake.habbo.communication.messages.incoming.users {
     import com.sulake.core.communication.messages.IMessageEvent
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.users.class_1297
+    import com.sulake.habbo.communication.messages.parser.users.UserNameChangedMessageEventParser
 
     [SecureSWF(rename="true")]
     public class UserNameChangedMessageEvent extends MessageEvent implements IMessageEvent {
 
         public function UserNameChangedMessageEvent(param1: Function) {
-            super(param1, class_1297);
+            super(param1, UserNameChangedMessageEventParser);
         }
 
-        public function getParser(): class_1297 {
-            return _parser as class_1297;
+        public function getParser(): UserNameChangedMessageEventParser {
+            return _parser as UserNameChangedMessageEventParser;
         }
     }
 }

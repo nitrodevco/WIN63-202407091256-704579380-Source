@@ -50,7 +50,7 @@ package com.sulake.habbo.friendlist {
     import com.sulake.habbo.communication.messages.parser.friendlist.MessengerInitParser
     import com.sulake.habbo.communication.messages.parser.friendlist.NewFriendRequestMessageParser
     import com.sulake.habbo.communication.messages.parser.friendlist.RoomInviteErrorMessageParser
-    import com.sulake.habbo.communication.messages.parser.handshake.class_1267
+    import com.sulake.habbo.communication.messages.parser.handshake.UserObjectEventParser
     import com.sulake.habbo.friendlist.domain.*
     import com.sulake.habbo.localization.IHabboLocalizationManager
     import com.sulake.habbo.messenger.IHabboMessenger
@@ -347,7 +347,7 @@ package com.sulake.habbo.friendlist {
         }
 
         private function onUserObject(param1: IMessageEvent): void {
-            var _loc2_: class_1267 = (param1 as UserObjectEvent).getParser();
+            var _loc2_: UserObjectEventParser = (param1 as UserObjectEvent).getParser();
             _avatarId = _loc2_.id;
         }
 

@@ -13,7 +13,7 @@ package com.sulake.habbo.friendbar.landingview.widget
    import com.sulake.habbo.friendbar.landingview.interfaces.ISettingsAwareWidget;
    import com.sulake.habbo.friendbar.landingview.layout.CommonWidgetSettings;
    import com.sulake.habbo.friendbar.landingview.layout.WidgetContainerLayout;
-   import com.sulake.habbo.communication.messages.parser.quest.class_1143;
+   import com.sulake.habbo.communication.messages.parser.quest.CommunityGoalProgressMessageEventParser;
    import com.sulake.habbo.communication.messages.outgoing.quest.GetCommunityGoalProgressMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.quest.class_1678;
    import com.sulake.habbo.communication.messages.incoming.quest.CommunityGoalProgressMessageEvent;
@@ -235,7 +235,7 @@ package com.sulake.habbo.friendbar.landingview.widget
       
       private function onCommunityGoalProgress(param1:IMessageEvent) : void
       {
-         var_1792 = class_1143(param1.parser).data;
+         var_1792 = CommunityGoalProgressMessageEventParser(param1.parser).data;
          var_3887 = false;
          refreshContent();
          Component(_landingView.windowManager).registerUpdateReceiver(this,10);

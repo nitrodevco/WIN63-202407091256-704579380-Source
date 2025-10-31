@@ -7,8 +7,8 @@ package com.sulake.habbo.session.handler
    import com.sulake.habbo.communication.messages.incoming.room.permissions.YouAreOwnerMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.room.permissions.YouAreNotControllerMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.room.permissions.YouAreControllerMessageEvent;
-   import com.sulake.habbo.communication.messages.parser.room.permissions.class_1202;
-   import com.sulake.habbo.communication.messages.parser.room.permissions.class_1250;
+   import com.sulake.habbo.communication.messages.parser.room.permissions.YouAreNotControllerMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.permissions.YouAreControllerMessageEventParser;
    
    public class RoomPermissionsHandler extends BaseHandler
    {
@@ -33,7 +33,7 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         var _loc2_:class_1250 = _loc4_.getParser();
+         var _loc2_:YouAreControllerMessageEventParser = _loc4_.getParser();
          if(_loc2_ == null)
          {
             return;
@@ -53,7 +53,7 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         var _loc2_:class_1202 = _loc4_.getParser();
+         var _loc2_:YouAreNotControllerMessageEventParser = _loc4_.getParser();
          if(_loc2_ == null)
          {
             return;

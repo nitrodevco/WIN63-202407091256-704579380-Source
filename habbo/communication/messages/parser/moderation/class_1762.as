@@ -8,7 +8,7 @@ package com.sulake.habbo.communication.messages.parser.moderation {
         public function class_1762(param1: IMessageDataWrapper) {
             var _loc4_: int = 0;
             super();
-            var _loc2_: class_1618 = new class_1618();
+            var _loc2_: IssueInfoMessageEventParser = new IssueInfoMessageEventParser();
             var_314 = [];
             var_278 = [];
             var_290 = [];

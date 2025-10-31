@@ -1,17 +1,17 @@
 package com.sulake.habbo.communication.messages.incoming.catalog {
     import com.sulake.core.communication.messages.IMessageEvent
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.catalog.class_1358
+    import com.sulake.habbo.communication.messages.parser.catalog.SellablePetPalettesMessageEventParser
 
     [SecureSWF(rename="true")]
     public class SellablePetPalettesMessageEvent extends MessageEvent implements IMessageEvent {
 
         public function SellablePetPalettesMessageEvent(param1: Function) {
-            super(param1, class_1358);
+            super(param1, SellablePetPalettesMessageEventParser);
         }
 
-        public function getParser(): class_1358 {
-            return this._parser as class_1358;
+        public function getParser(): SellablePetPalettesMessageEventParser {
+            return this._parser as SellablePetPalettesMessageEventParser;
         }
     }
 }

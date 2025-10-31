@@ -10,10 +10,10 @@ package com.sulake.habbo.catalog.marketplace
    import com.sulake.habbo.session.furniture.class_3365;
    import com.sulake.habbo.window.IHabboWindowManager;
    import com.sulake.habbo.communication.messages.outgoing.marketplace.GetMarketplaceConfigurationMessageComposer;
-   import com.sulake.habbo.communication.messages.parser.marketplace.class_1317;
-   import com.sulake.habbo.communication.messages.parser.marketplace.class_1350;
-   import com.sulake.habbo.communication.messages.parser.marketplace.class_1479;
-   import com.sulake.habbo.communication.messages.parser.marketplace.class_1522;
+   import com.sulake.habbo.communication.messages.parser.marketplace.MarketPlaceOwnOffersEventParser;
+   import com.sulake.habbo.communication.messages.parser.marketplace.MarketPlaceOffersEventParser;
+   import com.sulake.habbo.communication.messages.parser.marketplace.MarketplaceBuyOfferResultEventParser;
+   import com.sulake.habbo.communication.messages.parser.marketplace.MarketplaceCancelOfferResultEventParser;
    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceBuyOfferResultEvent;
    import com.sulake.habbo.communication.messages.incoming.marketplace.class_1699;
    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketPlaceOwnOffersEvent;
@@ -241,7 +241,7 @@ package com.sulake.habbo.catalog.marketplace
          {
             return;
          }
-         var _loc2_:class_1350 = _loc4_.getParser() as class_1350;
+         var _loc2_:MarketPlaceOffersEventParser = _loc4_.getParser() as MarketPlaceOffersEventParser;
          if(_loc2_ == null)
          {
             return;
@@ -269,7 +269,7 @@ package com.sulake.habbo.catalog.marketplace
          {
             return;
          }
-         var _loc2_:class_1317 = _loc4_.getParser() as class_1317;
+         var _loc2_:MarketPlaceOwnOffersEventParser = _loc4_.getParser() as MarketPlaceOwnOffersEventParser;
          if(_loc2_ == null)
          {
             return;
@@ -291,7 +291,7 @@ package com.sulake.habbo.catalog.marketplace
       
       public function onBuyResult(param1:IMessageEvent) : void
       {
-         var parser:class_1479;
+         var parser:MarketplaceBuyOfferResultEventParser;
          var item:MarketPlaceOfferData;
          var updateItem:MarketPlaceOfferData;
          var event:IMessageEvent = param1;
@@ -300,7 +300,7 @@ package com.sulake.habbo.catalog.marketplace
          {
             return;
          }
-         parser = buyEvent.getParser() as class_1479;
+         parser = buyEvent.getParser() as MarketplaceBuyOfferResultEventParser;
          if(parser == null)
          {
             return;
@@ -359,7 +359,7 @@ package com.sulake.habbo.catalog.marketplace
       
       public function onCancelResult(param1:IMessageEvent) : void
       {
-         var parser:class_1522;
+         var parser:MarketplaceCancelOfferResultEventParser;
          var item:MarketPlaceOfferData;
          var event:IMessageEvent = param1;
          var cancelEvent:MarketplaceCancelOfferResultEvent = event as MarketplaceCancelOfferResultEvent;
@@ -367,7 +367,7 @@ package com.sulake.habbo.catalog.marketplace
          {
             return;
          }
-         parser = cancelEvent.getParser() as class_1522;
+         parser = cancelEvent.getParser() as MarketplaceCancelOfferResultEventParser;
          if(parser == null)
          {
             return;

@@ -23,7 +23,7 @@ package com.sulake.habbo.advertisement
    import flash.external.ExternalInterface;
    import flash.net.URLRequest;
    import flash.system.Security;
-   import com.sulake.habbo.communication.messages.parser.advertisement.class_1485;
+   import com.sulake.habbo.communication.messages.parser.advertisement.InterstitialMessageEventParser;
    import com.sulake.habbo.communication.messages.outgoing.advertisement.GetInterstitialMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.advertisement.InterstitialMessageEvent;
    
@@ -138,7 +138,7 @@ package com.sulake.habbo.advertisement
       
       private function onInterstitial(param1:InterstitialMessageEvent) : void
       {
-         var _loc2_:class_1485 = param1.getParser();
+         var _loc2_:InterstitialMessageEventParser = param1.getParser();
          if(_loc2_ && _loc2_.canShowInterstitial)
          {
             if(ExternalInterface.available)

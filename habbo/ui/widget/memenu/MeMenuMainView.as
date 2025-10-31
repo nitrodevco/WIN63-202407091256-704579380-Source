@@ -26,7 +26,7 @@ package com.sulake.habbo.ui.widget.memenu
    import flash.display.BitmapData;
    import flash.geom.Point;
    import flash.utils.Dictionary;
-   import com.sulake.habbo.communication.messages.parser.perk.class_1448;
+   import com.sulake.habbo.communication.messages.parser.perk.PerkAllowancesMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.perk.PerkAllowancesMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.talent.GetTalentTrackMessageComposer;
    
@@ -434,7 +434,7 @@ package com.sulake.habbo.ui.widget.memenu
       
       private function onPerkAllowances(param1:PerkAllowancesMessageEvent) : void
       {
-         var _loc2_:class_1448 = param1.getParser();
+         var _loc2_:PerkAllowancesMessageEventParser = param1.getParser();
          setGuideToolVisibility(_loc2_.isPerkAllowed("USE_GUIDE_TOOL"));
       }
       

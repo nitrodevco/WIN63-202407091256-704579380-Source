@@ -8,7 +8,7 @@ package com.sulake.habbo.navigator.inroom
    import com.sulake.habbo.navigator.TextFieldManager;
    import com.sulake.habbo.navigator.IHabboTransitionalNavigator;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_1680;
-   import com.sulake.habbo.communication.messages.parser.advertisement.class_1118;
+   import com.sulake.habbo.communication.messages.parser.advertisement.RoomAdErrorEventParser;
    import com.sulake.habbo.communication.messages.outgoing.navigator.EditEventMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.navigator.CancelEventMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.advertisement.RoomAdErrorEvent;
@@ -128,7 +128,7 @@ package com.sulake.habbo.navigator.inroom
       private function onRoomAdError(param1:RoomAdErrorEvent) : void
       {
          this.clearErrors();
-         var _loc2_:class_1118 = param1.getParser();
+         var _loc2_:RoomAdErrorEventParser = param1.getParser();
          var _loc3_:int = _loc2_.errorCode;
          if(_loc3_ == 0)
          {

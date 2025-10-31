@@ -26,9 +26,9 @@ package com.sulake.habbo.friendbar.data
    import com.sulake.iid.IIDHabboMessenger;
    import com.sulake.iid.IIDHabboTracking;
    import com.sulake.habbo.communication.messages.parser.friendlist.FriendListUpdateMessageParser;
-   import com.sulake.habbo.communication.messages.parser.friendlist.class_1187;
-   import com.sulake.habbo.communication.messages.parser.friendlist.class_1419;
-   import com.sulake.habbo.communication.messages.parser.friendlist.class_1500;
+   import com.sulake.habbo.communication.messages.parser.friendlist.RoomInviteEventParser;
+   import com.sulake.habbo.communication.messages.parser.friendlist.FriendNotificationEventParser;
+   import com.sulake.habbo.communication.messages.parser.friendlist.NewConsoleMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.friendlist.FriendNotificationEvent;
    import com.sulake.habbo.communication.messages.incoming.friendlist.FriendData;
    import com.sulake.habbo.communication.messages.incoming.friendlist.FriendRequestData;
@@ -542,7 +542,7 @@ package com.sulake.habbo.friendbar.data
       
       private function onNewConsoleMessage(param1:NewConsoleMessageEvent) : void
       {
-         var _loc2_:class_1500 = param1.getParser();
+         var _loc2_:NewConsoleMessageEventParser = param1.getParser();
          var_2790 = _loc2_.chatId;
          var _loc3_:Boolean = true;
          if(_habboMessengerComponent)
@@ -569,7 +569,7 @@ package com.sulake.habbo.friendbar.data
       
       private function onRoomInvite(param1:RoomInviteEvent) : void
       {
-         var _loc2_:class_1187 = param1.getParser();
+         var _loc2_:RoomInviteEventParser = param1.getParser();
          var_2790 = _loc2_.senderId;
          if(_habboMessengerComponent && !_habboMessengerComponent.isOpen())
          {
@@ -580,7 +580,7 @@ package com.sulake.habbo.friendbar.data
       
       private function onFriendNotification(param1:FriendNotificationEvent) : void
       {
-         var _loc4_:class_1419;
+         var _loc4_:FriendNotificationEventParser;
          var _loc2_:* = (_loc4_ = param1.getParser()).typeCode != 3;
          var _loc5_:* = _loc4_.typeCode != 4;
          var _loc3_:* = _loc4_.typeCode != 3;

@@ -1,17 +1,17 @@
 package com.sulake.habbo.communication.messages.incoming.inventory.pets {
     import com.sulake.core.communication.messages.IMessageEvent
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.inventory.pets.class_1569
+    import com.sulake.habbo.communication.messages.parser.inventory.pets.NestBreedingSuccessEventParser
 
     [SecureSWF(rename="true")]
     public class NestBreedingSuccessEvent extends MessageEvent implements IMessageEvent {
 
         public function NestBreedingSuccessEvent(param1: Function) {
-            super(param1, class_1569);
+            super(param1, NestBreedingSuccessEventParser);
         }
 
-        public function getParser(): class_1569 {
-            return _parser as class_1569;
+        public function getParser(): NestBreedingSuccessEventParser {
+            return _parser as NestBreedingSuccessEventParser;
         }
     }
 }

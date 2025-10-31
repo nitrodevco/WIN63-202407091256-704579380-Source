@@ -15,7 +15,7 @@ package com.sulake.habbo.catalog.viewer.widgets
    import com.sulake.habbo.catalog.viewer.widgets.events.SelectProductEvent;
    import com.sulake.habbo.room.events.RoomEngineEvent;
    import com.sulake.habbo.communication.messages.incoming.navigator.class_1656;
-   import com.sulake.habbo.communication.messages.parser.catalog.class_1370;
+   import com.sulake.habbo.communication.messages.parser.catalog.RoomAdPurchaseInfoEventParser;
    import com.sulake.habbo.communication.messages.incoming.users.class_1677;
    import com.sulake.habbo.communication.messages.incoming.catalog.RoomAdPurchaseInfoEvent;
    
@@ -211,7 +211,7 @@ package com.sulake.habbo.catalog.viewer.widgets
             return;
          }
          var _loc7_:RoomAdPurchaseInfoEvent;
-         var _loc3_:class_1370 = (_loc7_ = param1 as RoomAdPurchaseInfoEvent).getParser();
+         var _loc3_:RoomAdPurchaseInfoEventParser = (_loc7_ = param1 as RoomAdPurchaseInfoEvent).getParser();
          var _loc6_:class_3520 = window.findChildByName("room_drop_menu") as class_3520;
          _rooms = _loc3_.rooms;
          var_946 = _loc3_.isVip;

@@ -1,17 +1,17 @@
 package com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu {
     import com.sulake.core.communication.messages.IMessageEvent
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.wiredmenu.class_1577
+    import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.wiredmenu.WiredPermissionsEventParser
 
     [SecureSWF(rename="true")]
     public class WiredPermissionsEvent extends MessageEvent implements IMessageEvent {
 
         public function WiredPermissionsEvent(param1: Function) {
-            super(param1, class_1577);
+            super(param1, WiredPermissionsEventParser);
         }
 
-        public function getParser(): class_1577 {
-            return this._parser as class_1577;
+        public function getParser(): WiredPermissionsEventParser {
+            return this._parser as WiredPermissionsEventParser;
         }
     }
 }

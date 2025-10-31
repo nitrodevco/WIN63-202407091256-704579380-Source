@@ -25,7 +25,7 @@ package com.sulake.habbo.inventory.trading
    import com.sulake.room.utils.Vector3d;
    import flash.display.BitmapData;
    import flash.events.Event;
-   import com.sulake.habbo.communication.messages.parser.inventory.trading.class_1604;
+   import com.sulake.habbo.communication.messages.parser.inventory.trading.TradeSilverSetMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingConfirmationEvent;
    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingOtherNotAllowedEvent;
    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingAcceptEvent;
@@ -593,7 +593,7 @@ package com.sulake.habbo.inventory.trading
       {
          var _loc2_:TradingCloseEvent = null;
          var _loc4_:TradeSilverSetMessageEvent = null;
-         var _loc3_:class_1604 = null;
+         var _loc3_:TradeSilverSetMessageEventParser = null;
          var _loc5_:TradeSilverFeeMessageEvent = null;
          if(param1 is TradeOpenFailedEvent)
          {

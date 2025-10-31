@@ -1,17 +1,17 @@
 package com.sulake.habbo.communication.messages.incoming.catalog {
     import com.sulake.core.communication.messages.IMessageEvent
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.catalog.class_1188
+    import com.sulake.habbo.communication.messages.parser.catalog.LimitedOfferAppearingNextMessageEventParser
 
     [SecureSWF(rename="true")]
     public class LimitedOfferAppearingNextMessageEvent extends MessageEvent implements IMessageEvent {
 
         public function LimitedOfferAppearingNextMessageEvent(param1: Function) {
-            super(param1, class_1188);
+            super(param1, LimitedOfferAppearingNextMessageEventParser);
         }
 
-        public function getParser(): class_1188 {
-            return this._parser as class_1188;
+        public function getParser(): LimitedOfferAppearingNextMessageEventParser {
+            return this._parser as LimitedOfferAppearingNextMessageEventParser;
         }
     }
 }

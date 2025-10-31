@@ -10,7 +10,7 @@ package com.sulake.habbo.friendbar.landingview.widget
    import com.sulake.habbo.friendbar.landingview.interfaces.ILandingViewWidget;
    import com.sulake.habbo.friendbar.landingview.interfaces.ISlotAwareWidget;
    import com.sulake.habbo.friendbar.landingview.interfaces.class_3836;
-   import com.sulake.habbo.communication.messages.parser.quest.class_1363;
+   import com.sulake.habbo.communication.messages.parser.quest.QuestDailyMessageEventParser;
    import com.sulake.habbo.communication.messages.outgoing.quest.GetDailyQuestMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.quest.ActivateQuestMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.quest.CancelQuestMessageComposer;
@@ -109,7 +109,7 @@ package com.sulake.habbo.friendbar.landingview.widget
       
       private function onDailyQuest(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1363 = class_1363(param1.parser);
+         var _loc2_:QuestDailyMessageEventParser = QuestDailyMessageEventParser(param1.parser);
          var_47 = _loc2_.quest;
          var_1029 = _loc2_.easyQuestCount;
          var_1400 = _loc2_.hardQuestCount;

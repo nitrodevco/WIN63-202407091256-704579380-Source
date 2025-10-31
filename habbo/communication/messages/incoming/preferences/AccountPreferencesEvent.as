@@ -1,17 +1,17 @@
 package com.sulake.habbo.communication.messages.incoming.preferences {
     import com.sulake.core.communication.messages.IMessageEvent
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.preferences.class_1413
+    import com.sulake.habbo.communication.messages.parser.preferences.AccountPreferencesEventParser
 
     [SecureSWF(rename="true")]
     public class AccountPreferencesEvent extends MessageEvent implements IMessageEvent {
 
         public function AccountPreferencesEvent(param1: Function) {
-            super(param1, class_1413);
+            super(param1, AccountPreferencesEventParser);
         }
 
-        public function getParser(): class_1413 {
-            return this._parser as class_1413;
+        public function getParser(): AccountPreferencesEventParser {
+            return this._parser as AccountPreferencesEventParser;
         }
     }
 }

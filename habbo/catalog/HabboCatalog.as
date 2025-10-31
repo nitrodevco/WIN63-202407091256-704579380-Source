@@ -136,28 +136,28 @@ package com.sulake.habbo.catalog
    import com.sulake.habbo.communication.messages.outgoing.marketplace.BuyMarketplaceOfferMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.inventory.purse.CreditBalanceEvent;
    import com.sulake.habbo.communication.messages.incoming.room.session.CloseConnectionMessageEvent;
-   import com.sulake.habbo.communication.messages.parser.marketplace.class_1121;
-   import com.sulake.habbo.communication.messages.parser.marketplace.class_1445;
-   import com.sulake.habbo.communication.messages.parser.marketplace.class_1518;
+   import com.sulake.habbo.communication.messages.parser.marketplace.MarketplaceItemStatsEventParser;
+   import com.sulake.habbo.communication.messages.parser.marketplace.MarketplaceConfigurationEventParser;
+   import com.sulake.habbo.communication.messages.parser.marketplace.MarketplaceMakeOfferResult;
    import com.sulake.habbo.communication.messages.parser.catalog.SnowWarGameTokenOffer;
    import com.sulake.habbo.communication.messages.parser.catalog.SnowWarGameTokensMessageParser;
-   import com.sulake.habbo.communication.messages.parser.catalog.class_1123;
-   import com.sulake.habbo.communication.messages.parser.catalog.class_1126;
-   import com.sulake.habbo.communication.messages.parser.catalog.class_1222;
-   import com.sulake.habbo.communication.messages.parser.catalog.class_1273;
-   import com.sulake.habbo.communication.messages.parser.catalog.class_1291;
-   import com.sulake.habbo.communication.messages.parser.catalog.class_1294;
-   import com.sulake.habbo.communication.messages.parser.catalog.class_1358;
-   import com.sulake.habbo.communication.messages.parser.catalog.class_1372;
-   import com.sulake.habbo.communication.messages.parser.catalog.class_1474;
-   import com.sulake.habbo.communication.messages.parser.catalog.class_1565;
-   import com.sulake.habbo.communication.messages.parser.catalog.class_1586;
-   import com.sulake.habbo.communication.messages.parser.users.class_1328;
-   import com.sulake.habbo.communication.messages.parser.users.class_1359;
+   import com.sulake.habbo.communication.messages.parser.catalog.ProductOfferEventParser;
+   import com.sulake.habbo.communication.messages.parser.catalog.NotEnoughBalanceMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.catalog.BundleDiscountRulesetMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.catalog.PurchaseNotAllowedMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.catalog.PurchaseErrorMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.catalog.CatalogPageMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.catalog.SellablePetPalettesMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.catalog.PurchaseOKMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.catalog.HabboClubOffersMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.catalog.BuildersClubSubscriptionStatusMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.catalog.ClubGiftInfoEventParser;
+   import com.sulake.habbo.communication.messages.parser.users.ApproveNameMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.users.ScrSendUserInfoEventParser;
    import com.sulake.habbo.communication.messages.outgoing.room.engine.PlaceObjectMessageComposer;
-   import com.sulake.habbo.communication.messages.parser.collectibles.class_1502;
-   import com.sulake.habbo.communication.messages.parser.collectibles.class_1520;
-   import com.sulake.habbo.communication.messages.parser.inventory.purse.class_1192;
+   import com.sulake.habbo.communication.messages.parser.collectibles.EmeraldBalanceMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.collectibles.SilverBalanceMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.purse.CreditBalanceEventParser;
    import com.sulake.habbo.communication.messages.outgoing.catalog.GetSnowWarGameTokensOfferComposer;
    import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseSnowWarGameTokensOfferComposer;
    import com.sulake.habbo.communication.messages.outgoing.catalog.GetClubOffersMessageComposer;
@@ -1760,7 +1760,7 @@ package com.sulake.habbo.catalog
          var _loc11_:class_3423 = null;
          var _loc8_:class_3365 = null;
          var _loc12_:Offer = null;
-         var _loc13_:class_1294;
+         var _loc13_:CatalogPageMessageEventParser;
          if((_loc13_ = param1.getParser()).catalogType != var_395)
          {
             return;
@@ -1841,7 +1841,7 @@ package com.sulake.habbo.catalog
       private function onPurchaseError(param1:IMessageEvent) : void
       {
          var _loc3_:PurchaseErrorMessageEvent = param1 as PurchaseErrorMessageEvent;
-         var _loc2_:class_1291 = _loc3_.getParser();
+         var _loc2_:PurchaseErrorMessageEventParser = _loc3_.getParser();
          var _loc4_:int;
          var _loc5_:String = (_loc4_ = _loc2_.errorCode) > 0 ? "${catalog.alert.purchaseerror.description." + _loc4_ + "}" : "${catalog.alert.purchaseerror.description}";
          _windowManager.alert("${catalog.alert.purchaseerror.title}",_loc5_,0,alertDialogEventProcessor);
@@ -1855,7 +1855,7 @@ package com.sulake.habbo.catalog
       private function onPurchaseNotAllowed(param1:IMessageEvent) : void
       {
          var _loc2_:PurchaseNotAllowedMessageEvent = param1 as PurchaseNotAllowedMessageEvent;
-         var _loc3_:class_1273 = _loc2_.getParser();
+         var _loc3_:PurchaseNotAllowedMessageEventParser = _loc2_.getParser();
          var _loc4_:int = _loc3_.errorCode;
          var _loc5_:String = "";
          switch(_loc4_ - 1)
@@ -1876,7 +1876,7 @@ package com.sulake.habbo.catalog
          var _loc7_:Point = null;
          var _loc5_:String = null;
          var _loc3_:PurchaseOKMessageEvent = param1 as PurchaseOKMessageEvent;
-         var _loc4_:class_1372 = _loc3_.getParser();
+         var _loc4_:PurchaseOKMessageEventParser = _loc3_.getParser();
          events.dispatchEvent(new CatalogFurniPurchaseEvent(_loc4_.offer.localizationId));
          if(var_1715 != null)
          {
@@ -1914,7 +1914,7 @@ package com.sulake.habbo.catalog
       private function onNotEnoughBalance(param1:IMessageEvent) : void
       {
          var _loc3_:NotEnoughBalanceMessageEvent = param1 as NotEnoughBalanceMessageEvent;
-         var _loc2_:class_1126 = _loc3_.getParser();
+         var _loc2_:NotEnoughBalanceMessageEventParser = _loc3_.getParser();
          if(_loc2_.notEnoughCredits)
          {
             showNotEnoughCreditsAlert();
@@ -1979,7 +1979,7 @@ package com.sulake.habbo.catalog
       
       private function onSilverBalance(param1:SilverBalanceMessageEvent) : void
       {
-         var _loc2_:class_1520 = param1.getParser();
+         var _loc2_:SilverBalanceMessageEventParser = param1.getParser();
          var_1714.silverBalance = _loc2_.silverBalance;
          events.dispatchEvent(new PurseEvent("catalog_purse_silver_balance",var_1714.silverBalance,0));
          events.dispatchEvent(new PurseUpdateEvent());
@@ -1987,7 +1987,7 @@ package com.sulake.habbo.catalog
       
       private function onEmeraldBalance(param1:EmeraldBalanceMessageEvent) : void
       {
-         var _loc2_:class_1502 = param1.getParser();
+         var _loc2_:EmeraldBalanceMessageEventParser = param1.getParser();
          var_1714.emeraldBalance = _loc2_.emeraldBalance;
          events.dispatchEvent(new PurseEvent("catalog_purse_emerald_balance",var_1714.emeraldBalance,0));
          events.dispatchEvent(new PurseUpdateEvent());
@@ -2027,14 +2027,14 @@ package com.sulake.habbo.catalog
          {
             return;
          }
-         var _loc2_:class_1328 = param1.getParser();
+         var _loc2_:ApproveNameMessageEventParser = param1.getParser();
          var_1690.dispatchWidgetEvent(new CatalogWidgetApproveNameResultEvent(_loc2_.result,_loc2_.nameValidationInfo));
       }
       
       private function onCreditBalance(param1:IMessageEvent) : void
       {
          var _loc3_:CreditBalanceEvent = param1 as CreditBalanceEvent;
-         var _loc2_:class_1192 = _loc3_.getParser();
+         var _loc2_:CreditBalanceEventParser = _loc3_.getParser();
          var_1714.credits = _loc2_.balance;
          updatePurse();
          if(!var_4378 && _soundManager != null)
@@ -2076,7 +2076,7 @@ package com.sulake.habbo.catalog
       private function onSubscriptionInfo(param1:IMessageEvent) : void
       {
          var _loc3_:Boolean = false;
-         var _loc2_:class_1359 = (param1 as ScrSendUserInfoEvent).getParser();
+         var _loc2_:ScrSendUserInfoEventParser = (param1 as ScrSendUserInfoEvent).getParser();
          var_1714.clubDays = Math.max(0,_loc2_.daysToPeriodEnd);
          var_1714.clubPeriods = Math.max(0,_loc2_.periodsSubscribedAhead);
          var_1714.isVIP = _loc2_.isVIP;
@@ -2111,7 +2111,7 @@ package com.sulake.habbo.catalog
          {
             return;
          }
-         var _loc2_:class_1586 = param1.getParser();
+         var _loc2_:ClubGiftInfoEventParser = param1.getParser();
          if(!_loc2_)
          {
             return;
@@ -2166,7 +2166,7 @@ package com.sulake.habbo.catalog
          {
             return;
          }
-         var _loc2_:class_1121 = param1.getParser();
+         var _loc2_:MarketplaceItemStatsEventParser = param1.getParser();
          if(!_loc2_)
          {
             return;
@@ -2189,7 +2189,7 @@ package com.sulake.habbo.catalog
          {
             return;
          }
-         var _loc2_:class_1445 = param1.getParser();
+         var _loc2_:MarketplaceConfigurationEventParser = param1.getParser();
          if(!_loc2_)
          {
             return;
@@ -2203,7 +2203,7 @@ package com.sulake.habbo.catalog
          {
             return;
          }
-         var _loc2_:class_1518 = param1.getParser();
+         var _loc2_:MarketplaceMakeOfferResult = param1.getParser();
          if(!_loc2_)
          {
             return;
@@ -2216,7 +2216,7 @@ package com.sulake.habbo.catalog
       
       private function onHabboClubOffers(param1:HabboClubOffersMessageEvent) : void
       {
-         var _loc2_:class_1474 = param1.getParser();
+         var _loc2_:HabboClubOffersMessageEventParser = param1.getParser();
          if(var_2362 != null && (_loc2_.source == 0 || _loc2_.source == 1 || _loc2_.source == 2 || _loc2_.source == 6))
          {
             var_2362.onOffers(_loc2_);
@@ -2241,7 +2241,7 @@ package com.sulake.habbo.catalog
       
       private function onSellablePalettes(param1:SellablePetPalettesMessageEvent) : void
       {
-         var _loc2_:class_1358 = param1.getParser();
+         var _loc2_:SellablePetPalettesMessageEventParser = param1.getParser();
          var_2614.remove(_loc2_.productCode);
          var _loc3_:Array = _loc2_.sellablePalettes;
          if(_loc3_ != null)
@@ -2953,7 +2953,7 @@ package com.sulake.habbo.catalog
       
       private function onBundleDiscountRulesetMessageEvent(param1:BundleDiscountRulesetMessageEvent) : void
       {
-         var _loc2_:class_1222 = param1.getParser();
+         var _loc2_:BundleDiscountRulesetMessageEventParser = param1.getParser();
          _bundleDiscountRuleset = _loc2_.bundleDiscountRuleset;
          _utils.resolveBundleDiscountFlatPriceSteps();
       }
@@ -2971,7 +2971,7 @@ package com.sulake.habbo.catalog
       private function onProductOffer(param1:ProductOfferEvent) : void
       {
          var _loc6_:class_3365 = null;
-         var _loc3_:class_1123 = param1.getParser();
+         var _loc3_:ProductOfferEventParser = param1.getParser();
          var _loc4_:class_1501;
          if(!(_loc4_ = _loc3_.offerData) || _loc4_.products.length == 0)
          {
@@ -3012,7 +3012,7 @@ package com.sulake.habbo.catalog
       
       private function onBuildersClubSubscriptionStatus(param1:BuildersClubSubscriptionStatusMessageEvent) : void
       {
-         var _loc2_:class_1565 = param1.getParser();
+         var _loc2_:BuildersClubSubscriptionStatusMessageEventParser = param1.getParser();
          var_4126 = _loc2_.furniLimit;
          var_4660 = _loc2_.maxFurniLimit;
          var_3757 = _loc2_.secondsLeft;

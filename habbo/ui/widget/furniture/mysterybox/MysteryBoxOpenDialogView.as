@@ -20,7 +20,7 @@ package com.sulake.habbo.ui.widget.furniture.mysterybox
    import com.sulake.habbo.communication.messages.incoming.mysterybox.GotMysteryBoxPrizeMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.mysterybox.MysteryBoxWaitingCanceledMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.engine.UseFurnitureMessageComposer;
-   import com.sulake.habbo.communication.messages.parser.mysterybox.class_1408;
+   import com.sulake.habbo.communication.messages.parser.mysterybox.GotMysteryBoxPrizeMessageEventParser;
    
    public class MysteryBoxOpenDialogView implements IDisposable, IGetImageListener
    {
@@ -68,7 +68,7 @@ package com.sulake.habbo.ui.widget.furniture.mysterybox
       
       private function onGotMysteryBoxPrize(param1:GotMysteryBoxPrizeMessageEvent) : void
       {
-         var _loc2_:class_1408 = param1.getParser();
+         var _loc2_:GotMysteryBoxPrizeMessageEventParser = param1.getParser();
          showRewardWindow(_loc2_.contentType,_loc2_.classId);
       }
       

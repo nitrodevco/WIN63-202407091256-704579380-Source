@@ -1,6 +1,6 @@
 package com.sulake.habbo.friendbar.groupforums
 {
-   import com.sulake.habbo.communication.messages.parser.groupforums.class_1563;
+   import com.sulake.habbo.communication.messages.parser.groupforums.ForumsListMessageEventParser;
    import com.sulake.habbo.communication.messages.parser.groupforums.class_1754;
    
    public class ForumsListData
@@ -15,7 +15,7 @@ package com.sulake.habbo.friendbar.groupforums
       
       private var _forums:Array;
       
-      public function ForumsListData(param1:class_1563)
+      public function ForumsListData(param1:ForumsListMessageEventParser)
       {
          super();
          var_1282 = param1.listCode;

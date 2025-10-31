@@ -9,9 +9,9 @@ package com.sulake.habbo.ui.handler
    import com.sulake.habbo.ui.widget.messages.RoomWidgetMessage;
    import com.sulake.room.object.IRoomObject;
    import flash.events.Event;
-   import com.sulake.habbo.communication.messages.parser.room.furniture.class_1314;
-   import com.sulake.habbo.communication.messages.parser.room.furniture.class_1383;
-   import com.sulake.habbo.communication.messages.parser.room.furniture.class_1596;
+   import com.sulake.habbo.communication.messages.parser.room.furniture.YoutubeDisplayVideoMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.furniture.YoutubeDisplayPlaylistsMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.furniture.YoutubeControlVideoMessageEventParser;
    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetYoutubeDisplayPlaylistMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.furniture.ControlYoutubeDisplayPlaybackMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.furniture.GetYoutubeDisplayStatusMessageComposer;
@@ -76,19 +76,19 @@ package com.sulake.habbo.ui.handler
       
       private function onVideo(param1:YoutubeDisplayVideoMessageEvent) : void
       {
-         var _loc2_:class_1314 = param1.getParser();
+         var _loc2_:YoutubeDisplayVideoMessageEventParser = param1.getParser();
          var_1629.showVideo(_loc2_.furniId,_loc2_.videoId,_loc2_.startAtSeconds,_loc2_.endAtSeconds,_loc2_.state);
       }
       
       private function onControlVideo(param1:YoutubeControlVideoMessageEvent) : void
       {
-         var _loc2_:class_1596 = param1.getParser();
+         var _loc2_:YoutubeControlVideoMessageEventParser = param1.getParser();
          var_1629.controlVideo(_loc2_.furniId,_loc2_.commandId);
       }
       
       private function onPlaylists(param1:YoutubeDisplayPlaylistsMessageEvent) : void
       {
-         var _loc2_:class_1383 = param1.getParser();
+         var _loc2_:YoutubeDisplayPlaylistsMessageEventParser = param1.getParser();
          var_1629.populatePlaylists(_loc2_.furniId,_loc2_.playlists,_loc2_.selectedPlaylistId);
       }
       

@@ -16,7 +16,7 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_variable_inspection
    import com.sulake.habbo.roomevents.wired_setup.inputsources.WiredInputSourcePicker;
    import flash.utils.Dictionary;
    import flash.utils.getTimer;
-   import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.wiredmenu.class_1284;
+   import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.wiredmenu.WiredMenuErrorEventParser;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredcontext.variables.WiredVariable;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredHoldingVariablesData;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredVariablesForObjectEvent;
@@ -176,8 +176,8 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_variable_inspection
       
       private function onWiredMenuError(param1:WiredMenuErrorEvent) : void
       {
-         var _loc2_:class_1284 = param1.getParser();
-         if(_loc2_.errorCode == class_1284.var_1606)
+         var _loc2_:WiredMenuErrorEventParser = param1.getParser();
+         if(_loc2_.errorCode == WiredMenuErrorEventParser.var_1606)
          {
             if(var_149 != STATE_DISPLAYING)
             {

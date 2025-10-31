@@ -27,13 +27,13 @@ package com.sulake.habbo.friendbar.groupforums
    import flash.utils.Dictionary;
    import flash.utils.Timer;
    import flash.utils.getTimer;
-   import com.sulake.habbo.communication.messages.parser.groupforums.class_1281;
-   import com.sulake.habbo.communication.messages.parser.groupforums.class_1436;
-   import com.sulake.habbo.communication.messages.parser.groupforums.class_1481;
-   import com.sulake.habbo.communication.messages.parser.groupforums.class_1482;
-   import com.sulake.habbo.communication.messages.parser.groupforums.class_1511;
-   import com.sulake.habbo.communication.messages.parser.groupforums.class_1563;
-   import com.sulake.habbo.communication.messages.parser.groupforums.class_1627;
+   import com.sulake.habbo.communication.messages.parser.groupforums.UpdateThreadMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.groupforums.ForumThreadsMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.groupforums.PostThreadMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.groupforums.PostMessageMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.groupforums.ThreadMessagesMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.groupforums.ForumsListMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.groupforums.UpdateMessageMessageEventParser;
    import com.sulake.habbo.communication.messages.parser.groupforums.class_1666;
    import com.sulake.habbo.communication.messages.parser.groupforums.class_1740;
    import com.sulake.habbo.communication.messages.parser.groupforums.class_1754;
@@ -329,7 +329,7 @@ package com.sulake.habbo.friendbar.groupforums
       
       private function onForumsList(param1:ForumsListMessageEvent) : void
       {
-         var _loc3_:class_1563 = param1.getParser();
+         var _loc3_:ForumsListMessageEventParser = param1.getParser();
          var _loc2_:ForumsListData = new ForumsListData(_loc3_);
          if(var_513 != null && var_2018 > 0)
          {
@@ -397,7 +397,7 @@ package com.sulake.habbo.friendbar.groupforums
       
       private function onThreadList(param1:ForumThreadsMessageEvent) : void
       {
-         var _loc2_:class_1436 = param1.getParser();
+         var _loc2_:ForumThreadsMessageEventParser = param1.getParser();
          if(var_513 == null || var_513.groupId != _loc2_.groupId)
          {
             return;
@@ -421,7 +421,7 @@ package com.sulake.habbo.friendbar.groupforums
       private function onThreadMessageList(param1:ThreadMessagesMessageEvent) : void
       {
          var _loc6_:class_1666 = null;
-         var _loc3_:class_1511 = param1.getParser();
+         var _loc3_:ThreadMessagesMessageEventParser = param1.getParser();
          if(var_513 == null || var_513.groupId != _loc3_.groupId || var_2223 == null)
          {
             return;
@@ -469,7 +469,7 @@ package com.sulake.habbo.friendbar.groupforums
       private function onPostThreadMessage(param1:PostThreadMessageEvent) : void
       {
          var _loc3_:class_1754 = null;
-         var _loc2_:class_1481 = class_1481(param1.getParser());
+         var _loc2_:PostThreadMessageEventParser = PostThreadMessageEventParser(param1.getParser());
          if(var_3020)
          {
             var_3020.dispose();
@@ -516,7 +516,7 @@ package com.sulake.habbo.friendbar.groupforums
          {
             return;
          }
-         var _loc2_:class_1482 = class_1482(param1.getParser());
+         var _loc2_:PostMessageMessageEventParser = PostMessageMessageEventParser(param1.getParser());
          if(var_513 == null || _loc2_.groupId != var_513.groupId || _loc2_.threadId != var_3231)
          {
             return;
@@ -576,7 +576,7 @@ package com.sulake.habbo.friendbar.groupforums
       
       private function onUpdateThread(param1:UpdateThreadMessageEvent) : void
       {
-         var _loc2_:class_1281 = param1.getParser();
+         var _loc2_:UpdateThreadMessageEventParser = param1.getParser();
          if(var_513 == null || var_513.groupId != _loc2_.groupId)
          {
             return;
@@ -627,7 +627,7 @@ package com.sulake.habbo.friendbar.groupforums
       {
          var _loc5_:int = 0;
          var _loc6_:class_1666 = null;
-         var _loc3_:class_1627 = param1.getParser();
+         var _loc3_:UpdateMessageMessageEventParser = param1.getParser();
          if(var_513 == null || var_513.groupId != _loc3_.groupId || var_3231 != _loc3_.threadId)
          {
             return;

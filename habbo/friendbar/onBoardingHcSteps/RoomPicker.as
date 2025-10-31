@@ -17,7 +17,7 @@ package com.sulake.habbo.friendbar.onBoardingHcSteps
    import onBoardingHcUi.Button;
    import onBoardingHcUi.ColouredButton;
    import onBoardingHcUi.LoaderUI;
-   import com.sulake.habbo.communication.messages.parser.nux.class_1475;
+   import com.sulake.habbo.communication.messages.parser.nux.SelectInitialRoomEventParser;
    import com.sulake.habbo.communication.messages.outgoing.navigator.UpdateHomeRoomMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.nux.SelectInitialRoomComposer;
    import com.sulake.habbo.communication.messages.incoming.nux.SelectInitialRoomEvent;
@@ -81,7 +81,7 @@ package com.sulake.habbo.friendbar.onBoardingHcSteps
          {
             return;
          }
-         var _loc2_:class_1475 = param1.getParser();
+         var _loc2_:SelectInitialRoomEventParser = param1.getParser();
          if(_loc2_ == null)
          {
             return;

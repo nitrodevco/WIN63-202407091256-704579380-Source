@@ -27,7 +27,7 @@ package com.sulake.habbo.catalog.collectibles.widget
    import com.sulake.habbo.localization.IHabboLocalizationManager;
    import com.sulake.habbo.utils.FriendlyTime;
    import com.sulake.habbo.utils.HabboWebTools;
-   import com.sulake.habbo.communication.messages.parser.collectibles.class_1172;
+   import com.sulake.habbo.communication.messages.parser.collectibles.CollectibleMintableItemResultMessageEventParser;
    import com.sulake.habbo.communication.messages.parser.collectibles.class_1661;
    import com.sulake.habbo.communication.messages.parser.collectibles.class_1685;
    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectibleMintTokenOffersMessageEvent;
@@ -437,7 +437,7 @@ package com.sulake.habbo.catalog.collectibles.widget
       
       private function onMintItemResult(param1:CollectibleMintableItemResultMessageEvent) : void
       {
-         var _loc2_:* = param1.getParser().mintResult == class_1172.var_1612;
+         var _loc2_:* = param1.getParser().mintResult == CollectibleMintableItemResultMessageEventParser.var_1612;
          var_1754.catalog.events.dispatchEvent(new CatalogEvent(_loc2_ ? "COLLECTIBLES_MINT_SUCCESS" : "COLLECTIBLES_MINT_FAIL"));
          var_3616 = false;
          reloadPreview();

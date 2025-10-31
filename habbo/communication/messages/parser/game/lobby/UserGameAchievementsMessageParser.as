@@ -1,7 +1,7 @@
 package com.sulake.habbo.communication.messages.parser.game.lobby {
     import com.sulake.core.communication.messages.IMessageDataWrapper
     import com.sulake.core.communication.messages.IMessageParser
-    import com.sulake.habbo.communication.messages.parser.inventory.achievements.class_1525
+    import com.sulake.habbo.communication.messages.parser.inventory.achievements.AchievementsEventParser
 
     public class UserGameAchievementsMessageParser implements IMessageParser {
 
@@ -9,7 +9,7 @@ package com.sulake.habbo.communication.messages.parser.game.lobby {
             super();
         }
         private var var_474: int;
-        private var var_275: class_1525;
+        private var var_275: AchievementsEventParser;
 
         public function get gameTypeId(): int {
             return var_474;
@@ -29,7 +29,7 @@ package com.sulake.habbo.communication.messages.parser.game.lobby {
 
         public function parse(param1: IMessageDataWrapper): Boolean {
             var_474 = param1.readInteger();
-            var_275 = new class_1525();
+            var_275 = new AchievementsEventParser();
             var_275.parse(param1);
             return true;
         }

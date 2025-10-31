@@ -12,28 +12,28 @@ package com.sulake.habbo.notifications
    import flash.display.BitmapData;
    import flash.utils.getTimer;
    import com.sulake.habbo.communication.messages.incoming.room.session.OpenConnectionMessageEvent;
-   import com.sulake.habbo.communication.messages.parser.catalog.class_1540;
-   import com.sulake.habbo.communication.messages.parser.users.class_1585;
-   import com.sulake.habbo.communication.messages.parser.handshake.class_1267;
-   import com.sulake.habbo.communication.messages.parser.room.pets.class_1451;
-   import com.sulake.habbo.communication.messages.parser.room.furniture.class_1137;
-   import com.sulake.habbo.communication.messages.parser.moderation.class_1303;
-   import com.sulake.habbo.communication.messages.parser.moderation.class_1324;
-   import com.sulake.habbo.communication.messages.parser.moderation.class_1578;
-   import com.sulake.habbo.communication.messages.parser.inventory.pets.class_1438;
+   import com.sulake.habbo.communication.messages.parser.catalog.ClubGiftSelectedEventParser;
+   import com.sulake.habbo.communication.messages.parser.users.AccountSafetyLockStatusChangeMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.handshake.UserObjectEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.pets.PetRespectFailedEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.furniture.RoomMessageNotificationMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.moderation.UserBannedMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.moderation.ModeratorMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.moderation.ModeratorCautionEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.pets.PetReceivedMessageEventParser;
    import com.sulake.habbo.communication.messages.parser.inventory.pets.class_1657;
    import com.sulake.habbo.communication.messages.parser.inventory.pets.class_1679;
    import com.sulake.habbo.communication.messages.incoming.inventory.pets.PetReceivedMessageEvent;
-   import com.sulake.habbo.communication.messages.parser.notifications.class_1271;
-   import com.sulake.habbo.communication.messages.parser.notifications.class_1361;
-   import com.sulake.habbo.communication.messages.parser.notifications.class_1422;
-   import com.sulake.habbo.communication.messages.parser.notifications.class_1434;
-   import com.sulake.habbo.communication.messages.parser.notifications.class_1452;
-   import com.sulake.habbo.communication.messages.parser.notifications.class_1505;
-   import com.sulake.habbo.communication.messages.parser.availability.class_1211;
-   import com.sulake.habbo.communication.messages.parser.availability.class_1248;
-   import com.sulake.habbo.communication.messages.parser.availability.class_1255;
-   import com.sulake.habbo.communication.messages.parser.availability.class_1528;
+   import com.sulake.habbo.communication.messages.parser.notifications.HabboAchievementNotificationMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.notifications.MOTDNotificationEventParser;
+   import com.sulake.habbo.communication.messages.parser.notifications.PetLevelNotificationEventParser;
+   import com.sulake.habbo.communication.messages.parser.notifications.HabboBroadcastMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.notifications.ClubGiftNotificationEventParser;
+   import com.sulake.habbo.communication.messages.parser.notifications.NotificationDialogMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.availability.MaintenanceStatusMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.availability.InfoHotelClosedMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.availability.InfoHotelClosingMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.availability.LoginFailedHotelClosedMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.room.engine.RoomEntryInfoMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.room.furniture.RoomMessageNotificationMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.notifications.ClubGiftNotificationEvent;
@@ -139,7 +139,7 @@ package com.sulake.habbo.notifications
       {
          var _loc4_:GenericNotificationItemData = null;
          var _loc5_:MOTDNotificationEvent;
-         var _loc3_:class_1361 = (_loc5_ = param1 as MOTDNotificationEvent).getParser() as class_1361;
+         var _loc3_:MOTDNotificationEventParser = (_loc5_ = param1 as MOTDNotificationEvent).getParser() as MOTDNotificationEventParser;
          if(_loc3_.messages && _loc3_.messages.length > 0)
          {
             if(useNotifications())
@@ -161,7 +161,7 @@ package com.sulake.habbo.notifications
       private function onLevelUp(param1:IMessageEvent) : void
       {
          var _loc2_:HabboAchievementNotificationMessageEvent = param1 as HabboAchievementNotificationMessageEvent;
-         var _loc3_:class_1271 = _loc2_.getParser();
+         var _loc3_:HabboAchievementNotificationMessageEventParser = _loc2_.getParser();
          var _loc4_:String = String(_notifications.localization.getLocalization("achievements.levelup.desc",""));
          var _loc6_:String = String(_notifications.localization.getBadgeName(_loc3_.data.badgeCode));
          var _loc5_:BitmapData = _notifications.sessionDataManager.requestBadgeImage(_loc3_.data.badgeCode);
@@ -192,7 +192,7 @@ package com.sulake.habbo.notifications
       private function onRoomMessagesNotification(param1:RoomMessageNotificationMessageEvent) : void
       {
          var _loc2_:ILocalization = null;
-         var _loc3_:class_1137 = param1.getParser();
+         var _loc3_:RoomMessageNotificationMessageEventParser = param1.getParser();
          var _loc5_:String = "roommessagesposted";
          _notifications.localization.registerParameter("notifications.text.room.messages.posted","room_name",_loc3_.roomName);
          _notifications.localization.registerParameter("notifications.text.room.messages.posted","messages_count",_loc3_.messageCount.toString());
@@ -217,7 +217,7 @@ package com.sulake.habbo.notifications
       private function onModCautionEvent(param1:IMessageEvent) : void
       {
          var _loc3_:GenericNotificationItemData = null;
-         var _loc2_:class_1578 = (param1 as ModeratorCautionEvent).getParser();
+         var _loc2_:ModeratorCautionEventParser = (param1 as ModeratorCautionEvent).getParser();
          if(_loc2_ == null || _notifications.singularController.alertDialogManager == null)
          {
             return;
@@ -240,7 +240,7 @@ package com.sulake.habbo.notifications
       private function onModMessageEvent(param1:IMessageEvent) : void
       {
          var _loc3_:GenericNotificationItemData = null;
-         var _loc2_:class_1324 = (param1 as ModeratorMessageEvent).getParser();
+         var _loc2_:ModeratorMessageEventParser = (param1 as ModeratorMessageEvent).getParser();
          if(_loc2_ == null || _notifications.singularController.alertDialogManager == null)
          {
             return;
@@ -262,7 +262,7 @@ package com.sulake.habbo.notifications
       
       private function onUserBannedMessageEvent(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1303 = (param1 as UserBannedMessageEvent).getParser();
+         var _loc2_:UserBannedMessageEventParser = (param1 as UserBannedMessageEvent).getParser();
          if(_loc2_ == null || _notifications.singularController.alertDialogManager == null)
          {
             return;
@@ -272,7 +272,7 @@ package com.sulake.habbo.notifications
       
       private function onHotelClosing(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1255 = (param1 as InfoHotelClosingMessageEvent).getParser();
+         var _loc2_:InfoHotelClosingMessageEventParser = (param1 as InfoHotelClosingMessageEvent).getParser();
          if(_loc2_ == null || _notifications.singularController.alertDialogManager == null)
          {
             return;
@@ -282,7 +282,7 @@ package com.sulake.habbo.notifications
       
       private function onHotelMaintenance(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1211 = (param1 as MaintenanceStatusMessageEvent).getParser();
+         var _loc2_:MaintenanceStatusMessageEventParser = (param1 as MaintenanceStatusMessageEvent).getParser();
          if(_loc2_ == null || _notifications.singularController.alertDialogManager == null)
          {
             return;
@@ -292,7 +292,7 @@ package com.sulake.habbo.notifications
       
       private function onHotelClosed(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1248 = (param1 as InfoHotelClosedMessageEvent).getParser();
+         var _loc2_:InfoHotelClosedMessageEventParser = (param1 as InfoHotelClosedMessageEvent).getParser();
          if(_loc2_ == null || _notifications.singularController.alertDialogManager == null)
          {
             return;
@@ -302,7 +302,7 @@ package com.sulake.habbo.notifications
       
       private function onLoginFailedHotelClosed(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1528 = (param1 as LoginFailedHotelClosedMessageEvent).getParser();
+         var _loc2_:LoginFailedHotelClosedMessageEventParser = (param1 as LoginFailedHotelClosedMessageEvent).getParser();
          if(_loc2_ == null || _notifications.singularController.alertDialogManager == null)
          {
             return;
@@ -323,7 +323,7 @@ package com.sulake.habbo.notifications
          {
             return;
          }
-         var _loc4_:class_1422 = param1.getParser();
+         var _loc4_:PetLevelNotificationEventParser = param1.getParser();
          _notifications.localization.registerParameter("notifications.text.petlevel","pet_name",_loc4_.petName);
          _notifications.localization.registerParameter("notifications.text.petlevel","level",_loc4_.level.toString());
          var _loc3_:ILocalization = _notifications.localization.getLocalizationRaw("notifications.text.petlevel");
@@ -344,7 +344,7 @@ package com.sulake.habbo.notifications
          {
             return;
          }
-         var _loc3_:class_1438 = param1.getParser();
+         var _loc3_:PetReceivedMessageEventParser = param1.getParser();
          if(_loc3_.boughtAsGift)
          {
             _loc2_ = _notifications.localization.getLocalizationRaw("notifications.text.petbought");
@@ -368,7 +368,7 @@ package com.sulake.habbo.notifications
       
       private function onBroadcastMessageEvent(param1:IMessageEvent) : void
       {
-         var _loc4_:class_1434;
+         var _loc4_:HabboBroadcastMessageEventParser;
          var _loc2_:String = (_loc4_ = (param1 as HabboBroadcastMessageEvent).getParser()).messageText;
          var _loc3_:RegExp = /\\r/g;
          _loc2_ = _loc2_.replace(_loc3_,"\r");
@@ -377,7 +377,7 @@ package com.sulake.habbo.notifications
       
       private function onNotificationDialogMessageEvent(param1:NotificationDialogMessageEvent) : void
       {
-         var _loc2_:class_1505 = param1.getParser();
+         var _loc2_:NotificationDialogMessageEventParser = param1.getParser();
          if("cfh.created" == _loc2_.type)
          {
             showCallCreatedNotification(_loc2_.parameters["message"],_loc2_.parameters["linkUrl"]);
@@ -403,7 +403,7 @@ package com.sulake.habbo.notifications
       
       private function onPetRespectFailed(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1451 = (param1 as PetRespectFailedEvent).getParser();
+         var _loc2_:PetRespectFailedEventParser = (param1 as PetRespectFailedEvent).getParser();
          this._notifications.localization.registerParameter("room.error.pets.respectfailed","required_age","" + _loc2_.requiredDays);
          this._notifications.localization.registerParameter("room.error.pets.respectfailed","avatar_age","" + _loc2_.avatarAgeInDays);
          _notifications.windowManager.alert("${error.title}","${room.error.pets.respectfailed}",0,onAlert);
@@ -423,7 +423,7 @@ package com.sulake.habbo.notifications
          {
             return;
          }
-         var _loc2_:class_1452 = param1.getParser();
+         var _loc2_:ClubGiftNotificationEventParser = param1.getParser();
          if(!_loc2_)
          {
             return;
@@ -437,7 +437,7 @@ package com.sulake.habbo.notifications
       
       private function onUserObject(param1:UserObjectEvent) : void
       {
-         var _loc2_:class_1267 = param1.getParser();
+         var _loc2_:UserObjectEventParser = param1.getParser();
          if(_loc2_.accountSafetyLocked)
          {
             _notifications.singularController.showSafetyLockedNotification(_loc2_.id);
@@ -446,7 +446,7 @@ package com.sulake.habbo.notifications
       
       private function onAccountSafetyLockStatusChanged(param1:AccountSafetyLockStatusChangeMessageEvent) : void
       {
-         var _loc2_:class_1585 = param1.getParser();
+         var _loc2_:AccountSafetyLockStatusChangeMessageEventParser = param1.getParser();
          if(_loc2_.status == 1)
          {
             _notifications.singularController.hideSafetyLockedNotification();
@@ -459,7 +459,7 @@ package com.sulake.habbo.notifications
          {
             return;
          }
-         var _loc3_:class_1540 = param1.getParser();
+         var _loc3_:ClubGiftSelectedEventParser = param1.getParser();
          if(!_loc3_)
          {
             return;

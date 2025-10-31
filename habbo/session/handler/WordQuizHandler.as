@@ -4,9 +4,9 @@ package com.sulake.habbo.session.handler
    import com.sulake.habbo.session.IRoomHandlerListener;
    import com.sulake.habbo.session.IRoomSession;
    import com.sulake.habbo.session.events.RoomSessionWordQuizEvent;
-   import com.sulake.habbo.communication.messages.parser.poll.class_1276;
-   import com.sulake.habbo.communication.messages.parser.poll.class_1364;
-   import com.sulake.habbo.communication.messages.parser.poll.class_1534;
+   import com.sulake.habbo.communication.messages.parser.poll.QuestionFinishedEventParser;
+   import com.sulake.habbo.communication.messages.parser.poll.QuestionAnsweredEventParser;
+   import com.sulake.habbo.communication.messages.parser.poll.QuestionEventParser;
    import com.sulake.habbo.communication.messages.incoming.poll.QuestionEvent;
    import com.sulake.habbo.communication.messages.incoming.poll.QuestionFinishedEvent;
    import com.sulake.habbo.communication.messages.incoming.poll.QuestionAnsweredEvent;
@@ -39,7 +39,7 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         var _loc2_:class_1534 = param1.getParser();
+         var _loc2_:QuestionEventParser = param1.getParser();
          (_loc4_ = new RoomSessionWordQuizEvent("RWPUW_NEW_QUESTION",_loc3_,_loc2_.pollId)).question = _loc2_.question;
          _loc4_.duration = _loc2_.duration;
          _loc4_.pollType = _loc2_.pollType;
@@ -60,7 +60,7 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         var _loc2_:class_1364 = param1.getParser();
+         var _loc2_:QuestionAnsweredEventParser = param1.getParser();
          (_loc4_ = new RoomSessionWordQuizEvent("RWPUW_QUESTION_ANSWERED",_loc3_,_loc2_.userId)).value = _loc2_.value;
          _loc4_.userId = _loc2_.userId;
          _loc4_.answerCounts = _loc2_.answerCounts;
@@ -79,7 +79,7 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         var _loc2_:class_1276 = param1.getParser();
+         var _loc2_:QuestionFinishedEventParser = param1.getParser();
          (_loc4_ = new RoomSessionWordQuizEvent("RWPUW_QUESION_FINSIHED",_loc3_)).questionId = _loc2_.questionId;
          _loc4_.answerCounts = _loc2_.answerCounts;
          listener.events.dispatchEvent(_loc4_);

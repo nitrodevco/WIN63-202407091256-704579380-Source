@@ -4,7 +4,7 @@ package com.sulake.habbo.avatar
    import com.sulake.habbo.avatar.view.AvatarEditorNameChangeView;
    import com.sulake.habbo.communication.IHabboCommunicationManager;
    import com.sulake.habbo.communication.messages.incoming.room.action.AvatarEffectMessageEvent;
-   import com.sulake.habbo.communication.messages.parser.avatar.class_1164;
+   import com.sulake.habbo.communication.messages.parser.avatar.CheckUserNameResultMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.avatar.WardrobeMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.avatar.ChangeUserNameResultMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.avatar.CheckUserNameResultMessageEvent;
@@ -83,7 +83,7 @@ package com.sulake.habbo.avatar
          {
             return;
          }
-         var _loc4_:class_1164;
+         var _loc4_:CheckUserNameResultMessageEventParser;
          if((_loc4_ = param1.getParser()).resultCode == ChangeUserNameResultMessageEvent.var_1586)
          {
             _loc2_.checkedName = _loc4_.name;

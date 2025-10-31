@@ -5,7 +5,7 @@ package com.sulake.habbo.inventory
    import com.sulake.habbo.inventory.events.HabboUnseenItemsUpdatedEvent;
    import flash.events.IEventDispatcher;
    import flash.utils.Dictionary;
-   import com.sulake.habbo.communication.messages.parser.notifications.class_1592;
+   import com.sulake.habbo.communication.messages.parser.notifications.UnseenItemsEventParser;
    import com.sulake.habbo.communication.messages.incoming.notifications.UnseenItemsEvent;
    import com.sulake.habbo.communication.messages.outgoing.notifications.ResetUnseenItemIdsComposer;
    import com.sulake.habbo.communication.messages.outgoing.notifications.ResetUnseenItemsComposer;
@@ -128,7 +128,7 @@ package com.sulake.habbo.inventory
       {
          var _loc2_:Boolean = false;
          var _loc5_:Array = null;
-         var _loc3_:class_1592 = param1.getParser();
+         var _loc3_:UnseenItemsEventParser = param1.getParser();
          for each(var _loc4_ in _loc3_.getCategories())
          {
             _loc5_ = _loc3_.getItemsByCategory(_loc4_);

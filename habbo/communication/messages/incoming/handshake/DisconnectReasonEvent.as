@@ -1,7 +1,7 @@
 package com.sulake.habbo.communication.messages.incoming.handshake {
     import com.sulake.core.communication.messages.IMessageEvent
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.handshake.class_1247
+    import com.sulake.habbo.communication.messages.parser.handshake.DisconnectReasonEventParser
 
     import flash.utils.Dictionary
     import flash.utils.describeType
@@ -186,11 +186,11 @@ package com.sulake.habbo.communication.messages.incoming.handshake {
         }
 
         public function DisconnectReasonEvent(param1: Function) {
-            super(param1, class_1247);
+            super(param1, DisconnectReasonEventParser);
         }
 
         public function get reason(): int {
-            return (this._parser as class_1247).reason;
+            return (this._parser as DisconnectReasonEventParser).reason;
         }
 
         public function get reasonString(): String {

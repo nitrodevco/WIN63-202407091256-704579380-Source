@@ -1,17 +1,17 @@
 package com.sulake.habbo.communication.messages.incoming.inventory.bots {
     import com.sulake.core.communication.messages.IMessageEvent
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.inventory.bots.class_1425
+    import com.sulake.habbo.communication.messages.parser.inventory.bots.BotRemovedFromInventoryEventParser
 
     [SecureSWF(rename="true")]
     public class BotRemovedFromInventoryEvent extends MessageEvent implements IMessageEvent {
 
         public function BotRemovedFromInventoryEvent(param1: Function) {
-            super(param1, class_1425);
+            super(param1, BotRemovedFromInventoryEventParser);
         }
 
-        public function getParser(): class_1425 {
-            return _parser as class_1425;
+        public function getParser(): BotRemovedFromInventoryEventParser {
+            return _parser as BotRemovedFromInventoryEventParser;
         }
     }
 }

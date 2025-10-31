@@ -17,8 +17,8 @@ package com.sulake.habbo.sound.music
    import flash.events.TimerEvent;
    import flash.utils.Timer;
    import flash.utils.getTimer;
-   import com.sulake.habbo.communication.messages.parser.sound.class_1152;
-   import com.sulake.habbo.communication.messages.parser.sound.class_1270;
+   import com.sulake.habbo.communication.messages.parser.sound.TraxSongInfoMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.sound.UserSongDisksInventoryMessageEventParser;
    import com.sulake.habbo.communication.messages.outgoing.sound.GetUserSongDisksMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.sound.GetNowPlayingMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.sound.GetSongInfoMessageComposer;
@@ -593,7 +593,7 @@ package com.sulake.habbo.sound.music
          var _loc5_:int = 0;
          var _loc6_:int = 0;
          var _loc3_:TraxSongInfoMessageEvent = param1 as TraxSongInfoMessageEvent;
-         var _loc2_:class_1152 = _loc3_.getParser() as class_1152;
+         var _loc2_:TraxSongInfoMessageEventParser = _loc3_.getParser() as TraxSongInfoMessageEventParser;
          var _loc7_:Array = _loc2_.songs;
          _loc8_ = 0;
          while(_loc8_ < _loc7_.length)
@@ -725,7 +725,7 @@ package com.sulake.habbo.sound.music
          var _loc5_:int = 0;
          var _loc6_:int = 0;
          var _loc3_:UserSongDisksInventoryMessageEvent = param1 as UserSongDisksInventoryMessageEvent;
-         var _loc2_:class_1270 = _loc3_.getParser() as class_1270;
+         var _loc2_:UserSongDisksInventoryMessageEventParser = _loc3_.getParser() as UserSongDisksInventoryMessageEventParser;
          var_141.reset();
          _loc4_ = 0;
          while(_loc4_ < _loc2_.songDiskCount)

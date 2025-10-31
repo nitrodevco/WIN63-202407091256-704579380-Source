@@ -1,17 +1,17 @@
 package com.sulake.habbo.communication.messages.incoming.help {
     import com.sulake.core.communication.messages.IMessageEvent
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.help.class_1190
+    import com.sulake.habbo.communication.messages.parser.help.GuideSessionPartnerIsTypingMessageEventParser
 
     [SecureSWF(rename="true")]
     public class GuideSessionPartnerIsTypingMessageEvent extends MessageEvent implements IMessageEvent {
 
         public function GuideSessionPartnerIsTypingMessageEvent(param1: Function) {
-            super(param1, class_1190);
+            super(param1, GuideSessionPartnerIsTypingMessageEventParser);
         }
 
-        public function getParser(): class_1190 {
-            return _parser as class_1190;
+        public function getParser(): GuideSessionPartnerIsTypingMessageEventParser {
+            return _parser as GuideSessionPartnerIsTypingMessageEventParser;
         }
     }
 }

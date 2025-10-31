@@ -12,8 +12,8 @@ package com.sulake.habbo.help
    import com.sulake.core.utils.ErrorReportStorage;
    import com.sulake.core.window.IWindow;
    import com.sulake.habbo.communication.IHabboCommunicationManager;
-   import com.sulake.habbo.communication.messages.parser.help.class_1230;
-   import com.sulake.habbo.communication.messages.parser.help.class_1312;
+   import com.sulake.habbo.communication.messages.parser.help.CallForHelpPendingCallsMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.help.GuideReportingStatusMessageEventParser;
    import com.sulake.habbo.friendlist.IHabboFriendList;
    import com.sulake.habbo.help.cfh.registry.chat.ChatEventHandler;
    import com.sulake.habbo.help.cfh.registry.chat.ChatRegistry;
@@ -46,12 +46,12 @@ package com.sulake.habbo.help
    import flash.net.navigateToURL;
    import com.sulake.habbo.communication.messages.incoming.room.session.RoomReadyMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.navigator.GetGuestRoomResultEvent;
-   import com.sulake.habbo.communication.messages.parser.game.snowwar.arena.class_1407;
+   import com.sulake.habbo.communication.messages.parser.game.snowwar.arena.Game2StageStartingMessageEventParser;
    import com.sulake.habbo.communication.messages.parser.navigator.RoomSettingsDataEvent;
-   import com.sulake.habbo.communication.messages.parser.room.session.class_1207;
-   import com.sulake.habbo.communication.messages.parser.room.engine.class_1333;
-   import com.sulake.habbo.communication.messages.parser.room.engine.class_1339;
-   import com.sulake.habbo.communication.messages.parser.callforhelp.class_1245;
+   import com.sulake.habbo.communication.messages.parser.room.session.RoomReadyMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.engine.UsersMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.engine.RoomEntryInfoMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.callforhelp.CfhTopicsInitMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.room.engine.class_1668;
    import com.sulake.habbo.communication.messages.incoming.room.engine.RoomEntryInfoMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.room.engine.UsersMessageEvent;
@@ -657,7 +657,7 @@ package com.sulake.habbo.help
       {
          var _loc4_:String = null;
          var _loc3_:int = 0;
-         var _loc2_:class_1230 = CallForHelpPendingCallsMessageEvent(param1).getParser();
+         var _loc2_:CallForHelpPendingCallsMessageEventParser = CallForHelpPendingCallsMessageEvent(param1).getParser();
          if(_loc2_.callCount == 0 || var_1864 == 9 && _loc2_.callCount < 3)
          {
             proceedWithReporting();
@@ -686,7 +686,7 @@ package com.sulake.habbo.help
       
       private function onGuideReportingStatus(param1:GuideReportingStatusMessageEvent) : void
       {
-         var _loc2_:class_1312 = param1.getParser();
+         var _loc2_:GuideReportingStatusMessageEventParser = param1.getParser();
          switch(_loc2_.statusCode)
          {
             case 0:
@@ -754,7 +754,7 @@ package com.sulake.habbo.help
       {
          var _loc3_:int = 0;
          var _loc4_:class_1668 = null;
-         var _loc2_:class_1333 = UsersMessageEvent(param1).getParser();
+         var _loc2_:UsersMessageEventParser = UsersMessageEvent(param1).getParser();
          _loc3_ = 0;
          while(_loc3_ < _loc2_.getUserCount())
          {
@@ -769,7 +769,7 @@ package com.sulake.habbo.help
       private function onGameStageStarting(param1:Game2StageStartingMessageEvent) : void
       {
          var _loc6_:HumanGameObjectData = null;
-         var _loc2_:class_1407 = param1.getParser();
+         var _loc2_:Game2StageStartingMessageEventParser = param1.getParser();
          var _loc5_:Array = _loc2_.gameObjects.gameObjects;
          var _loc4_:int = _userRegistry.roomId;
          var _loc3_:String = _userRegistry.roomName;
@@ -786,7 +786,7 @@ package com.sulake.habbo.help
       
       private function onRoomReady(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1207 = RoomReadyMessageEvent(param1).getParser();
+         var _loc2_:RoomReadyMessageEventParser = RoomReadyMessageEvent(param1).getParser();
          _userRegistry.registerRoom(_loc2_.roomId,"");
       }
       
@@ -813,13 +813,13 @@ package com.sulake.habbo.help
       
       private function onRoomEnter(param1:RoomEntryInfoMessageEvent) : void
       {
-         var _loc2_:class_1339 = RoomEntryInfoMessageEvent(param1).getParser();
+         var _loc2_:RoomEntryInfoMessageEventParser = RoomEntryInfoMessageEvent(param1).getParser();
          var_1632 = _loc2_.guestRoomId;
       }
       
       private function onCfhTopics(param1:CfhTopicsInitMessageEvent) : void
       {
-         var _loc2_:class_1245 = param1.getParser();
+         var _loc2_:CfhTopicsInitMessageEventParser = param1.getParser();
          var_217 = _loc2_.callForHelpCategories;
       }
       

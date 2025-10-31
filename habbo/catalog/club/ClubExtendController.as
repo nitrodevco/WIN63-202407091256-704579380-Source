@@ -5,7 +5,7 @@ package com.sulake.habbo.catalog.club
    import com.sulake.habbo.catalog.HabboCatalog;
    import com.sulake.habbo.localization.IHabboLocalizationManager;
    import com.sulake.habbo.window.IHabboWindowManager;
-   import com.sulake.habbo.communication.messages.parser.catalog.class_1307;
+   import com.sulake.habbo.communication.messages.parser.catalog.HabboClubExtendOfferMessageEventParser;
    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.catalog.class_1646;
    import com.sulake.habbo.communication.messages.incoming.catalog.HabboClubExtendOfferMessageEvent;
@@ -46,7 +46,7 @@ package com.sulake.habbo.catalog.club
          {
             return;
          }
-         var _loc2_:class_1307 = param1.getParser();
+         var _loc2_:HabboClubExtendOfferMessageEventParser = param1.getParser();
          _offer = _loc2_.offer();
          showConfirmation();
          if(_catalog.connection)

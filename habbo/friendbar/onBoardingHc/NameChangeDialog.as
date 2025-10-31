@@ -20,8 +20,8 @@ package com.sulake.habbo.friendbar.onBoardingHc
    import onBoardingHcUi.LoaderUI;
    import onBoardingHcUi.NineSplitSprite;
    import onBoardingHcUi.WaitIndicator;
-   import com.sulake.habbo.communication.messages.parser.avatar.class_1162;
-   import com.sulake.habbo.communication.messages.parser.avatar.class_1164;
+   import com.sulake.habbo.communication.messages.parser.avatar.ChangeUserNameResultMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.avatar.CheckUserNameResultMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.avatar.ChangeUserNameResultMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.avatar.CheckUserNameResultMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.avatar.CheckUserNameMessageComposer;
@@ -101,7 +101,7 @@ package com.sulake.habbo.friendbar.onBoardingHc
          {
             return;
          }
-         var _loc2_:class_1162 = param1.getParser();
+         var _loc2_:ChangeUserNameResultMessageEventParser = param1.getParser();
          if(_loc2_ == null)
          {
             return;
@@ -115,7 +115,7 @@ package com.sulake.habbo.friendbar.onBoardingHc
          {
             return;
          }
-         var _loc2_:class_1164 = param1.getParser();
+         var _loc2_:CheckUserNameResultMessageEventParser = param1.getParser();
          if(_loc2_ == null)
          {
             return;

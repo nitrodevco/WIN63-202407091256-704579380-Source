@@ -1,17 +1,17 @@
 package com.sulake.habbo.communication.messages.incoming.handshake {
    import com.sulake.core.communication.messages.IMessageEvent
    import com.sulake.core.communication.messages.MessageEvent
-   import com.sulake.habbo.communication.messages.parser.handshake.class_1156
+   import com.sulake.habbo.communication.messages.parser.handshake.AuthenticationOKMessageEventParser
 
    [SecureSWF(rename="true")]
     public class AuthenticationOKMessageEvent extends MessageEvent implements IMessageEvent {
 
         public function AuthenticationOKMessageEvent(param1: Function) {
-            super(param1, class_1156);
+            super(param1, AuthenticationOKMessageEventParser);
         }
 
         public function get suggestedLoginActions(): Array {
-            return (this._parser as class_1156).suggestedLoginActions;
+            return (this._parser as AuthenticationOKMessageEventParser).suggestedLoginActions;
         }
     }
 }

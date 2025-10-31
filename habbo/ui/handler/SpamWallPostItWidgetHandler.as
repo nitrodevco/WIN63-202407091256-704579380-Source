@@ -10,7 +10,7 @@ package com.sulake.habbo.ui.handler
    import com.sulake.habbo.ui.widget.messages.RoomWidgetMessage;
    import com.sulake.habbo.ui.widget.messages.RoomWidgetSpamWallPostItFinishEditingMessage;
    import flash.events.Event;
-   import com.sulake.habbo.communication.messages.parser.room.furniture.class_1279;
+   import com.sulake.habbo.communication.messages.parser.room.furniture.RequestSpamWallPostItMessageEventParser;
    import com.sulake.habbo.communication.messages.outgoing.room.furniture.AddSpamWallPostItMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.room.furniture.RequestSpamWallPostItMessageEvent;
    
@@ -70,7 +70,7 @@ package com.sulake.habbo.ui.handler
          {
             return;
          }
-         var _loc5_:class_1279;
+         var _loc5_:RequestSpamWallPostItMessageEventParser;
          var _loc2_:int = (_loc5_ = param1.getParser()).itemId;
          var _loc6_:String = _loc5_.location;
          var _loc3_:* = "post_it";

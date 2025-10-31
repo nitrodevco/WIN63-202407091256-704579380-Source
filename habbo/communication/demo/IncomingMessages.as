@@ -28,10 +28,10 @@ package com.sulake.habbo.communication.demo {
     import com.sulake.habbo.communication.messages.outgoing.handshake.InitDiffieHandshakeMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.handshake.InfoRetrieveMessageComposer
     import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer
-    import com.sulake.habbo.communication.messages.parser.availability.class_1211
-    import com.sulake.habbo.communication.messages.parser.availability.class_1528
-    import com.sulake.habbo.communication.messages.parser.error.class_1334
-    import com.sulake.habbo.communication.messages.parser.handshake.class_1366
+    import com.sulake.habbo.communication.messages.parser.availability.MaintenanceStatusMessageEventParser
+    import com.sulake.habbo.communication.messages.parser.availability.LoginFailedHotelClosedMessageEventParser
+    import com.sulake.habbo.communication.messages.parser.error.ErrorReportEventParser
+    import com.sulake.habbo.communication.messages.parser.handshake.GenericErrorEventParser
     import com.sulake.habbo.utils.CommunicationUtils
     import com.sulake.habbo.utils.HabboWebTools
 
@@ -197,12 +197,12 @@ package com.sulake.habbo.communication.demo {
         }
 
         private function onLoginFailedHotelClosed(param1: IMessageEvent): void {
-            var _loc2_: class_1528 = (param1 as LoginFailedHotelClosedMessageEvent).getParser();
+            var _loc2_: LoginFailedHotelClosedMessageEventParser = (param1 as LoginFailedHotelClosedMessageEvent).getParser();
             var_1660.handleLoginFailedHotelClosedMessage(_loc2_.openHour, _loc2_.openMinute);
         }
 
         private function onGenericError(param1: IMessageEvent): void {
-            var _loc2_: class_1366 = (param1 as GenericErrorEvent).getParser();
+            var _loc2_: GenericErrorEventParser = (param1 as GenericErrorEvent).getParser();
             switch (_loc2_.errorCode) {
                 case -3:
                     var_1660.alert("${connection.error.id.title}", "${connection.login.error.-3.desc}");
@@ -238,14 +238,14 @@ package com.sulake.habbo.communication.demo {
         }
 
         private function onErrorReport(param1: IMessageEvent): void {
-            var _loc2_: class_1334 = (param1 as ErrorReportEvent).getParser();
+            var _loc2_: ErrorReportEventParser = (param1 as ErrorReportEvent).getParser();
             var _loc3_: int = _loc2_.errorCode;
             var _loc4_: int = _loc2_.messageId;
             var_1660.handleErrorMessage(_loc3_, _loc4_);
         }
 
         private function onMaintenance(param1: MaintenanceStatusMessageEvent): void {
-            var _loc2_: class_1211 = param1.parser as class_1211;
+            var _loc2_: MaintenanceStatusMessageEventParser = param1.parser as MaintenanceStatusMessageEventParser;
             class_14.log("Got maintenance status, with minutes left: " + _loc2_.minutesUntilMaintenance.toString());
             var_1660.localization.registerParameter("disconnected.maintenance_status", "%minutes%", _loc2_.minutesUntilMaintenance.toString());
             var _loc3_: String = String(var_1660.localization.getLocalization("disconnected.maintenance_status"));

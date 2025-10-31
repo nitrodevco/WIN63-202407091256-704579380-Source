@@ -1,16 +1,16 @@
 package com.sulake.habbo.communication.messages.incoming.room.engine {
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.room.engine.class_1326
+    import com.sulake.habbo.communication.messages.parser.room.engine.UserUpdateMessageEventParser
 
     [SecureSWF(rename="true")]
     public class UserUpdateMessageEvent extends MessageEvent {
 
         public function UserUpdateMessageEvent(param1: Function) {
-            super(param1, class_1326);
+            super(param1, UserUpdateMessageEventParser);
         }
 
-        public function getParser(): class_1326 {
-            return _parser as class_1326;
+        public function getParser(): UserUpdateMessageEventParser {
+            return _parser as UserUpdateMessageEventParser;
         }
     }
 }

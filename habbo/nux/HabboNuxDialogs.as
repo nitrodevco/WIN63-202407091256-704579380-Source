@@ -28,7 +28,7 @@ package com.sulake.habbo.nux
    import com.sulake.iid.IIDSessionDataManager;
    import flash.events.TimerEvent;
    import flash.utils.Timer;
-   import com.sulake.habbo.communication.messages.parser.nux.class_1215;
+   import com.sulake.habbo.communication.messages.parser.nux.NewUserExperienceGiftOfferEventParser;
    import com.sulake.habbo.communication.messages.outgoing.nux.class_1232;
    import com.sulake.habbo.communication.messages.outgoing.nux.NewUserExperienceGetGiftsMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.gifts.SetPhoneNumberVerificationStatusMessageComposer;
@@ -186,7 +186,7 @@ package com.sulake.habbo.nux
       
       private function onNewUserExperienceGiftOfferMessage(param1:NewUserExperienceGiftOfferEvent) : void
       {
-         var _loc2_:class_1215 = param1.getParser();
+         var _loc2_:NewUserExperienceGiftOfferEventParser = param1.getParser();
          createGiftSelectionView(_loc2_.giftOptions);
       }
       

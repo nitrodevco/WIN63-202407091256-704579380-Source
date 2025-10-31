@@ -13,8 +13,8 @@ package com.sulake.habbo.catalog.collectibles.widget
    import com.sulake.habbo.catalog.collectibles.CollectiblesController;
    import com.sulake.habbo.catalog.collectibles.CollectiblesView;
    import com.sulake.habbo.localization.IHabboLocalizationManager;
-   import com.sulake.habbo.communication.messages.parser.collectibles.class_1233;
-   import com.sulake.habbo.communication.messages.parser.collectibles.class_1322;
+   import com.sulake.habbo.communication.messages.parser.collectibles.NftTransferFeeMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.collectibles.NftTransferAssetsResultMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.collectibles.NftTransferFeeMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.collectibles.NftTransferAssetsResultMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetNftTransferFeeMessageComposer;
@@ -95,7 +95,7 @@ package com.sulake.habbo.catalog.collectibles.widget
       private function onNftTransferFeeMessage(param1:NftTransferFeeMessageEvent) : void
       {
          var_3804 = false;
-         var _loc2_:class_1233 = param1.getParser();
+         var _loc2_:NftTransferFeeMessageEventParser = param1.getParser();
          var_3502 = _loc2_.transferFee;
          silverFeeText.text = String(var_3502);
          silverFeeText.visible = var_3502 > 0;
@@ -151,7 +151,7 @@ package com.sulake.habbo.catalog.collectibles.widget
       
       private function onNftTransferResultMessage(param1:NftTransferAssetsResultMessageEvent) : void
       {
-         var _loc2_:class_1322 = param1.getParser();
+         var _loc2_:NftTransferAssetsResultMessageEventParser = param1.getParser();
          var_1754.notifications.addItem(_loc2_.success ? localization.getLocalization("collectibles.transfer.success") : String(localization.getLocalizationWithParams("collectibles.transfer.error","","id",_loc2_.resultCode)),"info","icon_curator_stamp_large_png");
          _isTransferring = false;
          updateTransferButtonState();

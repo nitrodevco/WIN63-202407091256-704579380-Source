@@ -15,17 +15,17 @@ package com.sulake.habbo.help.guidehelp
    import com.sulake.core.window.components.class_3460;
    import com.sulake.core.window.events.WindowEvent;
    import com.sulake.core.window.utils.class_3441;
-   import com.sulake.habbo.communication.messages.parser.help.class_1190;
-   import com.sulake.habbo.communication.messages.parser.help.class_1259;
-   import com.sulake.habbo.communication.messages.parser.help.class_1261;
-   import com.sulake.habbo.communication.messages.parser.help.class_1289;
-   import com.sulake.habbo.communication.messages.parser.help.class_1306;
-   import com.sulake.habbo.communication.messages.parser.help.class_1348;
-   import com.sulake.habbo.communication.messages.parser.help.class_1453;
-   import com.sulake.habbo.communication.messages.parser.help.class_1464;
-   import com.sulake.habbo.communication.messages.parser.help.class_1486;
-   import com.sulake.habbo.communication.messages.parser.help.class_1584;
-   import com.sulake.habbo.communication.messages.parser.help.class_1603;
+   import com.sulake.habbo.communication.messages.parser.help.GuideSessionPartnerIsTypingMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.help.GuideOnDutyStatusMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.help.GuideSessionAttachedMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.help.GuideSessionErrorMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.help.GuideSessionEndedMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.help.GuideSessionMessageMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.help.ChatReviewSessionStartedMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.help.GuideSessionStartedMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.help.GuideSessionInvitedToGuideRoomMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.help.ChatReviewSessionResultsMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.help.GuideSessionRequesterRoomMessageEventParser;
    import com.sulake.habbo.help.GuideHelpManager;
    import com.sulake.habbo.help.HabboHelp;
    import com.sulake.habbo.utils.FriendlyTime;
@@ -41,7 +41,7 @@ package com.sulake.habbo.help.guidehelp
    import flash.utils.Timer;
    import flash.utils.getTimer;
    import mx.utils.StringUtil;
-   import com.sulake.habbo.communication.messages.parser.perk.class_1448;
+   import com.sulake.habbo.communication.messages.parser.perk.PerkAllowancesMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionErrorMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionStartedMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionMessageMessageEvent;
@@ -289,7 +289,7 @@ package com.sulake.habbo.help.guidehelp
       
       private function onGuideOnDutyStatus(param1:GuideOnDutyStatusMessageEvent) : void
       {
-         var _loc2_:class_1259 = param1.getParser();
+         var _loc2_:GuideOnDutyStatusMessageEventParser = param1.getParser();
          _onDuty = _loc2_.onDuty;
          _habboHelp.localization.registerParameter("guide.help.guide.tool.guidesonduty","amount",_loc2_.guidesOnDuty.toString());
          _habboHelp.localization.registerParameter("guide.help.guide.tool.helpersonduty","amount",_loc2_.helpersOnDuty.toString());
@@ -305,7 +305,7 @@ package com.sulake.habbo.help.guidehelp
             class_14.log("_diposed or no _sessionData");
             return;
          }
-         var _loc2_:class_1261 = param1.parser as class_1261;
+         var _loc2_:GuideSessionAttachedMessageEventParser = param1.parser as GuideSessionAttachedMessageEventParser;
          if(_loc2_.asGuide)
          {
             if(_sessionData.isActiveGuideSession())
@@ -359,7 +359,7 @@ package com.sulake.habbo.help.guidehelp
          {
             return;
          }
-         var _loc2_:class_1464 = param1.parser as class_1464;
+         var _loc2_:GuideSessionStartedMessageEventParser = param1.parser as GuideSessionStartedMessageEventParser;
          _sessionData.userId = _loc2_.requesterUserId;
          _sessionData.userName = _loc2_.requesterName;
          _sessionData.userFigure = _loc2_.requesterFigure;
@@ -384,7 +384,7 @@ package com.sulake.habbo.help.guidehelp
          {
             return;
          }
-         var _loc2_:class_1306 = param1.parser as class_1306;
+         var _loc2_:GuideSessionEndedMessageEventParser = param1.parser as GuideSessionEndedMessageEventParser;
          if(_sessionData.isActiveGuideSession())
          {
             setStateGuideClosed(_loc2_.endReason);
@@ -406,7 +406,7 @@ package com.sulake.habbo.help.guidehelp
          {
             return;
          }
-         var _loc2_:class_1289 = param1.getParser();
+         var _loc2_:GuideSessionErrorMessageEventParser = param1.getParser();
          switch(_loc2_.errorCode - 1)
          {
             case 0:
@@ -430,8 +430,8 @@ package com.sulake.habbo.help.guidehelp
          {
             return;
          }
-         var _loc5_:class_1348;
-         var _loc3_:int = (_loc5_ = param1.parser as class_1348).senderId;
+         var _loc5_:GuideSessionMessageMessageEventParser;
+         var _loc3_:int = (_loc5_ = param1.parser as GuideSessionMessageMessageEventParser).senderId;
          if(_loc3_ == _sessionData.guideId)
          {
             _loc4_ = _sessionData.guideName;
@@ -461,7 +461,7 @@ package com.sulake.habbo.help.guidehelp
          {
             return;
          }
-         var _loc2_:class_1603 = param1.parser as class_1603;
+         var _loc2_:GuideSessionRequesterRoomMessageEventParser = param1.parser as GuideSessionRequesterRoomMessageEventParser;
          if(_loc2_.getRequesterRoomId() > 0)
          {
             _habboHelp.roomSessionManager.gotoRoom(_loc2_.getRequesterRoomId());
@@ -479,7 +479,7 @@ package com.sulake.habbo.help.guidehelp
          {
             return;
          }
-         var _loc2_:class_1486 = param1.parser as class_1486;
+         var _loc2_:GuideSessionInvitedToGuideRoomMessageEventParser = param1.parser as GuideSessionInvitedToGuideRoomMessageEventParser;
          if(_sessionData.isActiveGuideSession())
          {
             if(_loc2_.getRoomId() > 0)
@@ -500,13 +500,13 @@ package com.sulake.habbo.help.guidehelp
       private function onGuideSessionPartnerIsTyping(param1:IMessageEvent) : void
       {
          class_14.log("onGuideSessionPartnerIsTyping");
-         var _loc2_:class_1190 = GuideSessionPartnerIsTypingMessageEvent(param1).getParser();
+         var _loc2_:GuideSessionPartnerIsTypingMessageEventParser = GuideSessionPartnerIsTypingMessageEvent(param1).getParser();
          displayPartnerIsTypingMessage(_loc2_.isTyping);
       }
       
       private function onPerkAllowances(param1:PerkAllowancesMessageEvent) : void
       {
-         var _loc2_:class_1448 = null;
+         var _loc2_:PerkAllowancesMessageEventParser = null;
          if(_sessionData.activeWindow == "guide_tool")
          {
             _loc2_ = param1.getParser();
@@ -529,7 +529,7 @@ package com.sulake.habbo.help.guidehelp
       
       private function onChatReviewSessionStarted(param1:ChatReviewSessionStartedMessageEvent) : void
       {
-         var _loc2_:class_1453 = param1.getParser();
+         var _loc2_:ChatReviewSessionStartedMessageEventParser = param1.getParser();
          setStateGuardianChatReviewVote(_loc2_.votingTimeout,_loc2_.chatRecord);
       }
       
@@ -544,7 +544,7 @@ package com.sulake.habbo.help.guidehelp
       
       private function onChatReviewSessionResults(param1:ChatReviewSessionResultsMessageEvent) : void
       {
-         var _loc2_:class_1584 = param1.getParser();
+         var _loc2_:ChatReviewSessionResultsMessageEventParser = param1.getParser();
          setStateGuardianChatReviewResults(_loc2_.winningVoteCode,_loc2_.ownVoteCode,_loc2_.finalStatus);
       }
       

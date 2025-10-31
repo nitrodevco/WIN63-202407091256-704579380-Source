@@ -14,19 +14,19 @@ package com.sulake.habbo.quest
    import com.sulake.habbo.communication.messages.incoming.inventory.achievements.AchievementsEvent;
    import com.sulake.habbo.communication.messages.incoming.inventory.achievements.AchievementEvent;
    import com.sulake.habbo.communication.messages.incoming.room.session.CloseConnectionMessageEvent;
-   import com.sulake.habbo.communication.messages.parser.handshake.class_1142;
-   import com.sulake.habbo.communication.messages.parser.quest.class_1231;
-   import com.sulake.habbo.communication.messages.parser.quest.class_1265;
-   import com.sulake.habbo.communication.messages.parser.quest.class_1414;
-   import com.sulake.habbo.communication.messages.parser.quest.class_1536;
-   import com.sulake.habbo.communication.messages.parser.quest.class_1593;
-   import com.sulake.habbo.communication.messages.parser.notifications.class_1271;
-   import com.sulake.habbo.communication.messages.parser.game.lobby.class_1506;
-   import com.sulake.habbo.communication.messages.parser.game.lobby.class_1572;
-   import com.sulake.habbo.communication.messages.parser.game.lobby.class_1622;
-   import com.sulake.habbo.communication.messages.parser.inventory.achievements.class_1430;
-   import com.sulake.habbo.communication.messages.parser.inventory.achievements.class_1433;
-   import com.sulake.habbo.communication.messages.parser.inventory.achievements.class_1525;
+   import com.sulake.habbo.communication.messages.parser.handshake.IsFirstLoginOfDayEventParser;
+   import com.sulake.habbo.communication.messages.parser.quest.QuestMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.quest.QuestsMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.quest.QuestCompletedMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.quest.QuestCancelledMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.quest.SeasonalQuestsMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.notifications.HabboAchievementNotificationMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.game.lobby.AchievementResolutionsMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.game.lobby.AchievementResolutionCompletedMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.game.lobby.AchievementResolutionProgressMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.achievements.AchievementsScoreEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.achievements.AchievementEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.achievements.AchievementsEventParser;
    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectRemoveMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectAddMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.room.engine.RoomEntryInfoMessageEvent;
@@ -98,7 +98,7 @@ package com.sulake.habbo.quest
       
       private function onQuestCompleted(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1414 = (param1 as QuestCompletedMessageEvent).getParser();
+         var _loc2_:QuestCompletedMessageEventParser = (param1 as QuestCompletedMessageEvent).getParser();
          class_14.log("Quest Completed: " + _loc2_.questData.campaignCode + " quest: " + _loc2_.questData.id);
          _questEngine.questController.onQuestCompleted(_loc2_.questData,_loc2_.showDialog);
          if(_questEngine.isSeasonalQuest(_loc2_.questData))
@@ -109,7 +109,7 @@ package com.sulake.habbo.quest
       
       private function onQuestCancelled(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1536 = QuestCancelledMessageEvent(param1).getParser();
+         var _loc2_:QuestCancelledMessageEventParser = QuestCancelledMessageEvent(param1).getParser();
          class_14.log("Quest Cancelled: " + _loc2_.quest.id);
          _questEngine.questController.onQuestCancelled(_loc2_.quest.campaignChainCode);
          if(_loc2_.expired)
@@ -120,21 +120,21 @@ package com.sulake.habbo.quest
       
       private function onQuests(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1265 = (param1 as QuestsMessageEvent).getParser();
+         var _loc2_:QuestsMessageEventParser = (param1 as QuestsMessageEvent).getParser();
          class_14.log("Got Quests: " + _loc2_.quests + ", " + _loc2_.openWindow);
          _questEngine.events.dispatchEvent(new QuestsListEvent("qu_quests",_loc2_.quests,_loc2_.openWindow));
       }
       
       private function onSeasonalQuests(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1593 = (param1 as SeasonalQuestsMessageEvent).getParser();
+         var _loc2_:SeasonalQuestsMessageEventParser = (param1 as SeasonalQuestsMessageEvent).getParser();
          class_14.log("Got seasonal Quests: " + _loc2_.quests);
          _questEngine.events.dispatchEvent(new QuestsListEvent("qe_quests_seasonal",_loc2_.quests,true));
       }
       
       private function onQuest(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1231 = (param1 as QuestMessageEvent).getParser();
+         var _loc2_:QuestMessageEventParser = (param1 as QuestMessageEvent).getParser();
          class_14.log("Got Quest: " + _loc2_.quest);
          _questEngine.questController.onQuest(_loc2_.quest);
       }
@@ -176,32 +176,32 @@ package com.sulake.habbo.quest
       private function onAchievements(param1:IMessageEvent) : void
       {
          var _loc2_:AchievementsEvent = param1 as AchievementsEvent;
-         var _loc3_:class_1525 = _loc2_.getParser() as class_1525;
+         var _loc3_:AchievementsEventParser = _loc2_.getParser() as AchievementsEventParser;
          _questEngine.achievementController.onAchievements(_loc3_.achievements,_loc3_.defaultCategory);
       }
       
       private function onAchievementResolutions(param1:AchievementResolutionsMessageEvent) : void
       {
-         var _loc2_:class_1506 = param1.getParser();
+         var _loc2_:AchievementResolutionsMessageEventParser = param1.getParser();
          _questEngine.achievementsResolutionController.onResolutionAchievements(_loc2_.stuffId,_loc2_.achievements,_loc2_.endTime);
       }
       
       private function onAchievementResolutionProgress(param1:AchievementResolutionProgressMessageEvent) : void
       {
-         var _loc2_:class_1622 = param1.getParser();
+         var _loc2_:AchievementResolutionProgressMessageEventParser = param1.getParser();
          _questEngine.achievementsResolutionController.onResolutionProgress(_loc2_.stuffId,_loc2_.achievementId,_loc2_.requiredLevelBadgeCode,_loc2_.userProgress,_loc2_.totalProgress,_loc2_.endTime);
       }
       
       private function onAchievementResolutionCompleted(param1:AchievementResolutionCompletedMessageEvent) : void
       {
-         var _loc2_:class_1572 = param1.getParser();
+         var _loc2_:AchievementResolutionCompletedMessageEventParser = param1.getParser();
          _questEngine.achievementsResolutionController.onResolutionCompleted(_loc2_.badgeCode,_loc2_.stuffCode);
       }
       
       private function onAchievement(param1:IMessageEvent) : void
       {
          var _loc2_:AchievementEvent = param1 as AchievementEvent;
-         var _loc3_:class_1433 = _loc2_.getParser() as class_1433;
+         var _loc3_:AchievementEventParser = _loc2_.getParser() as AchievementEventParser;
          _questEngine.achievementController.onAchievement(_loc3_.achievement);
          _questEngine.achievementsResolutionController.onAchievement(_loc3_.achievement);
       }
@@ -209,14 +209,14 @@ package com.sulake.habbo.quest
       private function onAchievementsScore(param1:IMessageEvent) : void
       {
          var _loc2_:AchievementsScoreEvent = param1 as AchievementsScoreEvent;
-         var _loc3_:class_1430 = _loc2_.getParser() as class_1430;
+         var _loc3_:AchievementsScoreEventParser = _loc2_.getParser() as AchievementsScoreEventParser;
          _questEngine.localization.registerParameter("achievements.categories.score","score",_loc3_.score.toString());
       }
       
       private function onLevelUp(param1:IMessageEvent) : void
       {
          var _loc2_:HabboAchievementNotificationMessageEvent = param1 as HabboAchievementNotificationMessageEvent;
-         var _loc3_:class_1271 = _loc2_.getParser();
+         var _loc3_:HabboAchievementNotificationMessageEventParser = _loc2_.getParser();
          var _loc4_:String = String(_questEngine.localization.getBadgeBaseName(_loc3_.data.badgeCode));
          _questEngine.send(new EventLogMessageComposer("Achievements",_loc4_,"Leveled","",_loc3_.data.level));
          _questEngine.achievementsResolutionController.onLevelUp(_loc3_.data);
@@ -224,7 +224,7 @@ package com.sulake.habbo.quest
       
       private function onIsFirstLoginOfDay(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1142 = (param1 as IsFirstLoginOfDayEvent).getParser();
+         var _loc2_:IsFirstLoginOfDayEventParser = (param1 as IsFirstLoginOfDayEvent).getParser();
          _questEngine.setIsFirstLoginOfDay(_loc2_.isFirstLoginOfDay);
       }
       

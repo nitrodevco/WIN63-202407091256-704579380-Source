@@ -14,7 +14,7 @@ package com.sulake.habbo.catalog.purchase
    import com.sulake.habbo.session.furniture.class_3365;
    import com.sulake.room.utils.Vector3d;
    import flash.display.BitmapData;
-   import com.sulake.habbo.communication.messages.parser.room.furniture.class_1381;
+   import com.sulake.habbo.communication.messages.parser.room.furniture.FurniRentOrBuyoutOfferMessageEventParser;
    import com.sulake.habbo.communication.messages.outgoing.room.furniture.ExtendRentOrBuyoutFurniMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.furniture.GetRentOrBuyoutOfferMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.furniture.ExtendRentOrBuyoutStripItemMessageComposer;
@@ -65,7 +65,7 @@ package com.sulake.habbo.catalog.purchase
          {
             return;
          }
-         var _loc2_:class_1381 = param1.getParser();
+         var _loc2_:FurniRentOrBuyoutOfferMessageEventParser = param1.getParser();
          if(var_1691.fullName != _loc2_.furniTypeName)
          {
             return;

@@ -1,16 +1,16 @@
 package com.sulake.habbo.communication.messages.incoming.room.chat {
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.room.chat.class_1344
+    import com.sulake.habbo.communication.messages.parser.room.chat.ChatMessageEventParser
 
     [SecureSWF(rename="true")]
     public class WhisperMessageEvent extends MessageEvent {
 
         public function WhisperMessageEvent(param1: Function) {
-            super(param1, class_1344);
+            super(param1, ChatMessageEventParser);
         }
 
-        public function getParser(): class_1344 {
-            return _parser as class_1344;
+        public function getParser(): ChatMessageEventParser {
+            return _parser as ChatMessageEventParser;
         }
     }
 }

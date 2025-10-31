@@ -1,17 +1,17 @@
 package com.sulake.habbo.communication.messages.incoming.inventory.furni {
     import com.sulake.core.communication.messages.IMessageEvent
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.inventory.furni.class_1546
+    import com.sulake.habbo.communication.messages.parser.inventory.furni.FurniListEventParser
 
     [SecureSWF(rename="true")]
     public class FurniListEvent extends MessageEvent implements IMessageEvent {
 
         public function FurniListEvent(param1: Function) {
-            super(param1, class_1546);
+            super(param1, FurniListEventParser);
         }
 
-        public function getParser(): class_1546 {
-            return this._parser as class_1546;
+        public function getParser(): FurniListEventParser {
+            return this._parser as FurniListEventParser;
         }
     }
 }

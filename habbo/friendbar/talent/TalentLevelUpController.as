@@ -8,7 +8,7 @@ package com.sulake.habbo.friendbar.talent
    import com.sulake.core.window.components.IWidgetWindow;
    import com.sulake.core.window.events.WindowEvent;
    import com.sulake.habbo.window.widgets.IBadgeImageWidget;
-   import com.sulake.habbo.communication.messages.parser.talent.class_1158;
+   import com.sulake.habbo.communication.messages.parser.talent.TalentLevelUpMessageEventParser;
    import com.sulake.habbo.communication.messages.parser.talent.class_1700;
    import com.sulake.habbo.communication.messages.parser.talent.class_1756;
    import com.sulake.habbo.communication.messages.outgoing.talent.GetTalentTrackMessageComposer;
@@ -75,7 +75,7 @@ package com.sulake.habbo.friendbar.talent
       
       private function onTalentLevelUp(param1:TalentLevelUpMessageEvent) : void
       {
-         var _loc2_:class_1158 = param1.getParser();
+         var _loc2_:TalentLevelUpMessageEventParser = param1.getParser();
          if(_loc2_.level == 1 && _loc2_.talentTrackName == "helper" && _habboTalent.citizenshipEnabled)
          {
             return;

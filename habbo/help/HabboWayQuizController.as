@@ -8,8 +8,8 @@ package com.sulake.habbo.help
    import com.sulake.core.window.components.ISelectorListWindow;
    import com.sulake.core.window.components.IStaticBitmapWrapperWindow;
    import com.sulake.core.window.events.WindowEvent;
-   import com.sulake.habbo.communication.messages.parser.help.class_1240;
-   import com.sulake.habbo.communication.messages.parser.help.class_1244;
+   import com.sulake.habbo.communication.messages.parser.help.QuizDataMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.help.QuizResultsMessageEventParser;
    import com.sulake.habbo.window.utils.IModalDialog;
    import com.sulake.habbo.communication.messages.incoming.help.QuizDataMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.help.QuizResultsMessageEvent;
@@ -109,7 +109,7 @@ package com.sulake.habbo.help
       
       private function onQuizData(param1:QuizDataMessageEvent) : void
       {
-         var _loc2_:class_1240 = param1.getParser();
+         var _loc2_:QuizDataMessageEventParser = param1.getParser();
          _habboHelp.closeHabboWay();
          _habboHelp.closeSafetyBooklet();
          showWindow(_loc2_.quizCode,_loc2_.questionIds);
@@ -117,7 +117,7 @@ package com.sulake.habbo.help
       
       private function onQuizResults(param1:QuizResultsMessageEvent) : void
       {
-         var _loc2_:class_1244 = param1.getParser();
+         var _loc2_:QuizResultsMessageEventParser = param1.getParser();
          _questionIdsForWrongAnswers = _loc2_.questionIdsForWrongAnswers;
          if(_questionIdsForWrongAnswers.length == 0)
          {

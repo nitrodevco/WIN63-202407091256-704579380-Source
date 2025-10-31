@@ -28,12 +28,12 @@ package com.sulake.habbo.window.utils.floorplaneditor
    import com.sulake.habbo.communication.messages.outgoing.room.layout.GetRoomEntryTileMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.layout.GetOccupiedTilesMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.layout.UpdateFloorPropertiesMessageComposer;
-   import com.sulake.habbo.communication.messages.parser.catalog.class_1565;
-   import com.sulake.habbo.communication.messages.parser.room.layout.class_1609;
-   import com.sulake.habbo.communication.messages.parser.room.engine.class_1304;
+   import com.sulake.habbo.communication.messages.parser.catalog.BuildersClubSubscriptionStatusMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.layout.RoomEntryTileMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.engine.RoomVisualizationSettingsEventParser;
    import com.sulake.habbo.communication.messages.incoming.room.engine.FloorHeightMapMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.room.engine.RoomVisualizationSettingsEvent;
-   import com.sulake.habbo.communication.messages.parser.perk.class_1448;
+   import com.sulake.habbo.communication.messages.parser.perk.PerkAllowancesMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.room.layout.RoomOccupiedTilesMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.room.layout.RoomEntryTileMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.perk.PerkAllowancesMessageEvent;
@@ -177,7 +177,7 @@ package com.sulake.habbo.window.utils.floorplaneditor
       
       private function onBcStatus(param1:BuildersClubSubscriptionStatusMessageEvent) : void
       {
-         var _loc2_:class_1565 = param1.getParser();
+         var _loc2_:BuildersClubSubscriptionStatusMessageEventParser = param1.getParser();
          _bcSecondsLeft = _loc2_.secondsLeft;
          if(!_bcSecondsCountdownTimer)
          {
@@ -501,7 +501,7 @@ package com.sulake.habbo.window.utils.floorplaneditor
          {
             return;
          }
-         var _loc2_:class_1609 = param1.getParser();
+         var _loc2_:RoomEntryTileMessageEventParser = param1.getParser();
          _floorPlanCache.entryPoint = new Point(_loc2_.x,_loc2_.y);
          _floorPlanCache.entryPointDir = _loc2_.dir;
          if(_heightMapEditor)
@@ -522,7 +522,7 @@ package com.sulake.habbo.window.utils.floorplaneditor
       
       private function onRoomVisualizationSettings(param1:RoomVisualizationSettingsEvent) : void
       {
-         var _loc2_:class_1304 = param1.getParser();
+         var _loc2_:RoomVisualizationSettingsEventParser = param1.getParser();
          _floorThickness = getThicknessSelectionIndex(_loc2_.floorThicknessMultiplier);
          _wallThickness = getThicknessSelectionIndex(_loc2_.wallThicknessMultiplier);
          updateThicknessSelection();
@@ -530,7 +530,7 @@ package com.sulake.habbo.window.utils.floorplaneditor
       
       private function onPerkAllowances(param1:PerkAllowancesMessageEvent) : void
       {
-         var _loc2_:class_1448 = param1.getParser();
+         var _loc2_:PerkAllowancesMessageEventParser = param1.getParser();
          _largeFloorPlansAllowed = _loc2_.isPerkAllowed("BUILDER_AT_WORK");
       }
       

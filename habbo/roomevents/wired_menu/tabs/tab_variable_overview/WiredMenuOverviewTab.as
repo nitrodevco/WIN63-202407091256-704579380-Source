@@ -17,7 +17,7 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_variable_overview
    import com.sulake.habbo.roomevents.wired_setup.inputsources.WiredInputSourcePicker;
    import flash.utils.Dictionary;
    import flash.utils.getTimer;
-   import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.wiredmenu.class_1165;
+   import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.wiredmenu.WiredAllVariableHoldersEventParser;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredcontext.variables.ObjectIdAndValuePair;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredcontext.variables.WiredVariable;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredAllVariableHoldersEvent;
@@ -150,7 +150,7 @@ package com.sulake.habbo.roomevents.wired_menu.tabs.tab_variable_overview
          {
             return;
          }
-         var _loc2_:class_1165 = param1.getParser();
+         var _loc2_:WiredAllVariableHoldersEventParser = param1.getParser();
          var _loc4_:Vector.<ObjectIdAndValuePair> = _loc2_.variableInfoAndHolders.holders;
          var _loc6_:WiredVariable;
          if((_loc6_ = _loc2_.variableInfoAndHolders.variable).variableId != selectedVariableId)

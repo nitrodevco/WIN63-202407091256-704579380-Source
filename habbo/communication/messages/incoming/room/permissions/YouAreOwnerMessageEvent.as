@@ -1,16 +1,16 @@
 package com.sulake.habbo.communication.messages.incoming.room.permissions {
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.room.permissions.class_1574
+    import com.sulake.habbo.communication.messages.parser.room.permissions.YouAreOwnerMessageEventParser
 
     [SecureSWF(rename="true")]
     public class YouAreOwnerMessageEvent extends MessageEvent {
 
         public function YouAreOwnerMessageEvent(param1: Function) {
-            super(param1, class_1574);
+            super(param1, YouAreOwnerMessageEventParser);
         }
 
-        public function getParser(): class_1574 {
-            return _parser as class_1574;
+        public function getParser(): YouAreOwnerMessageEventParser {
+            return _parser as YouAreOwnerMessageEventParser;
         }
     }
 }

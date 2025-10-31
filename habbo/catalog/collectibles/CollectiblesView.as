@@ -19,8 +19,8 @@ package com.sulake.habbo.catalog.collectibles
    import com.sulake.habbo.catalog.purse.class_3378;
    import com.sulake.habbo.utils.HabboWebTools;
    import com.sulake.habbo.window.IHabboWindowManager;
-   import com.sulake.habbo.communication.messages.parser.collectibles.class_1278;
-   import com.sulake.habbo.communication.messages.parser.collectibles.class_1484;
+   import com.sulake.habbo.communication.messages.parser.collectibles.CollectibleWalletAddressesMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.collectibles.NftCollectionsScoreMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.collectibles.NftCollectionsScoreMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectibleWalletAddressesMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetCollectibleWalletAddressesMessageComposer;
@@ -196,7 +196,7 @@ package com.sulake.habbo.catalog.collectibles
       private function onCollectionsScoreMessage(param1:NftCollectionsScoreMessageEvent) : void
       {
          var _loc3_:* = 0;
-         var _loc2_:class_1484 = param1.getParser();
+         var _loc2_:NftCollectionsScoreMessageEventParser = param1.getParser();
          levelValue.caption = String(_loc2_.level);
          scoreValue.caption = String(_loc2_.score);
          hiscoreValue.caption = String(_loc2_.highestScore);
@@ -225,7 +225,7 @@ package com.sulake.habbo.catalog.collectibles
       private function onCollectableWalletAddressMessage(param1:CollectibleWalletAddressesMessageEvent) : void
       {
          var_3829 = false;
-         var _loc2_:class_1278 = param1.getParser();
+         var _loc2_:CollectibleWalletAddressesMessageEventParser = param1.getParser();
          var_228 = _loc2_.walletAddresses;
          var_4219 = _loc2_.stardustWalletAddress;
          if(var_1900)

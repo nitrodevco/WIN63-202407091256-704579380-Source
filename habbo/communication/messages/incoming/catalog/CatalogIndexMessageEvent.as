@@ -1,13 +1,13 @@
 package com.sulake.habbo.communication.messages.incoming.catalog {
     import com.sulake.core.communication.messages.IMessageEvent
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.catalog.class_1367
+    import com.sulake.habbo.communication.messages.parser.catalog.CatalogIndexMessageEventParser
 
     [SecureSWF(rename="true")]
     public class CatalogIndexMessageEvent extends MessageEvent implements IMessageEvent {
 
         public function CatalogIndexMessageEvent(param1: Function) {
-            super(param1, class_1367);
+            super(param1, CatalogIndexMessageEventParser);
         }
 
         public function get root(): class_1373 {
@@ -22,8 +22,8 @@ package com.sulake.habbo.communication.messages.incoming.catalog {
             return getParser().catalogType;
         }
 
-        public function getParser(): class_1367 {
-            return this._parser as class_1367;
+        public function getParser(): CatalogIndexMessageEventParser {
+            return this._parser as CatalogIndexMessageEventParser;
         }
     }
 }

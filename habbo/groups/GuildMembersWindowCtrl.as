@@ -19,7 +19,7 @@ package com.sulake.habbo.groups
    import flash.events.Event;
    import flash.geom.Point;
    import flash.utils.Timer;
-   import com.sulake.habbo.communication.messages.parser.users.class_1631;
+   import com.sulake.habbo.communication.messages.parser.users.GroupMembershipRequestedMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.users.class_1212;
    import com.sulake.habbo.communication.messages.incoming.users.class_1251;
    import com.sulake.habbo.communication.messages.incoming.users.GuildMembershipRejectedMessageEvent;
@@ -146,7 +146,7 @@ package com.sulake.habbo.groups
       
       public function onMembershipRequested(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1631 = GroupMembershipRequestedMessageEvent(param1).getParser();
+         var _loc2_:GroupMembershipRequestedMessageEventParser = GroupMembershipRequestedMessageEvent(param1).getParser();
          if(_window && _window.visible && var_47 != null && var_47.groupId == _loc2_.groupId)
          {
             doSearch(var_47.pageIndex);

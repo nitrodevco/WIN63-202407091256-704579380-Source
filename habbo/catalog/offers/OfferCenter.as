@@ -12,7 +12,7 @@ package com.sulake.habbo.catalog.offers
    import com.sulake.habbo.window.IHabboWindowManager;
    import flash.events.TimerEvent;
    import flash.utils.Timer;
-   import com.sulake.habbo.communication.messages.parser.notifications.class_1153;
+   import com.sulake.habbo.communication.messages.parser.notifications.OfferRewardDeliveredMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.notifications.OfferRewardDeliveredMessageEvent;
    
    public class OfferCenter implements IOfferCenter, IDisposable
@@ -96,7 +96,7 @@ package com.sulake.habbo.catalog.offers
       
       private function onOfferRewardDelivered(param1:OfferRewardDeliveredMessageEvent) : void
       {
-         var _loc2_:class_1153 = param1.getParser();
+         var _loc2_:OfferRewardDeliveredMessageEventParser = param1.getParser();
          addReward(_loc2_.name,_loc2_.contentType,_loc2_.classId);
       }
       

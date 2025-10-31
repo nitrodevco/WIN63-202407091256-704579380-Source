@@ -5,7 +5,7 @@ package com.sulake.habbo.session.handler
     import com.sulake.core.communication.connection.IConnection;
    import com.sulake.core.communication.messages.IMessageEvent;
    import com.sulake.habbo.session.IRoomHandlerListener;
-   import com.sulake.habbo.communication.messages.parser.inventory.avatareffect.class_1410;
+   import com.sulake.habbo.communication.messages.parser.inventory.avatareffect.AvatarEffectsMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.inventory.avatareffect.AvatarEffectsMessageEvent;
    
    public class AvatarEffectsHandler extends BaseHandler
@@ -24,7 +24,7 @@ package com.sulake.habbo.session.handler
       private function onAvatarEffects(param1:IMessageEvent) : void
       {
          var _loc3_:AvatarEffectsMessageEvent = param1 as AvatarEffectsMessageEvent;
-         var _loc2_:class_1410 = _loc3_.getParser() as class_1410;
+         var _loc2_:AvatarEffectsMessageEventParser = _loc3_.getParser() as AvatarEffectsMessageEventParser;
          class_14.log("Received active avatar effects: " + _loc2_.effects);
          if(listener && listener.events)
          {

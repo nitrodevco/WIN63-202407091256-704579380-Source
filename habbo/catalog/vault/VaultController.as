@@ -14,9 +14,9 @@ package com.sulake.habbo.catalog.vault
    import com.sulake.iid.IIDHabboLocalizationManager;
    import com.sulake.iid.IIDHabboWindowManager;
    import com.sulake.iid.IIDSessionDataManager;
-   import com.sulake.habbo.communication.messages.parser.vault.class_1275;
-   import com.sulake.habbo.communication.messages.parser.vault.class_1463;
-   import com.sulake.habbo.communication.messages.parser.vault.class_1556;
+   import com.sulake.habbo.communication.messages.parser.vault.IncomeRewardClaimResponseMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.vault.CreditVaultStatusMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.vault.IncomeRewardStatusMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.vault.CreditVaultStatusMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.vault.IncomeRewardClaimResponseMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.vault.IncomeRewardStatusMessageEvent;
@@ -79,7 +79,7 @@ package com.sulake.habbo.catalog.vault
       
       private function onVaultStatusMessageEvent(param1:CreditVaultStatusMessageEvent) : void
       {
-         var _loc2_:class_1463 = null;
+         var _loc2_:CreditVaultStatusMessageEventParser = null;
          if(var_1631 && !var_1631.disposed)
          {
             _loc2_ = param1.getParser();
@@ -89,7 +89,7 @@ package com.sulake.habbo.catalog.vault
       
       private function onIncomeRewardStatusMessageEvent(param1:IncomeRewardStatusMessageEvent) : void
       {
-         var _loc2_:class_1556 = null;
+         var _loc2_:IncomeRewardStatusMessageEventParser = null;
          if(var_1631 && !var_1631.disposed)
          {
             _loc2_ = param1.getParser();
@@ -99,7 +99,7 @@ package com.sulake.habbo.catalog.vault
       
       private function onIncomeRewardClaimResponseMessageEvent(param1:IncomeRewardClaimResponseMessageEvent) : void
       {
-         var _loc2_:class_1275 = null;
+         var _loc2_:IncomeRewardClaimResponseMessageEventParser = null;
          if(var_1631 && !var_1631.disposed)
          {
             _loc2_ = param1.getParser();

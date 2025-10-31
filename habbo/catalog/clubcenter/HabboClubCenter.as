@@ -29,8 +29,8 @@ package com.sulake.habbo.catalog.clubcenter
    import flash.display.Stage;
    import flash.utils.getTimer;
    import com.sulake.habbo.communication.messages.incoming.inventory.badges.BadgesEvent;
-   import com.sulake.habbo.communication.messages.parser.users.class_1537;
-   import com.sulake.habbo.communication.messages.parser.inventory.badges.class_1181;
+   import com.sulake.habbo.communication.messages.parser.users.ScrSendKickbackInfoMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.badges.BadgesEventParser;
    import com.sulake.habbo.communication.messages.outgoing.catalog.GetClubGiftMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.users.class_1739;
    import com.sulake.habbo.communication.messages.incoming.users.ScrSendKickbackInfoMessageEvent;
@@ -223,7 +223,7 @@ package com.sulake.habbo.catalog.clubcenter
       
       private function onKickbackInfoMessageEvent(param1:ScrSendKickbackInfoMessageEvent) : void
       {
-         var _loc2_:class_1537 = param1.getParser();
+         var _loc2_:ScrSendKickbackInfoMessageEventParser = param1.getParser();
          var_47 = _loc2_.data;
          var_3230 = false;
          var_4785 = getTimer();
@@ -248,7 +248,7 @@ package com.sulake.habbo.catalog.clubcenter
       
       public function onBadges(param1:IMessageEvent) : void
       {
-         var _loc3_:class_1181 = (param1 as BadgesEvent).getParser();
+         var _loc3_:BadgesEventParser = (param1 as BadgesEvent).getParser();
          if(var_3540 == null)
          {
             var_3540 = new Vector.<Map>(_loc3_.totalFragments,true);

@@ -24,8 +24,8 @@ package com.sulake.habbo.campaign
    import com.sulake.iid.IIDSessionDataManager;
    import com.sulake.habbo.communication.messages.incoming.campaign.CampaignCalendarDataMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.campaign.CampaignCalendarDoorOpenedMessageEvent;
-   import com.sulake.habbo.communication.messages.parser.campaign.class_1115;
-   import com.sulake.habbo.communication.messages.parser.campaign.class_1499;
+   import com.sulake.habbo.communication.messages.parser.campaign.CampaignCalendarDoorOpenedMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.campaign.CampaignCalendarDataMessageEventParser;
    import com.sulake.habbo.communication.messages.parser.campaign.class_1641;
    import com.sulake.habbo.communication.messages.outgoing.campaign.OpenCampaignCalendarDoorAsStaffComposer;
    import com.sulake.habbo.communication.messages.outgoing.campaign.OpenCampaignCalendarDoorComposer;
@@ -105,13 +105,13 @@ package com.sulake.habbo.campaign
          {
             return;
          }
-         var _loc2_:class_1499 = param1.getParser();
+         var _loc2_:CampaignCalendarDataMessageEventParser = param1.getParser();
          var_2067 = _loc2_.cloneData();
       }
       
       private function onCampaignCalendarDoorOpenedMessageEvent(param1:CampaignCalendarDoorOpenedMessageEvent) : void
       {
-         var _loc2_:class_1115 = param1.getParser();
+         var _loc2_:CampaignCalendarDoorOpenedMessageEventParser = param1.getParser();
          if(_loc2_.doorOpened)
          {
             showProductNotification(_loc2_.productName,_loc2_.customImage,_loc2_.furnitureClassName);

@@ -35,15 +35,15 @@ package com.sulake.habbo.session
    import com.sulake.habbo.communication.messages.incoming.mysterybox.MysteryBoxKeysMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.room.session.RoomReadyMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.room.chat.ChatMessageComposer;
-   import com.sulake.habbo.communication.messages.parser.users.class_1127;
-   import com.sulake.habbo.communication.messages.parser.users.class_1297;
-   import com.sulake.habbo.communication.messages.parser.users.class_1585;
-   import com.sulake.habbo.communication.messages.parser.handshake.class_1267;
-   import com.sulake.habbo.communication.messages.parser.room.session.class_1207;
-   import com.sulake.habbo.communication.messages.parser.avatar.class_1162;
-   import com.sulake.habbo.communication.messages.parser.availability.class_1579;
-   import com.sulake.habbo.communication.messages.parser.mysterybox.class_1470;
-   import com.sulake.habbo.communication.messages.parser.preferences.class_1413;
+   import com.sulake.habbo.communication.messages.parser.users.EmailStatusResultEventParser;
+   import com.sulake.habbo.communication.messages.parser.users.UserNameChangedMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.users.AccountSafetyLockStatusChangeMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.handshake.UserObjectEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.session.RoomReadyMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.avatar.ChangeUserNameResultMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.availability.AvailabilityStatusMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.mysterybox.MysteryBoxKeysMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.preferences.AccountPreferencesEventParser;
    import com.sulake.habbo.communication.messages.incoming.room.engine.UserChangeMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.preferences.SetUIFlagsMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.vault.CreditVaultStatusMessageComposer;
@@ -377,7 +377,7 @@ package com.sulake.habbo.session
       {
          var _loc4_:String = null;
          var _loc2_:UserObjectEvent = param1 as UserObjectEvent;
-         var _loc3_:class_1267 = _loc2_.getParser();
+         var _loc3_:UserObjectEventParser = _loc2_.getParser();
          var_280 = _loc3_.id;
          _name = _loc3_.name;
          var_1501 = _loc3_.respectTotal;
@@ -444,7 +444,7 @@ package com.sulake.habbo.session
          {
             return;
          }
-         var _loc3_:class_1297 = _loc2_.getParser();
+         var _loc3_:UserNameChangedMessageEventParser = _loc2_.getParser();
          if(_loc3_.webId == var_280)
          {
             _name = _loc3_.newName;
@@ -456,7 +456,7 @@ package com.sulake.habbo.session
       private function onChangeUserNameResult(param1:ChangeUserNameResultMessageEvent) : void
       {
          var _loc3_:String = null;
-         var _loc2_:class_1162 = param1.getParser();
+         var _loc2_:ChangeUserNameResultMessageEventParser = param1.getParser();
          if(_loc2_.resultCode == ChangeUserNameResultMessageEvent.var_1586)
          {
             try
@@ -479,7 +479,7 @@ package com.sulake.habbo.session
       
       private function onMysteryBoxKeys(param1:MysteryBoxKeysMessageEvent) : void
       {
-         var _loc2_:class_1470 = param1.getParser();
+         var _loc2_:MysteryBoxKeysMessageEventParser = param1.getParser();
          _mysteryBoxColor = _loc2_.boxColor;
          _mysteryKeyColor = _loc2_.keyColor;
          events.dispatchEvent(new MysteryBoxKeysUpdateEvent(_mysteryBoxColor,_mysteryKeyColor));
@@ -492,7 +492,7 @@ package com.sulake.habbo.session
       
       private function onAccountPreferences(param1:AccountPreferencesEvent) : void
       {
-         var _loc2_:class_1413 = param1.getParser() as class_1413;
+         var _loc2_:AccountPreferencesEventParser = param1.getParser() as AccountPreferencesEventParser;
          var_3908 = _loc2_.roomCameraFollowDisabled;
          var_533 = _loc2_.uiFlags;
          events.dispatchEvent(new SessionDataPreferencesEvent(var_533));
@@ -500,12 +500,12 @@ package com.sulake.habbo.session
       
       private function onEmailStatus(param1:EmailStatusResultEvent) : void
       {
-         var _loc2_:class_1127 = param1.getParser() as class_1127;
+         var _loc2_:EmailStatusResultEventParser = param1.getParser() as EmailStatusResultEventParser;
          var_4681 = _loc2_.isVerified;
       }
 
       private function onAvailabilityStatus(event: IMessageEvent): void {
-         var parser: class_1579 = (event as AvailabilityStatusMessageEvent).getParser();
+         var parser: AvailabilityStatusMessageEventParser = (event as AvailabilityStatusMessageEvent).getParser();
          if (parser == null) {
             return;
          }
@@ -533,7 +533,7 @@ package com.sulake.habbo.session
       
       private function onAccountSafetyLockStatusChanged(param1:AccountSafetyLockStatusChangeMessageEvent) : void
       {
-         var _loc2_:class_1585 = param1.getParser();
+         var _loc2_:AccountSafetyLockStatusChangeMessageEventParser = param1.getParser();
          var_1528 = _loc2_.status == 0;
       }
       
@@ -1068,7 +1068,7 @@ package com.sulake.habbo.session
          {
             return;
          }
-         var _loc2_:class_1207 = _loc3_.getParser();
+         var _loc2_:RoomReadyMessageEventParser = _loc3_.getParser();
          HabboWebTools.roomVisited(_loc2_.roomId);
       }
       

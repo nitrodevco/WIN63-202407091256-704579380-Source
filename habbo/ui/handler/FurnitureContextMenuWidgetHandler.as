@@ -18,7 +18,7 @@ package com.sulake.habbo.ui.handler
    import flash.events.Event;
    import flash.geom.Point;
    import flash.geom.Rectangle;
-   import com.sulake.habbo.communication.messages.parser.room.furniture.class_1236;
+   import com.sulake.habbo.communication.messages.parser.room.furniture.GuildFurniContextMenuInfoMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.room.furniture.GuildFurniContextMenuInfoMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.users.JoinHabboGroupMessageComposer;
    
@@ -256,7 +256,7 @@ package com.sulake.habbo.ui.handler
       
       private function onGuildFurniContextMenuInfo(param1:GuildFurniContextMenuInfoMessageEvent) : void
       {
-         var _loc2_:class_1236 = null;
+         var _loc2_:GuildFurniContextMenuInfoMessageEventParser = null;
          var _loc3_:IRoomObject = null;
          if(var_1629 != null)
          {

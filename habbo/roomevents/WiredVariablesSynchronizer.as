@@ -4,7 +4,7 @@ package com.sulake.habbo.roomevents
    import com.sulake.core.runtime.IDisposable;
    import flash.utils.Dictionary;
    import flash.utils.getTimer;
-   import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.wiredmenu.class_1286;
+   import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.wiredmenu.WiredAllVariablesDiffsEventParser;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredcontext.variables.WiredVariable;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredcontext.variables.class_3556;
    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredAllVariablesHashEvent;
@@ -154,7 +154,7 @@ package com.sulake.habbo.roomevents
             return;
          }
          var_2185 = getTimer();
-         var _loc2_:class_1286 = param1.getParser();
+         var _loc2_:WiredAllVariablesDiffsEventParser = param1.getParser();
          _allVariablesHash = _loc2_.allVariablesHash;
          if(var_2112 == null)
          {

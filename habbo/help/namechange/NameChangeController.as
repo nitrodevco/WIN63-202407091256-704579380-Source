@@ -11,10 +11,10 @@ package com.sulake.habbo.help.namechange
    import com.sulake.habbo.help.INameChangeUI;
    import com.sulake.habbo.help.enum.HabboHelpTutorialEvent;
    import com.sulake.habbo.localization.IHabboLocalizationManager;
-   import com.sulake.habbo.communication.messages.parser.users.class_1297;
-   import com.sulake.habbo.communication.messages.parser.handshake.class_1267;
-   import com.sulake.habbo.communication.messages.parser.avatar.class_1162;
-   import com.sulake.habbo.communication.messages.parser.avatar.class_1164;
+   import com.sulake.habbo.communication.messages.parser.users.UserNameChangedMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.handshake.UserObjectEventParser;
+   import com.sulake.habbo.communication.messages.parser.avatar.ChangeUserNameResultMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.avatar.CheckUserNameResultMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.avatar.ChangeUserNameResultMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.avatar.CheckUserNameResultMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.users.UserNameChangedMessageEvent;
@@ -194,7 +194,7 @@ package com.sulake.habbo.help.namechange
          {
             return;
          }
-         var _loc2_:class_1162 = param1.getParser();
+         var _loc2_:ChangeUserNameResultMessageEventParser = param1.getParser();
          if(_loc2_ == null)
          {
             return;
@@ -216,7 +216,7 @@ package com.sulake.habbo.help.namechange
          {
             return;
          }
-         var _loc2_:class_1164 = param1.getParser();
+         var _loc2_:CheckUserNameResultMessageEventParser = param1.getParser();
          if(_loc2_.resultCode == ChangeUserNameResultMessageEvent.var_1586)
          {
             var_1847.checkedName = _loc2_.name;
@@ -229,14 +229,14 @@ package com.sulake.habbo.help.namechange
       
       private function onUserObject(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1267 = UserObjectEvent(param1).getParser();
+         var _loc2_:UserObjectEventParser = UserObjectEvent(param1).getParser();
          var_4252 = _loc2_.id;
          _ownUserName = _loc2_.name;
       }
       
       private function onUserNameChange(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1297 = UserNameChangedMessageEvent(param1).getParser();
+         var _loc2_:UserNameChangedMessageEventParser = UserNameChangedMessageEvent(param1).getParser();
          if(var_4252 == _loc2_.webId)
          {
             _ownUserName = _loc2_.newName;

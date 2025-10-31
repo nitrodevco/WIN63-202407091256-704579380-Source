@@ -20,7 +20,7 @@ package com.sulake.habbo.friendbar.talent
    import com.sulake.habbo.window.widgets.IAvatarImageWidget;
    import com.sulake.habbo.window.widgets.IBadgeImageWidget;
    import flash.geom.Point;
-   import com.sulake.habbo.communication.messages.parser.talent.class_1193;
+   import com.sulake.habbo.communication.messages.parser.talent.TalentTrackMessageEventParser;
    import com.sulake.habbo.communication.messages.parser.talent.class_1700;
    import com.sulake.habbo.communication.messages.parser.talent.class_1716;
    import com.sulake.habbo.communication.messages.parser.talent.class_1756;
@@ -156,7 +156,7 @@ package com.sulake.habbo.friendbar.talent
       
       private function onTalentTrack(param1:TalentTrackMessageEvent) : void
       {
-         var _loc2_:class_1193 = param1.getParser();
+         var _loc2_:TalentTrackMessageEventParser = param1.getParser();
          _talentTrack = _loc2_.getTalentTrack();
          createWindow();
       }

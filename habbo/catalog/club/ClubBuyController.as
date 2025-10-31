@@ -9,7 +9,7 @@ package com.sulake.habbo.catalog.club
    import com.sulake.habbo.room.IRoomEngine;
    import com.sulake.habbo.session.product.class_3423;
    import com.sulake.habbo.window.IHabboWindowManager;
-   import com.sulake.habbo.communication.messages.parser.catalog.class_1474;
+   import com.sulake.habbo.communication.messages.parser.catalog.HabboClubOffersMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.catalog.class_1645;
    
    public class ClubBuyController
@@ -66,7 +66,7 @@ package com.sulake.habbo.catalog.club
          _offers = [];
       }
       
-      public function onOffers(param1:class_1474) : void
+      public function onOffers(param1:HabboClubOffersMessageEventParser) : void
       {
          var _loc9_:* = null;
          var _loc6_:ClubBuyOfferData = null;

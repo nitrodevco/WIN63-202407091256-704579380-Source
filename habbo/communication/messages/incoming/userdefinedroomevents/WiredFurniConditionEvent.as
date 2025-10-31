@@ -1,17 +1,17 @@
 package com.sulake.habbo.communication.messages.incoming.userdefinedroomevents {
     import com.sulake.core.communication.messages.IMessageEvent
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.class_1311
+    import com.sulake.habbo.communication.messages.parser.userdefinedroomevents.WiredFurniConditionEventParser
 
     [SecureSWF(rename="true")]
     public class WiredFurniConditionEvent extends MessageEvent implements IMessageEvent {
 
         public function WiredFurniConditionEvent(param1: Function) {
-            super(param1, class_1311);
+            super(param1, WiredFurniConditionEventParser);
         }
 
-        public function getParser(): class_1311 {
-            return this._parser as class_1311;
+        public function getParser(): WiredFurniConditionEventParser {
+            return this._parser as WiredFurniConditionEventParser;
         }
     }
 }

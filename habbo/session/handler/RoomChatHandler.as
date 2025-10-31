@@ -8,10 +8,10 @@ package com.sulake.habbo.session.handler
    import com.sulake.habbo.session.IRoomSession;
    import com.sulake.habbo.session.class_3490;
    import com.sulake.habbo.session.events.RoomSessionChatEvent;
-   import com.sulake.habbo.communication.messages.parser.users.class_1239;
-   import com.sulake.habbo.communication.messages.parser.users.class_1357;
-   import com.sulake.habbo.communication.messages.parser.room.chat.class_1344;
-   import com.sulake.habbo.communication.messages.parser.room.chat.class_1558;
+   import com.sulake.habbo.communication.messages.parser.users.PetRespectNotificationEventParser;
+   import com.sulake.habbo.communication.messages.parser.users.PetSupplementedNotificationEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.chat.ChatMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.chat.FloodControlMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.room.chat.RemainingMutePeriodEvent;
    import com.sulake.habbo.communication.messages.incoming.room.chat.ChatMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.room.chat.WhisperMessageEvent;
@@ -50,7 +50,7 @@ package com.sulake.habbo.session.handler
          var _loc4_:IRoomSession = null;
          var _loc5_:String = null;
          var _loc6_:int = 0;
-         var _loc3_:class_1344 = null;
+         var _loc3_:ChatMessageEventParser = null;
          if(listener && listener.events)
          {
             _loc2_ = param1 as ChatMessageEvent;
@@ -104,7 +104,7 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         var _loc3_:class_1239 = param1.getParser();
+         var _loc3_:PetRespectNotificationEventParser = param1.getParser();
          if(_loc3_ == null)
          {
             return;
@@ -134,7 +134,7 @@ package com.sulake.habbo.session.handler
          {
             return;
          }
-         var _loc3_:class_1357 = param1.getParser();
+         var _loc3_:PetSupplementedNotificationEventParser = param1.getParser();
          if(_loc3_ == null)
          {
             return;
@@ -203,7 +203,7 @@ package com.sulake.habbo.session.handler
          var _loc4_:IRoomSession = null;
          var _loc5_:String = null;
          var _loc6_:int = 0;
-         var _loc3_:class_1344 = null;
+         var _loc3_:ChatMessageEventParser = null;
          if(listener && listener.events)
          {
             _loc2_ = param1 as WhisperMessageEvent;
@@ -227,7 +227,7 @@ package com.sulake.habbo.session.handler
          var _loc4_:IRoomSession = null;
          var _loc5_:String = null;
          var _loc6_:int = 0;
-         var _loc3_:class_1344 = null;
+         var _loc3_:ChatMessageEventParser = null;
          if(listener && listener.events)
          {
             _loc2_ = param1 as ShoutMessageEvent;
@@ -247,7 +247,7 @@ package com.sulake.habbo.session.handler
       
       private function onFloodControl(param1:IMessageEvent) : void
       {
-         var _loc3_:class_1558 = null;
+         var _loc3_:FloodControlMessageEventParser = null;
          var _loc4_:IRoomSession = null;
          var _loc2_:int = 0;
          if(listener && listener.events)

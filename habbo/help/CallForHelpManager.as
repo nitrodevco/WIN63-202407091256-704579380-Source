@@ -10,9 +10,9 @@ package com.sulake.habbo.help
    import com.sulake.core.window.components.IWidgetWindow;
    import com.sulake.core.window.events.WindowEvent;
    import com.sulake.core.window.utils.class_3348;
-   import com.sulake.habbo.communication.messages.parser.help.class_1249;
-   import com.sulake.habbo.communication.messages.parser.help.class_1346;
-   import com.sulake.habbo.communication.messages.parser.help.class_1478;
+   import com.sulake.habbo.communication.messages.parser.help.CallForHelpReplyMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.help.CallForHelpResultMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.help.IssueCloseNotificationMessageEventParser;
    import com.sulake.habbo.help.cfh.registry.user.UserRegistryItem;
    import com.sulake.habbo.window.widgets.IIlluminaInputWidget;
    import com.sulake.habbo.window.widgets.IAvatarImageWidget;
@@ -659,13 +659,13 @@ package com.sulake.habbo.help
       
       private function onCallForHelpReply(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1249 = CallForHelpReplyMessageEvent(param1).getParser();
+         var _loc2_:CallForHelpReplyMessageEventParser = CallForHelpReplyMessageEvent(param1).getParser();
          _habboHelp.windowManager.alert("${help.cfh.reply.title}",_loc2_.message,0,null);
       }
       
       private function onCallForHelpResult(param1:IMessageEvent) : void
       {
-         var _loc3_:class_1346 = CallForHelpResultMessageEvent(param1).getParser();
+         var _loc3_:CallForHelpResultMessageEventParser = CallForHelpResultMessageEvent(param1).getParser();
          var _loc4_:int = _loc3_.resultType;
          var _loc2_:String = _loc3_.messageText;
          switch(_loc4_ - 1)
@@ -687,7 +687,7 @@ package com.sulake.habbo.help
       
       private function onIssueClose(param1:IssueCloseNotificationMessageEvent) : void
       {
-         var _loc3_:class_1478 = param1.getParser();
+         var _loc3_:IssueCloseNotificationMessageEventParser = param1.getParser();
          var _loc2_:String = _loc3_.messageText;
          if(_loc2_ == "")
          {

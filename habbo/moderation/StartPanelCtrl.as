@@ -5,7 +5,7 @@ package com.sulake.habbo.moderation
    import com.sulake.core.window.components.ILabelWindow;
    import com.sulake.core.window.components.class_3514;
    import com.sulake.core.window.events.WindowEvent;
-   import com.sulake.habbo.communication.messages.parser.room.engine.class_1339;
+   import com.sulake.habbo.communication.messages.parser.room.engine.RoomEntryInfoMessageEventParser;
    import com.sulake.habbo.communication.messages.outgoing.moderator.GetRoomChatlogMessageComposer;
    
    public class StartPanelCtrl implements IDisposable
@@ -60,7 +60,7 @@ package com.sulake.habbo.moderation
          IWindowContainer(_frame.findChildByName("userinfo_but")).findChildByName("offence_name").caption = "User info: " + param2;
       }
       
-      public function guestRoomEntered(param1:class_1339) : void
+      public function guestRoomEntered(param1:RoomEntryInfoMessageEventParser) : void
       {
          if(_frame == null || param1 == null)
          {

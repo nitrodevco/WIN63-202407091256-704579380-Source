@@ -8,8 +8,8 @@ package com.sulake.habbo.ui.handler
    import com.sulake.habbo.ui.widget.messages.RoomWidgetMessage;
    import com.sulake.room.object.IRoomObject;
    import flash.events.Event;
-   import com.sulake.habbo.communication.messages.parser.room.furniture.class_1396;
-   import com.sulake.habbo.communication.messages.parser.room.furniture.class_1449;
+   import com.sulake.habbo.communication.messages.parser.room.furniture.RentableSpaceStatusMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.furniture.RentableSpaceRentFailedMessageEventParser;
    import com.sulake.habbo.communication.messages.outgoing.room.furniture.RentableSpaceCancelRentMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.furniture.RentableSpaceRentMessageComposer;
    import com.sulake.habbo.communication.messages.outgoing.room.furniture.RentableSpaceStatusMessageComposer;
@@ -137,13 +137,13 @@ package com.sulake.habbo.ui.handler
       
       public function onRentableSpaceRentFailedMessage(param1:RentableSpaceRentFailedMessageEvent) : void
       {
-         var _loc2_:class_1449 = param1.getParser();
+         var _loc2_:RentableSpaceRentFailedMessageEventParser = param1.getParser();
          var_1629.showErrorView(_loc2_.reason);
       }
       
       public function onRentableSpaceStatusMessage(param1:RentableSpaceStatusMessageEvent) : void
       {
-         var _loc2_:class_1396 = param1.getParser();
+         var _loc2_:RentableSpaceStatusMessageEventParser = param1.getParser();
          var_1629.populateRentInfo(_loc2_.rented,_loc2_.canRent,_loc2_.canRentErrorCode,_loc2_.renterId,_loc2_.renterName,_loc2_.timeRemaining,_loc2_.price);
       }
       

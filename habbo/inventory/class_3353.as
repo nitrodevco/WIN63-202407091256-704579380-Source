@@ -40,32 +40,32 @@ package com.sulake.habbo.inventory
    import com.sulake.habbo.communication.messages.parser.inventory.trading.class_1504;
    import com.sulake.habbo.communication.messages.parser.inventory.trading.class_1549;
    import com.sulake.habbo.communication.messages.parser.inventory.trading.class_1550;
-   import com.sulake.habbo.communication.messages.parser.marketplace.class_1121;
-   import com.sulake.habbo.communication.messages.parser.marketplace.class_1445;
-   import com.sulake.habbo.communication.messages.parser.marketplace.class_1518;
-   import com.sulake.habbo.communication.messages.parser.marketplace.class_1602;
-   import com.sulake.habbo.communication.messages.parser.users.class_1359;
-   import com.sulake.habbo.communication.messages.parser.inventory.avatareffect.class_1128;
-   import com.sulake.habbo.communication.messages.parser.inventory.avatareffect.class_1146;
-   import com.sulake.habbo.communication.messages.parser.inventory.avatareffect.class_1256;
-   import com.sulake.habbo.communication.messages.parser.inventory.avatareffect.class_1410;
-   import com.sulake.habbo.communication.messages.parser.navigator.class_1539;
-   import com.sulake.habbo.communication.messages.parser.inventory.pets.class_1194;
-   import com.sulake.habbo.communication.messages.parser.inventory.pets.class_1213;
-   import com.sulake.habbo.communication.messages.parser.inventory.pets.class_1516;
+   import com.sulake.habbo.communication.messages.parser.marketplace.MarketplaceItemStatsEventParser;
+   import com.sulake.habbo.communication.messages.parser.marketplace.MarketplaceConfigurationEventParser;
+   import com.sulake.habbo.communication.messages.parser.marketplace.MarketplaceMakeOfferResult;
+   import com.sulake.habbo.communication.messages.parser.marketplace.MarketplaceCanMakeOfferResult;
+   import com.sulake.habbo.communication.messages.parser.users.ScrSendUserInfoEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.avatareffect.AvatarEffectActivatedMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.avatareffect.AvatarEffectExpiredMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.avatareffect.AvatarEffectAddedMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.avatareffect.AvatarEffectsMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.navigator.FlatAccessDeniedMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.pets.PetAddedToInventoryEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.pets.PetInventoryEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.pets.PetRemovedFromInventoryEventParser;
    import com.sulake.habbo.communication.messages.incoming.inventory.pets.GoToBreedingNestFailureEvent;
    import com.sulake.habbo.communication.messages.incoming.inventory.pets.PetAddedToInventoryEvent;
    import com.sulake.habbo.communication.messages.incoming.inventory.pets.PetInventoryEvent;
    import com.sulake.habbo.communication.messages.incoming.inventory.pets.PetRemovedFromInventoryEvent;
-   import com.sulake.habbo.communication.messages.parser.notifications.class_1271;
-   import com.sulake.habbo.communication.messages.parser.inventory.badges.class_1173;
-   import com.sulake.habbo.communication.messages.parser.inventory.badges.class_1181;
-   import com.sulake.habbo.communication.messages.parser.inventory.badges.class_1224;
+   import com.sulake.habbo.communication.messages.parser.notifications.HabboAchievementNotificationMessageEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.badges.BadgeReceivedEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.badges.BadgesEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.badges.BadgePointLimitsEventParser;
    import com.sulake.habbo.communication.messages.parser.inventory.badges.class_1647;
-   import com.sulake.habbo.communication.messages.parser.inventory.furni.class_1228;
-   import com.sulake.habbo.communication.messages.parser.inventory.furni.class_1491;
-   import com.sulake.habbo.communication.messages.parser.inventory.furni.class_1546;
-   import com.sulake.habbo.communication.messages.parser.inventory.furni.class_1611;
+   import com.sulake.habbo.communication.messages.parser.inventory.furni.PostItPlacedEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.furni.FurniListAddOrUpdateEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.furni.FurniListEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.furni.FurniListRemoveEventParser;
    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingOpenEvent;
    import com.sulake.habbo.communication.messages.incoming.inventory.trading.class_1704;
    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingConfirmationEvent;
@@ -79,10 +79,10 @@ package com.sulake.habbo.inventory
    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradeSilverSetMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradeOpenFailedEvent;
    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingItemListEvent;
-   import com.sulake.habbo.communication.messages.parser.inventory.bots.class_1425;
-   import com.sulake.habbo.communication.messages.parser.inventory.bots.class_1447;
-   import com.sulake.habbo.communication.messages.parser.inventory.bots.class_1472;
-   import com.sulake.habbo.communication.messages.parser.inventory.achievements.class_1430;
+   import com.sulake.habbo.communication.messages.parser.inventory.bots.BotRemovedFromInventoryEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.bots.BotAddedToInventoryEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.bots.BotInventoryEventParser;
+   import com.sulake.habbo.communication.messages.parser.inventory.achievements.AchievementsScoreEventParser;
    import com.sulake.habbo.communication.messages.incoming.room.engine.RoomEntryInfoMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.notifications.HabboAchievementNotificationMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.inventory.furni.class_1707;
@@ -191,7 +191,7 @@ package com.sulake.habbo.inventory
       
       public function onFurniList(param1:FurniListEvent) : void
       {
-         var _loc4_:class_1546;
+         var _loc4_:FurniListEventParser;
          if((_loc4_ = param1.getParser()) == null)
          {
             return;
@@ -225,7 +225,7 @@ package com.sulake.habbo.inventory
       {
          var _loc2_:FurnitureItem = null;
          var _loc5_:GroupItem = null;
-         var _loc3_:class_1491 = (param1 as FurniListAddOrUpdateEvent).getParser();
+         var _loc3_:FurniListAddOrUpdateEventParser = (param1 as FurniListAddOrUpdateEvent).getParser();
          if(_loc3_ == null)
          {
             return;
@@ -259,7 +259,7 @@ package com.sulake.habbo.inventory
       
       public function onFurniListRemove(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1611 = (param1 as FurniListRemoveEvent).getParser();
+         var _loc2_:FurniListRemoveEventParser = (param1 as FurniListRemoveEvent).getParser();
          if(_loc2_ == null)
          {
             return;
@@ -285,7 +285,7 @@ package com.sulake.habbo.inventory
       
       public function onPostItPlaced(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1228 = (param1 as PostItPlacedEvent).getParser();
+         var _loc2_:PostItPlacedEventParser = (param1 as PostItPlacedEvent).getParser();
          if(_loc2_ == null)
          {
             return;
@@ -314,7 +314,7 @@ package com.sulake.habbo.inventory
          {
             return;
          }
-         var _loc3_:class_1410 = (param1 as AvatarEffectsMessageEvent).getParser();
+         var _loc3_:AvatarEffectsMessageEventParser = (param1 as AvatarEffectsMessageEvent).getParser();
          if(_loc3_ == null)
          {
             return;
@@ -355,7 +355,7 @@ package com.sulake.habbo.inventory
          {
             return;
          }
-         var _loc2_:class_1256 = (param1 as AvatarEffectAddedMessageEvent).getParser();
+         var _loc2_:AvatarEffectAddedMessageEventParser = (param1 as AvatarEffectAddedMessageEvent).getParser();
          if(_loc2_ == null)
          {
             return;
@@ -381,7 +381,7 @@ package com.sulake.habbo.inventory
          {
             return;
          }
-         var _loc2_:class_1128 = (param1 as AvatarEffectActivatedMessageEvent).getParser();
+         var _loc2_:AvatarEffectActivatedMessageEventParser = (param1 as AvatarEffectActivatedMessageEvent).getParser();
          if(_loc2_ == null)
          {
             return;
@@ -398,7 +398,7 @@ package com.sulake.habbo.inventory
          {
             return;
          }
-         var _loc2_:class_1146 = (param1 as AvatarEffectExpiredMessageEvent).getParser();
+         var _loc2_:AvatarEffectExpiredMessageEventParser = (param1 as AvatarEffectExpiredMessageEvent).getParser();
          if(_loc2_ == null)
          {
             return;
@@ -410,7 +410,7 @@ package com.sulake.habbo.inventory
       
       public function onClubStatus(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1359 = (param1 as ScrSendUserInfoEvent).getParser();
+         var _loc2_:ScrSendUserInfoEventParser = (param1 as ScrSendUserInfoEvent).getParser();
          if(_loc2_.productName == "habbo_club" || _loc2_.productName == "club_habbo")
          {
             _inventory.setClubStatus(_loc2_.periodsSubscribedAhead,_loc2_.daysToPeriodEnd,_loc2_.hasEverBeenMember,_loc2_.isVIP,_loc2_.responseType == 3,_loc2_.responseType == 4,_loc2_.minutesUntilExpiration,_loc2_.minutesSinceLastModified);
@@ -420,7 +420,7 @@ package com.sulake.habbo.inventory
       
       public function onBadges(param1:IMessageEvent) : void
       {
-         var _loc3_:class_1181 = (param1 as BadgesEvent).getParser();
+         var _loc3_:BadgesEventParser = (param1 as BadgesEvent).getParser();
          if(_loc3_ == null)
          {
             return;
@@ -457,7 +457,7 @@ package com.sulake.habbo.inventory
       
       public function onBadgePointLimits(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1224 = (param1 as BadgePointLimitsEvent).getParser();
+         var _loc2_:BadgePointLimitsEventParser = (param1 as BadgePointLimitsEvent).getParser();
          for each(var _loc3_ in _loc2_.data)
          {
             _inventory.localization.setBadgePointLimit(_loc3_.badgeId,_loc3_.limit);
@@ -494,7 +494,7 @@ package com.sulake.habbo.inventory
       public function onAchievementReceived(param1:IMessageEvent) : void
       {
          var _loc4_:HabboAchievementNotificationMessageEvent;
-         var _loc3_:class_1271 = (_loc4_ = param1 as HabboAchievementNotificationMessageEvent).getParser();
+         var _loc3_:HabboAchievementNotificationMessageEventParser = (_loc4_ = param1 as HabboAchievementNotificationMessageEvent).getParser();
          var _loc2_:BadgesModel = _inventory.badgesModel;
          if(_loc2_ != null)
          {
@@ -506,7 +506,7 @@ package com.sulake.habbo.inventory
       
       public function onBadgeReceived(param1:IMessageEvent) : void
       {
-         var _loc3_:class_1173 = BadgeReceivedEvent(param1).getParser();
+         var _loc3_:BadgeReceivedEventParser = BadgeReceivedEvent(param1).getParser();
          var _loc2_:BadgesModel = _inventory.badgesModel;
          if(_loc2_ != null)
          {
@@ -518,7 +518,7 @@ package com.sulake.habbo.inventory
       public function onAchievementsScore(param1:IMessageEvent) : void
       {
          var _loc2_:AchievementsScoreEvent = param1 as AchievementsScoreEvent;
-         var _loc3_:class_1430 = _loc2_.getParser() as class_1430;
+         var _loc3_:AchievementsScoreEventParser = _loc2_.getParser() as AchievementsScoreEventParser;
          if(_loc3_ == null)
          {
             return;
@@ -757,7 +757,7 @@ package com.sulake.habbo.inventory
       
       private function onFlatAccessDenied(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1539 = (param1 as FlatAccessDeniedMessageEvent).getParser();
+         var _loc2_:FlatAccessDeniedMessageEventParser = (param1 as FlatAccessDeniedMessageEvent).getParser();
          if(_inventory.sessionData == null || _loc2_.userName != _inventory.sessionData.userName)
          {
             return;
@@ -777,7 +777,7 @@ package com.sulake.habbo.inventory
          {
             return;
          }
-         var _loc3_:class_1213 = param1.getParser();
+         var _loc3_:PetInventoryEventParser = param1.getParser();
          if(var_3568 == null)
          {
             var_3568 = new Vector.<Map>(_loc3_.totalFragments,true);
@@ -804,7 +804,7 @@ package com.sulake.habbo.inventory
          {
             return;
          }
-         var _loc2_:class_1194 = param1.getParser();
+         var _loc2_:PetAddedToInventoryEventParser = param1.getParser();
          _loc3_.addPet(_loc2_.pet);
          if(_loc2_.openInventory())
          {
@@ -850,7 +850,7 @@ package com.sulake.habbo.inventory
          {
             return;
          }
-         var _loc2_:class_1516 = param1.getParser();
+         var _loc2_:PetRemovedFromInventoryEventParser = param1.getParser();
          _loc3_.removePet(_loc2_.petId);
       }
       
@@ -865,7 +865,7 @@ package com.sulake.habbo.inventory
          {
             return;
          }
-         var _loc2_:class_1472 = param1.getParser();
+         var _loc2_:BotInventoryEventParser = param1.getParser();
          _loc3_.updateItems(_loc2_.items);
          _inventory.setInventoryCategoryInit("bots");
          _loc3_.setListInitialized();
@@ -882,7 +882,7 @@ package com.sulake.habbo.inventory
          {
             return;
          }
-         var _loc2_:class_1425 = param1.getParser();
+         var _loc2_:BotRemovedFromInventoryEventParser = param1.getParser();
          _loc3_.removeItem(_loc2_.itemId);
       }
       
@@ -901,7 +901,7 @@ package com.sulake.habbo.inventory
          {
             return;
          }
-         var _loc2_:class_1447 = param1.getParser();
+         var _loc2_:BotAddedToInventoryEventParser = param1.getParser();
          _loc3_.addItem(_loc2_.item);
       }
       
@@ -916,7 +916,7 @@ package com.sulake.habbo.inventory
          {
             return;
          }
-         var _loc3_:class_1445 = param1.getParser();
+         var _loc3_:MarketplaceConfigurationEventParser = param1.getParser();
          _loc4_.isEnabled = _loc3_.isEnabled;
          _loc4_.commission = _loc3_.commission;
          _loc4_.tokenBatchPrice = _loc3_.tokenBatchPrice;
@@ -947,7 +947,7 @@ package com.sulake.habbo.inventory
          {
             return;
          }
-         var _loc2_:class_1602 = param1.getParser();
+         var _loc2_:MarketplaceCanMakeOfferResult = param1.getParser();
          _loc3_.proceedOfferMaking(_loc2_.resultCode,_loc2_.tokenCount);
       }
       
@@ -962,7 +962,7 @@ package com.sulake.habbo.inventory
          {
             return;
          }
-         var _loc2_:class_1518 = param1.getParser();
+         var _loc2_:MarketplaceMakeOfferResult = param1.getParser();
          _loc3_.endOfferMaking(_loc2_.result);
       }
       
@@ -977,7 +977,7 @@ package com.sulake.habbo.inventory
          {
             return;
          }
-         var _loc2_:class_1121 = param1.getParser();
+         var _loc2_:MarketplaceItemStatsEventParser = param1.getParser();
          _loc3_.setAveragePrice(_loc2_.furniCategoryId,_loc2_.furniTypeId,_loc2_.averagePrice);
       }
       

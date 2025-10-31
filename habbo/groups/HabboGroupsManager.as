@@ -41,11 +41,11 @@ package com.sulake.habbo.groups
    import com.sulake.habbo.communication.messages.incoming.room.session.CloseConnectionMessageEvent;
    import com.sulake.habbo.communication.messages.incoming.navigator.FlatCreatedEvent;
    import com.sulake.habbo.communication.messages.incoming.navigator.GetGuestRoomResultEvent;
-   import com.sulake.habbo.communication.messages.parser.users.class_1359;
+   import com.sulake.habbo.communication.messages.parser.users.ScrSendUserInfoEventParser;
    import com.sulake.habbo.communication.messages.parser.navigator.RoomSettingsDataEvent;
-   import com.sulake.habbo.communication.messages.parser.navigator.class_1616;
-   import com.sulake.habbo.communication.messages.parser.handshake.class_1267;
-   import com.sulake.habbo.communication.messages.parser.room.engine.class_1339;
+   import com.sulake.habbo.communication.messages.parser.navigator.FlatCreatedEventParser;
+   import com.sulake.habbo.communication.messages.parser.handshake.UserObjectEventParser;
+   import com.sulake.habbo.communication.messages.parser.room.engine.RoomEntryInfoMessageEventParser;
    import com.sulake.habbo.communication.messages.incoming.room.engine.RoomEntryInfoMessageEvent;
    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
    import com.sulake.habbo.communication.messages.incoming.users.ScrSendUserInfoEvent;
@@ -417,7 +417,7 @@ package com.sulake.habbo.groups
       {
          var_2315.close();
          var_2050.close();
-         var _loc2_:class_1339 = RoomEntryInfoMessageEvent(param1).getParser();
+         var _loc2_:RoomEntryInfoMessageEventParser = RoomEntryInfoMessageEvent(param1).getParser();
          var_369 = _loc2_.guestRoomId;
       }
       
@@ -451,13 +451,13 @@ package com.sulake.habbo.groups
       
       private function onUserObject(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1267 = UserObjectEvent(param1).getParser();
+         var _loc2_:UserObjectEventParser = UserObjectEvent(param1).getParser();
          var_894 = _loc2_.id;
       }
       
       private function onFlatCreated(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1616 = FlatCreatedEvent(param1).getParser();
+         var _loc2_:FlatCreatedEventParser = FlatCreatedEvent(param1).getParser();
          var_2208.onFlatCreated(_loc2_.flatId,_loc2_.flatName);
       }
       
@@ -524,7 +524,7 @@ package com.sulake.habbo.groups
       
       private function onSubscriptionInfo(param1:IMessageEvent) : void
       {
-         var _loc2_:class_1359 = ScrSendUserInfoEvent(param1).getParser();
+         var _loc2_:ScrSendUserInfoEventParser = ScrSendUserInfoEvent(param1).getParser();
          var_4456 = _loc2_.isVIP && _loc2_.minutesUntilExpiration > 0;
          var_2208.onSubscriptionChange();
       }

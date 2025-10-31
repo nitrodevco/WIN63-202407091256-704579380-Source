@@ -1,7 +1,7 @@
 package com.sulake.habbo.communication.messages.incoming.notifications {
     import com.sulake.core.communication.messages.IMessageEvent
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.notifications.class_1335
+    import com.sulake.habbo.communication.messages.parser.notifications.ActivityPointsMessageEventParser
 
     import flash.utils.Dictionary
 
@@ -9,11 +9,11 @@ package com.sulake.habbo.communication.messages.incoming.notifications {
     public class ActivityPointsMessageEvent extends MessageEvent implements IMessageEvent {
 
         public function ActivityPointsMessageEvent(param1: Function) {
-            super(param1, class_1335);
+            super(param1, ActivityPointsMessageEventParser);
         }
 
         public function get points(): Dictionary {
-            return (_parser as class_1335).points;
+            return (_parser as ActivityPointsMessageEventParser).points;
         }
     }
 }

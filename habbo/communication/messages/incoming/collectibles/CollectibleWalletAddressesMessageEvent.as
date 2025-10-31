@@ -1,17 +1,17 @@
 package com.sulake.habbo.communication.messages.incoming.collectibles {
     import com.sulake.core.communication.messages.IMessageEvent
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.collectibles.class_1278
+    import com.sulake.habbo.communication.messages.parser.collectibles.CollectibleWalletAddressesMessageEventParser
 
     [SecureSWF(rename="true")]
     public class CollectibleWalletAddressesMessageEvent extends MessageEvent implements IMessageEvent {
 
         public function CollectibleWalletAddressesMessageEvent(param1: Function) {
-            super(param1, class_1278);
+            super(param1, CollectibleWalletAddressesMessageEventParser);
         }
 
-        public function getParser(): class_1278 {
-            return _parser as class_1278;
+        public function getParser(): CollectibleWalletAddressesMessageEventParser {
+            return _parser as CollectibleWalletAddressesMessageEventParser;
         }
     }
 }

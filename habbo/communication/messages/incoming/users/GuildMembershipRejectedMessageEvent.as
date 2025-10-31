@@ -1,17 +1,17 @@
 package com.sulake.habbo.communication.messages.incoming.users {
     import com.sulake.core.communication.messages.IMessageEvent
     import com.sulake.core.communication.messages.MessageEvent
-    import com.sulake.habbo.communication.messages.parser.users.class_1318
+    import com.sulake.habbo.communication.messages.parser.users.GuildMembershipRejectedMessageEventParser
 
     [SecureSWF(rename="true")]
     public class GuildMembershipRejectedMessageEvent extends MessageEvent implements IMessageEvent {
 
         public function GuildMembershipRejectedMessageEvent(param1: Function) {
-            super(param1, class_1318);
+            super(param1, GuildMembershipRejectedMessageEventParser);
         }
 
-        public function getParser(): class_1318 {
-            return class_1318(_parser);
+        public function getParser(): GuildMembershipRejectedMessageEventParser {
+            return GuildMembershipRejectedMessageEventParser(_parser);
         }
     }
 }
