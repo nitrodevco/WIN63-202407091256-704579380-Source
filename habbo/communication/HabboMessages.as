@@ -1,1126 +1,2110 @@
-package com.sulake.habbo.communication {
-    import com.sulake.core.communication.messages.IMessageConfiguration
-    import com.sulake.core.utils.Map
-    import com.sulake.core.utils.class_885
-    import com.sulake.habbo.communication.messages.incoming.availability.LoginFailedHotelClosedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.availability.MaintenanceStatusMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.availability.AvailabilityStatusMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.availability.class_636
-    import com.sulake.habbo.communication.messages.incoming.availability.InfoHotelClosingMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.availability.InfoHotelClosedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.avatar.FigureUpdateEvent
-    import com.sulake.habbo.communication.messages.incoming.avatar.WardrobeMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.avatar.ChangeUserNameResultMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.avatar.CheckUserNameResultMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.callforhelp.CfhTopicsInitMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.callforhelp.SanctionStatusEvent
-    import com.sulake.habbo.communication.messages.incoming.callforhelp.CfhSanctionMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.camera.CameraPurchaseOKMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.camera.CameraStorageUrlMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.camera.CameraPublishStatusMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.camera.CompetitionStatusMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.camera.InitCameraMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.camera.ThumbnailStatusMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.campaign.CampaignCalendarDataMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.campaign.CampaignCalendarDoorOpenedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.SnowWarGameTokensMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.TargetedOfferEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.CatalogPageMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.BonusRareInfoMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_149
-    import com.sulake.habbo.communication.messages.incoming.catalog.BuildersClubSubscriptionStatusMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_195
-    import com.sulake.habbo.communication.messages.incoming.catalog.PurchaseErrorMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.VoucherRedeemOkMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.SellablePetPalettesMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.CatalogIndexMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.LimitedEditionSoldOutEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.GiftWrappingConfigurationEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_545
-    import com.sulake.habbo.communication.messages.incoming.catalog.RoomAdPurchaseInfoEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.HabboClubOffersMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.class_652
-    import com.sulake.habbo.communication.messages.incoming.catalog.NotEnoughBalanceMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.VoucherRedeemErrorMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.SeasonalCalendarDailyOfferMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.CatalogPageWithEarliestExpiryMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.LimitedOfferAppearingNextMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.GiftReceiverNotFoundEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.TargetedOfferNotFoundEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.HabboClubExtendOfferMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.CatalogPublishedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.BundleDiscountRulesetMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.ProductOfferEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.PurchaseNotAllowedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.ClubGiftInfoEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.ClubGiftSelectedEvent
-    import com.sulake.habbo.communication.messages.incoming.catalog.PurchaseOKMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.collectibles.NftCollectionsScoreMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectibleMintTokenOffersMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectibleMintableItemResultMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.collectibles.EmeraldBalanceMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectibleMintingEnabledMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.collectibles.NftTransferFeeMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.collectibles.NftCollectionsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectibleMintTokenCountMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.collectibles.NftRewardItemClaimResultMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.collectibles.NftBonusItemClaimResultMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectableMintableItemTypesMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.collectibles.NftTransferAssetsResultMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.collectibles.SilverBalanceMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectibleWalletAddressesMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.competition.NoOwnedRoomsAlertMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.competition.CompetitionVotingInfoMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.competition.SecondsUntilMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.competition.CurrentTimingCodeMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.competition.IsUserPartOfCompetitionMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.competition.CompetitionEntrySubmitResultMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.crafting.CraftableProductsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.crafting.CraftingRecipesAvailableMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.crafting.CraftingRecipeMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.crafting.CraftingResultMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.error.ErrorReportEvent
-    import com.sulake.habbo.communication.messages.incoming.friendfurni.FriendFurniOtherLockConfirmedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.friendfurni.FriendFurniStartConfirmationMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.friendfurni.FriendFurniCancelLockMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.friendlist.FriendNotificationEvent
-    import com.sulake.habbo.communication.messages.incoming.friendlist.RoomInviteErrorEvent
-    import com.sulake.habbo.communication.messages.incoming.friendlist.FollowFriendFailedEvent
-    import com.sulake.habbo.communication.messages.incoming.friendlist.RoomInviteEvent
-    import com.sulake.habbo.communication.messages.incoming.friendlist.AcceptFriendResultEvent
-    import com.sulake.habbo.communication.messages.incoming.friendlist.NewFriendRequestEvent
-    import com.sulake.habbo.communication.messages.incoming.friendlist.HabboSearchResultEvent
-    import com.sulake.habbo.communication.messages.incoming.friendlist.class_307
-    import com.sulake.habbo.communication.messages.incoming.friendlist.FriendListFragmentMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.friendlist.FriendListUpdateEvent
-    import com.sulake.habbo.communication.messages.incoming.friendlist.InstantMessageErrorEvent
-    import com.sulake.habbo.communication.messages.incoming.friendlist.ConsoleMessageHistoryEvent
-    import com.sulake.habbo.communication.messages.incoming.friendlist.MessengerErrorEvent
-    import com.sulake.habbo.communication.messages.incoming.friendlist.NewConsoleMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.friendlist.FindFriendsProcessResultEvent
-    import com.sulake.habbo.communication.messages.incoming.friendlist.class_756
-    import com.sulake.habbo.communication.messages.incoming.friendlist.MessengerInitEvent
-    import com.sulake.habbo.communication.messages.incoming.friendlist.FriendRequestsEvent
-    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2AccountGameStatusMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2GameCancelledMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2GameDirectoryStatusMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2GameNotFoundMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2InArenaQueueMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2JoiningGameFailedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2StartCounterMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2StartingGameFailedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2StopCounterMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2UserBlockedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2UserLeftGameMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2GameStartedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2UserJoinedGameMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2GameLongDataMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2GameCreatedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.lobby.UserGameAchievementsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.lobby.AchievementResolutionCompletedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.lobby.AchievementResolutionProgressMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.lobby.AchievementResolutionsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.score.Game2FriendsLeaderboardEvent
-    import com.sulake.habbo.communication.messages.incoming.game.score.Game2TotalGroupLeaderboardEvent
-    import com.sulake.habbo.communication.messages.incoming.game.score.Game2TotalLeaderboardEvent
-    import com.sulake.habbo.communication.messages.incoming.game.score.Game2WeeklyFriendsLeaderboardEvent
-    import com.sulake.habbo.communication.messages.incoming.game.score.Game2WeeklyGroupLeaderboardEvent
-    import com.sulake.habbo.communication.messages.incoming.game.score.Game2WeeklyLeaderboardEvent
-    import com.sulake.habbo.communication.messages.incoming.game.score.WeeklyCompetitiveFriendsLeaderboardEvent
-    import com.sulake.habbo.communication.messages.incoming.game.score.WeeklyCompetitiveLeaderboardEvent
-    import com.sulake.habbo.communication.messages.incoming.game.score.WeeklyGameRewardEvent
-    import com.sulake.habbo.communication.messages.incoming.game.score.WeeklyGameRewardWinnersEvent
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2StageRunningMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2GameEndingMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2ArenaEnteredMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2PlayerRematchesMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2EnterArenaFailedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2PlayerExitedGameArenaMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2StageEndingMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2EnterArenaMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2StageStillLoadingMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2StageStartingMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2GameRejoinMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2StageLoadMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2GameChatFromPlayerMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.ingame.Game2FullGameStatusMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.game.snowwar.ingame.Game2GameStatusMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.gifts.TryVerificationCodeResultMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.gifts.TryPhoneNumberResultMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.gifts.PhoneCollectionStateMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.groupforums.ThreadMessagesMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.groupforums.UpdateThreadMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.groupforums.UpdateMessageMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.groupforums.ForumsListMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.groupforums.ForumDataMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.groupforums.ForumThreadsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.groupforums.UnreadForumsCountMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.groupforums.PostThreadMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.groupforums.PostMessageMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.handshake.NoobnessLevelMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.handshake.CompleteDiffieHandshakeEvent
-    import com.sulake.habbo.communication.messages.incoming.handshake.IdentityAccountsEvent
-    import com.sulake.habbo.communication.messages.incoming.handshake.InitDiffieHandshakeEvent
-    import com.sulake.habbo.communication.messages.incoming.handshake.UserRightsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.handshake.UniqueMachineIDEvent
-    import com.sulake.habbo.communication.messages.incoming.handshake.PingMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.handshake.DisconnectReasonEvent
-    import com.sulake.habbo.communication.messages.incoming.handshake.IsFirstLoginOfDayEvent
-    import com.sulake.habbo.communication.messages.incoming.handshake.AuthenticationOKMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.handshake.GenericErrorEvent
-    import com.sulake.habbo.communication.messages.incoming.handshake.UserObjectEvent
-    import com.sulake.habbo.communication.messages.incoming.help.CallForHelpPendingCallsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.CallForHelpReplyMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.class_135
-    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionErrorMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionStartedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.CallForHelpDisabledNotifyMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.GuideTicketCreationResultMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionMessageMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.GuideOnDutyStatusMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.ChatReviewSessionStartedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.ChatReviewSessionOfferedToGuideMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionRequesterRoomMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.GuideReportingStatusMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionPartnerIsTypingMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.class_579
-    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionInvitedToGuideRoomMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.ChatReviewSessionVotingStatusMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.ChatReviewSessionResultsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.GuideTicketResolutionMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.IssueCloseNotificationMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.class_673
-    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionEndedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.class_784
-    import com.sulake.habbo.communication.messages.incoming.help.CallForHelpResultMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.QuizDataMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.class_819
-    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionDetachedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionAttachedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.class_895
-    import com.sulake.habbo.communication.messages.incoming.help.CallForHelpPendingCallsDeletedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.ChatReviewSessionDetachedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.help.QuizResultsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.hotlooks.HotLooksMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.achievements.AchievementsScoreEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.achievements.AchievementsEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.achievements.AchievementEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.avatareffect.AvatarEffectsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.avatareffect.AvatarEffectActivatedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.avatareffect.AvatarEffectSelectedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.avatareffect.AvatarEffectAddedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.avatareffect.AvatarEffectExpiredMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.badges.BadgeReceivedEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.badges.BadgesEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.badges.BadgePointLimitsEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.badges.IsBadgeRequestFulfilledEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.bots.BotRemovedFromInventoryEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.bots.class_258
-    import com.sulake.habbo.communication.messages.incoming.inventory.bots.BotInventoryEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.bots.BotAddedToInventoryEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.clothing.FigureSetIdsEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.clothing.class_401
-    import com.sulake.habbo.communication.messages.incoming.inventory.clothing.class_456
-    import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.furni.PostItPlacedEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListInvalidateEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListAddOrUpdateEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListRemoveEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.pets.ConfirmBreedingResultEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.pets.GoToBreedingNestFailureEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.pets.PetAddedToInventoryEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.pets.PetBreedingEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.pets.PetReceivedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.pets.NestBreedingSuccessEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.pets.PetInventoryEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.pets.ConfirmBreedingRequestEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.pets.PetRemovedFromInventoryEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.purse.CreditBalanceEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingOpenEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.class_144
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingConfirmationEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingOtherNotAllowedEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingAcceptEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingYouAreNotAllowedEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradeSilverFeeMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingNotOpenEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingCloseEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingCompletedEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradeSilverSetMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradeOpenFailedEvent
-    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingItemListEvent
-    import com.sulake.habbo.communication.messages.incoming.landingview.PromoArticlesMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.landingview.votes.CommunityVoteReceivedEvent
-    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceBuyOfferResultEvent
-    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceConfigurationEvent
-    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceItemStatsEvent
-    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketPlaceOwnOffersEvent
-    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketPlaceOffersEvent
-    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceMakeOfferResult
-    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceCancelOfferResultEvent
-    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceCanMakeOfferResult
-    import com.sulake.habbo.communication.messages.incoming.moderation.RoomVisitsEvent
-    import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorInitMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.moderation.IssueInfoMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.moderation.UserBannedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.moderation.CfhChatlogEvent
-    import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorUserInfoEvent
-    import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorActionResultMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.moderation.IssuePickFailedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.moderation.IssueDeletedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorRoomInfoEvent
-    import com.sulake.habbo.communication.messages.incoming.moderation.UserChatlogEvent
-    import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorCautionEvent
-    import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorToolPreferencesEvent
-    import com.sulake.habbo.communication.messages.incoming.moderation.RoomChatlogEvent
-    import com.sulake.habbo.communication.messages.incoming.mysterybox.ShowMysteryBoxWaitMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.mysterybox.MysteryBoxKeysMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.mysterybox.CancelMysteryBoxWaitMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.mysterybox.GotMysteryBoxPrizeMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.FlatAccessDeniedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.ConvertedRoomIdEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_129
-    import com.sulake.habbo.communication.messages.incoming.navigator.OfficialRoomsEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.GuestRoomSearchResultEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.CategoriesWithVisitorCountEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.RoomInfoUpdatedEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_491
-    import com.sulake.habbo.communication.messages.incoming.navigator.UserEventCatsEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.CompetitionRoomsDataMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_590
-    import com.sulake.habbo.communication.messages.incoming.navigator.UserFlatCatsEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.RoomEventEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.CanCreateRoomEventEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.RoomRatingEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.RoomEventCancelEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.FavouriteChangedEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.FlatCreatedEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.DoorbellMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.GetGuestRoomResultEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.PopularRoomTagsResultEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.CanCreateRoomEvent
-    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_151
-    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_348
-    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_364
-    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_713
-    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_760
-    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_954
-    import com.sulake.habbo.communication.messages.incoming.nft.UserNftWardrobeMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.nft.UserNftChatStylesMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.nft.UserNftWardrobeSelectionMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.notifications.ClubGiftNotificationEvent
-    import com.sulake.habbo.communication.messages.incoming.notifications.HabboAchievementNotificationMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.notifications.HabboBroadcastMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.notifications.ActivityPointsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.notifications.MOTDNotificationEvent
-    import com.sulake.habbo.communication.messages.incoming.notifications.HabboActivityPointNotificationMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.notifications.NotificationDialogMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.notifications.UnseenItemsEvent
-    import com.sulake.habbo.communication.messages.incoming.notifications.OfferRewardDeliveredMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.notifications.ElementPointerMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.notifications.InfoFeedEnableMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.notifications.PetLevelNotificationEvent
-    import com.sulake.habbo.communication.messages.incoming.notifications.RestoreClientMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.nux.NewUserExperienceNotCompleteEvent
-    import com.sulake.habbo.communication.messages.incoming.nux.SelectInitialRoomEvent
-    import com.sulake.habbo.communication.messages.incoming.nux.NewUserExperienceGiftOfferEvent
-    import com.sulake.habbo.communication.messages.incoming.perk.CitizenshipVipOfferPromoEnabledEvent
-    import com.sulake.habbo.communication.messages.incoming.perk.PerkAllowancesMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.poll.PollContentsEvent
-    import com.sulake.habbo.communication.messages.incoming.poll.QuestionEvent
-    import com.sulake.habbo.communication.messages.incoming.poll.PollErrorEvent
-    import com.sulake.habbo.communication.messages.incoming.poll.QuestionFinishedEvent
-    import com.sulake.habbo.communication.messages.incoming.poll.QuestionAnsweredEvent
-    import com.sulake.habbo.communication.messages.incoming.poll.PollOfferEvent
-    import com.sulake.habbo.communication.messages.incoming.preferences.AccountPreferencesEvent
-    import com.sulake.habbo.communication.messages.incoming.quest.QuestCancelledMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.quest.QuestCompletedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.quest.SeasonalQuestsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.quest.CommunityGoalProgressMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.quest.EpicPopupMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.quest.ConcurrentUsersGoalProgressMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.quest.QuestsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.quest.class_931
-    import com.sulake.habbo.communication.messages.incoming.quest.CommunityGoalHallOfFameMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.quest.QuestDailyMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.quest.QuestMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.action.SleepMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.action.DanceMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.action.CarryObjectMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.action.ExpressionMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.action.AvatarEffectMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.action.UseObjectMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.bots.BotCommandConfigurationEvent
-    import com.sulake.habbo.communication.messages.incoming.room.bots.BotForceOpenContextMenuEvent
-    import com.sulake.habbo.communication.messages.incoming.room.bots.BotSkillListUpdateEvent
-    import com.sulake.habbo.communication.messages.incoming.room.bots.BotErrorEvent
-    import com.sulake.habbo.communication.messages.incoming.room.camera.class_380
-    import com.sulake.habbo.communication.messages.incoming.room.chat.UserTypingMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.chat.RemainingMutePeriodEvent
-    import com.sulake.habbo.communication.messages.incoming.room.chat.ChatMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.chat.WhisperMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.chat.ShoutMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.chat.RoomFilterSettingsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.chat.RoomChatSettingsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.chat.FloodControlMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.UserUpdateMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.WiredMovementsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.RoomPropertyMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.ItemUpdateMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectRemoveMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.HeightMapMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectDataUpdateMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectAddMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.SpecialRoomEffectMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.UserChangeMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.BuildersClubPlacementWarningMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectRemoveConfirmMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.FurnitureAliasesMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.FavoriteMembershipUpdateMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectsDataUpdateMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.UserRemoveMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.RoomEntryInfoMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.UsersMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.HeightMapUpdateMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.ItemRemoveMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.ItemDataUpdateMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectUpdateMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectRemoveMultipleMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.FloorHeightMapMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.SlideObjectBundleMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.ItemsStateUpdateMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.ItemStateUpdateMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.ItemAddMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.ItemsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.engine.RoomVisualizationSettingsEvent
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.YoutubeControlVideoMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.DiceValueMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.PresentOpenedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.CustomUserNotificationMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.FurniRentOrBuyoutOfferMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.AreaHideMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.YoutubeDisplayVideoMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.RentableSpaceRentOkMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.RentableSpaceRentFailedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.RoomMessageNotificationMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.OneWayDoorStatusMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.RequestSpamWallPostItMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.CustomStackingHeightUpdateMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.OpenPetPackageRequestedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.RentableSpaceStatusMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.OpenPetPackageResultMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.GuildFurniContextMenuInfoMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.RoomDimmerPresetsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.furniture.YoutubeDisplayPlaylistsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.layout.RoomOccupiedTilesMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.layout.RoomEntryTileMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.permissions.YouAreOwnerMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.permissions.YouAreNotControllerMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.permissions.YouAreControllerMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.pets.PetCommandsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.pets.PetLevelUpdateEvent
-    import com.sulake.habbo.communication.messages.incoming.room.pets.PetRespectFailedEvent
-    import com.sulake.habbo.communication.messages.incoming.room.pets.PetExperienceEvent
-    import com.sulake.habbo.communication.messages.incoming.room.pets.PetFigureUpdateEvent
-    import com.sulake.habbo.communication.messages.incoming.room.pets.PetInfoMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.pets.PetBreedingResultEvent
-    import com.sulake.habbo.communication.messages.incoming.room.pets.PetStatusUpdateEvent
-    import com.sulake.habbo.communication.messages.incoming.room.pets.PetPlacingErrorEvent
-    import com.sulake.habbo.communication.messages.incoming.room.session.HanditemConfigurationMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.session.OpenConnectionMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.session.RoomForwardMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.session.FlatAccessibleMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.session.GamePlayerValueMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.session.YouAreNotSpectatorMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.session.YouAreSpectatorMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.session.CloseConnectionMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.session.CantConnectMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.session.YouArePlayingGameMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.session.RoomReadyMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.session.RoomQueueStatusMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.ShowEnforceRoomCategoryDialogEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.FlatControllerAddedEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.UserUnbannedFromRoomEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.NoSuchFlatEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsErrorEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsSavedEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.FlatControllersEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsDataEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.FlatControllerRemovedEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.BannedUsersFromRoomEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.MuteAllInRoomEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsSaveErrorEvent
-    import com.sulake.habbo.communication.messages.incoming.sound.TraxSongInfoMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.sound.JukeboxSongDisksMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.sound.UserSongDisksInventoryMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.sound.PlayListSongAddedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.sound.NowPlayingMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.sound.PlayListMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.sound.OfficialSongIdMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.sound.JukeboxPlayListFullMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.talent.TalentTrackLevelMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.talent.TalentLevelUpMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.talent.TalentTrackMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.tracking.LatencyPingResponseMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.userclassification.UserClassificationMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredFurniConditionEvent
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredSaveSuccessEvent
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.OpenEvent
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredFurniTriggerEvent
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredRewardResultMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredFurniSelectorEvent
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredFurniActionEvent
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredFurniAddonEvent
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredValidationErrorEvent
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredFurniVariableEvent
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredRoomStatsEvent
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredPermissionsEvent
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredRoomSettingsEvent
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredAllVariablesHashEvent
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredVariablesForObjectEvent
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredAllVariablesDiffsEvent
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredMenuErrorEvent
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredErrorLogsEvent
-    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredAllVariableHoldersEvent
-    import com.sulake.habbo.communication.messages.incoming.users.GuildEditorDataMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.ScrSendUserInfoEvent
-    import com.sulake.habbo.communication.messages.incoming.users.ExtendedProfileChangedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.PetRespectNotificationEvent
-    import com.sulake.habbo.communication.messages.incoming.users.GroupDetailsChangedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.GuildMembershipRejectedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.HandItemReceivedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.UserNameChangedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.AccountSafetyLockStatusChangeMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.GuildMembersMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.HabboGroupJoinFailedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.GuildEditInfoMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.HabboGroupDeactivatedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.GuildCreationInfoMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.GuildMembershipUpdatedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.ScrSendKickbackInfoMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.GuildMemberFurniCountInHQMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.RelationshipStatusInfoEvent
-    import com.sulake.habbo.communication.messages.incoming.users.IgnoreResultMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.EmailStatusResultEvent
-    import com.sulake.habbo.communication.messages.incoming.users.ApproveNameMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.GuildMembershipsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.HabboGroupBadgesMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.PetSupplementedNotificationEvent
-    import com.sulake.habbo.communication.messages.incoming.users.GuildMemberMgmtFailedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.IgnoredUsersMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.ChangeEmailResultEvent
-    import com.sulake.habbo.communication.messages.incoming.users.GuildCreatedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.RespectNotificationMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.GuildEditFailedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.HabboGroupDetailsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.HabboUserBadgesMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.GroupMembershipRequestedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.InClientLinkMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.users.ExtendedProfileMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.vault.CreditVaultStatusMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.vault.IncomeRewardClaimResponseMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.vault.IncomeRewardStatusMessageEvent
-    import com.sulake.habbo.communication.messages.outgoing.camera.PurchasePhotoMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.camera.PublishPhotoMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.camera.RenderRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.camera.RenderRoomThumbnailMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.camera.RequestCameraConfigurationMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.camera.PhotoCompetitionMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.campaign.OpenCampaignCalendarDoorAsStaffComposer
-    import com.sulake.habbo.communication.messages.outgoing.campaign.OpenCampaignCalendarDoorComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.GetRoomAdPurchaseInfoComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.GetSnowWarGameTokensOfferComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseSnowWarGameTokensOfferComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.GetClubOffersMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.BuildersClubQueryFurniCountMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.GetCatalogPageWithEarliestExpiryComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.BuildersClubPlaceRoomItemMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_272
-    import com.sulake.habbo.communication.messages.outgoing.catalog.GetSeasonalCalendarDailyComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_367
-    import com.sulake.habbo.communication.messages.outgoing.catalog.GetLimitedOfferAppearingNextComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.RedeemVoucherMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.GetSellablePetPalettesComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.ShopTargetedOfferViewedComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseRoomAdMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.GetIsOfferGiftableComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.GetBundleDiscountRulesetComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.GetCatalogIndexComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseBasicMembershipExtensionComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.SelectClubGiftComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.GetBonusRareInfoMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.SetTargetedOfferStateComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.GetClubGiftMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.RoomAdPurchaseInitiatedComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_807
-    import com.sulake.habbo.communication.messages.outgoing.catalog.BuildersClubPlaceWallItemMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseFromCatalogComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.MarkCatalogNewAdditionsPageOpenedComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.GetProductOfferComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.GetGiftWrappingConfigurationComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.GetNextTargetedOfferComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseTargetedOfferComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.GetHabboClubExtendOfferMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseFromCatalogAsGiftComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseVipMembershipExtensionComposer
-    import com.sulake.habbo.communication.messages.outgoing.catalog.class_951
-    import com.sulake.habbo.communication.messages.outgoing.catalog.GetCatalogPageComposer
-    import com.sulake.habbo.communication.messages.outgoing.crafting.CraftComposer
-    import com.sulake.habbo.communication.messages.outgoing.crafting.GetCraftableProductsComposer
-    import com.sulake.habbo.communication.messages.outgoing.crafting.CraftSecretComposer
-    import com.sulake.habbo.communication.messages.outgoing.crafting.GetCraftingRecipesAvailableComposer
-    import com.sulake.habbo.communication.messages.outgoing.crafting.GetCraftingRecipeComposer
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.SetRelationshipStatusMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.SendRoomInviteMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.DeclineFriendMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.RemoveFriendMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.FriendListUpdateMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.SendMsgMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.GetFriendRequestsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.FindNewFriendsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.FollowFriendMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.GetMessengerHistoryComposer
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.MessengerInitMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.HabboSearchMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.VisitUserMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.RequestFriendMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.friendlist.AcceptFriendMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.handshake.DisconnectMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.handshake.PongMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.handshake.CompleteDiffieHandshakeMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.handshake.VersionCheckMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.handshake.ClientHelloMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.handshake.UniqueIDMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.handshake.InitDiffieHandshakeMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.handshake.InfoRetrieveMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.handshake.SSOTicketMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.ChatReviewGuideDetachedMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.class_1035
-    import com.sulake.habbo.communication.messages.outgoing.help.GetQuizQuestionsComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.class_1050
-    import com.sulake.habbo.communication.messages.outgoing.help.class_1054
-    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionRequesterCancelsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromSelfieMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.GetCfhStatusMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.PostQuizAnswersComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionResolvedMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionInviteRequesterMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.ChatReviewSessionCreateMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.class_303
-    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionReportMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionOnDutyUpdateMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.ChatReviewGuideDecidesOnOfferMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromForumThreadMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromForumMessageMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionGuideDecidesMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.ChatReviewGuideVoteMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.DeletePendingCallsForHelpMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromPhotoMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.GetPendingCallsForHelpMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.GetGuideReportingStatusMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.class_580
-    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionCreateMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromIMMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionGetRequesterRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionFeedbackMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionMessageMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionIsTypingMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.achievements.GetAchievementsComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.avatareffect.AvatarEffectSelectedComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.avatareffect.AvatarEffectActivatedComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.badges.GetBadgePointLimitsComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.badges.GetBadgesComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.badges.RequestABadgeComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.badges.SetActivatedBadgesComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.badges.GetIsBadgeRequestFulfilledComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.furni.RequestFurniInventoryComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.furni.RequestFurniInventoryWhenNotInRoomComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.furni.RequestRoomPropertySet
-    import com.sulake.habbo.communication.messages.outgoing.inventory.purse.GetCreditsInfoComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.SilverFeeMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.AddItemsToTradeComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.OpenTradingComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.ConfirmAcceptTradingComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.CloseTradingComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.RemoveItemFromTradeComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.ConfirmDeclineTradingComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.UnacceptTradingComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.AddItemToTradeComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.AcceptTradingComposer
-    import com.sulake.habbo.communication.messages.outgoing.landingview.GetPromoArticlesMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.moderator.GetCfhChatlogMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.moderator.PickIssuesMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.moderator.ModKickMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.moderator.ModMessageMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.moderator.ModBanMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.moderator.ModMuteMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.moderator.ReleaseIssuesMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.moderator.GetModeratorUserInfoMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.moderator.DefaultSanctionMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.moderator.ModTradingLockMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.moderator.CloseIssuesMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.moderator.ModToolPreferencesComposer
-    import com.sulake.habbo.communication.messages.outgoing.moderator.GetModeratorRoomInfoMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.moderator.GetRoomChatlogMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.moderator.GetUserChatlogMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.moderator.ModToolSanctionComposer
-    import com.sulake.habbo.communication.messages.outgoing.moderator.ModeratorActionMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.moderator.CloseIssueDefaultActionMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.moderator.ModerateRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.moderator.ModAlertMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.moderator.GetRoomVisitsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.ConvertGlobalRoomIdMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.DeleteFavouriteRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_1081
-    import com.sulake.habbo.communication.messages.outgoing.navigator.RoomAdEventTabViewedComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.RateFlatMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.GetPopularRoomTagsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.EditEventMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.RoomsWithHighestScoreSearchMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.CompetitionRoomsSearchMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.MyRoomRightsSearchMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.MyRecommendedRoomsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.GuildBaseSearchMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.GetOfficialRoomsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.ToggleStaffPickMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.ForwardToSomeRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.RoomAdSearchMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.MyFavouriteRoomsSearchMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.ForwardToARandomPromotedRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.CreateFlatMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.RemoveOwnRoomRightsRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.PopularRoomsSearchMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.CanCreateRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.GetGuestRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.MyRoomHistorySearchMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.MyRoomsSearchMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.RoomTextSearchMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.MyGuildBasesSearchMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.AddFavouriteRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.MyFriendsRoomsSearchMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.GetUserFlatCatsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.MyFrequentRoomHistorySearchMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.SetRoomSessionTagsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.RoomsWhereMyFriendsAreSearchMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.CancelEventMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.class_977
-    import com.sulake.habbo.communication.messages.outgoing.navigator.UpdateHomeRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.RoomAdEventTabAdClickedComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.GetUserEventCatsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.poll.PollStartComposer
-    import com.sulake.habbo.communication.messages.outgoing.poll.PollAnswerComposer
-    import com.sulake.habbo.communication.messages.outgoing.poll.PollRejectComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.action.BanUserWithDurationMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.action.KickUserMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.action.MuteUserMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.action.LetUserInMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.action.AmbassadorAlertMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.action.UnmuteUserMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.action.RemoveRightsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.action.AssignRightsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.action.RemoveAllRightsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.action.MuteAllInRoomComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.action.UnbanUserFromRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.avatar.AvatarExpressionMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.avatar.CustomizeAvatarWithFurniMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.avatar.DropCarryItemMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.avatar.PassCarryItemToPetMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.avatar.SignMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.avatar.LookToMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.avatar.DanceMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.avatar.ChangeMottoMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.avatar.PassCarryItemMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.avatar.ChangePostureMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.chat.ChatMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.chat.ShoutMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.chat.CancelTypingMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.chat.WhisperMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.chat.StartTypingMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.ClickFurniMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.RemoveItemMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.TogglePetRidingPermissionMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.MountPetMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.PlaceBotMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.HarvestPetMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.RemovePetFromFlatMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.SetItemDataMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.CompostPlantMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.PickupObjectMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.MoveAvatarMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.GetItemDataMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.RemoveBotFromFlatMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.TogglePetBreedingPermissionMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.MovePetMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.SetClothingChangeDataMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.RemoveSaddleFromPetMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.UseFurnitureMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.MoveObjectMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.GetFurnitureAliasesMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.SetObjectDataMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.PlaceObjectMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.GiveSupplementToPetMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.PlacePetMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.MoveWallItemMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.UseWallItemMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.GetHeightMapMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.engine.GetPetCommandsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.ExtendRentOrBuyoutFurniMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.CreditFurniRedeemMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.ThrowDiceMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetYoutubeDisplayPlaylistMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.EnterOneWayDoorMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.RentableSpaceCancelRentMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.RentableSpaceRentMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.GetRentOrBuyoutOfferMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.OpenPetPackageMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.DiceOffMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SpinWheelOfFortuneMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.ControlYoutubeDisplayPlaybackMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.AddSpamWallPostItMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.OpenMysteryTrophyMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetAreaHideDataComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.RoomDimmerChangeStateMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.ExtendRentOrBuyoutStripItemMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.GetYoutubeDisplayStatusMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.RentableSpaceStatusMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.RoomDimmerGetPresetsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetRandomStateMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.PlacePostItMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.PresentOpenMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.RoomDimmerSavePresetMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetMannequinFigureComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetRoomBackgroundColorDataComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetCustomStackingHeightComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.GetGuildFurniContextMenuInfoMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetMannequinNameComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.session.ChangeQueueMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.session.QuitMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.session.OpenFlatConnectionMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.roomsettings.GetBannedUsersFromRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.roomsettings.UpdateRoomCategoryAndTradeSettingsComposer
-    import com.sulake.habbo.communication.messages.outgoing.roomsettings.GetRoomSettingsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.roomsettings.UpdateRoomFilterMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.roomsettings.GetCustomRoomFilterMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.roomsettings.SaveRoomSettingsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.roomsettings.DeleteRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.roomsettings.GetFlatControllersMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateSelectorMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateConditionMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateTriggerMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateAddonMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateActionMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.ApplySnapshotMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.OpenMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateVariableMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.AddAdminRightsToMemberMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.UpdateGuildColorsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.GetUserNftChatStylesMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.DeactivateGuildMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.RejectMembershipRequestMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileByNameMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.GetEmailStatusComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.GetGuildMembersMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.GetGuildEditInfoMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.GetGuildEditorDataMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.SelectFavouriteHabboGroupMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.GetHabboGroupDetailsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.ApproveMembershipRequestMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.CreateGuildMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.ApproveNameMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.ApproveAllMembershipRequestsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.JoinHabboGroupMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.UnignoreUserMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.ScrGetKickbackInfoMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.GetMOTDMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.IgnoreUserMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.GetHabboGroupBadgesMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.RemoveAdminRightsFromMemberMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.class_606
-    import com.sulake.habbo.communication.messages.outgoing.users.ChangeEmailComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.GiveStarGemToUserMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.GetIgnoredUsersMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.GetRelationshipStatusInfoMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.ScrGetUserInfoMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.GetGuildMembershipsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.GetGuildCreationInfoMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.DeselectFavouriteHabboGroupMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.UpdateGuildBadgeMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.GetSelectedBadgesMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.UpdateGuildSettingsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.KickMemberMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.UnblockGroupMemberMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.UpdateGuildIdentityMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.users.GetMemberGuildItemCountMessageComposer
+package com.sulake.habbo.communication
+{
+    import com.sulake.core.communication.messages.IMessageConfiguration;
+    import com.sulake.core.utils.Map;
+    import com.sulake.core.utils.class_885;
+    import com.sulake.habbo.communication.messages.incoming.availability.LoginFailedHotelClosedMessageEvent;
+    import com.sulake.habbo.communication.messages.incoming.availability.MaintenanceStatusMessageEvent;
+    import com.sulake.habbo.communication.messages.incoming.availability.AvailabilityStatusMessageEvent;
+    import com.sulake.habbo.communication.messages.incoming.availability.class_636;
+    import com.sulake.habbo.communication.messages.incoming.availability.InfoHotelClosingMessageEvent;
+    import com.sulake.habbo.communication.messages.incoming.availability.InfoHotelClosedMessageEvent;
+    import com.sulake.habbo.communication.messages.incoming.avatar.FigureUpdateEvent;
+    import com.sulake.habbo.communication.messages.incoming.avatar.WardrobeMessageEvent;
+    import com.sulake.habbo.communication.messages.incoming.avatar.ChangeUserNameResultMessageEvent;
+    import com.sulake.habbo.communication.messages.incoming.avatar.CheckUserNameResultMessageEvent;
+    import com.sulake.habbo.communication.messages.incoming.callforhelp.CfhTopicsInitMessageEvent;
+    import com.sulake.habbo.communication.messages.incoming.callforhelp.SanctionStatusEvent;
+    import com.sulake.habbo.communication.messages.incoming.callforhelp.CfhSanctionMessageEvent;
+    import com.sulake.habbo.communication.messages.incoming.camera.CameraPurchaseOKMessageEvent;
 
-    import package_1.*
+    import com.sulake.habbo.communication.messages.incoming.camera.CameraStorageUrlMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.marketplace.RedeemMarketplaceOfferCreditsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.marketplace.GetMarketplaceOffersMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.marketplace.GetMarketplaceConfigurationMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.marketplace.BuyMarketplaceTokensMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.marketplace.CancelMarketplaceOfferMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.marketplace.GetMarketplaceItemStatsComposer
-    import com.sulake.habbo.communication.messages.outgoing.marketplace.GetMarketplaceOwnOffersMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.marketplace.GetMarketplaceCanMakeOfferMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.marketplace.BuyMarketplaceOfferMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.marketplace.MakeOfferMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.camera.CameraPublishStatusMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.inventory.pets.ConfirmPetBreedingComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.pets.GetPetInventoryComposer
-    import com.sulake.habbo.communication.messages.outgoing.inventory.pets.CancelPetBreedingComposer
+    import com.sulake.habbo.communication.messages.incoming.camera.CompetitionStatusMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.room.layout.GetRoomEntryTileMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.layout.GetOccupiedTilesMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.layout.UpdateFloorPropertiesMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.camera.InitCameraMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.roomdirectory.RoomNetworkOpenConnectionMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.camera.ThumbnailStatusMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.hotlooks.GetHotLooksMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.campaign.CampaignCalendarDataMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.register.UpdateFigureDataMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.campaign.CampaignCalendarDoorOpenedMessageEvent;
 
-    import package_113.*
+    import com.sulake.habbo.communication.messages.incoming.catalog.SnowWarGameTokensMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.mysterybox.MysteryBoxWaitingCanceledMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.catalog.TargetedOfferEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.landingview.votes.CommunityGoalVoteMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.catalog.CatalogPageMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.inventory.bots.GetBotInventoryComposer
+    import com.sulake.habbo.communication.messages.incoming.catalog.BonusRareInfoMessageEvent;
 
-    import package_120.*
+    import com.sulake.habbo.communication.messages.incoming.catalog.class_149;
 
-    import package_121.*
+    import com.sulake.habbo.communication.messages.incoming.catalog.BuildersClubSubscriptionStatusMessageEvent;
 
-    import package_14.*
+    import com.sulake.habbo.communication.messages.incoming.catalog.class_195;
 
-    import com.sulake.habbo.communication.messages.outgoing.sound.GetUserSongDisksMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.sound.AddJukeboxDiskComposer
-    import com.sulake.habbo.communication.messages.outgoing.sound.GetNowPlayingMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.sound.GetOfficialSongIdMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.sound.GetJukeboxPlayListMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.sound.GetSoundMachinePlayListMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.sound.GetSoundSettingsComposer
-    import com.sulake.habbo.communication.messages.outgoing.sound.GetSongInfoMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.sound.RemoveJukeboxDiskComposer
+    import com.sulake.habbo.communication.messages.incoming.catalog.PurchaseErrorMessageEvent;
 
-    import package_2.*
+    import com.sulake.habbo.communication.messages.incoming.catalog.VoucherRedeemOkMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.preferences.SetChatStylePreferenceComposer
-    import com.sulake.habbo.communication.messages.outgoing.preferences.SetChatPreferencesMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.preferences.SetUIFlagsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.preferences.SetNewNavigatorWindowPreferencesMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.preferences.SetSoundSettingsComposer
-    import com.sulake.habbo.communication.messages.outgoing.preferences.SetRoomCameraPreferencesMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.preferences.SetIgnoreRoomInvitesMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.catalog.SellablePetPalettesMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.GetForumStatsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.GetMessagesMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.ModerateThreadMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.GetThreadsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.GetUnreadForumsCountMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.PostMessageMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.GetForumsListMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.UpdateThreadMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.UpdateForumReadMarkerMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.ModerateMessageMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.UpdateForumSettingsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.groupforums.GetThreadMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.catalog.CatalogIndexMessageEvent;
 
-    import package_22.*
+    import com.sulake.habbo.communication.messages.incoming.catalog.LimitedEditionSoldOutEvent;
 
-    import package_23.*
+    import com.sulake.habbo.communication.messages.incoming.catalog.GiftWrappingConfigurationEvent;
 
-    import package_24.*
+    import com.sulake.habbo.communication.messages.incoming.catalog.class_545;
 
-    import package_3.*
+    import com.sulake.habbo.communication.messages.incoming.catalog.RoomAdPurchaseInfoEvent;
 
-    import package_30.*
+    import com.sulake.habbo.communication.messages.incoming.catalog.HabboClubOffersMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2CheckGameDirectoryStatusMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2GetAccountGameStatusMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2StartSnowWarMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2QuickJoinGameMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2LeaveGameMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.catalog.class_652;
 
-    import com.sulake.habbo.communication.messages.outgoing.game.lobby.GetUserGameAchievementsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.lobby.class_165
-    import com.sulake.habbo.communication.messages.outgoing.game.lobby.GetResolutionAchievementsMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.catalog.NotEnoughBalanceMessageEvent;
 
-    import package_34.*
+    import com.sulake.habbo.communication.messages.incoming.catalog.VoucherRedeemErrorMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.advertisement.InterstitialShownMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.advertisement.GetInterstitialMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.catalog.SeasonalCalendarDailyOfferMessageEvent;
 
-    import package_36.*
+    import com.sulake.habbo.communication.messages.incoming.catalog.CatalogPageWithEarliestExpiryMessageEvent;
 
-    import package_37.*
+    import com.sulake.habbo.communication.messages.incoming.catalog.LimitedOfferAppearingNextMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.game.score.Game2GetFriendsLeaderboardComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.score.Game2GetTotalGroupLeaderboardComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.score.Game2GetTotalLeaderboardComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.score.Game2GetWeeklyFriendsLeaderboardComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.score.Game2GetWeeklyGroupLeaderboardComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.score.Game2GetWeeklyLeaderboardComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.score.GetFriendsWeeklyCompetitiveLeaderboardComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.score.GetWeeklyCompetitiveLeaderboardComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.score.GetWeeklyGameRewardComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.score.GetWeeklyGameRewardWinnersComposer
+    import com.sulake.habbo.communication.messages.incoming.catalog.GiftReceiverNotFoundEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.competition.class_1011
-    import com.sulake.habbo.communication.messages.outgoing.competition.ForwardToASubmittableRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.competition.VoteForRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.competition.ForwardToACompetitionRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.competition.GetSecondsUntilMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.competition.GetIsUserPartOfCompetitionMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.competition.ForwardToRandomCompetitionRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.competition.SubmitRoomToCompetitionMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.competition.RoomCompetitionInitMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.catalog.TargetedOfferNotFoundEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.newnavigator.NavigatorRemoveCollapsedCategoryMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.newnavigator.NavigatorSetSearchCodeViewModeMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.newnavigator.NavigatorAddSavedSearchComposer
-    import com.sulake.habbo.communication.messages.outgoing.newnavigator.NavigatorDeleteSavedSearchComposer
-    import com.sulake.habbo.communication.messages.outgoing.newnavigator.NavigatorAddCollapsedCategoryMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.newnavigator.NewNavigatorSearchComposer
-    import com.sulake.habbo.communication.messages.outgoing.newnavigator.NewNavigatorInitComposer
+    import com.sulake.habbo.communication.messages.incoming.catalog.HabboClubExtendOfferMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.vault.CreditVaultStatusMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.vault.WithdrawCreditVaultMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.vault.IncomeRewardStatusMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.vault.IncomeRewardClaimMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.catalog.CatalogPublishedMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.nux.NewUserExperienceGetGiftsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.nux.NewUserExperienceScriptProceedComposer
-    import com.sulake.habbo.communication.messages.outgoing.nux.SelectInitialRoomComposer
+    import com.sulake.habbo.communication.messages.incoming.catalog.BundleDiscountRulesetMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.gifts.class_200
-    import com.sulake.habbo.communication.messages.outgoing.gifts.SetPhoneNumberVerificationStatusMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.gifts.VerifyCodeMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.gifts.ResetPhoneNumberStateMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.gifts.TryPhoneNumberMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.catalog.ProductOfferEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.notifications.ResetUnseenItemIdsComposer
-    import com.sulake.habbo.communication.messages.outgoing.notifications.ResetUnseenItemsComposer
+    import com.sulake.habbo.communication.messages.incoming.catalog.PurchaseNotAllowedMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.game.arena.Game2ExitGameMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.arena.Game2GameChatMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.arena.Game2LoadStageReadyMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.arena.Game2PlayAgainMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.catalog.ClubGiftInfoEvent;
 
-    import package_51.*
+    import com.sulake.habbo.communication.messages.incoming.catalog.ClubGiftSelectedEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.tracking.PerformanceLogMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.tracking.LagWarningReportMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.tracking.LatencyPingRequestMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.tracking.LatencyPingReportMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.catalog.PurchaseOKMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.quest.GetConcurrentUsersGoalProgressMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.quest.GetDailyQuestMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.quest.GetConcurrentUsersRewardMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.quest.GetCommunityGoalHallOfFameMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.quest.ActivateQuestMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.quest.OpenQuestTrackerMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.quest.AcceptQuestMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.quest.GetSeasonalQuestsOnlyMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.quest.class_493
-    import com.sulake.habbo.communication.messages.outgoing.quest.GetQuestsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.quest.FriendRequestQuestCompleteMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.quest.class_735
-    import com.sulake.habbo.communication.messages.outgoing.quest.StartCampaignMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.quest.GetCommunityGoalProgressMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.quest.CancelQuestMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.quest.RejectQuestMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.collectibles.NftCollectionsScoreMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetNftTransferFeeMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetCollectibleWalletAddressesMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetCollectibleMintableItemTypesMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetCollectibleMintTokensMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.NftTransferAssetsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.MintItemMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetCollectorScoreMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetCollectibleMintingEnabledMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetMintTokenOffersMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.NftCollectiblesClaimBonusItemMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.NftCollectiblesClaimRewardItemMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetNftCollectionsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.collectibles.PurchaseMintTokenMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectibleMintTokenOffersMessageEvent;
 
-    import package_62.*
+    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectibleMintableItemResultMessageEvent;
 
-    import package_65.*
+    import com.sulake.habbo.communication.messages.incoming.collectibles.EmeraldBalanceMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.avatar.CheckUserNameMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.avatar.ChangeUserNameInRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.avatar.ChangeUserNameMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.avatar.SaveWardrobeOutfitMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.avatar.GetWardrobeMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectibleMintingEnabledMessageEvent;
 
-    import package_72.*
+    import com.sulake.habbo.communication.messages.incoming.collectibles.NftTransferFeeMessageEvent;
 
-    import package_73.*
+    import com.sulake.habbo.communication.messages.incoming.collectibles.NftCollectionsMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.game.ingame.Game2MakeSnowballMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.ingame.Game2RequestFullStatusUpdateMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.ingame.Game2SetUserMoveTargetMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.ingame.Game2ThrowSnowballAtHumanMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.game.ingame.Game2ThrowSnowballAtPositionMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectibleMintTokenCountMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetAllVariableHoldersMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetErrorLogsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetRoomSettingsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredClearErrorLogsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetAllVariablesHashMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetVariablesForObjectMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredSetPreferencesMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredSetRoomSettingsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredSetObjectVariableValueMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetRoomStatsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetAllVariablesDiffsMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.collectibles.NftRewardItemClaimResultMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.room.pets.PetSelectedMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.pets.GetPetInfoMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.pets.BreedPetsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.pets.CustomizePetWithFurniComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.pets.RespectPetMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.collectibles.NftBonusItemClaimResultMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.nft.GetNftCreditsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.nft.GetSilverMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.nft.GetUserNftWardrobeMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.nft.SaveUserNftWardrobeMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.nft.GetSelectedNftWardrobeOutfitMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectableMintableItemTypesMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.talent.GetTalentTrackMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.talent.GetTalentTrackLevelMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.talent.GuideAdvertisementReadMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.collectibles.NftTransferAssetsResultMessageEvent;
 
-    import package_84.*
+    import com.sulake.habbo.communication.messages.incoming.collectibles.SilverBalanceMessageEvent;
 
-    import com.sulake.habbo.communication.messages.incoming.advertisement.InterstitialMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.advertisement.RoomAdErrorEvent
+    import com.sulake.habbo.communication.messages.incoming.collectibles.CollectibleWalletAddressesMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.userclassification.RoomUsersClassificationMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.userclassification.PeerUsersClassificationMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.competition.NoOwnedRoomsAlertMessageEvent;
 
-    import package_91.*
+    import com.sulake.habbo.communication.messages.incoming.competition.CompetitionVotingInfoMessageEvent;
 
-    import package_92.*
+    import com.sulake.habbo.communication.messages.incoming.competition.SecondsUntilMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.friendfurni.FriendFurniConfirmLockMessageComposer
+    import com.sulake.habbo.communication.messages.incoming.competition.CurrentTimingCodeMessageEvent;
 
-    import com.sulake.habbo.communication.messages.outgoing.room.bots.GetBotCommandConfigurationDataComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.bots.CommandBotComposer
+    import com.sulake.habbo.communication.messages.incoming.competition.IsUserPartOfCompetitionMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.competition.CompetitionEntrySubmitResultMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.crafting.CraftableProductsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.crafting.CraftingRecipesAvailableMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.crafting.CraftingRecipeMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.crafting.CraftingResultMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.error.ErrorReportEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.friendfurni.FriendFurniOtherLockConfirmedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.friendfurni.FriendFurniStartConfirmationMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.friendfurni.FriendFurniCancelLockMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.friendlist.FriendNotificationEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.friendlist.RoomInviteErrorEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.friendlist.FollowFriendFailedEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.friendlist.RoomInviteEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.friendlist.AcceptFriendResultEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.friendlist.NewFriendRequestEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.friendlist.HabboSearchResultEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.friendlist.class_307;
+
+    import com.sulake.habbo.communication.messages.incoming.friendlist.FriendListFragmentMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.friendlist.FriendListUpdateEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.friendlist.InstantMessageErrorEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.friendlist.ConsoleMessageHistoryEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.friendlist.MessengerErrorEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.friendlist.NewConsoleMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.friendlist.FindFriendsProcessResultEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.friendlist.class_756;
+
+    import com.sulake.habbo.communication.messages.incoming.friendlist.MessengerInitEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.friendlist.FriendRequestsEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2AccountGameStatusMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2GameCancelledMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2GameDirectoryStatusMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2GameNotFoundMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2InArenaQueueMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2JoiningGameFailedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2StartCounterMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2StartingGameFailedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2StopCounterMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2UserBlockedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2UserLeftGameMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2GameStartedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2UserJoinedGameMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2GameLongDataMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.directory.Game2GameCreatedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.lobby.UserGameAchievementsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.lobby.AchievementResolutionCompletedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.lobby.AchievementResolutionProgressMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.lobby.AchievementResolutionsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.score.Game2FriendsLeaderboardEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.score.Game2TotalGroupLeaderboardEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.score.Game2TotalLeaderboardEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.score.Game2WeeklyFriendsLeaderboardEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.score.Game2WeeklyGroupLeaderboardEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.score.Game2WeeklyLeaderboardEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.score.WeeklyCompetitiveFriendsLeaderboardEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.score.WeeklyCompetitiveLeaderboardEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.score.WeeklyGameRewardEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.score.WeeklyGameRewardWinnersEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2StageRunningMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2GameEndingMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2ArenaEnteredMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2PlayerRematchesMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2EnterArenaFailedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2PlayerExitedGameArenaMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2StageEndingMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2EnterArenaMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2StageStillLoadingMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2StageStartingMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2GameRejoinMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2StageLoadMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.arena.Game2GameChatFromPlayerMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.ingame.Game2FullGameStatusMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.game.snowwar.ingame.Game2GameStatusMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.gifts.TryVerificationCodeResultMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.gifts.TryPhoneNumberResultMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.gifts.PhoneCollectionStateMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.groupforums.ThreadMessagesMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.groupforums.UpdateThreadMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.groupforums.UpdateMessageMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.groupforums.ForumsListMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.groupforums.ForumDataMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.groupforums.ForumThreadsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.groupforums.UnreadForumsCountMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.groupforums.PostThreadMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.groupforums.PostMessageMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.handshake.NoobnessLevelMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.handshake.CompleteDiffieHandshakeEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.handshake.IdentityAccountsEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.handshake.InitDiffieHandshakeEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.handshake.UserRightsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.handshake.UniqueMachineIDEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.handshake.PingMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.handshake.DisconnectReasonEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.handshake.IsFirstLoginOfDayEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.handshake.AuthenticationOKMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.handshake.GenericErrorEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.handshake.UserObjectEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.CallForHelpPendingCallsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.CallForHelpReplyMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.class_135;
+
+    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionErrorMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionStartedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.CallForHelpDisabledNotifyMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.GuideTicketCreationResultMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionMessageMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.GuideOnDutyStatusMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.ChatReviewSessionStartedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.ChatReviewSessionOfferedToGuideMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionRequesterRoomMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.GuideReportingStatusMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionPartnerIsTypingMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.class_579;
+
+    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionInvitedToGuideRoomMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.ChatReviewSessionVotingStatusMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.ChatReviewSessionResultsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.GuideTicketResolutionMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.IssueCloseNotificationMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.class_673;
+
+    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionEndedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.class_784;
+
+    import com.sulake.habbo.communication.messages.incoming.help.CallForHelpResultMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.QuizDataMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.class_819;
+
+    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionDetachedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.GuideSessionAttachedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.class_895;
+
+    import com.sulake.habbo.communication.messages.incoming.help.CallForHelpPendingCallsDeletedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.ChatReviewSessionDetachedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.help.QuizResultsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.hotlooks.HotLooksMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.achievements.AchievementsScoreEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.achievements.AchievementsEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.achievements.AchievementEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.avatareffect.AvatarEffectsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.avatareffect.AvatarEffectActivatedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.avatareffect.AvatarEffectSelectedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.avatareffect.AvatarEffectAddedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.avatareffect.AvatarEffectExpiredMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.badges.BadgeReceivedEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.badges.BadgesEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.badges.BadgePointLimitsEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.badges.IsBadgeRequestFulfilledEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.bots.BotRemovedFromInventoryEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.bots.class_258;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.bots.BotInventoryEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.bots.BotAddedToInventoryEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.clothing.FigureSetIdsEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.clothing.class_401;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.clothing.class_456;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.furni.PostItPlacedEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListInvalidateEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListAddOrUpdateEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.furni.FurniListRemoveEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.pets.ConfirmBreedingResultEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.pets.GoToBreedingNestFailureEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.pets.PetAddedToInventoryEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.pets.PetBreedingEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.pets.PetReceivedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.pets.NestBreedingSuccessEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.pets.PetInventoryEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.pets.ConfirmBreedingRequestEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.pets.PetRemovedFromInventoryEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.purse.CreditBalanceEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingOpenEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.class_144;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingConfirmationEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingOtherNotAllowedEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingAcceptEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingYouAreNotAllowedEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradeSilverFeeMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingNotOpenEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingCloseEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingCompletedEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradeSilverSetMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradeOpenFailedEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.inventory.trading.TradingItemListEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.landingview.PromoArticlesMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.landingview.votes.CommunityVoteReceivedEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceBuyOfferResultEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceConfigurationEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceItemStatsEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketPlaceOwnOffersEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketPlaceOffersEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceMakeOfferResult;
+
+    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceCancelOfferResultEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.marketplace.MarketplaceCanMakeOfferResult;
+
+    import com.sulake.habbo.communication.messages.incoming.moderation.RoomVisitsEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorInitMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.moderation.IssueInfoMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.moderation.UserBannedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.moderation.CfhChatlogEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorUserInfoEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorActionResultMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.moderation.IssuePickFailedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.moderation.IssueDeletedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorRoomInfoEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.moderation.UserChatlogEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorCautionEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.moderation.ModeratorToolPreferencesEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.moderation.RoomChatlogEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.mysterybox.ShowMysteryBoxWaitMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.mysterybox.MysteryBoxKeysMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.mysterybox.CancelMysteryBoxWaitMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.mysterybox.GotMysteryBoxPrizeMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.FlatAccessDeniedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.ConvertedRoomIdEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.FavouritesEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.OfficialRoomsEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.GuestRoomSearchResultEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.CategoriesWithVisitorCountEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.RoomInfoUpdatedEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.NavigatorSettingsEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.UserEventCatsEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.CompetitionRoomsDataMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.class_590;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.UserFlatCatsEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.RoomEventEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.CanCreateRoomEventEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.RoomRatingEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.RoomEventCancelEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.FavouriteChangedEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.FlatCreatedEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.DoorbellMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.GetGuestRoomResultEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.PopularRoomTagsResultEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.CanCreateRoomEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_151;
+
+    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_348;
+
+    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_364;
+
+    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_713;
+
+    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_760;
+
+    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_954;
+
+    import com.sulake.habbo.communication.messages.incoming.nft.UserNftWardrobeMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.nft.UserNftChatStylesMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.nft.UserNftWardrobeSelectionMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.notifications.ClubGiftNotificationEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.notifications.HabboAchievementNotificationMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.notifications.HabboBroadcastMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.notifications.ActivityPointsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.notifications.MOTDNotificationEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.notifications.HabboActivityPointNotificationMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.notifications.NotificationDialogMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.notifications.UnseenItemsEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.notifications.OfferRewardDeliveredMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.notifications.ElementPointerMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.notifications.InfoFeedEnableMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.notifications.PetLevelNotificationEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.notifications.RestoreClientMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.nux.NewUserExperienceNotCompleteEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.nux.SelectInitialRoomEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.nux.NewUserExperienceGiftOfferEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.perk.CitizenshipVipOfferPromoEnabledEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.perk.PerkAllowancesMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.poll.PollContentsEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.poll.QuestionEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.poll.PollErrorEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.poll.QuestionFinishedEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.poll.QuestionAnsweredEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.poll.PollOfferEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.preferences.AccountPreferencesEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.quest.QuestCancelledMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.quest.QuestCompletedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.quest.SeasonalQuestsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.quest.CommunityGoalProgressMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.quest.EpicPopupMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.quest.ConcurrentUsersGoalProgressMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.quest.QuestsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.quest.class_931;
+
+    import com.sulake.habbo.communication.messages.incoming.quest.CommunityGoalHallOfFameMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.quest.QuestDailyMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.quest.QuestMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.action.SleepMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.action.DanceMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.action.CarryObjectMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.action.ExpressionMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.action.AvatarEffectMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.action.UseObjectMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.bots.BotCommandConfigurationEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.bots.BotForceOpenContextMenuEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.bots.BotSkillListUpdateEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.bots.BotErrorEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.camera.class_380;
+
+    import com.sulake.habbo.communication.messages.incoming.room.chat.UserTypingMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.chat.RemainingMutePeriodEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.chat.ChatMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.chat.WhisperMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.chat.ShoutMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.chat.RoomFilterSettingsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.chat.RoomChatSettingsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.chat.FloodControlMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.UserUpdateMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.WiredMovementsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.RoomPropertyMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ItemUpdateMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectRemoveMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.HeightMapMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectDataUpdateMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectAddMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.SpecialRoomEffectMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.UserChangeMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.BuildersClubPlacementWarningMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectRemoveConfirmMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.FurnitureAliasesMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.FavoriteMembershipUpdateMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectsDataUpdateMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.UserRemoveMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.RoomEntryInfoMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.UsersMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.HeightMapUpdateMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ItemRemoveMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ItemDataUpdateMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectUpdateMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ObjectRemoveMultipleMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.FloorHeightMapMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.SlideObjectBundleMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ItemsStateUpdateMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ItemStateUpdateMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ItemAddMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.ItemsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.engine.RoomVisualizationSettingsEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.YoutubeControlVideoMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.DiceValueMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.PresentOpenedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.CustomUserNotificationMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.FurniRentOrBuyoutOfferMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.AreaHideMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.YoutubeDisplayVideoMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.RentableSpaceRentOkMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.RentableSpaceRentFailedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.RoomMessageNotificationMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.OneWayDoorStatusMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.RequestSpamWallPostItMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.CustomStackingHeightUpdateMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.OpenPetPackageRequestedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.RentableSpaceStatusMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.OpenPetPackageResultMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.GuildFurniContextMenuInfoMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.RoomDimmerPresetsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.furniture.YoutubeDisplayPlaylistsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.layout.RoomOccupiedTilesMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.layout.RoomEntryTileMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.permissions.YouAreOwnerMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.permissions.YouAreNotControllerMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.permissions.YouAreControllerMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.pets.PetCommandsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.pets.PetLevelUpdateEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.pets.PetRespectFailedEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.pets.PetExperienceEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.pets.PetFigureUpdateEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.pets.PetInfoMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.pets.PetBreedingResultEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.pets.PetStatusUpdateEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.pets.PetPlacingErrorEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.session.HanditemConfigurationMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.session.OpenConnectionMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.session.RoomForwardMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.session.FlatAccessibleMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.session.GamePlayerValueMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.session.YouAreNotSpectatorMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.session.YouAreSpectatorMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.session.CloseConnectionMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.session.CantConnectMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.session.YouArePlayingGameMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.session.RoomReadyMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.session.RoomQueueStatusMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.ShowEnforceRoomCategoryDialogEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.FlatControllerAddedEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.UserUnbannedFromRoomEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.NoSuchFlatEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsErrorEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsSavedEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.FlatControllersEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsDataEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.FlatControllerRemovedEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.BannedUsersFromRoomEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.MuteAllInRoomEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsSaveErrorEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.sound.TraxSongInfoMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.sound.JukeboxSongDisksMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.sound.UserSongDisksInventoryMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.sound.PlayListSongAddedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.sound.NowPlayingMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.sound.PlayListMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.sound.OfficialSongIdMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.sound.JukeboxPlayListFullMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.talent.TalentTrackLevelMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.talent.TalentLevelUpMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.talent.TalentTrackMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.tracking.LatencyPingResponseMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.userclassification.UserClassificationMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredFurniConditionEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredSaveSuccessEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.OpenEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredFurniTriggerEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredRewardResultMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredFurniSelectorEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredFurniActionEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredFurniAddonEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredValidationErrorEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.WiredFurniVariableEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredRoomStatsEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredPermissionsEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredRoomSettingsEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredAllVariablesHashEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredVariablesForObjectEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredAllVariablesDiffsEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredMenuErrorEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredErrorLogsEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.userdefinedroomevents.wiredmenu.WiredAllVariableHoldersEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.GuildEditorDataMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.ScrSendUserInfoEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.ExtendedProfileChangedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.PetRespectNotificationEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.GroupDetailsChangedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.GuildMembershipRejectedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.HandItemReceivedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.UserNameChangedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.AccountSafetyLockStatusChangeMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.GuildMembersMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.HabboGroupJoinFailedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.GuildEditInfoMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.HabboGroupDeactivatedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.GuildCreationInfoMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.GuildMembershipUpdatedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.ScrSendKickbackInfoMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.GuildMemberFurniCountInHQMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.RelationshipStatusInfoEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.IgnoreResultMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.EmailStatusResultEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.ApproveNameMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.GuildMembershipsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.HabboGroupBadgesMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.PetSupplementedNotificationEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.GuildMemberMgmtFailedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.IgnoredUsersMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.ChangeEmailResultEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.GuildCreatedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.RespectNotificationMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.GuildEditFailedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.HabboGroupDetailsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.HabboUserBadgesMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.GroupMembershipRequestedMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.InClientLinkMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.ExtendedProfileMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.vault.CreditVaultStatusMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.vault.IncomeRewardClaimResponseMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.vault.IncomeRewardStatusMessageEvent;
+
+    import com.sulake.habbo.communication.messages.outgoing.camera.PurchasePhotoMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.camera.PublishPhotoMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.camera.RenderRoomMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.camera.RenderRoomThumbnailMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.camera.RequestCameraConfigurationMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.camera.PhotoCompetitionMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.campaign.OpenCampaignCalendarDoorAsStaffComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.campaign.OpenCampaignCalendarDoorComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetRoomAdPurchaseInfoComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetSnowWarGameTokensOfferComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseSnowWarGameTokensOfferComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetClubOffersMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.BuildersClubQueryFurniCountMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetCatalogPageWithEarliestExpiryComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.BuildersClubPlaceRoomItemMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.class_272;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetSeasonalCalendarDailyComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.class_367;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetLimitedOfferAppearingNextComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.RedeemVoucherMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetSellablePetPalettesComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.ShopTargetedOfferViewedComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseRoomAdMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetIsOfferGiftableComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetBundleDiscountRulesetComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetCatalogIndexComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseBasicMembershipExtensionComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.SelectClubGiftComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetBonusRareInfoMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.SetTargetedOfferStateComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetClubGiftMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.RoomAdPurchaseInitiatedComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.class_807;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.BuildersClubPlaceWallItemMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseFromCatalogComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.MarkCatalogNewAdditionsPageOpenedComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetProductOfferComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetGiftWrappingConfigurationComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetNextTargetedOfferComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseTargetedOfferComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetHabboClubExtendOfferMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseFromCatalogAsGiftComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.PurchaseVipMembershipExtensionComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.class_951;
+
+    import com.sulake.habbo.communication.messages.outgoing.catalog.GetCatalogPageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.crafting.CraftComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.crafting.GetCraftableProductsComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.crafting.CraftSecretComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.crafting.GetCraftingRecipesAvailableComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.crafting.GetCraftingRecipeComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.SetRelationshipStatusMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.SendRoomInviteMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.DeclineFriendMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.RemoveFriendMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.FriendListUpdateMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.SendMsgMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.GetFriendRequestsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.FindNewFriendsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.FollowFriendMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.GetMessengerHistoryComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.MessengerInitMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.HabboSearchMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.VisitUserMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.RequestFriendMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.friendlist.AcceptFriendMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.handshake.DisconnectMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.handshake.PongMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.handshake.CompleteDiffieHandshakeMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.handshake.VersionCheckMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.handshake.ClientHelloMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.handshake.UniqueIDMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.handshake.InitDiffieHandshakeMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.handshake.InfoRetrieveMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.handshake.SSOTicketMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.ChatReviewGuideDetachedMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.class_1035;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.GetQuizQuestionsComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.class_1050;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.class_1054;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionRequesterCancelsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromSelfieMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.GetCfhStatusMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.PostQuizAnswersComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionResolvedMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionInviteRequesterMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.ChatReviewSessionCreateMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.class_303;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionReportMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionOnDutyUpdateMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.ChatReviewGuideDecidesOnOfferMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromForumThreadMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromForumMessageMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionGuideDecidesMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.ChatReviewGuideVoteMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.DeletePendingCallsForHelpMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromPhotoMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.GetPendingCallsForHelpMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.GetGuideReportingStatusMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.class_580;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionCreateMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.CallForHelpFromIMMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionGetRequesterRoomMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionFeedbackMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionMessageMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.help.GuideSessionIsTypingMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.achievements.GetAchievementsComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.avatareffect.AvatarEffectSelectedComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.avatareffect.AvatarEffectActivatedComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.badges.GetBadgePointLimitsComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.badges.GetBadgesComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.badges.RequestABadgeComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.badges.SetActivatedBadgesComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.badges.GetIsBadgeRequestFulfilledComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.furni.RequestFurniInventoryComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.furni.RequestFurniInventoryWhenNotInRoomComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.furni.RequestRoomPropertySet;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.purse.GetCreditsInfoComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.SilverFeeMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.AddItemsToTradeComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.OpenTradingComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.ConfirmAcceptTradingComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.CloseTradingComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.RemoveItemFromTradeComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.ConfirmDeclineTradingComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.UnacceptTradingComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.AddItemToTradeComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.trading.AcceptTradingComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.landingview.GetPromoArticlesMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.moderator.GetCfhChatlogMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.moderator.PickIssuesMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.moderator.ModKickMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.moderator.ModMessageMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.moderator.ModBanMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.moderator.ModMuteMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.moderator.ReleaseIssuesMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.moderator.GetModeratorUserInfoMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.moderator.DefaultSanctionMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.moderator.ModTradingLockMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.moderator.CloseIssuesMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.moderator.ModToolPreferencesComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.moderator.GetModeratorRoomInfoMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.moderator.GetRoomChatlogMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.moderator.GetUserChatlogMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.moderator.ModToolSanctionComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.moderator.ModeratorActionMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.moderator.CloseIssueDefaultActionMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.moderator.ModerateRoomMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.moderator.ModAlertMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.moderator.GetRoomVisitsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.ConvertGlobalRoomIdMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.DeleteFavouriteRoomMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.class_1081;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.RoomAdEventTabViewedComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.RateFlatMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.GetPopularRoomTagsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.EditEventMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.RoomsWithHighestScoreSearchMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.CompetitionRoomsSearchMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.MyRoomRightsSearchMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.MyRecommendedRoomsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.GuildBaseSearchMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.GetOfficialRoomsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.ToggleStaffPickMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.ForwardToSomeRoomMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.RoomAdSearchMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.MyFavouriteRoomsSearchMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.ForwardToARandomPromotedRoomMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.CreateFlatMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.RemoveOwnRoomRightsRoomMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.PopularRoomsSearchMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.CanCreateRoomMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.GetGuestRoomMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.MyRoomHistorySearchMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.MyRoomsSearchMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.RoomTextSearchMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.MyGuildBasesSearchMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.AddFavouriteRoomMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.MyFriendsRoomsSearchMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.GetUserFlatCatsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.MyFrequentRoomHistorySearchMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.SetRoomSessionTagsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.RoomsWhereMyFriendsAreSearchMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.CancelEventMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.class_977;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.UpdateHomeRoomMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.RoomAdEventTabAdClickedComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.GetUserEventCatsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.poll.PollStartComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.poll.PollAnswerComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.poll.PollRejectComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.action.BanUserWithDurationMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.action.KickUserMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.action.MuteUserMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.action.LetUserInMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.action.AmbassadorAlertMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.action.UnmuteUserMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.action.RemoveRightsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.action.AssignRightsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.action.RemoveAllRightsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.action.MuteAllInRoomComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.action.UnbanUserFromRoomMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.avatar.AvatarExpressionMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.avatar.CustomizeAvatarWithFurniMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.avatar.DropCarryItemMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.avatar.PassCarryItemToPetMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.avatar.SignMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.avatar.LookToMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.avatar.DanceMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.avatar.ChangeMottoMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.avatar.PassCarryItemMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.avatar.ChangePostureMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.chat.ChatMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.chat.ShoutMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.chat.CancelTypingMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.chat.WhisperMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.chat.StartTypingMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.ClickFurniMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.RemoveItemMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.TogglePetRidingPermissionMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.MountPetMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.PlaceBotMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.HarvestPetMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.RemovePetFromFlatMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.SetItemDataMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.CompostPlantMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.PickupObjectMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.MoveAvatarMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.GetItemDataMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.RemoveBotFromFlatMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.TogglePetBreedingPermissionMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.MovePetMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.SetClothingChangeDataMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.RemoveSaddleFromPetMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.UseFurnitureMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.MoveObjectMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.GetFurnitureAliasesMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.SetObjectDataMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.PlaceObjectMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.GiveSupplementToPetMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.PlacePetMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.MoveWallItemMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.UseWallItemMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.GetHeightMapMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.engine.GetPetCommandsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.ExtendRentOrBuyoutFurniMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.CreditFurniRedeemMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.ThrowDiceMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetYoutubeDisplayPlaylistMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.EnterOneWayDoorMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.RentableSpaceCancelRentMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.RentableSpaceRentMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.GetRentOrBuyoutOfferMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.OpenPetPackageMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.DiceOffMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SpinWheelOfFortuneMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.ControlYoutubeDisplayPlaybackMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.AddSpamWallPostItMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.OpenMysteryTrophyMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetAreaHideDataComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.RoomDimmerChangeStateMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.ExtendRentOrBuyoutStripItemMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.GetYoutubeDisplayStatusMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.RentableSpaceStatusMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.RoomDimmerGetPresetsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetRandomStateMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.PlacePostItMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.PresentOpenMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.RoomDimmerSavePresetMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetMannequinFigureComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetRoomBackgroundColorDataComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetCustomStackingHeightComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.GetGuildFurniContextMenuInfoMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.furniture.SetMannequinNameComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.session.ChangeQueueMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.session.QuitMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.session.OpenFlatConnectionMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.roomsettings.GetBannedUsersFromRoomMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.roomsettings.UpdateRoomCategoryAndTradeSettingsComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.roomsettings.GetRoomSettingsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.roomsettings.UpdateRoomFilterMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.roomsettings.GetCustomRoomFilterMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.roomsettings.SaveRoomSettingsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.roomsettings.DeleteRoomMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.roomsettings.GetFlatControllersMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateSelectorMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateConditionMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateTriggerMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateAddonMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateActionMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.ApplySnapshotMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.OpenMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.UpdateVariableMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.AddAdminRightsToMemberMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.UpdateGuildColorsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.GetUserNftChatStylesMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.DeactivateGuildMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.RejectMembershipRequestMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileByNameMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.GetEmailStatusComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.GetGuildMembersMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.GetGuildEditInfoMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.GetGuildEditorDataMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.SelectFavouriteHabboGroupMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.GetHabboGroupDetailsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.ApproveMembershipRequestMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.CreateGuildMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.ApproveNameMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.ApproveAllMembershipRequestsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.JoinHabboGroupMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.GetExtendedProfileMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.UnignoreUserMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.ScrGetKickbackInfoMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.GetMOTDMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.IgnoreUserMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.GetHabboGroupBadgesMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.RemoveAdminRightsFromMemberMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.class_606;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.ChangeEmailComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.GiveStarGemToUserMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.GetIgnoredUsersMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.GetRelationshipStatusInfoMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.ScrGetUserInfoMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.GetGuildMembershipsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.GetGuildCreationInfoMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.DeselectFavouriteHabboGroupMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.UpdateGuildBadgeMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.GetSelectedBadgesMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.UpdateGuildSettingsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.KickMemberMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.UnblockGroupMemberMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.UpdateGuildIdentityMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.users.GetMemberGuildItemCountMessageComposer;
+
+    import package_1.*;
+
+    import com.sulake.habbo.communication.messages.outgoing.marketplace.RedeemMarketplaceOfferCreditsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.marketplace.GetMarketplaceOffersMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.marketplace.GetMarketplaceConfigurationMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.marketplace.BuyMarketplaceTokensMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.marketplace.CancelMarketplaceOfferMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.marketplace.GetMarketplaceItemStatsComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.marketplace.GetMarketplaceOwnOffersMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.marketplace.GetMarketplaceCanMakeOfferMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.marketplace.BuyMarketplaceOfferMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.marketplace.MakeOfferMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.pets.ConfirmPetBreedingComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.pets.GetPetInventoryComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.pets.CancelPetBreedingComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.layout.GetRoomEntryTileMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.layout.GetOccupiedTilesMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.layout.UpdateFloorPropertiesMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.roomdirectory.RoomNetworkOpenConnectionMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.hotlooks.GetHotLooksMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.register.UpdateFigureDataMessageComposer;
+
+    import package_113.*;
+
+    import com.sulake.habbo.communication.messages.outgoing.mysterybox.MysteryBoxWaitingCanceledMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.landingview.votes.CommunityGoalVoteMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.inventory.bots.GetBotInventoryComposer;
+
+    import package_120.*;
+
+    import package_121.*;
+
+    import package_14.*;
+
+    import com.sulake.habbo.communication.messages.outgoing.sound.GetUserSongDisksMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.sound.AddJukeboxDiskComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.sound.GetNowPlayingMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.sound.GetOfficialSongIdMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.sound.GetJukeboxPlayListMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.sound.GetSoundMachinePlayListMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.sound.GetSoundSettingsComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.sound.GetSongInfoMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.sound.RemoveJukeboxDiskComposer;
+
+    import package_2.*;
+
+    import com.sulake.habbo.communication.messages.outgoing.preferences.SetChatStylePreferenceComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.preferences.SetChatPreferencesMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.preferences.SetUIFlagsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.preferences.SetNewNavigatorWindowPreferencesMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.preferences.SetSoundSettingsComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.preferences.SetRoomCameraPreferencesMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.preferences.SetIgnoreRoomInvitesMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.GetForumStatsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.GetMessagesMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.ModerateThreadMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.GetThreadsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.GetUnreadForumsCountMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.PostMessageMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.GetForumsListMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.UpdateThreadMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.UpdateForumReadMarkerMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.ModerateMessageMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.UpdateForumSettingsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.groupforums.GetThreadMessageComposer;
+
+    import package_22.*;
+
+    import package_23.*;
+
+    import package_24.*;
+
+    import package_3.*;
+
+    import package_30.*;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2CheckGameDirectoryStatusMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2GetAccountGameStatusMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2StartSnowWarMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2QuickJoinGameMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.directory.Game2LeaveGameMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.lobby.GetUserGameAchievementsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.lobby.class_165;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.lobby.GetResolutionAchievementsMessageComposer;
+
+    import package_34.*;
+
+    import com.sulake.habbo.communication.messages.outgoing.advertisement.InterstitialShownMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.advertisement.GetInterstitialMessageComposer;
+
+    import package_36.*;
+
+    import package_37.*;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.score.Game2GetFriendsLeaderboardComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.score.Game2GetTotalGroupLeaderboardComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.score.Game2GetTotalLeaderboardComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.score.Game2GetWeeklyFriendsLeaderboardComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.score.Game2GetWeeklyGroupLeaderboardComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.score.Game2GetWeeklyLeaderboardComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.score.GetFriendsWeeklyCompetitiveLeaderboardComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.score.GetWeeklyCompetitiveLeaderboardComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.score.GetWeeklyGameRewardComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.score.GetWeeklyGameRewardWinnersComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.competition.class_1011;
+
+    import com.sulake.habbo.communication.messages.outgoing.competition.ForwardToASubmittableRoomMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.competition.VoteForRoomMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.competition.ForwardToACompetitionRoomMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.competition.GetSecondsUntilMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.competition.GetIsUserPartOfCompetitionMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.competition.ForwardToRandomCompetitionRoomMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.competition.SubmitRoomToCompetitionMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.competition.RoomCompetitionInitMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.newnavigator.NavigatorRemoveCollapsedCategoryMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.newnavigator.NavigatorSetSearchCodeViewModeMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.newnavigator.NavigatorAddSavedSearchComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.newnavigator.NavigatorDeleteSavedSearchComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.newnavigator.NavigatorAddCollapsedCategoryMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.newnavigator.NewNavigatorSearchComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.newnavigator.NewNavigatorInitComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.vault.CreditVaultStatusMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.vault.WithdrawCreditVaultMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.vault.IncomeRewardStatusMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.vault.IncomeRewardClaimMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.nux.NewUserExperienceGetGiftsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.nux.NewUserExperienceScriptProceedComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.nux.SelectInitialRoomComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.gifts.class_200;
+
+    import com.sulake.habbo.communication.messages.outgoing.gifts.SetPhoneNumberVerificationStatusMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.gifts.VerifyCodeMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.gifts.ResetPhoneNumberStateMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.gifts.TryPhoneNumberMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.notifications.ResetUnseenItemIdsComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.notifications.ResetUnseenItemsComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.arena.Game2ExitGameMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.arena.Game2GameChatMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.arena.Game2LoadStageReadyMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.arena.Game2PlayAgainMessageComposer;
+
+    import package_51.*;
+
+    import com.sulake.habbo.communication.messages.outgoing.tracking.PerformanceLogMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.tracking.LagWarningReportMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.tracking.LatencyPingRequestMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.tracking.LatencyPingReportMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.tracking.EventLogMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.quest.GetConcurrentUsersGoalProgressMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.quest.GetDailyQuestMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.quest.GetConcurrentUsersRewardMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.quest.GetCommunityGoalHallOfFameMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.quest.ActivateQuestMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.quest.OpenQuestTrackerMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.quest.AcceptQuestMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.quest.GetSeasonalQuestsOnlyMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.quest.class_493;
+
+    import com.sulake.habbo.communication.messages.outgoing.quest.GetQuestsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.quest.FriendRequestQuestCompleteMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.quest.class_735;
+
+    import com.sulake.habbo.communication.messages.outgoing.quest.StartCampaignMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.quest.GetCommunityGoalProgressMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.quest.CancelQuestMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.quest.RejectQuestMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetNftTransferFeeMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetCollectibleWalletAddressesMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetCollectibleMintableItemTypesMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetCollectibleMintTokensMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.NftTransferAssetsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.MintItemMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetCollectorScoreMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetCollectibleMintingEnabledMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetMintTokenOffersMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.NftCollectiblesClaimBonusItemMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.NftCollectiblesClaimRewardItemMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.GetNftCollectionsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.collectibles.PurchaseMintTokenMessageComposer;
+
+    import package_62.*;
+
+    import package_65.*;
+
+    import com.sulake.habbo.communication.messages.outgoing.avatar.CheckUserNameMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.avatar.ChangeUserNameInRoomMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.avatar.ChangeUserNameMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.avatar.SaveWardrobeOutfitMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.avatar.GetWardrobeMessageComposer;
+
+    import package_72.*;
+
+    import package_73.*;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.ingame.Game2MakeSnowballMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.ingame.Game2RequestFullStatusUpdateMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.ingame.Game2SetUserMoveTargetMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.ingame.Game2ThrowSnowballAtHumanMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.game.ingame.Game2ThrowSnowballAtPositionMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetAllVariableHoldersMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetErrorLogsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetRoomSettingsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredClearErrorLogsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetAllVariablesHashMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetVariablesForObjectMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredSetPreferencesMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredSetRoomSettingsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredSetObjectVariableValueMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetRoomStatsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.userdefinedroomevents.wiredmenu.WiredGetAllVariablesDiffsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.pets.PetSelectedMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.pets.GetPetInfoMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.pets.BreedPetsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.pets.CustomizePetWithFurniComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.pets.RespectPetMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.nft.GetNftCreditsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.nft.GetSilverMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.nft.GetUserNftWardrobeMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.nft.SaveUserNftWardrobeMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.nft.GetSelectedNftWardrobeOutfitMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.talent.GetTalentTrackMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.talent.GetTalentTrackLevelMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.talent.GuideAdvertisementReadMessageComposer;
+
+    import package_84.*;
+
+    import com.sulake.habbo.communication.messages.incoming.advertisement.InterstitialMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.advertisement.RoomAdErrorEvent;
+
+    import com.sulake.habbo.communication.messages.outgoing.userclassification.RoomUsersClassificationMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.userclassification.PeerUsersClassificationMessageComposer;
+
+    import package_91.*;
+
+    import package_92.*;
+
+    import com.sulake.habbo.communication.messages.outgoing.friendfurni.FriendFurniConfirmLockMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.bots.GetBotCommandConfigurationDataComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.bots.CommandBotComposer;
 
     [SecureSWF(rename="true")]
-    public class HabboMessages implements IMessageConfiguration {
+    public class HabboMessages implements IMessageConfiguration
+    {
 
-        private static const _events: Map = new class_885();
+        private static const _events:Map = new class_885();
 
-        private static const _composers: Map = new class_885();
+        private static const _composers:Map = new class_885();
 
         {
             _composers[1005] = Game2QuickJoinGameMessageComposer;
@@ -1466,11 +2450,11 @@ package com.sulake.habbo.communication {
             _composers[346] = class_165;
             _composers[3468] = RequestFurniInventoryWhenNotInRoomComposer;
             _composers[3472] = AddItemToTradeComposer;
-            _composers[3473] = FindNewFriendsMessageComposer; //FindNewFriendsMessageComposer
+            _composers[3473] = FindNewFriendsMessageComposer; // FindNewFriendsMessageComposer
             _composers[3477] = WiredSetRoomSettingsMessageComposer;
             _composers[3478] = ApproveMembershipRequestMessageComposer;
             _composers[3484] = RemoveJukeboxDiskComposer;
-            _composers[3487] = GetCollectibleMintableItemTypesMessageComposer; //GetCollectibleMintableItemTypesMessageComposer
+            _composers[3487] = GetCollectibleMintableItemTypesMessageComposer; // GetCollectibleMintableItemTypesMessageComposer
             _composers[3492] = GetUserNftChatStylesMessageComposer;
             _composers[3507] = GetMessagesMessageComposer;
             _composers[3510] = GuideSessionInviteRequesterMessageComposer;
@@ -1614,7 +2598,7 @@ package com.sulake.habbo.communication {
             _composers[833] = PollAnswerComposer;
             _composers[842] = RoomDimmerGetPresetsMessageComposer;
             _composers[843] = UseWallItemMessageComposer;
-            _composers[850] = GetCollectibleMintingEnabledMessageComposer; //GetCollectibleMintingEnabledMessageComposer
+            _composers[850] = GetCollectibleMintingEnabledMessageComposer; // GetCollectibleMintingEnabledMessageComposer
             _composers[852] = ModToolSanctionComposer;
             _composers[856] = CompostPlantMessageComposer;
             _composers[864] = ModeratorActionMessageComposer;
@@ -1853,7 +2837,7 @@ package com.sulake.habbo.communication {
             _events[2670] = CitizenshipVipOfferPromoEnabledEvent;
             _events[2674] = MarketplaceBuyOfferResultEvent;
             _events[2675] = UseObjectMessageEvent;
-            _events[2676] = class_129;
+            _events[2676] = FavouritesEvent;
             _events[2677] = Game2GameEndingMessageEvent;
             _events[2680] = UserChangeMessageEvent;
             _events[2689] = DiceValueMessageEvent;
@@ -1861,7 +2845,7 @@ package com.sulake.habbo.communication {
             _events[2709] = ModeratorMessageEvent;
             _events[2741] = ModeratorActionResultMessageEvent;
             _events[2771] = PetReceivedMessageEvent;
-            _events[279] = class_756; //MiniMailNewMessageEvent
+            _events[279] = class_756; // MiniMailNewMessageEvent
             _events[2791] = RoomEntryInfoMessageEvent;
             _events[2798] = HabboGroupBadgesMessageEvent;
             _events[2799] = YouAreSpectatorMessageEvent;
@@ -2054,7 +3038,7 @@ package com.sulake.habbo.communication {
             _events[3825] = QuestionAnsweredEvent;
             _events[3844] = OpenPetPackageRequestedMessageEvent;
             _events[3855] = ExpressionMessageEvent;
-            _events[3856] = class_307; //MiniMailUnreadCountEvent
+            _events[3856] = class_307; // MiniMailUnreadCountEvent
             _events[3859] = NowPlayingMessageEvent;
             _events[3874] = HabboBroadcastMessageEvent;
             _events[3884] = WeeklyGameRewardWinnersEvent;
@@ -2144,7 +3128,7 @@ package com.sulake.habbo.communication {
             _events[878] = CallForHelpPendingCallsMessageEvent;
             _events[889] = HandItemReceivedMessageEvent;
             _events[893] = WiredFurniTriggerEvent;
-            _events[895] = class_491;
+            _events[895] = NavigatorSettingsEvent;
             _events[919] = ExtendedProfileMessageEvent;
             _events[929] = ConfirmBreedingResultEvent;
             _events[931] = LatencyPingResponseMessageEvent;
@@ -2157,15 +3141,18 @@ package com.sulake.habbo.communication {
             _events[996] = WiredFurniActionEvent;
         }
 
-        public function HabboMessages() {
+        public function HabboMessages()
+        {
             super();
         }
 
-        public function get events(): Map {
+        public function get events():Map
+        {
             return _events;
         }
 
-        public function get composers(): Map {
+        public function get composers():Map
+        {
             return _composers;
         }
     }

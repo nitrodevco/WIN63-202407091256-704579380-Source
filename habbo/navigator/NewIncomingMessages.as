@@ -1,112 +1,188 @@
-package com.sulake.habbo.navigator {
-    import assets.class_14
+package com.sulake.habbo.navigator
+{
+    import assets.class_14;
 
-    import com.sulake.core.communication.messages.IMessageEvent
-    import com.sulake.core.utils.ErrorReportStorage
-    import com.sulake.core.window.IWindow
-    import com.sulake.core.window.class_3400
-    import com.sulake.habbo.communication.IHabboCommunicationManager
-    import com.sulake.habbo.communication.messages.incoming.competition.NoOwnedRoomsAlertMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.friendlist.FriendListFragmentMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.friendlist.FriendListUpdateEvent
-    import com.sulake.habbo.communication.messages.incoming.handshake.UserRightsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.handshake.UserObjectEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.FlatAccessDeniedMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_129
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_1675
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_1727
-    import com.sulake.habbo.communication.messages.incoming.navigator.class_1742
-    import com.sulake.habbo.communication.messages.incoming.navigator.OfficialRoomsEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.GuestRoomSearchResultEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.CategoriesWithVisitorCountEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.RoomInfoUpdatedEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.UserEventCatsEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.CompetitionRoomsDataMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.UserFlatCatsEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.RoomEventEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.CanCreateRoomEventEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.RoomRatingEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.RoomEventCancelEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.FavouriteChangedEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.FlatCreatedEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.DoorbellMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.navigator.PopularRoomTagsResultEvent
-    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_151
-    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_3439
-    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_348
-    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_364
-    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_713
-    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_760
-    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_954
-    import com.sulake.habbo.communication.messages.incoming.room.chat.RoomFilterSettingsMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.session.FlatAccessibleMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.session.CloseConnectionMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.room.session.CantConnectMessageEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.FlatControllerAddedEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.UserUnbannedFromRoomEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.NoSuchFlatEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsErrorEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsSavedEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.FlatControllersEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsDataEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.FlatControllerRemovedEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.BannedUsersFromRoomEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.MuteAllInRoomEvent
-    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsSaveErrorEvent
-    import com.sulake.habbo.communication.messages.incoming.users.HabboGroupDetailsMessageEvent
-    import com.sulake.habbo.communication.messages.outgoing.navigator.GetGuestRoomMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.GetUserFlatCatsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.navigator.GetUserEventCatsMessageComposer
-    import com.sulake.habbo.communication.messages.outgoing.room.session.QuitMessageComposer
-    import com.sulake.habbo.communication.messages.parser.handshake.UserObjectEventParser
-    import com.sulake.habbo.communication.messages.parser.navigator.UserEventCatsEventParser
-    import com.sulake.habbo.communication.messages.parser.navigator.RoomEventEventParser
-    import com.sulake.habbo.communication.messages.parser.navigator.CanCreateRoomEventEventParser
-    import com.sulake.habbo.communication.messages.parser.navigator.OfficialRoomsEventParser
-    import com.sulake.habbo.communication.messages.parser.navigator.UserFlatCatsEventParser
-    import com.sulake.habbo.communication.messages.parser.navigator.CategoriesWithVisitorCountEventParser
-    import com.sulake.habbo.communication.messages.parser.navigator.FavouriteChangedEventParser
-    import com.sulake.habbo.communication.messages.parser.navigator.RoomInfoUpdatedEventParser
-    import com.sulake.habbo.communication.messages.parser.navigator.RoomRatingEventParser
-    import com.sulake.habbo.communication.messages.parser.navigator.FlatAccessDeniedMessageEventParser
-    import com.sulake.habbo.communication.messages.parser.navigator.class_1588
-    import com.sulake.habbo.communication.messages.parser.navigator.FlatCreatedEventParser
-    import com.sulake.habbo.communication.messages.parser.room.chat.RoomFilterSettingsMessageEventParser
-    import com.sulake.habbo.communication.messages.parser.room.session.CantConnectMessageEventParser
-    import com.sulake.habbo.communication.messages.parser.room.session.FlatAccessibleMessageEventParser
-    import com.sulake.habbo.communication.messages.parser.roomsettings.RoomSettingsDataEventParser
-    import com.sulake.habbo.communication.messages.parser.roomsettings.FlatControllersEventParser
-    import com.sulake.habbo.communication.messages.parser.roomsettings.RoomSettingsSaveErrorEventParser
-    import com.sulake.habbo.communication.messages.parser.roomsettings.FlatControllerRemovedEventParser
-    import com.sulake.habbo.communication.messages.parser.roomsettings.RoomSettingsErrorEventParser
-    import com.sulake.habbo.communication.messages.parser.roomsettings.MuteAllInRoomEventParser
-    import com.sulake.habbo.communication.messages.parser.roomsettings.FlatControllerAddedEventParser
-    import com.sulake.habbo.communication.messages.parser.roomsettings.UserUnbannedFromRoomEventParser
-    import com.sulake.habbo.communication.messages.parser.roomsettings.BannedUsersFromRoomEventParser
-    import com.sulake.habbo.communication.messages.parser.roomsettings.RoomSettingsSavedEventParser
-    import com.sulake.habbo.navigator.domain.NavigatorData
-    import com.sulake.habbo.navigator.mainview.tabpagedecorators.RoomsTabPageDecorator
-    import com.sulake.habbo.navigator.transitional.LegacyNavigator
-    import com.sulake.habbo.toolbar.events.HabboToolbarEvent
-    import com.sulake.habbo.utils.HabboWebTools
+    import com.sulake.core.communication.messages.IMessageEvent;
+    import com.sulake.core.utils.ErrorReportStorage;
+    import com.sulake.core.window.IWindow;
+    import com.sulake.core.window.class_3400;
+    import com.sulake.habbo.communication.IHabboCommunicationManager;
+    import com.sulake.habbo.communication.messages.incoming.competition.NoOwnedRoomsAlertMessageEvent;
+    import com.sulake.habbo.communication.messages.incoming.friendlist.FriendListFragmentMessageEvent;
+    import com.sulake.habbo.communication.messages.incoming.friendlist.FriendListUpdateEvent;
+    import com.sulake.habbo.communication.messages.incoming.handshake.UserRightsMessageEvent;
+    import com.sulake.habbo.communication.messages.incoming.handshake.UserObjectEvent;
+    import com.sulake.habbo.communication.messages.incoming.navigator.FlatAccessDeniedMessageEvent;
+    import com.sulake.habbo.communication.messages.incoming.navigator.FavouritesEvent;
+    import com.sulake.habbo.communication.messages.incoming.navigator.class_1675;
+    import com.sulake.habbo.communication.messages.incoming.navigator.class_1727;
+    import com.sulake.habbo.communication.messages.incoming.navigator.class_1742;
+    import com.sulake.habbo.communication.messages.incoming.navigator.OfficialRoomsEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.GuestRoomSearchResultEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.CategoriesWithVisitorCountEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.RoomInfoUpdatedEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.UserEventCatsEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.CompetitionRoomsDataMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.UserFlatCatsEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.RoomEventEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.CanCreateRoomEventEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.RoomRatingEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.RoomEventCancelEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.FavouriteChangedEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.FlatCreatedEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.DoorbellMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.navigator.PopularRoomTagsResultEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_151;
+
+    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_3439;
+
+    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_348;
+
+    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_364;
+
+    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_713;
+
+    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_760;
+
+    import com.sulake.habbo.communication.messages.incoming.newnavigator.class_954;
+
+    import com.sulake.habbo.communication.messages.incoming.room.chat.RoomFilterSettingsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.session.FlatAccessibleMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.session.CloseConnectionMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.room.session.CantConnectMessageEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.FlatControllerAddedEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.UserUnbannedFromRoomEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.NoSuchFlatEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsErrorEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsSavedEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.FlatControllersEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsDataEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.FlatControllerRemovedEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.BannedUsersFromRoomEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.MuteAllInRoomEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.roomsettings.RoomSettingsSaveErrorEvent;
+
+    import com.sulake.habbo.communication.messages.incoming.users.HabboGroupDetailsMessageEvent;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.GetGuestRoomMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.GetUserFlatCatsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.navigator.GetUserEventCatsMessageComposer;
+
+    import com.sulake.habbo.communication.messages.outgoing.room.session.QuitMessageComposer;
+
+    import com.sulake.habbo.communication.messages.parser.handshake.UserObjectEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.navigator.UserEventCatsEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.navigator.RoomEventEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.navigator.CanCreateRoomEventEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.navigator.OfficialRoomsEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.navigator.UserFlatCatsEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.navigator.CategoriesWithVisitorCountEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.navigator.FavouriteChangedEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.navigator.RoomInfoUpdatedEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.navigator.RoomRatingEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.navigator.FlatAccessDeniedMessageEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.navigator.FavouritesEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.navigator.FlatCreatedEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.room.chat.RoomFilterSettingsMessageEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.room.session.CantConnectMessageEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.room.session.FlatAccessibleMessageEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.roomsettings.RoomSettingsDataEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.roomsettings.FlatControllersEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.roomsettings.RoomSettingsSaveErrorEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.roomsettings.FlatControllerRemovedEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.roomsettings.RoomSettingsErrorEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.roomsettings.MuteAllInRoomEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.roomsettings.FlatControllerAddedEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.roomsettings.UserUnbannedFromRoomEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.roomsettings.BannedUsersFromRoomEventParser;
+
+    import com.sulake.habbo.communication.messages.parser.roomsettings.RoomSettingsSavedEventParser;
+
+    import com.sulake.habbo.navigator.domain.NavigatorData;
+
+    import com.sulake.habbo.navigator.mainview.tabpagedecorators.RoomsTabPageDecorator;
+
+    import com.sulake.habbo.navigator.transitional.LegacyNavigator;
+
+    import com.sulake.habbo.toolbar.events.HabboToolbarEvent;
+
+    import com.sulake.habbo.utils.HabboWebTools;
 
     [SecureSWF(rename="true")]
-    public class NewIncomingMessages {
+    public class NewIncomingMessages
+    {
 
-        private var _navigator: HabboNewNavigator;
+        private var _navigator:HabboNewNavigator;
 
-        private var _messageListeners: Array;
+        private var _messageListeners:Array;
 
-        public function NewIncomingMessages(param1: HabboNewNavigator) {
+        public function NewIncomingMessages(param1:HabboNewNavigator)
+        {
             _messageListeners = [];
             super();
             _navigator = param1;
-            var _loc2_: IHabboCommunicationManager = _navigator.communication;
+            var _loc2_:IHabboCommunicationManager = _navigator.communication;
             addMessageListeners();
         }
 
-        public function addMessageListeners(): void {
-            var _loc1_: IHabboCommunicationManager = _navigator.communication;
+        public function addMessageListeners():void
+        {
+            var _loc1_:IHabboCommunicationManager = _navigator.communication;
             _messageListeners.push(_loc1_.addHabboConnectionMessageEvent(new MuteAllInRoomEvent(onMuteAllEvent)));
             _messageListeners.push(_loc1_.addHabboConnectionMessageEvent(new CanCreateRoomEventEvent(onCanCreateRoomEventEvent)));
             _messageListeners.push(_loc1_.addHabboConnectionMessageEvent(new FlatAccessibleMessageEvent(onDoorOpened)));
@@ -142,7 +218,7 @@ package com.sulake.habbo.navigator {
             _messageListeners.push(_loc1_.addHabboConnectionMessageEvent(new RoomEventCancelEvent(onRoomEventCancel)));
             _messageListeners.push(_loc1_.addHabboConnectionMessageEvent(new RoomSettingsErrorEvent(onRoomSettingsError)));
             _messageListeners.push(_loc1_.addHabboConnectionMessageEvent(new FlatAccessDeniedMessageEvent(onFlatAccessDenied)));
-            _messageListeners.push(_loc1_.addHabboConnectionMessageEvent(new class_129(onFavourites)));
+            _messageListeners.push(_loc1_.addHabboConnectionMessageEvent(new FavouritesEvent(onFavourites)));
             _messageListeners.push(_loc1_.addHabboConnectionMessageEvent(new UserUnbannedFromRoomEvent(onUserUnbannedFromRoom)));
             _messageListeners.push(_loc1_.addHabboConnectionMessageEvent(new RoomEventEvent(onRoomEventEvent)));
             _messageListeners.push(_loc1_.connection.addMessageEvent(new class_364(onNavigatorPreferences)));
@@ -151,140 +227,172 @@ package com.sulake.habbo.navigator {
             _messageListeners.push(_loc1_.addHabboConnectionMessageEvent(new RoomInfoUpdatedEvent(onRoomInfoUpdated)));
         }
 
-        public function removeLegacyMessageListeners(): void {
-            var _loc1_: IHabboCommunicationManager = _navigator.communication;
-            for each(var _loc2_ in _messageListeners) {
+        public function removeLegacyMessageListeners():void
+        {
+            var _loc1_:IHabboCommunicationManager = _navigator.communication;
+            for each (var _loc2_ in _messageListeners)
+            {
                 _loc1_.removeHabboConnectionMessageEvent(_loc2_);
             }
             _messageListeners = [];
         }
 
-        private function onNavigatorMetaData(param1: class_760): void {
+        private function onNavigatorMetaData(param1:class_760):void
+        {
             _navigator.initialize(param1.getParser());
         }
 
-        private function onNavigatorSearchResultBlocks(param1: class_151): void {
+        private function onNavigatorSearchResultBlocks(param1:class_151):void
+        {
             _navigator.onSearchResult(new class_3439(param1.getParser().searchResult));
         }
 
-        private function onNavigatorLiftedRooms(param1: class_348): void {
+        private function onNavigatorLiftedRooms(param1:class_348):void
+        {
             _navigator.onLiftedRooms(param1.getParser());
         }
 
-        private function onNavigatorPreferences(param1: class_364): void {
+        private function onNavigatorPreferences(param1:class_364):void
+        {
             _navigator.onPreferences(param1.getParser());
         }
 
-        private function onSavedSearches(param1: class_713): void {
+        private function onSavedSearches(param1:class_713):void
+        {
             _navigator.onSavedSearches(param1.getParser());
         }
 
-        private function onGroupDetails(param1: HabboGroupDetailsMessageEvent): void {
+        private function onGroupDetails(param1:HabboGroupDetailsMessageEvent):void
+        {
             _navigator.onGroupDetails(param1.data);
         }
 
-        private function onCollapsedCategories(param1: class_954): void {
+        private function onCollapsedCategories(param1:class_954):void
+        {
             _navigator.onCollapsedCategories(param1.getParser().collapsedCategories);
         }
 
-        private function get data(): NavigatorData {
+        private function get data():NavigatorData
+        {
             return _navigator.data;
         }
 
-        private function onMuteAllEvent(param1: IMessageEvent): void {
-            var _loc4_: MuteAllInRoomEvent;
-            var _loc3_: MuteAllInRoomEventParser = (_loc4_ = param1 as MuteAllInRoomEvent).getParser();
-            var _loc2_: class_1675 = _navigator.data.enteredGuestRoom;
-            if (_loc2_ != null) {
+        private function onMuteAllEvent(param1:IMessageEvent):void
+        {
+            var _loc4_:MuteAllInRoomEvent;
+            var _loc3_:MuteAllInRoomEventParser = (_loc4_ = param1 as MuteAllInRoomEvent).getParser();
+            var _loc2_:class_1675 = _navigator.data.enteredGuestRoom;
+            if (_loc2_ != null)
+            {
                 _loc2_.allInRoomMuted = _loc3_.allMuted;
-                if (LegacyNavigator(_navigator.legacyNavigator).roomInfoViewCtrl != null) {
+                if (LegacyNavigator(_navigator.legacyNavigator).roomInfoViewCtrl != null)
+                {
                     LegacyNavigator(_navigator.legacyNavigator).roomInfoViewCtrl.refreshButtons(_navigator.data.enteredGuestRoom);
                 }
             }
         }
 
-        private function onNoSuchFlat(param1: IMessageEvent): void {
+        private function onNoSuchFlat(param1:IMessageEvent):void
+        {
         }
 
-        private function onUserObject(param1: IMessageEvent): void {
-            var _loc2_: UserObjectEventParser = UserObjectEvent(param1).getParser();
+        private function onUserObject(param1:IMessageEvent):void
+        {
+            var _loc2_:UserObjectEventParser = UserObjectEvent(param1).getParser();
             _navigator.data.avatarId = _loc2_.id;
             LegacyNavigator(_navigator.legacyNavigator).send(new GetUserFlatCatsMessageComposer());
             LegacyNavigator(_navigator.legacyNavigator).send(new GetUserEventCatsMessageComposer());
         }
 
-        private function onUserRights(param1: IMessageEvent): void {
-            var _loc2_: UserRightsMessageEvent = null;
-            if (_navigator) {
+        private function onUserRights(param1:IMessageEvent):void
+        {
+            var _loc2_:UserRightsMessageEvent = null;
+            if (_navigator)
+            {
                 _loc2_ = UserRightsMessageEvent(param1);
-                if (_loc2_.securityLevel >= 5) {
+                if (_loc2_.securityLevel >= 5)
+                {
                     _navigator.data.eventMod = true;
                 }
-                if (_loc2_.securityLevel >= 7) {
+                if (_loc2_.securityLevel >= 7)
+                {
                     _navigator.data.roomPicker = true;
                 }
             }
         }
 
-        private function onCategoriesWithUserCount(param1: IMessageEvent): void {
-            var _loc2_: CategoriesWithVisitorCountEventParser = CategoriesWithVisitorCountEvent(param1).getParser();
+        private function onCategoriesWithUserCount(param1:IMessageEvent):void
+        {
+            var _loc2_:CategoriesWithVisitorCountEventParser = CategoriesWithVisitorCountEvent(param1).getParser();
             data.categoriesWithVisitorData = _loc2_.data;
             class_14.log("Received Categories with user count: " + data.categoriesWithVisitorData.categoryToCurrentUserCountMap.length);
         }
 
-        private function onOfficialRooms(param1: IMessageEvent): void {
-            var _loc2_: OfficialRoomsEventParser = OfficialRoomsEvent(param1).getParser();
+        private function onOfficialRooms(param1:IMessageEvent):void
+        {
+            var _loc2_:OfficialRoomsEventParser = OfficialRoomsEvent(param1).getParser();
             data.officialRooms = _loc2_.data;
             data.adRoom = _loc2_.adRoom;
             data.promotedRooms = _loc2_.promotedRooms;
             class_14.log("Received Official rooms: " + data.officialRooms.entries.length);
         }
 
-        private function onGuestRoomSearchResult(param1: IMessageEvent): void {
-            var _loc2_: class_1742 = GuestRoomSearchResultEvent(param1).getParser().data;
+        private function onGuestRoomSearchResult(param1:IMessageEvent):void
+        {
+            var _loc2_:class_1742 = GuestRoomSearchResultEvent(param1).getParser().data;
             data.guestRoomSearchResults = _loc2_;
             class_14.log("Received GuestRoomSearch: " + (!!data.guestRoomSearchResults.rooms ? data.guestRoomSearchResults.rooms.length : " no rooms"));
         }
 
-        private function onPopularRoomTagsResult(param1: IMessageEvent): void {
-            var _loc2_: class_1727 = PopularRoomTagsResultEvent(param1).getParser().data;
+        private function onPopularRoomTagsResult(param1:IMessageEvent):void
+        {
+            var _loc2_:class_1727 = PopularRoomTagsResultEvent(param1).getParser().data;
             data.popularTags = _loc2_;
             class_14.log("Received popular room tags: " + data.popularTags.tags.length);
         }
 
-        private function onRoomEventEvent(param1: IMessageEvent): void {
-            var _loc2_: RoomEventEventParser = RoomEventEvent(param1).getParser();
+        private function onRoomEventEvent(param1:IMessageEvent):void
+        {
+            var _loc2_:RoomEventEventParser = RoomEventEvent(param1).getParser();
             class_14.log("Got room event: " + _loc2_.data.ownerAvatarId + ", " + _loc2_.data.eventName);
             data.roomEventData = _loc2_.data.ownerAvatarId > 0 ? _loc2_.data : null;
             LegacyNavigator(_navigator.legacyNavigator).roomEventInfoCtrl.refresh();
         }
 
-        private function onRoomEventCancel(param1: IMessageEvent): void {
+        private function onRoomEventCancel(param1:IMessageEvent):void
+        {
             data.roomEventData = null;
             LegacyNavigator(_navigator.legacyNavigator).roomEventInfoCtrl.refresh();
         }
 
-        private function onCanCreateRoomEventEvent(param1: IMessageEvent): void {
-            var _loc3_: SimpleAlertView = null;
-            var _loc2_: CanCreateRoomEventEventParser = CanCreateRoomEventEvent(param1).getParser();
+        private function onCanCreateRoomEventEvent(param1:IMessageEvent):void
+        {
+            var _loc3_:SimpleAlertView = null;
+            var _loc2_:CanCreateRoomEventEventParser = CanCreateRoomEventEvent(param1).getParser();
             class_14.log("CAN CREATE EVENT: " + _loc2_.canCreateEvent);
-            if (_loc2_.canCreateEvent) {
+            if (_loc2_.canCreateEvent)
+            {
                 LegacyNavigator(_navigator.legacyNavigator).roomEventViewCtrl.show();
-            } else {
+            }
+            else
+            {
                 _loc3_ = new SimpleAlertView(LegacyNavigator(_navigator.legacyNavigator), "${navigator.cannotcreateevent.title}", "${navigator.cannotcreateevent.error." + _loc2_.errorCode + "}");
                 _loc3_.show();
                 class_14.log("Cannot create an event just now...");
             }
         }
 
-        private function requestRoomEnterAd(): void {
-            if (_navigator.getProperty("roomenterad.habblet.enabled") == "true") {
+        private function requestRoomEnterAd():void
+        {
+            if (_navigator.getProperty("roomenterad.habblet.enabled") == "true")
+            {
                 HabboWebTools.openRoomEnterAd();
             }
         }
 
-        private function onFlatCreated(param1: IMessageEvent): void {
-            var _loc2_: FlatCreatedEventParser = FlatCreatedEvent(param1).getParser();
+        private function onFlatCreated(param1:IMessageEvent):void
+        {
+            var _loc2_:FlatCreatedEventParser = FlatCreatedEvent(param1).getParser();
             ErrorReportStorage.addDebugData("IncomingEvent", "Flat created: " + _loc2_.flatId + ", " + _loc2_.flatName);
             data.createdFlatId = _loc2_.flatId;
             LegacyNavigator(_navigator.legacyNavigator).goToRoom(_loc2_.flatId, true);
@@ -293,11 +401,13 @@ package com.sulake.habbo.navigator {
             LegacyNavigator(_navigator.legacyNavigator).closeNavigator();
         }
 
-        private function onGameStarted(param1: IMessageEvent): void {
+        private function onGameStarted(param1:IMessageEvent):void
+        {
             LegacyNavigator(_navigator.legacyNavigator).mainViewCtrl.close();
         }
 
-        private function onRoomExit(param1: IMessageEvent): void {
+        private function onRoomExit(param1:IMessageEvent):void
+        {
             class_14.log("Navigator: exiting room");
             data.onRoomExit();
             LegacyNavigator(_navigator.legacyNavigator).roomInfoViewCtrl.close();
@@ -305,180 +415,220 @@ package com.sulake.habbo.navigator {
             LegacyNavigator(_navigator.legacyNavigator).roomEventViewCtrl.close();
             LegacyNavigator(_navigator.legacyNavigator).roomSettingsCtrl.close();
             LegacyNavigator(_navigator.legacyNavigator).roomFilterCtrl.close();
-            var _loc2_: Boolean = _navigator.getBoolean("news.auto_popup.enabled");
-            if (_loc2_) {
+            var _loc2_:Boolean = _navigator.getBoolean("news.auto_popup.enabled");
+            if (_loc2_)
+            {
                 HabboWebTools.openNews();
             }
         }
 
-        private function onUserFlatCats(param1: IMessageEvent): void {
-            var _loc3_: UserFlatCatsEventParser = (param1 as UserFlatCatsEvent).getParser();
+        private function onUserFlatCats(param1:IMessageEvent):void
+        {
+            var _loc3_:UserFlatCatsEventParser = (param1 as UserFlatCatsEvent).getParser();
             _navigator.data.categories = _loc3_.nodes;
-            var _loc2_: RoomsTabPageDecorator = RoomsTabPageDecorator(LegacyNavigator(_navigator.legacyNavigator).tabs.getTab(2).tabPageDecorator);
+            var _loc2_:RoomsTabPageDecorator = RoomsTabPageDecorator(LegacyNavigator(_navigator.legacyNavigator).tabs.getTab(2).tabPageDecorator);
             _loc2_.prepareRoomCategories();
         }
 
-        private function onUserEventCats(param1: IMessageEvent): void {
-            var _loc2_: UserEventCatsEventParser = (param1 as UserEventCatsEvent).getParser();
+        private function onUserEventCats(param1:IMessageEvent):void
+        {
+            var _loc2_:UserEventCatsEventParser = (param1 as UserEventCatsEvent).getParser();
             _navigator.data.eventCategories = _loc2_.eventCategories;
         }
 
-        private function onRoomSettingsData(param1: IMessageEvent): void {
-            var _loc2_: RoomSettingsDataEventParser = null;
-            try {
+        private function onRoomSettingsData(param1:IMessageEvent):void
+        {
+            var _loc2_:RoomSettingsDataEventParser = null;
+            try
+            {
                 _loc2_ = (param1 as RoomSettingsDataEvent).getParser();
                 LegacyNavigator(_navigator.legacyNavigator).roomSettingsCtrl.onRoomSettings(_loc2_.data);
                 class_14.log("GOT ROOM SETTINGS DATA: " + _loc2_.data.name + ", " + _loc2_.data.maximumVisitors + ", " + _loc2_.data.maximumVisitorsLimit);
-            } catch (e: Error) {
+            }
+            catch (e:Error)
+            {
                 class_14.log("CRASHED WHILE PROCESSING ROOM SETTINGS DATA!");
             }
         }
 
-        private function onRoomFilterSettings(param1: IMessageEvent): void {
-            var _loc2_: RoomFilterSettingsMessageEventParser = (param1 as RoomFilterSettingsMessageEvent).getParser();
+        private function onRoomFilterSettings(param1:IMessageEvent):void
+        {
+            var _loc2_:RoomFilterSettingsMessageEventParser = (param1 as RoomFilterSettingsMessageEvent).getParser();
             LegacyNavigator(_navigator.legacyNavigator).roomFilterCtrl.onRoomFilterSettings(_loc2_.badWords);
             class_14.log("GOT ROOM FILTER SETTINGS: " + _loc2_.badWords);
         }
 
-        private function onRoomSettingsError(param1: IMessageEvent): void {
-            var _loc2_: RoomSettingsErrorEventParser = (param1 as RoomSettingsErrorEvent).getParser();
+        private function onRoomSettingsError(param1:IMessageEvent):void
+        {
+            var _loc2_:RoomSettingsErrorEventParser = (param1 as RoomSettingsErrorEvent).getParser();
         }
 
-        private function onRoomSettingsSaved(param1: IMessageEvent): void {
-            var _loc2_: RoomSettingsSavedEventParser = (param1 as RoomSettingsSavedEvent).getParser();
+        private function onRoomSettingsSaved(param1:IMessageEvent):void
+        {
+            var _loc2_:RoomSettingsSavedEventParser = (param1 as RoomSettingsSavedEvent).getParser();
             ErrorReportStorage.addDebugData("IncomingEvent", "Room settings saved: " + _loc2_.roomId);
             LegacyNavigator(_navigator.legacyNavigator).mainViewCtrl.reloadRoomList(5);
         }
 
-        private function onRoomSettingsSaveError(param1: IMessageEvent): void {
-            var _loc2_: RoomSettingsSaveErrorEventParser = (param1 as RoomSettingsSaveErrorEvent).getParser();
+        private function onRoomSettingsSaveError(param1:IMessageEvent):void
+        {
+            var _loc2_:RoomSettingsSaveErrorEventParser = (param1 as RoomSettingsSaveErrorEvent).getParser();
             LegacyNavigator(_navigator.legacyNavigator).roomSettingsCtrl.onRoomSettingsSaveError(_loc2_.roomId, _loc2_.errorCode, _loc2_.info);
         }
 
-        private function onRoomInfoUpdated(param1: IMessageEvent): void {
-            var _loc2_: RoomInfoUpdatedEventParser = (param1 as RoomInfoUpdatedEvent).getParser();
+        private function onRoomInfoUpdated(param1:IMessageEvent):void
+        {
+            var _loc2_:RoomInfoUpdatedEventParser = (param1 as RoomInfoUpdatedEvent).getParser();
             LegacyNavigator(_navigator.legacyNavigator).send(new GetGuestRoomMessageComposer(_loc2_.flatId, false, false));
         }
 
-        private function onFavourites(param1: IMessageEvent): void {
-            var _loc2_: class_1588 = (param1 as class_129).getParser();
+        private function onFavourites(param1:IMessageEvent):void
+        {
+            var _loc2_:FavouritesEventParser = (param1 as FavouritesEvent).getParser();
             _navigator.data.onFavourites(_loc2_);
         }
 
-        private function onFavouriteChanged(param1: IMessageEvent): void {
-            var _loc2_: FavouriteChangedEventParser = (param1 as FavouriteChangedEvent).getParser();
+        private function onFavouriteChanged(param1:IMessageEvent):void
+        {
+            var _loc2_:FavouriteChangedEventParser = (param1 as FavouriteChangedEvent).getParser();
             data.favouriteChanged(_loc2_.flatId, _loc2_.added);
             LegacyNavigator(_navigator.legacyNavigator).roomInfoViewCtrl.reload();
             LegacyNavigator(_navigator.legacyNavigator).mainViewCtrl.refresh();
         }
 
-        private function onFlatControllers(param1: IMessageEvent): void {
-            var _loc2_: FlatControllersEventParser = (param1 as FlatControllersEvent).getParser();
+        private function onFlatControllers(param1:IMessageEvent):void
+        {
+            var _loc2_:FlatControllersEventParser = (param1 as FlatControllersEvent).getParser();
             LegacyNavigator(_navigator.legacyNavigator).roomSettingsCtrl.onFlatControllers(_loc2_.roomId, _loc2_.controllers);
         }
 
-        private function onFlatControllerAdded(param1: IMessageEvent): void {
-            var _loc2_: FlatControllerAddedEventParser = (param1 as FlatControllerAddedEvent).getParser();
+        private function onFlatControllerAdded(param1:IMessageEvent):void
+        {
+            var _loc2_:FlatControllerAddedEventParser = (param1 as FlatControllerAddedEvent).getParser();
             LegacyNavigator(_navigator.legacyNavigator).roomSettingsCtrl.onFlatControllerAdded(_loc2_.flatId, _loc2_.data);
         }
 
-        private function onFlatControllerRemoved(param1: IMessageEvent): void {
-            var _loc2_: FlatControllerRemovedEventParser = (param1 as FlatControllerRemovedEvent).getParser();
+        private function onFlatControllerRemoved(param1:IMessageEvent):void
+        {
+            var _loc2_:FlatControllerRemovedEventParser = (param1 as FlatControllerRemovedEvent).getParser();
             class_14.log("Flat controller removed: " + _loc2_.flatId + ", " + _loc2_.userId);
             LegacyNavigator(_navigator.legacyNavigator).roomSettingsCtrl.onFlatControllerRemoved(_loc2_.flatId, _loc2_.userId);
         }
 
-        private function onBannedUsersFromRoom(param1: IMessageEvent): void {
-            var _loc2_: BannedUsersFromRoomEventParser = (param1 as BannedUsersFromRoomEvent).getParser();
+        private function onBannedUsersFromRoom(param1:IMessageEvent):void
+        {
+            var _loc2_:BannedUsersFromRoomEventParser = (param1 as BannedUsersFromRoomEvent).getParser();
             class_14.log("Got Banned users for room: " + _loc2_.roomId + ", " + _loc2_.bannedUsers.length);
             LegacyNavigator(_navigator.legacyNavigator).roomSettingsCtrl.onBannedUsersFromRoom(_loc2_.roomId, _loc2_.bannedUsers);
         }
 
-        private function onUserUnbannedFromRoom(param1: IMessageEvent): void {
-            var _loc2_: UserUnbannedFromRoomEventParser = (param1 as UserUnbannedFromRoomEvent).getParser();
+        private function onUserUnbannedFromRoom(param1:IMessageEvent):void
+        {
+            var _loc2_:UserUnbannedFromRoomEventParser = (param1 as UserUnbannedFromRoomEvent).getParser();
             class_14.log("User was unbanned from room. User Id: " + _loc2_.userId + " Room Id: " + _loc2_.roomId);
             LegacyNavigator(_navigator.legacyNavigator).roomSettingsCtrl.onUserUnbannedFromRoom(_loc2_.roomId, _loc2_.userId);
         }
 
-        private function onDoorbell(param1: IMessageEvent): void {
-            var _loc2_: DoorbellMessageEvent = param1 as DoorbellMessageEvent;
-            if (_loc2_ == null) {
+        private function onDoorbell(param1:IMessageEvent):void
+        {
+            var _loc2_:DoorbellMessageEvent = param1 as DoorbellMessageEvent;
+            if (_loc2_ == null)
+            {
                 return;
             }
-            if (_loc2_.userName != "") {
+            if (_loc2_.userName != "")
+            {
                 return;
             }
             LegacyNavigator(_navigator.legacyNavigator).doorbell.showWaiting();
         }
 
-        private function onDoorOpened(param1: IMessageEvent): void {
-            var _loc3_: FlatAccessibleMessageEvent = param1 as FlatAccessibleMessageEvent;
-            if (_loc3_ == null) {
+        private function onDoorOpened(param1:IMessageEvent):void
+        {
+            var _loc3_:FlatAccessibleMessageEvent = param1 as FlatAccessibleMessageEvent;
+            if (_loc3_ == null)
+            {
                 return;
             }
-            var _loc2_: FlatAccessibleMessageEventParser = _loc3_.getParser();
-            if (_loc2_ != null && (_loc2_.userName == null || _loc2_.userName.length == 0)) {
+            var _loc2_:FlatAccessibleMessageEventParser = _loc3_.getParser();
+            if (_loc2_ != null && (_loc2_.userName == null || _loc2_.userName.length == 0))
+            {
                 LegacyNavigator(_navigator.legacyNavigator).doorbell.hide();
             }
         }
 
-        private function onRoomRating(param1: IMessageEvent): void {
-            var _loc2_: RoomRatingEventParser = (param1 as RoomRatingEvent).getParser();
+        private function onRoomRating(param1:IMessageEvent):void
+        {
+            var _loc2_:RoomRatingEventParser = (param1 as RoomRatingEvent).getParser();
             data.currentRoomRating = _loc2_.rating;
             data.canRate = _loc2_.canRate;
             LegacyNavigator(_navigator.legacyNavigator).roomInfoViewCtrl.reload();
         }
 
-        private function onFlatAccessDenied(param1: IMessageEvent): void {
-            var _loc2_: FlatAccessDeniedMessageEventParser = (param1 as FlatAccessDeniedMessageEvent).getParser();
-            if (_loc2_.userName == null || _loc2_.userName == "") {
+        private function onFlatAccessDenied(param1:IMessageEvent):void
+        {
+            var _loc2_:FlatAccessDeniedMessageEventParser = (param1 as FlatAccessDeniedMessageEvent).getParser();
+            if (_loc2_.userName == null || _loc2_.userName == "")
+            {
                 LegacyNavigator(_navigator.legacyNavigator).doorbell.showNoAnswer();
             }
         }
 
-        private function onFriendsListFragment(param1: IMessageEvent): void {
+        private function onFriendsListFragment(param1:IMessageEvent):void
+        {
             data.friendList.onFriendsListFragment(param1);
         }
 
-        private function onFriendListUpdate(param1: IMessageEvent): void {
+        private function onFriendListUpdate(param1:IMessageEvent):void
+        {
             data.friendList.onFriendListUpdate(param1);
             LegacyNavigator(_navigator.legacyNavigator).roomSettingsCtrl.onFriendListUpdate();
         }
 
-        private function onCompetitionData(param1: CompetitionRoomsDataMessageEvent): void {
+        private function onCompetitionData(param1:CompetitionRoomsDataMessageEvent):void
+        {
             data.competitionRoomsData = param1.getParser().data;
         }
 
-        private function forwardToRoom(param1: int): void {
+        private function forwardToRoom(param1:int):void
+        {
             LegacyNavigator(_navigator.legacyNavigator).send(new GetGuestRoomMessageComposer(param1, false, true));
             LegacyNavigator(_navigator.legacyNavigator).trackNavigationDataPoint("Room Forward", "go.roomforward", "", param1);
         }
 
-        private function onNoOwnedRoomsAlert(param1: NoOwnedRoomsAlertMessageEvent): void {
+        private function onNoOwnedRoomsAlert(param1:NoOwnedRoomsAlertMessageEvent):void
+        {
             LegacyNavigator(_navigator.legacyNavigator).startRoomCreation();
         }
 
-        private function closeOpenCantConnectAlerts(): void {
-            var _loc1_: Array = null;
-            var _loc7_: class_3400 = null;
-            var _loc4_: int = 0;
-            var _loc5_: int = 0;
-            var _loc6_: IWindow = null;
-            var _loc3_: AlertView = null;
-            if (_navigator != null) {
+        private function closeOpenCantConnectAlerts():void
+        {
+            var _loc1_:Array = null;
+            var _loc7_:class_3400 = null;
+            var _loc4_:int = 0;
+            var _loc5_:int = 0;
+            var _loc6_:IWindow = null;
+            var _loc3_:AlertView = null;
+            if (_navigator != null)
+            {
                 _loc1_ = [];
                 _loc4_ = int((_loc7_ = _navigator.windowManager.getWindowContext(2)).getDesktopWindow().numChildren);
                 _loc5_ = 0;
-                while (_loc5_ < _loc4_) {
-                    if ((_loc6_ = _loc7_.getDesktopWindow().getChildAt(_loc5_)).tags.indexOf("SimpleAlertView") > -1) {
+                while (_loc5_ < _loc4_)
+                {
+                    if ((_loc6_ = _loc7_.getDesktopWindow().getChildAt(_loc5_)).tags.indexOf("SimpleAlertView") > -1)
+                    {
                         _loc1_.push(_loc6_);
                     }
                     _loc5_++;
                 }
-                if (_loc1_.length > 0) {
-                    for each(var _loc2_ in _loc1_) {
+                if (_loc1_.length > 0)
+                {
+                    for each (var _loc2_ in _loc1_)
+                    {
                         _loc3_ = AlertView.findAlertView(_loc2_);
-                        if (_loc3_ != null) {
+                        if (_loc3_ != null)
+                        {
                             _loc3_.dispose();
                         }
                     }
@@ -486,11 +636,13 @@ package com.sulake.habbo.navigator {
             }
         }
 
-        private function onCantConnect(param1: IMessageEvent): void {
-            var _loc2_: SimpleAlertView = null;
-            var _loc3_: CantConnectMessageEventParser = (param1 as CantConnectMessageEvent).getParser();
+        private function onCantConnect(param1:IMessageEvent):void
+        {
+            var _loc2_:SimpleAlertView = null;
+            var _loc3_:CantConnectMessageEventParser = (param1 as CantConnectMessageEvent).getParser();
             class_14.log("FAILED TO CONNECT: REASON: " + _loc3_.reason);
-            switch (_loc3_.reason - 1) {
+            switch (_loc3_.reason - 1)
+            {
                 case 0:
                     _loc2_ = new SimpleAlertView(LegacyNavigator(_navigator.legacyNavigator), "${navigator.guestroomfull.title}", "${navigator.guestroomfull.text}");
                     _loc2_.show();
@@ -508,7 +660,7 @@ package com.sulake.habbo.navigator {
                     _loc2_.show();
             }
             LegacyNavigator(_navigator.legacyNavigator).send(new QuitMessageComposer());
-            var _loc4_: HabboToolbarEvent;
+            var _loc4_:HabboToolbarEvent;
             (_loc4_ = new HabboToolbarEvent("HTE_TOOLBAR_CLICK")).iconId = "HTIE_ICON_RECEPTION";
             LegacyNavigator(_navigator.legacyNavigator).toolbar.events.dispatchEvent(_loc4_);
         }
